@@ -1,0 +1,8 @@
+.godot/
+shots/
+builds/
+tools/.godot_path
+*.tmp
+.import/
+export_credentials.cfg
+/android/

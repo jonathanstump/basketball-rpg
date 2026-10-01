@@ -1,0 +1,132 @@
+{
+ "bag_moves": [
+  {
+   "id": "snatchback",
+   "name": "Snatchback",
+   "hype": 25,
+   "effect": "Yank the ball back, slide 4 m back, deflect one projectile",
+   "source": "Brooklyn mixtape / Floor General start",
+   "impl": "snatchback"
+  },
+  {
+   "id": "spin_cycle",
+   "name": "Spin Cycle",
+   "hype": 30,
+   "effect": "360 spin, multi-hit AoE r 2 m",
+   "source": "Bronx mixtape / Slasher start",
+   "impl": "spin_cycle"
+  },
+  {
+   "id": "hesi",
+   "name": "Hesi",
+   "hype": 20,
+   "effect": "Hesitation; next attack within 1 s does +100% composure",
+   "source": "Uptown mixtape / Shooter, Two-Way start",
+   "impl": "hesi"
+  },
+  {
+   "id": "orbit",
+   "name": "Orbit",
+   "hype": 40,
+   "effect": "Ball orbits you 5 s, hitting anything close",
+   "source": "Queens mixtape",
+   "impl": "orbit"
+  },
+  {
+   "id": "third_rail",
+   "name": "Third Rail",
+   "hype": 30,
+   "effect": "Electrified dash through enemies",
+   "source": "Staten Island mixtape",
+   "impl": "dash_strike"
+  },
+  {
+   "id": "self_oop",
+   "name": "Self Oop",
+   "hype": 40,
+   "effect": "Off the ground, slam: dunk AoE anywhere",
+   "source": "Pops lesson 1",
+   "impl": "self_oop"
+  },
+  {
+   "id": "euro_glide",
+   "name": "Euro Glide",
+   "hype": 20,
+   "effect": "Long evasive two-step with i-frames",
+   "source": "Pops lesson 2",
+   "impl": "euro_glide"
+  },
+  {
+   "id": "rainbow_lob",
+   "name": "Rainbow Lob",
+   "hype": 35,
+   "effect": "Giant lob landing as 3 impact zones",
+   "source": "Pops lesson 3",
+   "impl": "rainbow_lob"
+  },
+  {
+   "id": "bass_drop",
+   "name": "Bass Drop",
+   "hype": 35,
+   "effect": "Three ground shockwave rings",
+   "source": "Pops lesson 4",
+   "impl": "bass_drop"
+  },
+  {
+   "id": "tunnel",
+   "name": "Tunnel",
+   "hype": 25,
+   "effect": "Roll it through their legs, appear behind them, guaranteed composure hit",
+   "source": "Pops lesson 5",
+   "impl": "tunnel"
+  },
+  {
+   "id": "chest_pound",
+   "name": "Chest Pound",
+   "hype": 40,
+   "effect": "Taunt that heals 15% Heart",
+   "source": "Silverback",
+   "impl": "chest_pound"
+  },
+  {
+   "id": "toll_booth",
+   "name": "Toll Booth",
+   "hype": 25,
+   "effect": "Stance that reflects the next projectile",
+   "source": "The Toll",
+   "impl": "toll_booth"
+  },
+  {
+   "id": "steam_fake",
+   "name": "Steam Fake",
+   "hype": 25,
+   "effect": "Pump fake; steam blinds enemies 2 s",
+   "source": "Extra Sauce",
+   "impl": "steam_fake"
+  },
+  {
+   "id": "trash_talk",
+   "name": "Trash Talk",
+   "hype": 30,
+   "effect": "Enemies within 10 m deal -25% dmg for 15 s",
+   "source": "King of the Heap / Enforcer start",
+   "impl": "trash_talk"
+  },
+  {
+   "id": "showstopper",
+   "name": "Showstopper",
+   "hype": 50,
+   "effect": "Spotlight cone freezes enemies 2 s",
+   "source": "The Hook",
+   "impl": "showstopper"
+  },
+  {
+   "id": "iso",
+   "name": "Iso",
+   "hype": 50,
+   "effect": "3 s slow-mo bubble, ankle-breaker windows x2",
+   "source": "Deuce",
+   "impl": "iso"
+  }
+ ]
+}

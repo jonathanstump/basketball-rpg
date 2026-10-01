@@ -1,0 +1,234 @@
+{
+ "deadzone": 0.2,
+ "actions": {
+  "move_forward": {
+   "keys": [
+    "W",
+    "Up"
+   ],
+   "joy_axes": [
+    [
+     1,
+     -1
+    ]
+   ]
+  },
+  "move_back": {
+   "keys": [
+    "S",
+    "Down"
+   ],
+   "joy_axes": [
+    [
+     1,
+     1
+    ]
+   ]
+  },
+  "move_left": {
+   "keys": [
+    "A",
+    "Left"
+   ],
+   "joy_axes": [
+    [
+     0,
+     -1
+    ]
+   ]
+  },
+  "move_right": {
+   "keys": [
+    "D",
+    "Right"
+   ],
+   "joy_axes": [
+    [
+     0,
+     1
+    ]
+   ]
+  },
+  "cam_left": {
+   "joy_axes": [
+    [
+     2,
+     -1
+    ]
+   ]
+  },
+  "cam_right": {
+   "joy_axes": [
+    [
+     2,
+     1
+    ]
+   ]
+  },
+  "cam_up": {
+   "joy_axes": [
+    [
+     3,
+     -1
+    ]
+   ]
+  },
+  "cam_down": {
+   "joy_axes": [
+    [
+     3,
+     1
+    ]
+   ]
+  },
+  "lock_on": {
+   "mouse": [
+    3
+   ],
+   "joy_buttons": [
+    8
+   ]
+  },
+  "target_next": {
+   "mouse": [
+    4
+   ]
+  },
+  "target_prev": {
+   "mouse": [
+    5
+   ]
+  },
+  "jump": {
+   "keys": [
+    "Space"
+   ],
+   "joy_buttons": [
+    0
+   ]
+  },
+  "dodge": {
+   "keys": [
+    "Shift"
+   ],
+   "joy_buttons": [
+    1
+   ]
+  },
+  "light": {
+   "mouse": [
+    1
+   ],
+   "joy_buttons": [
+    2
+   ]
+  },
+  "heavy": {
+   "mouse": [
+    2
+   ],
+   "joy_buttons": [
+    3
+   ]
+  },
+  "shoot": {
+   "keys": [
+    "E"
+   ],
+   "joy_buttons": [
+    10
+   ]
+  },
+  "hands_up": {
+   "keys": [
+    "Q"
+   ],
+   "joy_buttons": [
+    9
+   ]
+  },
+  "bag_move": {
+   "keys": [
+    "F"
+   ],
+   "joy_axes": [
+    [
+     4,
+     1
+    ]
+   ]
+  },
+  "interact": {
+   "keys": [
+    "R"
+   ],
+   "joy_axes": [
+    [
+     5,
+     1
+    ]
+   ]
+  },
+  "quarter_water": {
+   "keys": [
+    "1"
+   ],
+   "joy_buttons": [
+    11
+   ]
+  },
+  "swap_ball_left": {
+   "keys": [
+    "2"
+   ],
+   "joy_buttons": [
+    13
+   ]
+  },
+  "swap_ball_right": {
+   "keys": [
+    "3"
+   ],
+   "joy_buttons": [
+    14
+   ]
+  },
+  "taunt": {
+   "keys": [
+    "T"
+   ],
+   "joy_buttons": [
+    12
+   ]
+  },
+  "map": {
+   "keys": [
+    "M"
+   ],
+   "joy_buttons": [
+    4
+   ]
+  },
+  "menu": {
+   "keys": [
+    "Escape"
+   ],
+   "joy_buttons": [
+    6
+   ]
+  },
+  "debug_console": {
+   "keys": [
+    "QuoteLeft"
+   ]
+  },
+  "ui_confirm_alt": {
+   "keys": [
+    "Enter"
+   ],
+   "joy_buttons": [
+    0
+   ]
+  }
+ }
+}

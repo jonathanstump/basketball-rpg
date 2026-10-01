@@ -1,0 +1,13 @@
+{
+  "gather_s": 0.55,
+  "center": 0.82,
+  "base_widths": { "perfect": 0.05, "good": 0.12, "near": 0.22 },
+  "jumper": { "base_stat": 10, "per_pt_to_40": 0.0015, "per_pt_to_60": 0.0005 },
+  "zones": { "close_m": 3.0, "arc_m": 6.75, "deep_extra_m": 2.0, "close": 1.5, "mid": 1.0, "three": 0.85, "deep": 0.6 },
+  "contest_factor": 0.6,
+  "smothered": 0.85,
+  "modifiers": { "stepback": 1.4, "wide_open": 2.0, "takeover": 1.6, "low_wind": 0.8 },
+  "stepback_window_s": 0.8,
+  "perfect_cap": 0.25,
+  "rejected_punish_pct": 0.18
+}

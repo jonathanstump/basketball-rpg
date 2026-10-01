@@ -1,0 +1,500 @@
+{
+ "balls": [
+  {
+   "id": "ball_rec",
+   "name": "Rec Ball",
+   "source": "Start",
+   "scaling": {
+    "handles": "C",
+    "jumper": "C",
+    "body": "C"
+   },
+   "rarity": "common",
+   "attack": 20,
+   "gather_s": 0.55,
+   "props": {},
+   "flavor": "Rec center issue. Smells like a gym bag and a thousand pickup games."
+  },
+  {
+   "id": "ball_rubber_blacktop",
+   "name": "Rubber Blacktop",
+   "source": "Start (Enforcer)",
+   "scaling": {
+    "body": "B",
+    "jumper": "D"
+   },
+   "rarity": "common",
+   "attack": 24,
+   "gather_s": 0.6,
+   "props": {
+    "composure_mult": 1.2
+   },
+   "flavor": "Pebbled rubber that eats asphalt for breakfast. Heavy in the hands, heavy on impact."
+  },
+  {
+   "id": "ball_leather_indoor",
+   "name": "Leather Indoor",
+   "source": "Start (Shooter)",
+   "scaling": {
+    "jumper": "B",
+    "handles": "C"
+   },
+   "rarity": "common",
+   "attack": 18,
+   "gather_s": 0.5,
+   "props": {
+    "physical_mult": 0.9
+   },
+   "flavor": "Too nice for the blacktop. You play outside with it anyway."
+  },
+  {
+   "id": "ball_taped",
+   "name": "Taped-Up Ball",
+   "source": "Start (Nobody)",
+   "scaling": {
+    "handles": "D",
+    "jumper": "D",
+    "body": "D",
+    "bounce": "D",
+    "hands": "D"
+   },
+   "rarity": "common",
+   "attack": 16,
+   "gather_s": 0.55,
+   "props": {
+    "evolves_at": 10,
+    "evolves_to": "ball_old_faithful"
+   },
+   "flavor": "More tape than ball. It still bounces. Mostly."
+  },
+  {
+   "id": "ball_old_faithful",
+   "name": "Old Faithful",
+   "source": "Taped-Up Ball +10",
+   "scaling": {
+    "handles": "S"
+   },
+   "rarity": "legendary",
+   "attack": 34,
+   "gather_s": 0.52,
+   "props": {},
+   "flavor": "Every layer of tape is a game you didn't quit."
+  },
+  {
+   "id": "ball_shell",
+   "name": "Shell Ball",
+   "source": "King Crab",
+   "scaling": {
+    "body": "B"
+   },
+   "rarity": "rare",
+   "attack": 30,
+   "gather_s": 0.58,
+   "props": {
+    "attack_poise": 15
+   },
+   "flavor": "Hard as a shell and smells faintly of the docks."
+  },
+  {
+   "id": "ball_primal",
+   "name": "Primal Ball",
+   "source": "Silverback",
+   "scaling": {
+    "body": "B",
+    "bounce": "C"
+   },
+   "rarity": "rare",
+   "attack": 31,
+   "gather_s": 0.58,
+   "props": {
+    "knockdown_chance": 0.15
+   },
+   "flavor": "Knuckle-dented. Something big dribbled this."
+  },
+  {
+   "id": "ball_bass",
+   "name": "Bass Ball",
+   "source": "Grandmaster Boom",
+   "scaling": {
+    "handles": "B"
+   },
+   "rarity": "epic",
+   "attack": 32,
+   "gather_s": 0.55,
+   "props": {
+    "shockwave_every": 3
+   },
+   "flavor": "Thumps on every bounce. The block party never really ends."
+  },
+  {
+   "id": "ball_pinkie",
+   "name": "Pinkie",
+   "source": "Stoop Queen",
+   "scaling": {
+    "handles": "C",
+    "hands": "C"
+   },
+   "rarity": "epic",
+   "attack": 38,
+   "gather_s": 0.55,
+   "props": {
+    "pass_ricochets": 2
+   },
+   "flavor": "Pink rubber with a hundred summers of stoop bounce in it. She kept it for somebody who deserved it."
+  },
+  {
+   "id": "ball_prize",
+   "name": "Prize Ball",
+   "source": "The Barker",
+   "scaling": {
+    "jumper": "C",
+    "handles": "C"
+   },
+   "rarity": "rare",
+   "attack": 30,
+   "gather_s": 0.55,
+   "props": {
+    "crit_bonus": 0.15
+   },
+   "flavor": "Won it on the first try. Nobody wins on the first try."
+  },
+  {
+   "id": "ball_granite",
+   "name": "Granite Ball",
+   "source": "The Toll",
+   "scaling": {
+    "body": "A"
+   },
+   "rarity": "epic",
+   "attack": 40,
+   "gather_s": 0.7,
+   "props": {
+    "composure_mult": 1.6,
+    "speed_mult": 0.9
+   },
+   "flavor": "Cut from the bridge itself. Toll's paid."
+  },
+  {
+   "id": "ball_third_rail",
+   "name": "Third Rail Ball",
+   "source": "The Express",
+   "scaling": {
+    "handles": "B"
+   },
+   "rarity": "rare",
+   "attack": 30,
+   "gather_s": 0.55,
+   "props": {
+    "shock_chain": 2
+   },
+   "flavor": "Do not touch. Too late."
+  },
+  {
+   "id": "ball_spice",
+   "name": "Spice Ball",
+   "source": "Extra Sauce",
+   "scaling": {
+    "handles": "C"
+   },
+   "rarity": "rare",
+   "attack": 29,
+   "gather_s": 0.55,
+   "props": {
+    "burn": true
+   },
+   "flavor": "Extra hot. No refunds."
+  },
+  {
+   "id": "ball_orbit",
+   "name": "Orbit Ball",
+   "source": "Atlas",
+   "scaling": {
+    "jumper": "B"
+   },
+   "rarity": "epic",
+   "attack": 33,
+   "gather_s": 0.55,
+   "props": {
+    "pass_curve": 0.35
+   },
+   "flavor": "A little world in your hands. It pulls toward things."
+  },
+  {
+   "id": "ball_lantern",
+   "name": "Lantern Ball",
+   "source": "The Ferryman",
+   "scaling": {
+    "hands": "B"
+   },
+   "rarity": "rare",
+   "attack": 28,
+   "gather_s": 0.55,
+   "props": {
+    "reveal": true
+   },
+   "flavor": "Glows sea-green. Shows you what's hiding."
+  },
+  {
+   "id": "ball_cannon",
+   "name": "Cannonball",
+   "source": "The General",
+   "scaling": {
+    "body": "B"
+   },
+   "rarity": "rare",
+   "attack": 32,
+   "gather_s": 0.62,
+   "props": {
+    "charged_pass_explodes": true
+   },
+   "flavor": "Two hundred years old and still loaded."
+  },
+  {
+   "id": "ball_junk",
+   "name": "Junk Ball",
+   "source": "King of the Heap",
+   "scaling": {
+    "handles": "C",
+    "jumper": "C",
+    "body": "C",
+    "bounce": "C",
+    "hands": "C"
+   },
+   "rarity": "epic",
+   "attack": 34,
+   "gather_s": 0.55,
+   "props": {
+    "random_effect": true
+   },
+   "flavor": "Held together by tape, gum, and spite."
+  },
+  {
+   "id": "ball_feather",
+   "name": "Feather Ball",
+   "source": "The Coop King",
+   "scaling": {
+    "handles": "A"
+   },
+   "rarity": "epic",
+   "attack": 24,
+   "gather_s": 0.5,
+   "props": {
+    "wind_cost_mult": 0.8
+   },
+   "flavor": "Light as a pigeon. Coos when you crossover."
+  },
+  {
+   "id": "ball_spotlight",
+   "name": "Spotlight Ball",
+   "source": "The Hook",
+   "scaling": {
+    "jumper": "B"
+   },
+   "rarity": "epic",
+   "attack": 31,
+   "gather_s": 0.53,
+   "props": {
+    "perfect_crit": true
+   },
+   "flavor": "Showtime. Every perfect release lands like a standing ovation."
+  },
+  {
+   "id": "ball_mecca",
+   "name": "Mecca Ball",
+   "source": "High Rise",
+   "scaling": {
+    "jumper": "A"
+   },
+   "rarity": "legendary",
+   "attack": 36,
+   "gather_s": 0.53,
+   "props": {
+    "shot_window_mult": 1.2
+   },
+   "flavor": "Every legend in the city touched this ball once."
+  },
+  {
+   "id": "ball_chain",
+   "name": "Chain Ball",
+   "source": "Chain Link",
+   "scaling": {
+    "body": "B",
+    "hands": "B"
+   },
+   "rarity": "legendary",
+   "attack": 36,
+   "gather_s": 0.58,
+   "props": {
+    "unstealable": true
+   },
+   "flavor": "Padlocked to your wrist. Nobody's taking it."
+  },
+  {
+   "id": "ball_cable",
+   "name": "Cable Ball",
+   "source": "Suspension",
+   "scaling": {
+    "handles": "B"
+   },
+   "rarity": "legendary",
+   "attack": 35,
+   "gather_s": 0.55,
+   "props": {
+    "pass_pull": true
+   },
+   "flavor": "Strung tight. Your passes reel you in."
+  },
+  {
+   "id": "ball_replay",
+   "name": "Replay Ball",
+   "source": "Prime Time",
+   "scaling": {
+    "handles": "B",
+    "jumper": "B"
+   },
+   "rarity": "legendary",
+   "attack": 35,
+   "gather_s": 0.55,
+   "props": {
+    "echo": 0.3
+   },
+   "flavor": "Every hit, again. In slow motion."
+  },
+  {
+   "id": "ball_gator",
+   "name": "Gator Ball",
+   "source": "The Gator",
+   "scaling": {
+    "body": "B"
+   },
+   "rarity": "legendary",
+   "attack": 36,
+   "gather_s": 0.57,
+   "props": {
+    "bleed": true
+   },
+   "flavor": "Scaly grip. Bites back."
+  },
+  {
+   "id": "ball_gale",
+   "name": "Gale Ball",
+   "source": "The Gargoyle",
+   "scaling": {
+    "jumper": "B"
+   },
+   "rarity": "legendary",
+   "attack": 34,
+   "gather_s": 0.54,
+   "props": {
+    "pass_knockback": true
+   },
+   "flavor": "Catches the wind and keeps it."
+  },
+  {
+   "id": "ball_midnight",
+   "name": "Midnight Ball",
+   "source": "Midnight",
+   "scaling": {
+    "handles": "B",
+    "jumper": "B",
+    "body": "B",
+    "bounce": "B",
+    "hands": "B"
+   },
+   "rarity": "grail",
+   "attack": 42,
+   "gather_s": 0.52,
+   "props": {
+    "takeover_mult": 1.5
+   },
+   "flavor": "Stopped clock painted on the panels. It's always 3:00 in your hands."
+  },
+  {
+   "id": "ball_old_head",
+   "name": "Old Head Ball",
+   "source": "Pops",
+   "scaling": {
+    "jumper": "S"
+   },
+   "rarity": "grail",
+   "attack": 38,
+   "gather_s": 0.52,
+   "props": {},
+   "flavor": "Worn smooth. Pops swears it still has a few left in it."
+  },
+  {
+   "id": "ball_glow",
+   "name": "Glow Ball",
+   "source": "Bronx (GHOST box)",
+   "scaling": {
+    "handles": "C"
+   },
+   "rarity": "rare",
+   "attack": 24,
+   "gather_s": 0.55,
+   "props": {
+    "light": true
+   },
+   "flavor": "Glows in the dark. Lights up alleys and old murals."
+  },
+  {
+   "id": "ball_medicine",
+   "name": "Medicine Ball",
+   "source": "Brooklyn (KONG box)",
+   "scaling": {
+    "body": "S"
+   },
+   "rarity": "epic",
+   "attack": 48,
+   "gather_s": 0.75,
+   "props": {
+    "wind_cost_mult": 1.6
+   },
+   "flavor": "Your trainer would be proud. Your shoulders would not."
+  },
+  {
+   "id": "ball_chrome",
+   "name": "Chrome Ball",
+   "source": "Queens (LOCKDOWN box)",
+   "scaling": {
+    "hands": "B"
+   },
+   "rarity": "epic",
+   "attack": 30,
+   "gather_s": 0.55,
+   "props": {
+    "reflect_on_parry": true
+   },
+   "flavor": "Mirror finish. Perfect parries bounce projectiles back."
+  },
+  {
+   "id": "ball_beach",
+   "name": "Beach Ball",
+   "source": "Staten Island (GHOST box)",
+   "scaling": {},
+   "rarity": "rare",
+   "attack": 8,
+   "gather_s": 0.55,
+   "props": {
+    "pass_speed_mult": 0.5,
+    "bucket_blast_radius_mult": 2.0
+   },
+   "flavor": "It's a beach ball. It is not a good idea. Bucket Blasts are enormous."
+  },
+  {
+   "id": "ball_neon",
+   "name": "Neon Ball",
+   "source": "Uptown (STRATA box)",
+   "scaling": {
+    "jumper": "C"
+   },
+   "rarity": "rare",
+   "attack": 26,
+   "gather_s": 0.55,
+   "props": {
+    "hype_gain_mult": 1.2
+   },
+   "flavor": "Buzzes like a sign. Hype sticks to it."
+  }
+ ]
+}

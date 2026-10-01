@@ -1,0 +1,11 @@
+{
+  "shook_s": 3.0,
+  "stagger_s": 2.0,
+  "tier_shrink_from": 4,
+  "tier_shrink_per_tier_s": 0.2,
+  "shook_floor_s": 2.0,
+  "stagger_floor_s": 1.4,
+  "regen_pct_per_s": 0.06,
+  "regen_delay_s": 2.0,
+  "regen_with_ball_mult": 2.0
+}

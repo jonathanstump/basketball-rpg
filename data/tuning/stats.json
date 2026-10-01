@@ -1,0 +1,12 @@
+{
+  "heart": { "base": 300, "at": 10, "bands": [[40, 25], [60, 10], [999, 3]] },
+  "wind": { "base": 100, "at": 10, "bands": [[40, 3], [999, 1]] },
+  "body": { "dr_per_pt": 0.004, "dr_cap": 0.20, "poise_per_pt": 2.0, "base_poise": 20 },
+  "handles": { "ankle_frames_per_pt": 0.2, "ankle_frames_max_bonus": 6 },
+  "bounce": { "jump_per_pt": 0.02, "dunk_range_per_pt": 0.03 },
+  "hands": { "parry_frames_per_pt": 0.2, "parry_frames_max_total": 16 },
+  "soft_caps": [20, 40, 60],
+  "grades": { "S": 1.0, "A": 0.8, "B": 0.6, "C": 0.4, "D": 0.2 },
+  "stat_factor_bands": [[20, 0.05], [40, 0.025], [60, 0.0125], [999, 0.005]],
+  "move_stat": { "dribble": "handles", "pass": "handles", "body": "body", "aerial": "bounce", "shot": "jumper", "strip": "hands" }
+}

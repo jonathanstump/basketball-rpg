@@ -1,0 +1,5 @@
+{
+  "scenes": [
+    { "name": "boot", "scene": "res://ui/title/boot.tscn", "frames": 20 }
+  ]
+}

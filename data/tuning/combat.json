@@ -1,0 +1,14 @@
+{
+  "hype": { "max": 100, "ankle_breaker": 12, "strip": 10, "perfect_shot": 10, "poster": 25, "taunt": 15, "bucket_blast": 8, "read": 5, "on_beat": 5, "decay_per_s": 2, "decay_delay_s": 8 },
+  "takeover": { "duration_s": 12, "shot_window_mult": 1.6, "damage_mult": 1.25, "wind_regen_mult": 1.5, "make_bonus_s": 2, "activation_frames": 30 },
+  "taunt": { "frames": 72, "boss_aggro_s": 5 },
+  "ankle_breaker": { "window_start": 3, "window_end": 12, "slowmo_scale": 0.3, "slowmo_s": 0.6, "composure": 35, "knockdown_s": 1.5 },
+  "parry": { "base_window_frames": 10, "whiff_recovery_frames": 18, "strip_composure": 30, "deflect_composure": 20, "steal_bias": 0.7 },
+  "guard": { "chip": 0.25, "wind_per_damage": 0.8, "break_stagger_s": 1.2 },
+  "reach_in": { "base_chance": 0.35, "hands_per_pt": 0.01, "off_balance_frames": 20 },
+  "hitstop": { "light": 3, "medium": 5, "heavy": 8 },
+  "bucket_blast": { "radius_m": 6, "damage": 60, "composure": 40, "cooldown_s": 20 },
+  "street": { "strip_fly_m": 5, "disarmed_damage_taken": 1.3, "lost_ball_timeout_s": 10, "knockdown_s": 1.5, "dunk_finisher_crit": 3.0 },
+  "crit": { "base_chance": 0.05, "mult": 1.5 },
+  "ball_upgrade_per_level": 0.08
+}

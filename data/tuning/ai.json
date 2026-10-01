@@ -1,0 +1,14 @@
+{
+  "alert_radius_m": 18,
+  "fov_deg": 120,
+  "hear_radius_m": 12,
+  "leash_m": 35,
+  "circle_min_m": 4,
+  "circle_max_m": 6,
+  "max_attackers": 2,
+  "max_attackers_t5": 3,
+  "captain": { "hp_mult": 1.6, "rep_mult": 3, "key_chance": 0.25 },
+  "t5_common": { "extra_combo_hits": 1, "recovery_mult": 0.8 },
+  "think_interval_s": 0.2,
+  "leash_heal_per_s": 0.25
+}

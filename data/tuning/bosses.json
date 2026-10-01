@@ -1,0 +1,20 @@
+{
+  "mini": { "hp": 1800, "composure": 200, "light": 45, "heavy": 90, "grab": 120, "contest_radius": 3.0, "rep": 2500, "tokens": 800 },
+  "king": { "hp": 3200, "composure": 300, "light": 55, "heavy": 110, "grab": 150, "contest_radius": 3.5, "rep": 5000, "tokens": 1500 },
+  "landmark": { "base": "king", "tier": 6 },
+  "final": { "base": "king", "tier": 7, "reward_mult": 2 },
+  "duel": {
+    "check_s": 1.2,
+    "boss_auto_clear_s": 2.0,
+    "rattled_s": 1.0,
+    "statement_dunk_heal_pct": 0.08,
+    "rejection_composure": 40,
+    "lock_in_per_make": 0.05,
+    "lock_in_cap": 0.30,
+    "phase_transition_s": 3.0,
+    "showboat_strip_mult": 2.0,
+    "poster_range_m": 4.0,
+    "arc_m": 6.75,
+    "rim_height_m": 3.05
+  }
+}

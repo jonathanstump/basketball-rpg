@@ -1,0 +1,99 @@
+{
+ "archetypes": [
+  {
+   "id": "slasher",
+   "name": "Slasher",
+   "blurb": "Lives in the paint. Bounce and handles.",
+   "stats": {
+    "heart": 10,
+    "wind": 11,
+    "body": 9,
+    "handles": 13,
+    "bounce": 14,
+    "jumper": 8,
+    "hands": 9
+   },
+   "start_ball": "ball_rec",
+   "start_bag_move": "spin_cycle"
+  },
+  {
+   "id": "shooter",
+   "name": "Shooter",
+   "blurb": "If it leaves the hand, it's wet.",
+   "stats": {
+    "heart": 9,
+    "wind": 10,
+    "body": 8,
+    "handles": 11,
+    "bounce": 9,
+    "jumper": 16,
+    "hands": 11
+   },
+   "start_ball": "ball_leather_indoor",
+   "start_bag_move": "hesi"
+  },
+  {
+   "id": "floor_general",
+   "name": "Floor General",
+   "blurb": "Sees the whole court. Handles for days.",
+   "stats": {
+    "heart": 10,
+    "wind": 11,
+    "body": 8,
+    "handles": 15,
+    "bounce": 9,
+    "jumper": 10,
+    "hands": 11
+   },
+   "start_ball": "ball_rec",
+   "start_bag_move": "snatchback"
+  },
+  {
+   "id": "enforcer",
+   "name": "Enforcer",
+   "blurb": "Box out, bang bodies, talk trash.",
+   "stats": {
+    "heart": 14,
+    "wind": 10,
+    "body": 15,
+    "handles": 8,
+    "bounce": 11,
+    "jumper": 7,
+    "hands": 9
+   },
+   "start_ball": "ball_rubber_blacktop",
+   "start_bag_move": "trash_talk"
+  },
+  {
+   "id": "two_way",
+   "name": "Two-Way",
+   "blurb": "A little of everything, especially defense.",
+   "stats": {
+    "heart": 11,
+    "wind": 11,
+    "body": 10,
+    "handles": 10,
+    "bounce": 10,
+    "jumper": 10,
+    "hands": 12
+   },
+   "start_ball": "ball_rec",
+   "start_bag_move": "hesi"
+  },
+  {
+   "id": "nobody",
+   "name": "Nobody",
+   "blurb": "No name. No bag. Taped-up ball. Prove it.",
+   "stats": {
+    "heart": 9,
+    "wind": 9,
+    "body": 9,
+    "handles": 9,
+    "bounce": 9,
+    "jumper": 9,
+    "hands": 9
+   },
+   "start_ball": "ball_taped"
+  }
+ ]
+}
