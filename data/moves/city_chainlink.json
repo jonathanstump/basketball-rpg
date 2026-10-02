@@ -1,0 +1,231 @@
+{
+ "moves": [
+  {
+   "id": "lock_up",
+   "name": "Lock Up",
+   "primitive": "grab",
+   "body_attack": true,
+   "startup": 26,
+   "active": 10,
+   "recovery": 36,
+   "damage": 130,
+   "parry": "deflect",
+   "lunge_m": 3.5,
+   "hitbox": {
+    "shape": "sphere",
+    "radius": 1.8,
+    "forward": 1.8,
+    "height": 3.2
+   },
+   "knockdown": true,
+   "hit_weight": "heavy",
+   "weight": 3,
+   "cooldown_s": 5,
+   "range_m": [
+    0,
+    5
+   ],
+   "min_tier": 1,
+   "possession": "any"
+  },
+  {
+   "id": "padlock_flail",
+   "name": "Padlock Flail",
+   "primitive": "melee_arc",
+   "body_attack": true,
+   "startup": 20,
+   "active": 24,
+   "recovery": 26,
+   "damage": 55,
+   "parry": "deflect",
+   "hits": 3,
+   "hit_gap": 8,
+   "hitbox": {
+    "shape": "arc",
+    "radius": 3.6,
+    "angle": 160,
+    "height": 2.4
+   },
+   "hit_weight": "medium",
+   "weight": 4,
+   "cooldown_s": 3,
+   "range_m": [
+    0,
+    4
+   ],
+   "min_tier": 1,
+   "possession": "any"
+  },
+  {
+   "id": "fence_slam",
+   "name": "Fence Slam",
+   "primitive": "ring_wave",
+   "body_attack": true,
+   "startup": 30,
+   "active": 2,
+   "recovery": 30,
+   "damage": 50,
+   "parry": "none",
+   "ring_speed": 10.0,
+   "ring_max_m": 10.0,
+   "hit_weight": "medium",
+   "weight": 3,
+   "cooldown_s": 5,
+   "range_m": [
+    0,
+    10
+   ],
+   "min_tier": 1,
+   "possession": "any"
+  },
+  {
+   "id": "no_call",
+   "name": "No Call",
+   "primitive": "lunge",
+   "body_attack": true,
+   "unblockable": true,
+   "startup": 10,
+   "active": 8,
+   "recovery": 24,
+   "damage": 70,
+   "parry": "none",
+   "lunge_m": 3.0,
+   "hitbox": {
+    "shape": "arc",
+    "radius": 3.0,
+    "angle": 140,
+    "height": 2.6
+   },
+   "knockdown": true,
+   "hit_weight": "heavy",
+   "weight": 0,
+   "cooldown_s": 0,
+   "min_tier": 1,
+   "range_m": [
+    0,
+    30
+   ],
+   "possession": "any"
+  },
+  {
+   "id": "clamp",
+   "name": "Clamp",
+   "primitive": "zone",
+   "zone": "clamp",
+   "body_attack": true,
+   "startup": 24,
+   "active": 2,
+   "recovery": 24,
+   "damage": 30,
+   "parry": "none",
+   "duration_s": 2,
+   "status": {
+    "rooted": 1.0
+   },
+   "hitbox": {
+    "shape": "circle",
+    "radius": 1.6,
+    "height": 2.0
+   },
+   "hit_weight": "light",
+   "weight": 3,
+   "cooldown_s": 6,
+   "range_m": [
+    2,
+    12
+   ],
+   "min_tier": 1,
+   "possession": "any"
+  },
+  {
+   "id": "cage_match",
+   "name": "Cage Match",
+   "primitive": "summon",
+   "summon": "suit",
+   "count": 2,
+   "duration_s": 20,
+   "startup": 34,
+   "active": 2,
+   "recovery": 24,
+   "damage": 0,
+   "weight": 1,
+   "cooldown_s": 24,
+   "min_tier": 1,
+   "range_m": [
+    0,
+    30
+   ],
+   "possession": "any"
+  },
+  {
+   "id": "chainlink_lob",
+   "name": "Chain Lob",
+   "primitive": "lob",
+   "uses_ball": true,
+   "rejectable": true,
+   "startup": 30,
+   "active": 2,
+   "recovery": 32,
+   "damage": 60,
+   "parry": "none",
+   "flight_s": 1.2,
+   "hitbox": {
+    "shape": "circle",
+    "radius": 2.2,
+    "height": 2.5
+   },
+   "hit_weight": "medium",
+   "weight": 4,
+   "cooldown_s": 2,
+   "range_m": [
+    2,
+    24
+   ],
+   "possession": "with_ball",
+   "min_tier": 1
+  },
+  {
+   "id": "chainlink_statement",
+   "name": "Lockdown Slam",
+   "primitive": "statement_dunk",
+   "body_attack": true,
+   "startup": 42,
+   "active": 10,
+   "recovery": 30,
+   "damage": 120,
+   "parry": "none",
+   "hitbox": {
+    "shape": "circle",
+    "radius": 2.8,
+    "height": 5.0
+   },
+   "hit_weight": "heavy",
+   "weight": 3,
+   "cooldown_s": 10,
+   "possession": "with_ball",
+   "needs_paint": true,
+   "min_tier": 1,
+   "range_m": [
+    0,
+    30
+   ]
+  },
+  {
+   "id": "chainlink_show",
+   "name": "Rattle the Fence",
+   "primitive": "showboat",
+   "startup": 6,
+   "active": 84,
+   "recovery": 6,
+   "damage": 0,
+   "weight": 1,
+   "cooldown_s": 16,
+   "possession": "with_ball",
+   "min_tier": 1,
+   "range_m": [
+    0,
+    30
+   ]
+  }
+ ]
+}

@@ -1,0 +1,158 @@
+{
+ "id": "city_midtown",
+ "borough": "city",
+ "palette": "city",
+ "seed": 1602,
+ "name": "Midtown",
+ "heights": {
+  "B": [
+   3,
+   5
+  ],
+  "T": [
+   5,
+   7
+  ],
+  "H": [
+   18,
+   34
+  ],
+  "W": [
+   2,
+   3
+  ]
+ },
+ "shops": {
+  "K": [
+   "city_plug"
+  ],
+  "G": [
+   "city_pump_grip"
+  ],
+  "I": [
+   "city_ink"
+  ]
+ },
+ "graffiti": [
+  "don't be predictable",
+  "watch the flash cue",
+  "only LIVE takes damage",
+  "correct for the wind",
+  "reject the dive",
+  "the garden waits",
+  "penny runs lex",
+  "mascots are tanky",
+  "grand central",
+  "five stubs, one door"
+ ],
+ "spawns": {
+  "e": [
+   "suit",
+   "big_head_mascot",
+   "tourist",
+   "suit",
+   "suit",
+   "big_head_mascot",
+   "tourist",
+   "suit"
+  ],
+  "E": [
+   "captain:big_head_mascot"
+  ],
+  "c": [
+   "pigeon",
+   "pigeon",
+   "rat"
+  ]
+ },
+ "loot": {
+  "%": "bootleg",
+  "w": "city_wire",
+  "$": [
+   "city_retail",
+   "city_sugar",
+   "city_limited_locked",
+   "city_retail",
+   "city_secret"
+  ]
+ },
+ "bodegas": [
+  {
+   "id": "city_bodega_3",
+   "cat": "Penny",
+   "name": "Lexington Deli"
+  },
+  {
+   "id": "city_bodega_4",
+   "cat": "Lex",
+   "name": "Times Deli"
+  }
+ ],
+ "stations": [
+  {
+   "id": "city_st_midtown",
+   "name": "Grand Central",
+   "line": "gold"
+  }
+ ],
+ "npcs": [
+  {
+   "id": "npc_street_vendor",
+   "name": "Street Vendor",
+   "lines": [
+    "The screens guy replays everything you do. Don't get predictable.",
+    "Up top, the eagle rides the wind. Your shots drift - correct for it.",
+    "And the Garden... nobody's been inside since three AM."
+   ]
+  },
+  {
+   "id": "npc_mic_check_mt",
+   "name": "Mic Check",
+   "lines": [
+    "MIDTOWN! The lights never go out because the night never ends.",
+    "Two landmarks up here. Then... the Garden."
+   ]
+  }
+ ],
+ "crossings": [
+  {
+   "to": "up_harlem",
+   "via": "park_north_gate",
+   "name": "The Park's North Gate to Uptown"
+  },
+  {
+   "to": "qn_flushing",
+   "via": "river_tunnel",
+   "name": "The River Tunnel to Queens"
+  },
+  {
+   "to": "city_downtown",
+   "via": "broadway",
+   "name": "Downtown"
+  }
+ ],
+ "shortcuts": [
+  {
+   "id": "city_midtown_ladder_0",
+   "open_from": "s",
+   "kind": "ladder"
+  }
+ ],
+ "secrets": [
+  {
+   "id": "city_midtown_roof_0_out",
+   "kind": "rooftop"
+  },
+  {
+   "id": "city_midtown_roof_0_in",
+   "kind": "rooftop"
+  }
+ ],
+ "fights": {
+  "M": [],
+  "X": [
+   "city_primetime",
+   "city_gargoyle"
+  ]
+ }
+}

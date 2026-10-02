@@ -1,0 +1,460 @@
+{
+ "id": "city_suspension",
+ "name": "SUSPENSION",
+ "title": "The Steel Weaver",
+ "borough": "city",
+ "district": "city_downtown",
+ "kind": "landmark",
+ "arena": {
+  "theme": "bridge_promenade",
+  "size_m": [
+   20,
+   18
+  ],
+  "indoor": false,
+  "floor": "#6A5038",
+  "key": "#F4B400",
+  "props": [
+   {
+    "shape": "box",
+    "size": [
+     8.0,
+     22.0,
+     4.0
+    ],
+    "pos": [
+     0,
+     11.0,
+     -14.0
+    ],
+    "color": "#8A7A64"
+   },
+   {
+    "shape": "box",
+    "size": [
+     2.4,
+     8.0,
+     4.2
+    ],
+    "pos": [
+     -2.0,
+     12.0,
+     -14.0
+    ],
+    "color": "#2A2A30"
+   },
+   {
+    "shape": "box",
+    "size": [
+     2.4,
+     8.0,
+     4.2
+    ],
+    "pos": [
+     2.0,
+     12.0,
+     -14.0
+    ],
+    "color": "#2A2A30"
+   },
+   {
+    "shape": "cylinder",
+    "size": [
+     0.06,
+     26.0
+    ],
+    "pos": [
+     -6.0,
+     12.0,
+     0
+    ],
+    "color": "#C8D0DA",
+    "rot": [
+     60,
+     0,
+     0
+    ],
+    "repeat": {
+     "count": 4,
+     "step": [
+      4.0,
+      0,
+      0
+     ]
+    },
+    "no_shadow": true
+   },
+   {
+    "shape": "sphere",
+    "size": [
+     0.5
+    ],
+    "pos": [
+     -11.0,
+     1.0,
+     -2.7
+    ],
+    "color": "#F4B400",
+    "neon": true,
+    "emit": 2.0
+   },
+   {
+    "shape": "sphere",
+    "size": [
+     0.5
+    ],
+    "pos": [
+     11.0,
+     1.0,
+     -2.7
+    ],
+    "color": "#F4B400",
+    "neon": true,
+    "emit": 2.0
+   },
+   {
+    "shape": "sphere",
+    "size": [
+     0.5
+    ],
+    "pos": [
+     -11.0,
+     1.0,
+     4.5
+    ],
+    "color": "#F4B400",
+    "neon": true,
+    "emit": 2.0
+   },
+   {
+    "shape": "sphere",
+    "size": [
+     0.5
+    ],
+    "pos": [
+     11.0,
+     1.0,
+     4.5
+    ],
+    "color": "#F4B400",
+    "neon": true,
+    "emit": 2.0
+   },
+   {
+    "shape": "box",
+    "size": [
+     200.0,
+     0.2,
+     200.0
+    ],
+    "pos": [
+     0,
+     -14.0,
+     0
+    ],
+    "color": "#0A1A2E",
+    "no_shadow": true
+   },
+   {
+    "pos": [
+     -7.0,
+     6.0,
+     3.0
+    ],
+    "light": {
+     "color": "#FFE0A0",
+     "energy": 1.6,
+     "range": 14.0
+    }
+   },
+   {
+    "pos": [
+     7.0,
+     6.0,
+     3.0
+    ],
+    "light": {
+     "color": "#FFE0A0",
+     "energy": 1.6,
+     "range": 14.0
+    }
+   }
+  ]
+ },
+ "base": {
+  "hp": 3200,
+  "composure": 300,
+  "contest_radius": 3.5,
+  "poise": 9999,
+  "height_m": 7.0,
+  "radius_m": 1.8,
+  "speed": 3.6
+ },
+ "phases": [
+  {
+   "id": 1,
+   "rules": {},
+   "moves": [
+    "cable_lash",
+    "web_net",
+    "arch_drop",
+    "tension_snap",
+    "weave",
+    "tower_leap",
+    "suspension_statement",
+    "suspension_show"
+   ]
+  },
+  {
+   "id": 2,
+   "at_hp_pct": 0.5,
+   "transition": "sway",
+   "rules": {},
+   "moves": [
+    "cable_lash",
+    "web_net",
+    "arch_drop",
+    "tension_snap",
+    "weave",
+    "tower_leap",
+    "plank_collapse",
+    "suspension_statement",
+    "suspension_show"
+   ]
+  }
+ ],
+ "drops": [
+  "ball_cable",
+  "flash_bridge"
+ ],
+ "mic_check": "This bridge has held for over a hundred years. Tonight it holds HIM.",
+ "look": {
+  "colors": {
+   "steel": "#8A9098",
+   "stone": "#9A8A74",
+   "cable": "#C8D0DA",
+   "lamp": "#FFE6A0"
+  },
+  "joints": {
+   "hips": [
+    0,
+    3.0,
+    0
+   ],
+   "torso": [
+    0,
+    3.2,
+    0
+   ],
+   "head": [
+    0,
+    5.6,
+    -0.4
+   ],
+   "arm_l": [
+    -1.6,
+    4.8,
+    0
+   ],
+   "arm_r": [
+    1.6,
+    4.8,
+    0
+   ],
+   "leg_l": [
+    -1.2,
+    3.0,
+    0.4
+   ],
+   "leg_r": [
+    1.2,
+    3.0,
+    0.4
+   ]
+  },
+  "parts": [
+   {
+    "joint": "leg_l",
+    "shape": "cylinder",
+    "size": [
+     0.15,
+     3.4
+    ],
+    "pos": [
+     -0.6,
+     -1.5,
+     0
+    ],
+    "color": "cable",
+    "rot": [
+     0,
+     0,
+     20
+    ]
+   },
+   {
+    "joint": "leg_r",
+    "shape": "cylinder",
+    "size": [
+     0.15,
+     3.4
+    ],
+    "pos": [
+     0.6,
+     -1.5,
+     0
+    ],
+    "color": "cable",
+    "rot": [
+     0,
+     0,
+     -20
+    ]
+   },
+   {
+    "joint": "hips",
+    "shape": "cylinder",
+    "size": [
+     0.15,
+     3.4
+    ],
+    "pos": [
+     -1.6,
+     -1.5,
+     -0.8
+    ],
+    "color": "cable",
+    "rot": [
+     0,
+     0,
+     30
+    ]
+   },
+   {
+    "joint": "hips",
+    "shape": "cylinder",
+    "size": [
+     0.15,
+     3.4
+    ],
+    "pos": [
+     1.6,
+     -1.5,
+     -0.8
+    ],
+    "color": "cable",
+    "rot": [
+     0,
+     0,
+     -30
+    ]
+   },
+   {
+    "joint": "torso",
+    "shape": "box",
+    "size": [
+     2.2,
+     2.4,
+     1.4
+    ],
+    "pos": [
+     0,
+     1.0,
+     0
+    ],
+    "color": "stone"
+   },
+   {
+    "joint": "torso",
+    "shape": "box",
+    "size": [
+     0.8,
+     1.4,
+     1.42
+    ],
+    "pos": [
+     0,
+     1.0,
+     0
+    ],
+    "color": "steel"
+   },
+   {
+    "joint": "head",
+    "shape": "box",
+    "size": [
+     1.4,
+     1.2,
+     1.2
+    ],
+    "pos": [
+     0,
+     0.4,
+     0
+    ],
+    "color": "stone"
+   },
+   {
+    "joint": "head",
+    "shape": "sphere",
+    "size": [
+     0.18
+    ],
+    "pos": [
+     -0.35,
+     0.45,
+     -0.62
+    ],
+    "color": "lamp",
+    "emit": 2.5
+   },
+   {
+    "joint": "head",
+    "shape": "sphere",
+    "size": [
+     0.18
+    ],
+    "pos": [
+     0.35,
+     0.45,
+     -0.62
+    ],
+    "color": "lamp",
+    "emit": 2.5
+   },
+   {
+    "joint": "arm_l",
+    "shape": "cylinder",
+    "size": [
+     0.12,
+     3.2
+    ],
+    "pos": [
+     0,
+     -1.5,
+     0
+    ],
+    "color": "cable"
+   },
+   {
+    "joint": "arm_r",
+    "shape": "cylinder",
+    "size": [
+     0.12,
+     3.2
+    ],
+    "pos": [
+     0,
+     -1.5,
+     0
+    ],
+    "color": "cable"
+   }
+  ]
+ },
+ "rewards": {
+  "rep": 6000,
+  "tokens": 2000
+ },
+ "gimmick": "tension"
+}

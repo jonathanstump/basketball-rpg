@@ -16,7 +16,7 @@ func test_every_crossing_is_live() -> void:
 			var cd: Dictionary = c
 			var to: String = JU.s(cd, "to")
 			n += 1
-			if to.begins_with("city_"):
+			if to.begins_with("city_") and not str(id).begins_with("city_"):
 				assert_eq(JU.s(cd, "locked"), "crown_pass", "%s -> %s is Crown Pass gated" % [id, to])
 				continue
 			assert_true(WorldIndex.has_district(to), "%s -> %s exists" % [id, to])

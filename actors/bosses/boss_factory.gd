@@ -55,4 +55,5 @@ static func rewards(boss: Dictionary, tier: int) -> Dictionary:
 		"tokens": int(round(JU.f(r, "tokens", JU.f(base, "tokens")) * TierMath.multiplier(tiers, "tokens", tier, GameState.ng_cycle) * mult)),
 		"drops": JU.strs(boss, "drops"),
 		"crown": JU.s(boss, "borough") if kind == "king" else "",
+		"garden_ticket": JU.s(boss, "id") if kind == "landmark" else "",
 	}

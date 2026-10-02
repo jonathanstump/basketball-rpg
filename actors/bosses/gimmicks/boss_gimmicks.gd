@@ -31,3 +31,13 @@ static func attach(brain: BossBrain) -> void:
 			brain.gimmick = CoopGimmick.new(brain)
 		"reach":
 			brain.gimmick = HighRiseGimmick.new(brain)
+		"cage":
+			brain.gimmick = ChainLinkGimmick.new(brain)
+		"tension":
+			brain.gimmick = SuspensionGimmick.new(brain)
+		"replay":
+			brain.gimmick = PrimeTimeGimmick.new(brain)
+		"flood":
+			brain.gimmick = GatorGimmick.new(brain)
+		"wind":
+			brain.gimmick = GargoyleGimmick.new(brain)

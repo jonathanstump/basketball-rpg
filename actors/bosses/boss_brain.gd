@@ -99,6 +99,8 @@ func step() -> void:
 		runner.interrupt()
 		actor.anim_state = "shook" if actor.is_shook() else "stagger"
 		return
+	## Possession clock counts while busy too (attack-happy bosses hold forever).
+	hold_s = hold_s + DT if actor.has_ball and st == PossessionDuel.BOSS_OFFENSE else 0.0
 	if runner.running:
 		runner.step()
 		if not runner.running and repeats_left > 0 and target != null:
@@ -112,12 +114,8 @@ func step() -> void:
 			_walk(paint_pos, 1.0)
 		actor.anim_state = "idle"
 		return
-	if actor.has_ball and st == PossessionDuel.BOSS_OFFENSE:
-		hold_s += DT
-		if hold_s > HOLD_LIMIT_S and recover_s <= 0.0 and _force_ball_move():
-			return
-	else:
-		hold_s = 0.0
+	if hold_s > HOLD_LIMIT_S and recover_s <= 0.0 and actor.has_ball and _force_ball_move():
+		return
 	think_s -= DT
 	if think_s > 0.0 or recover_s > 0.0:
 		_position(st)

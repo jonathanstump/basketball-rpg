@@ -1,0 +1,150 @@
+{
+ "id": "city_downtown",
+ "borough": "city",
+ "palette": "city",
+ "seed": 1601,
+ "name": "Downtown",
+ "heights": {
+  "B": [
+   3,
+   5
+  ],
+  "T": [
+   5,
+   7
+  ],
+  "H": [
+   16,
+   30
+  ],
+  "W": [
+   2,
+   3
+  ]
+ },
+ "shops": {},
+ "graffiti": [
+  "the cage closes in",
+  "strip = no call",
+  "snap the anchors",
+  "get out of the water",
+  "ripples = ambush",
+  "tourists flash",
+  "suits hedge",
+  "five stubs",
+  "broadway sleeps here",
+  "the ferry is south"
+ ],
+ "spawns": {
+  "e": [
+   "suit",
+   "big_head_mascot",
+   "tourist",
+   "suit",
+   "suit",
+   "big_head_mascot",
+   "tourist",
+   "suit"
+  ],
+  "E": [
+   "captain:suit"
+  ],
+  "c": [
+   "pigeon",
+   "rat",
+   "pigeon"
+  ]
+ },
+ "loot": {
+  "%": "bootleg",
+  "w": "city_wire",
+  "$": [
+   "city_retail",
+   "city_limited_locked",
+   "city_retail",
+   "city_punch",
+   "city_retail",
+   "city_secret"
+  ]
+ },
+ "bodegas": [
+  {
+   "id": "city_bodega_1",
+   "cat": "Broadway",
+   "name": "Bleecker St. Deli"
+  },
+  {
+   "id": "city_bodega_2",
+   "cat": "Chairman",
+   "name": "Water St. Deli"
+  }
+ ],
+ "stations": [
+  {
+   "id": "city_st_downtown",
+   "name": "City Hall",
+   "line": "gold"
+  }
+ ],
+ "npcs": [
+  {
+   "id": "npc_ferry_captain",
+   "name": "Retired Ferry Captain",
+   "lines": [
+    "Welcome to the City, Crown-holder. Three landmarks down here.",
+    "The Cage shrinks. The Bridge sways. The Underground floods.",
+    "Beat all five landmarks and they'll hand you a ticket to the Garden."
+   ]
+  },
+  {
+   "id": "npc_mic_check_dt",
+   "name": "Mic Check",
+   "lines": [
+    "DOWNTOWN! Five Crowns got you in. Five TICKET STUBS get you to the Garden.",
+    "Midtown's north. The Garden's waiting."
+   ]
+  }
+ ],
+ "crossings": [
+  {
+   "to": "city_midtown",
+   "via": "broadway",
+   "name": "Midtown"
+  },
+  {
+   "to": "bk_dumbo",
+   "via": "old_bridge",
+   "name": "The Old Bridge to DUMBO"
+  },
+  {
+   "to": "si_st_george",
+   "via": "ferry",
+   "name": "The Ferry to Staten Island"
+  }
+ ],
+ "shortcuts": [
+  {
+   "id": "city_downtown_gate_0",
+   "open_from": "n",
+   "kind": "gate"
+  }
+ ],
+ "secrets": [
+  {
+   "id": "city_downtown_roof_0_out",
+   "kind": "rooftop"
+  },
+  {
+   "id": "city_downtown_roof_0_in",
+   "kind": "rooftop"
+  }
+ ],
+ "fights": {
+  "M": [],
+  "X": [
+   "city_chainlink",
+   "city_suspension",
+   "city_gator"
+  ]
+ }
+}

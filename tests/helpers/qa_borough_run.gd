@@ -2,7 +2,7 @@ class_name QABoroughRun
 extends QAScript
 ## QA borough run (spec §16 M9a–d): start a run in the borough, sweep every
 ## POI in its three districts, open every bodega and shop, load every boss
-## court from the district, beat each boss with the god-mode bot at Tier 1,
+## court from the district, beat each boss with the god-mode bot at its tier,
 ## play out the Pickup Challengers, and check the borough's Crown.
 
 
@@ -76,11 +76,12 @@ func fight(boss_id: String) -> bool:
 	var arena: BossArena = get_tree().current_scene as BossArena
 	if not check(arena.views.has(arena.boss.id), "%s has no view" % boss_id):
 		return false
-	var r: Dictionary = BossSim.run(boss_id, 1, {"god": true, "max_s": 600, "seed": 31})
-	print("QA fight: %s T1 %s in %.0fs (makes %d)" % [boss_id, r["result"], float(r["time_s"]), int((r["stats"] as Dictionary)["makes"])])
+	var tier: int = arena.tier
+	var r: Dictionary = BossSim.run(boss_id, tier, {"god": true, "max_s": 900, "seed": 2})
+	print("QA fight: %s T%d %s in %.0fs (makes %d)" % [boss_id, tier, r["result"], float(r["time_s"]), int((r["stats"] as Dictionary)["makes"])])
 	if not check(str(r["result"]) == "victory", "%s not beaten: %s" % [boss_id, r["result"]]):
 		return false
-	BossArena.grant_rewards(boss_id, BossFactory.rewards(DataDB.boss(boss_id), 1))
+	BossArena.grant_rewards(boss_id, BossFactory.rewards(DataDB.boss(boss_id), tier))
 	return true
 
 

@@ -148,6 +148,9 @@ static func grant_rewards(id: String, r: Dictionary) -> String:
 				GameState.known_bag_moves.append(teaches)
 	if not GameState.defeated_bosses.has(id):
 		GameState.defeated_bosses.append(id)
+	if str(r.get("garden_ticket", "")) != "" and not GameState.garden_tickets.has(str(r["garden_ticket"])):
+		## Landmarks (spec §9.3 City): one Garden Ticket stub each; five open the Garden.
+		GameState.garden_tickets.append(str(r["garden_ticket"]))
 	if str(r["crown"]) == "":
 		return ""
 	GameState.award_crown(str(r["crown"]))

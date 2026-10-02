@@ -255,6 +255,53 @@
       "frames": 180,
       "boss": "opt_ratking",
       "tier": 1
+    },
+    {
+      "name": "boss_city_chainlink",
+      "scene": "res://world/arenas/boss_arena.tscn",
+      "frames": 180,
+      "boss": "city_chainlink",
+      "tier": 6
+    },
+    {
+      "name": "boss_city_suspension",
+      "scene": "res://world/arenas/boss_arena.tscn",
+      "frames": 180,
+      "boss": "city_suspension",
+      "tier": 6
+    },
+    {
+      "name": "boss_city_primetime",
+      "scene": "res://world/arenas/boss_arena.tscn",
+      "frames": 180,
+      "boss": "city_primetime",
+      "tier": 6
+    },
+    {
+      "name": "boss_city_gator",
+      "scene": "res://world/arenas/boss_arena.tscn",
+      "frames": 180,
+      "boss": "city_gator",
+      "tier": 6
+    },
+    {
+      "name": "boss_city_gargoyle",
+      "scene": "res://world/arenas/boss_arena.tscn",
+      "frames": 180,
+      "boss": "city_gargoyle",
+      "tier": 6
+    },
+    {
+      "name": "district_city_downtown",
+      "scene": "res://world/district.tscn",
+      "frames": 60,
+      "district": "city_downtown"
+    },
+    {
+      "name": "district_city_midtown",
+      "scene": "res://world/district.tscn",
+      "frames": 60,
+      "district": "city_midtown"
     }
   ]
 }

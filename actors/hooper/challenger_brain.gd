@@ -11,12 +11,15 @@ var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var opponent_id: int = 0
 var hoop_id: String = ""
 var _release_at: float = -1.0
+var _release_err: float = 0.0
 var _cooldown: int = 0
 var _reacted_to: int = -1
 var aggressive: bool = true
 var _spot: Vector3 = Vector3.ZERO
 var _stuck: int = 0
 var _still: int = 0
+var _pinned: int = 0
+var _pin_pos: Vector3 = Vector3.ZERO
 var _last_pos: Vector3 = Vector3.ZERO
 var passive_frames: int = 0       # holds fire for a while (QA warm-up)
 var duel: PossessionDuel = null   # court rules awareness (boss duels, challengers)
@@ -47,6 +50,21 @@ func fill(input: ActorInput, a: SimActor, w: SimWorld) -> void:
 	if opp == null:
 		return
 	if duel != null and _duel_rules(input, a, h):
+		return
+	## Pinned in a corner by a big body: break out toward the court center.
+	if a.pos.distance_to(_pin_pos) < 0.05:
+		_pinned += 1
+	else:
+		_pinned = 0
+		_pin_pos = a.pos
+	if _pinned > 90 and h.action == "" and duel != null:
+		_pinned = 0
+		var out: Vector3 = -a.pos
+		out.y = 0.0
+		var side: Vector3 = out.normalized().rotated(Vector3.UP, deg_to_rad(rng.randf_range(-50.0, 50.0)))
+		input.move = Vector2(side.x, side.z)
+		input.press("dodge")
+		_spot = Vector3.ZERO
 		return
 	if _react_to_threat(input, a, opp, w):
 		return
@@ -242,7 +260,10 @@ func _manage_shot(input: ActorInput, _a: SimActor, h: Hooper) -> void:
 	var mod: HooperBall = _ball_module(h)
 	if mod == null or mod.meter < 0.0:
 		return
-	if mod.meter >= _release_at:
+	## Aim at the live window center (gusts move it mid-gather), keeping the
+	## per-shot timing error picked when the shot started.
+	var target: float = clampf((mod.windows.center if mod.windows != null else 0.82) + _release_err, 0.05, 0.99)
+	if mod.meter >= target:
 		input.release("shoot")
 	else:
 		input.held["shoot"] = true
@@ -250,8 +271,8 @@ func _manage_shot(input: ActorInput, _a: SimActor, h: Hooper) -> void:
 
 func _pick_release(mod: HooperBall) -> float:
 	var center: float = mod.windows.center if mod != null and mod.windows != null else 0.82
-	var err: float = rng.randfn(0.0, lerpf(0.09, 0.012, skill))
-	return clampf(center + err, 0.05, 0.99)
+	_release_err = rng.randfn(0.0, lerpf(0.09, 0.012, skill))
+	return clampf(center + _release_err, 0.05, 0.99)
 
 
 func _move(input: ActorInput, a: SimActor, dest: Vector3) -> void:

@@ -131,3 +131,14 @@ Spec §11.3 lists L60 = 46,626 but `floor(100 × 60^1.5 + 150)` = 46,625 (every 
 - **Districts can declare "specials"** in the sidecar (authored interactables such as boss tunnels).
 - **NG+** (`GameState.start_ng_plus`) keeps stats, levels, gear, tattoos, Bag Moves and quest rewards, and resets Crowns, Garden stubs, bosses, boxes, kills, shortcuts and chains. Tiers +2 (cap 7) and ×1.3 per cycle come from `tiers.json`. Tattoo slots never drop below the ink you already have.
 - **City stations** will use the `city_` id prefix, which fast travel gates behind the Crown Pass.
+
+## M11 — The City
+- **The City** is two districts: Downtown (The Cage, The Bridge and The Underground landmarks; the old bridge to DUMBO; the ferry to St. George) and Midtown (The Crossroads and The Summit; the park gate to Harlem; the river tunnel to Flushing; the City shops). Cats: Broadway, Chairman, Penny, Lex. Stations `city_st_*` are Crown Pass gated. The Garden entrance arrives in M12.
+- **Landmarks** are `kind: landmark` with king base stats at Tier 6, both phases, and no T5 event (spec: "City (T6): everything"). Each one grants a Garden Ticket stub (`garden_tickets`).
+- **Chain Link:** the cage walls move in 1.5 m every 30 s (20 s in Phase 2), touching the fence shocks for 4% Heart, and stripping him triggers an immediate unblockable No Call.
+- **Suspension:** a strike within 2 m of one of 4 anchors snaps its cable (60 composure). Phase 2 sways the deck every 12 s and adds plank collapses. TODO(spec §9.3): zip-line riding (needs an arena interact) is not implemented.
+- **Prime Time:** records your last 5 moves (shown when he plays Replay or Highlight Reel). A tourist flash blinds you 0.5 s after a white flicker cue. In Phase 2, 3 channels rotate LIVE every 6 s and only the LIVE one takes damage.
+- **The Gator:** a 30 s flood cycle with 12 s of high water (always high in Phase 2). Wading slows you, and every 8 s in high water the third rail sparks (8% Heart and a shock, unless you're on the dry edges) and he submerges to ambush.
+- **The Gargoyle:** 3 s gusts every 10 s (6 s in Phase 2) push you and shift the shot window center by 0.12. Lightning in Phase 2. Gusts stop at CHECK and GAME POINT.
+- **Bot/duel fixes:** the boss possession clock now counts while the boss is mid-move. The bot aims at the live window center (gusts move it mid-gather) and breaks out of corners after 1.5 s pinned. Coop King's Split Flock and zones were slowed and the Rat King's slice heal reduced, after a full regression sweep.
+- **QA fights** use the boss's real tier and the validated sim seed.
