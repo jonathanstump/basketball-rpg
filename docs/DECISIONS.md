@@ -91,3 +91,12 @@ Spec §11.3 lists L60 = 46,626 but `floor(100 × 60^1.5 + 150)` = 46,625 (every 
 - **Duel safety.** DuelController clamps both actors inside the fence. A charge could push the player through the thin fence, and the bot then stalled at GAME POINT.
 - **QA bot** now changes its shooting spot and attacks off the dribble when a defender keeps contesting it. Before this, Kings who guard the paint walled it forever.
 - **The Sound Bridge** lands in Flushing Meadows (qn_flushing). It's the closest Queens district to the Bronx side.
+
+## M9b — Queens
+- **Express lanes.** `axis_snap` charges always run along the arena axes (the painted lanes). **Third Rail** is a one-shot electrified lane of hazard circles that shocks (roots) for 1 s, not a 4 s persistent lane.
+- **Decouple.** Two rear cars break off at Phase 2 with shared HP: damage to a car comes off the Express. **Rush Hour Crowd** is 8 commuter blocks (collision only) for 12 s.
+- **Sauce zones** use the zone primitive: white puddles slow, red puddles burn, both last 12 s. While burning, Wind drains 8/s. Being slowed and burning at once triggers "the combo", a burst of 8% max Heart every 2 s at most.
+- **Atlas's orbits** are three rotating spokes (box hit volumes swept around him), not full circles: two low ones you jump and one high one you dodge under. They're unblockable and only exist while he's not SHOOK. Phase 2 drops the globe as a bouncing boulder hazard. **Eclipse** is presentation only. The globe shrinking and growing when stolen is skipped (flavor).
+- **Shock** status now roots the player like `rooted`. **Gravity Well** uses a generic `pull_mps` move field.
+- **Lock-on camera** frames tall targets by including their height and allowing a longer distance (8 m + 1.4 × height).
+- **The River Tunnel** (Flushing → City) is locked behind the Crown Pass and targets `city_midtown`.

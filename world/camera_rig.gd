@@ -72,7 +72,7 @@ func _apply(k: float) -> void:
 	var want_pitch: float = JU.f(JU.dict(cfg, "explore"), "pitch_deg", 50.0)
 	var want_dist: float = JU.f(JU.dict(cfg, "explore"), "distance_m", 12.0)
 	if lock_target != null and lock_target.alive:
-		var fr: Dictionary = CameraMath.lockon_framing(player_pos, lock_target.pos, hoop_pos, hoop_pos != Vector3.INF, cfg)
+		var fr: Dictionary = CameraMath.lockon_framing(player_pos, lock_target.pos, hoop_pos, hoop_pos != Vector3.INF, cfg, 16.0 / 9.0, lock_target.height)
 		target_focus = fr["focus"]
 		want_pitch = fr["pitch"]
 		want_dist = fr["distance"]

@@ -1,0 +1,143 @@
+{
+ "id": "qn_flushing",
+ "borough": "queens",
+ "palette": "queens",
+ "seed": 1303,
+ "name": "Flushing Meadows",
+ "heights": {
+  "B": [
+   3,
+   4
+  ],
+  "T": [
+   4,
+   5
+  ],
+  "H": [
+   8,
+   12
+  ],
+  "W": [
+   3,
+   5
+  ]
+ },
+ "shops": {},
+ "graffiti": [
+  "jump low, slide high",
+  "rings stop when he's shook",
+  "the globe rolls",
+  "fountains jet",
+  "eclipse = follow the ball",
+  "tunnel needs 5 crowns",
+  "sound bridge to the bronx",
+  "taco naps here",
+  "pavilions hide boxes",
+  "he pulls you in"
+ ],
+ "spawns": {
+  "e": [
+   "juggler",
+   "big_man",
+   "ball_hog",
+   "showboat",
+   "juggler",
+   "sniper",
+   "hype_man",
+   "pickpocket"
+  ],
+  "E": [
+   "captain:big_man"
+  ],
+  "c": [
+   "pigeon",
+   "rat",
+   "pigeon"
+  ]
+ },
+ "loot": {
+  "%": "bootleg",
+  "w": "qn_wire",
+  "$": [
+   "qn_retail",
+   "qn_retail_locked",
+   "qn_flash_1",
+   "qn_retail",
+   "qn_secret"
+  ]
+ },
+ "bodegas": [
+  {
+   "id": "qn_bodega_4",
+   "cat": "Taco",
+   "name": "Corona Ave Deli"
+  }
+ ],
+ "stations": [
+  {
+   "id": "qn_st_flushing",
+   "name": "Mets-Willets Pt",
+   "line": "green"
+  }
+ ],
+ "npcs": [
+  {
+   "id": "npc_groundskeeper",
+   "name": "Groundskeeper",
+   "lines": [
+    "Three rings spin around him. Low one, jump it. High one, slide under.",
+    "When he's shook, the rings go away. That's your window.",
+    "He drops the globe later. It rolls. Watch your back."
+   ]
+  },
+  {
+   "id": "npc_mic_check_fl",
+   "name": "Mic Check",
+   "lines": [
+    "Flushing Meadows! Where the whole WORLD comes to play!",
+    "The tunnel south goes into the City. Locked till you hold five Crowns."
+   ]
+  }
+ ],
+ "crossings": [
+  {
+   "to": "bx_west_farms",
+   "via": "sound_bridge",
+   "name": "The Sound Bridge to the Bronx"
+  },
+  {
+   "to": "qn_roosevelt",
+   "via": "roosevelt_east",
+   "name": "Roosevelt Ave"
+  },
+  {
+   "to": "city_midtown",
+   "via": "river_tunnel",
+   "name": "The River Tunnel into the City",
+   "locked": "crown_pass"
+  }
+ ],
+ "shortcuts": [
+  {
+   "id": "qn_flushing_gate_0",
+   "open_from": "e",
+   "kind": "gate"
+  }
+ ],
+ "secrets": [
+  {
+   "id": "qn_flushing_roof_0_out",
+   "kind": "rooftop"
+  },
+  {
+   "id": "qn_flushing_roof_0_in",
+   "kind": "rooftop"
+  }
+ ],
+ "fights": {
+  "M": [],
+  "X": [
+   "qn_atlas"
+  ]
+ }
+}

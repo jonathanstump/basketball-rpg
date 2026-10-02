@@ -150,7 +150,7 @@ func _tick_action() -> void:
 
 func _free_state() -> void:
 	var inp: ActorInput = actor.input
-	if StatusEffects.has(actor, "rooted") or StatusEffects.has(actor, "frozen"):
+	if StatusEffects.has(actor, "rooted") or StatusEffects.has(actor, "frozen") or StatusEffects.has(actor, "shock"):
 		actor.desired_vel = Vector3.ZERO
 		return
 	for m: RefCounted in modules:

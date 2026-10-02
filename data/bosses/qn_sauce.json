@@ -1,0 +1,498 @@
+{
+ "id": "qn_sauce",
+ "name": "EXTRA SAUCE",
+ "title": "Chef of the Night Market",
+ "borough": "queens",
+ "district": "qn_astoria",
+ "kind": "mini",
+ "arena": {
+  "theme": "food_hall",
+  "size_m": [
+   18,
+   16
+  ],
+  "indoor": true,
+  "floor": "#4A3A2A",
+  "key": "#00A651",
+  "props": [
+   {
+    "shape": "box",
+    "size": [
+     3.0,
+     1.1,
+     1.2
+    ],
+    "pos": [
+     -9.5,
+     0.55,
+     -5.0
+    ],
+    "color": "#C8102E",
+    "repeat": {
+     "count": 3,
+     "step": [
+      0,
+      0,
+      5.0
+     ]
+    }
+   },
+   {
+    "shape": "box",
+    "size": [
+     3.0,
+     1.1,
+     1.2
+    ],
+    "pos": [
+     9.5,
+     0.55,
+     -5.0
+    ],
+    "color": "#00A651",
+    "repeat": {
+     "count": 3,
+     "step": [
+      0,
+      0,
+      5.0
+     ]
+    }
+   },
+   {
+    "shape": "box",
+    "size": [
+     3.2,
+     0.2,
+     1.4
+    ],
+    "pos": [
+     -9.5,
+     2.6,
+     -5.0
+    ],
+    "color": "#FF7A00",
+    "neon": true,
+    "repeat": {
+     "count": 3,
+     "step": [
+      0,
+      0,
+      5.0
+     ]
+    }
+   },
+   {
+    "shape": "box",
+    "size": [
+     5.0,
+     3.0,
+     2.4
+    ],
+    "pos": [
+     0,
+     1.5,
+     -11.0
+    ],
+    "color": "#F2F2F2"
+   },
+   {
+    "shape": "box",
+    "size": [
+     5.2,
+     0.3,
+     2.6
+    ],
+    "pos": [
+     0,
+     3.2,
+     -11.0
+    ],
+    "color": "#FF7A00"
+   },
+   {
+    "shape": "sphere",
+    "size": [
+     0.12
+    ],
+    "pos": [
+     -9.0,
+     6.0,
+     -8.0
+    ],
+    "color": "#FFD08A",
+    "neon": true,
+    "repeat": {
+     "count": 10,
+     "step": [
+      2.0,
+      0,
+      1.6
+     ]
+    }
+   },
+   {
+    "pos": [
+     -5.0,
+     5.0,
+     0
+    ],
+    "light": {
+     "color": "#FFB060",
+     "energy": 1.6,
+     "range": 12.0
+    }
+   },
+   {
+    "pos": [
+     5.0,
+     5.0,
+     0
+    ],
+    "light": {
+     "color": "#FFB060",
+     "energy": 1.6,
+     "range": 12.0
+    }
+   }
+  ]
+ },
+ "base": {
+  "hp": 1800,
+  "composure": 200,
+  "contest_radius": 3.0,
+  "height_m": 4.2,
+  "radius_m": 1.4,
+  "speed": 4.2,
+  "poise": 9999
+ },
+ "phases": [
+  {
+   "id": 1,
+   "rules": {},
+   "moves": [
+    "squeeze_white",
+    "squeeze_red",
+    "cart_rush",
+    "tong_grab",
+    "steam_vent",
+    "flip_the_ball",
+    "lid_slam",
+    "sauce_statement",
+    "sauce_show"
+   ]
+  },
+  {
+   "id": 2,
+   "min_tier": 3,
+   "at_hp_pct": 0.5,
+   "transition": "extra_extra",
+   "rules": {},
+   "moves": [
+    "squeeze_white",
+    "squeeze_red",
+    "cart_rush",
+    "tong_grab",
+    "steam_vent",
+    "flip_the_ball",
+    "lid_slam",
+    "sauce_lines",
+    "cart_shield",
+    "sauce_statement",
+    "sauce_show"
+   ]
+  }
+ ],
+ "t5_event": {
+  "at_hp_pct": 0.25,
+  "move": "rush_order"
+ },
+ "drops": [
+  "ball_spice",
+  "mixtape_steam_fake"
+ ],
+ "mic_check": "You want it MILD? There IS no mild! EXTRA! SAUCE!",
+ "look": {
+  "colors": {
+   "chef": "#F2F2F2",
+   "apron": "#C8102E",
+   "skin": "#C68642",
+   "hat": "#F8F8F8",
+   "cart": "#00A651",
+   "awning": "#FF7A00",
+   "wheel": "#1A1A24",
+   "white": "#F2F2F2",
+   "red": "#D8263A"
+  },
+  "joints": {
+   "hips": [
+    0,
+    1.4,
+    0
+   ],
+   "torso": [
+    0,
+    1.6,
+    0
+   ],
+   "head": [
+    0,
+    3.2,
+    0
+   ],
+   "arm_l": [
+    -0.9,
+    2.8,
+    0
+   ],
+   "arm_r": [
+    0.9,
+    2.8,
+    0
+   ]
+  },
+  "parts": [
+   {
+    "joint": "hips",
+    "shape": "box",
+    "size": [
+     2.6,
+     1.2,
+     1.8
+    ],
+    "pos": [
+     0,
+     -0.6,
+     0
+    ],
+    "color": "cart"
+   },
+   {
+    "joint": "hips",
+    "shape": "box",
+    "size": [
+     2.8,
+     0.15,
+     2.0
+    ],
+    "pos": [
+     0,
+     0.05,
+     0
+    ],
+    "color": "awning"
+   },
+   {
+    "joint": "hips",
+    "shape": "cylinder",
+    "size": [
+     0.35,
+     0.2
+    ],
+    "pos": [
+     -1.0,
+     -1.2,
+     -0.7
+    ],
+    "color": "wheel",
+    "rot": [
+     0,
+     0,
+     90
+    ]
+   },
+   {
+    "joint": "hips",
+    "shape": "cylinder",
+    "size": [
+     0.35,
+     0.2
+    ],
+    "pos": [
+     1.0,
+     -1.2,
+     -0.7
+    ],
+    "color": "wheel",
+    "rot": [
+     0,
+     0,
+     90
+    ]
+   },
+   {
+    "joint": "hips",
+    "shape": "sphere",
+    "size": [
+     0.18
+    ],
+    "pos": [
+     -0.5,
+     -0.4,
+     -0.92
+    ],
+    "color": "white",
+    "emit": 0.5
+   },
+   {
+    "joint": "hips",
+    "shape": "sphere",
+    "size": [
+     0.18
+    ],
+    "pos": [
+     0.5,
+     -0.4,
+     -0.92
+    ],
+    "color": "white",
+    "emit": 0.5
+   },
+   {
+    "joint": "torso",
+    "shape": "capsule",
+    "size": [
+     0.8,
+     1.8
+    ],
+    "pos": [
+     0,
+     0.6,
+     0
+    ],
+    "color": "chef",
+    "scale": [
+     1.2,
+     1,
+     1
+    ]
+   },
+   {
+    "joint": "torso",
+    "shape": "box",
+    "size": [
+     1.4,
+     1.2,
+     0.2
+    ],
+    "pos": [
+     0,
+     0.4,
+     -0.8
+    ],
+    "color": "apron"
+   },
+   {
+    "joint": "head",
+    "shape": "sphere",
+    "size": [
+     0.6
+    ],
+    "pos": [
+     0,
+     0.2,
+     0
+    ],
+    "color": "skin"
+   },
+   {
+    "joint": "head",
+    "shape": "cylinder",
+    "size": [
+     0.5,
+     0.9
+    ],
+    "pos": [
+     0,
+     0.95,
+     0
+    ],
+    "color": "hat"
+   },
+   {
+    "joint": "head",
+    "shape": "sphere",
+    "size": [
+     0.55
+    ],
+    "pos": [
+     0,
+     1.4,
+     0
+    ],
+    "color": "hat"
+   },
+   {
+    "joint": "arm_l",
+    "shape": "capsule",
+    "size": [
+     0.25,
+     1.4
+    ],
+    "pos": [
+     0,
+     -0.6,
+     0
+    ],
+    "color": "chef"
+   },
+   {
+    "joint": "arm_r",
+    "shape": "capsule",
+    "size": [
+     0.25,
+     1.4
+    ],
+    "pos": [
+     0,
+     -0.6,
+     0
+    ],
+    "color": "chef"
+   },
+   {
+    "joint": "arm_l",
+    "shape": "cylinder",
+    "size": [
+     0.18,
+     0.8
+    ],
+    "pos": [
+     0,
+     -1.4,
+     -0.2
+    ],
+    "color": "white",
+    "rot": [
+     60,
+     0,
+     0
+    ]
+   },
+   {
+    "joint": "arm_r",
+    "shape": "cylinder",
+    "size": [
+     0.18,
+     0.8
+    ],
+    "pos": [
+     0,
+     -1.4,
+     -0.2
+    ],
+    "color": "red",
+    "rot": [
+     60,
+     0,
+     0
+    ]
+   }
+  ]
+ },
+ "rewards": {
+  "rep": 2500,
+  "tokens": 800
+ },
+ "gimmick": "sauce"
+}

@@ -16,6 +16,9 @@ static func frame(r: MoveRunner) -> void:
 	if r.frame <= s and r.target != null and JU.b(m, "track", true):
 		r.actor.turn_toward(r.target.pos - r.actor.pos, 0.12)
 		r.dir = r.actor.forward()
+		if JU.b(m, "axis_snap"):
+			## Tracks: charges only run along the painted lanes (world axes).
+			r.dir = Vector3(signf(r.dir.x), 0, 0) if absf(r.dir.x) > absf(r.dir.z) else Vector3(0, 0, signf(r.dir.z))
 		if JU.b(m, "lateral"):
 			## Sidewinder: rush sideways across the target's line.
 			var side: Vector3 = r.actor.forward().cross(Vector3.UP).normalized()
@@ -27,6 +30,12 @@ static func frame(r: MoveRunner) -> void:
 		if want.length() > 0.1:
 			var ang: float = r.dir.signed_angle_to(want.normalized(), Vector3.UP)
 			r.dir = r.dir.rotated(Vector3.UP, clampf(ang, -deg_to_rad(maxf(1.5, JU.f(m, "curve_deg"))), deg_to_rad(maxf(1.5, JU.f(m, "curve_deg")))))
+	if JU.f(m, "pull_mps") > 0.0 and r.in_active() and r.target != null and r.target.alive:
+		## Gravity Well style pull toward the user.
+		var to_me: Vector3 = r.actor.pos - r.target.pos
+		to_me.y = 0.0
+		if to_me.length() > r.actor.radius + r.target.radius + 0.3:
+			r.target.pos = r.world.collision.resolve(r.target.pos + to_me.normalized() * JU.f(m, "pull_mps") * DT, r.target.radius)
 	match prim:
 		"melee_arc":
 			_multi(r, m, {"shape": "arc", "radius": 1.8, "angle": 120.0})

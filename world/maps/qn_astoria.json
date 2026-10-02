@@ -1,0 +1,159 @@
+{
+ "id": "qn_astoria",
+ "borough": "queens",
+ "palette": "queens",
+ "seed": 1302,
+ "name": "Astoria",
+ "heights": {
+  "B": [
+   3,
+   4
+  ],
+  "T": [
+   5,
+   6
+  ],
+  "H": [
+   10,
+   18
+  ],
+  "W": [
+   2,
+   3
+  ]
+ },
+ "shops": {},
+ "graffiti": [
+  "white slows, red burns",
+  "never both",
+  "puddles dry in 12",
+  "tri-bridge north",
+  "the river's wide",
+  "cats by the water",
+  "sweet lou shoots",
+  "steam = back off",
+  "the cart can shield",
+  "taste everything"
+ ],
+ "spawns": {
+  "e": [
+   "juggler",
+   "hype_man",
+   "ball_hog",
+   "juggler",
+   "showboat",
+   "sniper",
+   "big_man",
+   "pickpocket"
+  ],
+  "E": [
+   "captain:juggler"
+  ],
+  "c": [
+   "pigeon",
+   "pigeon",
+   "rat"
+  ]
+ },
+ "loot": {
+  "%": "bootleg",
+  "w": "qn_wire",
+  "$": [
+   "qn_retail",
+   "qn_sugar",
+   "qn_limited_locked",
+   "qn_flash_0",
+   "qn_grail"
+  ]
+ },
+ "bodegas": [
+  {
+   "id": "qn_bodega_3",
+   "cat": "Saffron",
+   "name": "Ditmars Deli"
+  }
+ ],
+ "stations": [
+  {
+   "id": "qn_st_astoria",
+   "name": "Astoria Blvd",
+   "line": "green"
+  }
+ ],
+ "npcs": [
+  {
+   "id": "npc_mic_check_as",
+   "name": "Mic Check",
+   "lines": [
+    "Astoria waterfront! That bridge goes Uptown.",
+    "Hungry? The Food Hall is OPEN... for a beatdown."
+   ]
+  },
+  {
+   "id": "npc_sweet_lou",
+   "name": "Sweet Lou",
+   "challenger": {
+    "id": "sweet_lou",
+    "tier_bonus": 1,
+    "skill": 0.7,
+    "drop": "kicks_queens_5",
+    "points": 7
+   },
+   "lines": [
+    "My jumper's so wet they mop the floor after.",
+    "Seven wins. Shoot your shot."
+   ],
+   "look": {
+    "skin": "#8D5524",
+    "top_color": "#FF7A00",
+    "shorts_color": "#1A1A24",
+    "hair_style": "fade",
+    "hair_color": "#1A1210"
+   }
+  },
+  {
+   "id": "npc_line_cook",
+   "name": "Line Cook",
+   "lines": [
+    "The Food Hall's run by a chef riding his own cart.",
+    "White sauce slows you, red sauce burns. Both at once? The combo. Don't.",
+    "Puddles dry up in about twelve seconds."
+   ]
+  }
+ ],
+ "crossings": [
+  {
+   "to": "up_harlem",
+   "via": "tri_bridge",
+   "name": "The Tri-Bridge to Uptown"
+  },
+  {
+   "to": "qn_roosevelt",
+   "via": "steinway",
+   "name": "Roosevelt Ave"
+  }
+ ],
+ "shortcuts": [
+  {
+   "id": "qn_astoria_ladder_0",
+   "open_from": "n",
+   "kind": "ladder"
+  }
+ ],
+ "secrets": [
+  {
+   "id": "qn_astoria_roof_0_out",
+   "kind": "rooftop"
+  },
+  {
+   "id": "qn_astoria_roof_0_in",
+   "kind": "rooftop"
+  }
+ ],
+ "fights": {
+  "M": [
+   "qn_sauce"
+  ],
+  "X": []
+ }
+}

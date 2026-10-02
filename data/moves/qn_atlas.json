@@ -1,0 +1,274 @@
+{
+ "moves": [
+  {
+   "id": "orbit_spin",
+   "name": "Orbit Spin",
+   "primitive": "stance",
+   "stance": "spin",
+   "startup": 16,
+   "active": 240,
+   "recovery": 16,
+   "damage": 0,
+   "hyper_armor": true,
+   "weight": 2,
+   "cooldown_s": 12,
+   "min_tier": 1,
+   "range_m": [
+    0,
+    30
+   ],
+   "possession": "any"
+  },
+  {
+   "id": "gravity_well",
+   "name": "Gravity Well",
+   "primitive": "stance",
+   "stance": "well",
+   "pull_mps": 3.0,
+   "startup": 20,
+   "active": 120,
+   "recovery": 20,
+   "damage": 0,
+   "weight": 2,
+   "cooldown_s": 12,
+   "range_m": [
+    3,
+    16
+   ],
+   "min_tier": 1,
+   "possession": "any"
+  },
+  {
+   "id": "world_toss",
+   "name": "World Toss",
+   "primitive": "lob",
+   "uses_ball": true,
+   "rejectable": true,
+   "startup": 36,
+   "active": 2,
+   "recovery": 36,
+   "damage": 80,
+   "parry": "none",
+   "flight_s": 1.4,
+   "hitbox": {
+    "shape": "circle",
+    "radius": 3.6,
+    "height": 3.0
+   },
+   "knockdown": true,
+   "hit_weight": "heavy",
+   "weight": 5,
+   "cooldown_s": 2,
+   "range_m": [
+    3,
+    26
+   ],
+   "possession": "with_ball",
+   "min_tier": 1
+  },
+  {
+   "id": "fountain_jets",
+   "name": "Fountain Jets",
+   "primitive": "arena_event",
+   "event": "fountain_jets",
+   "body_attack": true,
+   "startup": 30,
+   "active": 2,
+   "recovery": 24,
+   "damage": 50,
+   "parry": "none",
+   "pattern": {
+    "kind": "random",
+    "count": 6,
+    "spread_m": 7.0,
+    "delay_s": 1.2,
+    "stagger_s": 0.2
+   },
+   "hitbox": {
+    "shape": "circle",
+    "radius": 1.6,
+    "height": 4.0
+   },
+   "hit_weight": "medium",
+   "weight": 3,
+   "cooldown_s": 7,
+   "min_tier": 1,
+   "range_m": [
+    0,
+    30
+   ],
+   "possession": "any"
+  },
+  {
+   "id": "titan_stomp",
+   "name": "Titan Stomp",
+   "primitive": "slam_circle",
+   "body_attack": true,
+   "startup": 34,
+   "active": 6,
+   "recovery": 36,
+   "damage": 110,
+   "parry": "none",
+   "knockdown": true,
+   "hitbox": {
+    "shape": "circle",
+    "radius": 4.4,
+    "forward": 1.5,
+    "height": 3.0
+   },
+   "hit_weight": "heavy",
+   "weight": 4,
+   "cooldown_s": 4,
+   "range_m": [
+    0,
+    6
+   ],
+   "min_tier": 1,
+   "possession": "any"
+  },
+  {
+   "id": "meridian",
+   "name": "Meridian",
+   "primitive": "line_sweep",
+   "body_attack": true,
+   "startup": 36,
+   "active": 40,
+   "recovery": 30,
+   "damage": 55,
+   "parry": "none",
+   "sweep_deg": 180,
+   "hitbox": {
+    "shape": "box",
+    "length": 16.0,
+    "width": 1.0,
+    "height": 1.2
+   },
+   "hit_weight": "medium",
+   "min_tier": 2,
+   "weight": 2,
+   "cooldown_s": 9,
+   "range_m": [
+    0,
+    15
+   ],
+   "possession": "any"
+  },
+  {
+   "id": "ring_fists",
+   "name": "Ring Fists",
+   "primitive": "melee_arc",
+   "body_attack": true,
+   "startup": 18,
+   "active": 24,
+   "recovery": 26,
+   "damage": 55,
+   "parry": "deflect",
+   "hits": 2,
+   "hit_gap": 12,
+   "hitbox": {
+    "shape": "arc",
+    "radius": 4.0,
+    "angle": 120,
+    "height": 3.0
+   },
+   "hit_weight": "medium",
+   "min_tier": 3,
+   "weight": 4,
+   "cooldown_s": 3,
+   "range_m": [
+    0,
+    4.5
+   ],
+   "possession": "any"
+  },
+  {
+   "id": "eclipse",
+   "name": "Eclipse",
+   "primitive": "arena_event",
+   "event": "eclipse",
+   "duration_s": 15,
+   "startup": 30,
+   "active": 2,
+   "recovery": 20,
+   "damage": 0,
+   "min_tier": 5,
+   "weight": 0,
+   "cooldown_s": 999,
+   "range_m": [
+    0,
+    30
+   ],
+   "possession": "any"
+  },
+  {
+   "id": "atlas_lob",
+   "name": "Small World",
+   "primitive": "lob",
+   "uses_ball": true,
+   "rejectable": true,
+   "startup": 30,
+   "active": 2,
+   "recovery": 32,
+   "damage": 60,
+   "parry": "none",
+   "flight_s": 1.2,
+   "hitbox": {
+    "shape": "circle",
+    "radius": 2.2,
+    "height": 2.5
+   },
+   "hit_weight": "medium",
+   "weight": 4,
+   "cooldown_s": 2,
+   "range_m": [
+    2,
+    24
+   ],
+   "possession": "with_ball",
+   "min_tier": 1
+  },
+  {
+   "id": "atlas_statement",
+   "name": "Planet Slam",
+   "primitive": "statement_dunk",
+   "body_attack": true,
+   "startup": 42,
+   "active": 10,
+   "recovery": 30,
+   "damage": 120,
+   "parry": "none",
+   "hitbox": {
+    "shape": "circle",
+    "radius": 2.8,
+    "height": 5.0
+   },
+   "hit_weight": "heavy",
+   "weight": 3,
+   "cooldown_s": 10,
+   "possession": "with_ball",
+   "needs_paint": true,
+   "min_tier": 1,
+   "range_m": [
+    0,
+    30
+   ]
+  },
+  {
+   "id": "atlas_show",
+   "name": "Spin the Globe",
+   "primitive": "showboat",
+   "startup": 6,
+   "active": 84,
+   "recovery": 6,
+   "damage": 0,
+   "weight": 1,
+   "cooldown_s": 16,
+   "possession": "with_ball",
+   "min_tier": 1,
+   "range_m": [
+    0,
+    30
+   ]
+  }
+ ]
+}

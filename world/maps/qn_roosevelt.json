@@ -1,0 +1,185 @@
+{
+ "id": "qn_roosevelt",
+ "borough": "queens",
+ "palette": "queens",
+ "seed": 1301,
+ "name": "Roosevelt Ave",
+ "heights": {
+  "B": [
+   3,
+   4
+  ],
+  "T": [
+   4,
+   5
+  ],
+  "H": [
+   10,
+   14
+  ],
+  "W": [
+   2,
+   2
+  ]
+ },
+ "shops": {
+  "K": [
+   "qn_plug"
+  ],
+  "G": [
+   "qn_pump_grip"
+  ],
+  "I": [
+   "qn_ink"
+  ]
+ },
+ "graffiti": [
+  "stay in your lane",
+  "chime = doors",
+  "the rail bites",
+  "jugglers throw three",
+  "night market eats",
+  "cemetery belt west",
+  "the 7 never stops",
+  "momo's the boss cat",
+  "look up at the El",
+  "dee is two-handed"
+ ],
+ "spawns": {
+  "e": [
+   "juggler",
+   "ball_hog",
+   "showboat",
+   "juggler",
+   "sniper",
+   "hype_man",
+   "pickpocket",
+   "ball_hog"
+  ],
+  "E": [
+   "captain:showboat"
+  ],
+  "c": [
+   "pigeon",
+   "rat",
+   "pigeon"
+  ]
+ },
+ "loot": {
+  "%": "bootleg",
+  "w": "qn_wire",
+  "$": [
+   "qn_retail",
+   "qn_retail_locked",
+   "qn_punch",
+   "qn_retail",
+   "qn_mixtape_0",
+   "qn_secret"
+  ]
+ },
+ "bodegas": [
+  {
+   "id": "qn_bodega_1",
+   "cat": "Momo",
+   "name": "Roosevelt Deli"
+  },
+  {
+   "id": "qn_bodega_2",
+   "cat": "Mango",
+   "name": "74th St. Grocery"
+  }
+ ],
+ "stations": [
+  {
+   "id": "qn_st_roosevelt",
+   "name": "74th St-Roosevelt",
+   "line": "green"
+  }
+ ],
+ "npcs": [
+  {
+   "id": "npc_double_dribble_dee",
+   "name": "Double Dribble Dee",
+   "challenger": {
+    "id": "double_dribble_dee",
+    "tier_bonus": 0,
+    "skill": 0.55,
+    "drop": "kicks_queens_4",
+    "points": 7
+   },
+   "lines": [
+    "Two balls, one me. You got this?",
+    "First to seven. Keep up."
+   ],
+   "look": {
+    "skin": "#C68642",
+    "top_color": "#00A651",
+    "shorts_color": "#FF7A00",
+    "hair_style": "puffs",
+    "hair_color": "#1A1210"
+   }
+  },
+  {
+   "id": "npc_conductor",
+   "name": "Retired Conductor",
+   "lines": [
+    "That train on the platform? Runs on the painted lanes. Only the lanes.",
+    "Two-tone chime means the doors are coming. Stand clear.",
+    "When the rail lights up, stay off it."
+   ]
+  },
+  {
+   "id": "npc_mic_check_rv",
+   "name": "Mic Check",
+   "lines": [
+    "QUEENS! The night market never closes when the night never ends!",
+    "West through the cemeteries is Brooklyn. Spooky walk. Bring a friend."
+   ]
+  }
+ ],
+ "crossings": [
+  {
+   "to": "qn_astoria",
+   "via": "steinway",
+   "name": "Astoria"
+  },
+  {
+   "to": "bk_bedstuy",
+   "via": "cemetery_belt",
+   "name": "The Cemetery Belt to Brooklyn"
+  },
+  {
+   "to": "qn_flushing",
+   "via": "roosevelt_east",
+   "name": "Flushing Meadows"
+  }
+ ],
+ "shortcuts": [
+  {
+   "id": "qn_roosevelt_ladder_0",
+   "open_from": "s",
+   "kind": "ladder"
+  },
+  {
+   "id": "qn_roosevelt_gate_0",
+   "open_from": "n",
+   "kind": "gate"
+  }
+ ],
+ "secrets": [
+  {
+   "id": "qn_roosevelt_roof_0_out",
+   "kind": "rooftop"
+  },
+  {
+   "id": "qn_roosevelt_roof_0_in",
+   "kind": "rooftop"
+  }
+ ],
+ "fights": {
+  "M": [
+   "qn_express"
+  ],
+  "X": []
+ }
+}

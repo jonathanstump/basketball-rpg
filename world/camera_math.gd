@@ -12,7 +12,7 @@ static func orbit_transform(focus: Vector3, yaw: float, pitch_deg: float, distan
 	return Transform3D(Basis.looking_at(focus - origin, Vector3.UP), origin)
 
 
-static func lockon_framing(player: Vector3, target: Vector3, hoop: Vector3, use_hoop: bool, cfg: Dictionary, aspect: float = 16.0 / 9.0) -> Dictionary:
+static func lockon_framing(player: Vector3, target: Vector3, hoop: Vector3, use_hoop: bool, cfg: Dictionary, aspect: float = 16.0 / 9.0, target_h: float = 2.0) -> Dictionary:
 	## Returns {focus, yaw, distance, pitch}. Camera sits behind the player
 	## looking toward the target; searches focus bias and distance (9-14 m)
 	## until player, target (and hoop) all fit in frame. Focus includes height.
@@ -25,9 +25,9 @@ static func lockon_framing(player: Vector3, target: Vector3, hoop: Vector3, use_
 	var sep: float = to_t.length()
 	var yaw: float = SimActor.yaw_of(to_t) if sep > 0.01 else 0.0
 	var dmin: float = JU.f(lock, "distance_min_m", 9.0)
-	var dmax: float = JU.f(lock, "distance_max_m", 14.0)
+	var dmax: float = maxf(JU.f(lock, "distance_max_m", 14.0), 8.0 + target_h * 1.4)
 	var base_d: float = clampf(dmin + sep * JU.f(lock, "sep_to_distance", 0.45), dmin, dmax)
-	var pts: Array[Vector3] = [player, player + Vector3.UP * 1.2, target + Vector3.UP * 1.0]
+	var pts: Array[Vector3] = [player, player + Vector3.UP * 1.2, target + Vector3.UP * minf(maxf(1.0, target_h * 0.7), 6.0)]
 	if use_hoop:
 		pts.append(hoop)
 	var hw: float = JU.f(lock, "hoop_weight", 0.35) if use_hoop else 0.0

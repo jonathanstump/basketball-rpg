@@ -1,0 +1,305 @@
+{
+ "moves": [
+  {
+   "id": "express_charge",
+   "name": "Express Charge",
+   "primitive": "charge_lane",
+   "axis_snap": true,
+   "body_attack": true,
+   "startup": 30,
+   "active": 28,
+   "recovery": 26,
+   "damage": 65,
+   "parry": "none",
+   "lunge_m": 13.0,
+   "telegraph": {
+    "anim": "windup",
+    "frames": 30,
+    "vfx": "headlight",
+    "sfx": "horn"
+   },
+   "hitbox": {
+    "shape": "box",
+    "length": 2.8,
+    "width": 3.0,
+    "height": 3.0
+   },
+   "knockdown": true,
+   "hit_weight": "heavy",
+   "weight": 4,
+   "cooldown_s": 4,
+   "range_m": [
+    3,
+    16
+   ],
+   "min_tier": 1,
+   "possession": "any"
+  },
+  {
+   "id": "door_chomp",
+   "name": "Door Chomp",
+   "primitive": "grab",
+   "body_attack": true,
+   "startup": 34,
+   "active": 8,
+   "recovery": 34,
+   "damage": 95,
+   "parry": "deflect",
+   "lunge_m": 2.0,
+   "telegraph": {
+    "anim": "windup",
+    "frames": 34,
+    "vfx": "door_glow",
+    "sfx": "two_tone_chime",
+    "line": "Stand clear of the closing doors."
+   },
+   "hitbox": {
+    "shape": "sphere",
+    "radius": 1.9,
+    "forward": 1.8,
+    "height": 3.0
+   },
+   "hit_weight": "heavy",
+   "weight": 3,
+   "cooldown_s": 5,
+   "range_m": [
+    0,
+    5
+   ],
+   "min_tier": 1,
+   "possession": "any"
+  },
+  {
+   "id": "car_whip",
+   "name": "Car Whip",
+   "primitive": "melee_arc",
+   "body_attack": true,
+   "startup": 24,
+   "active": 10,
+   "recovery": 28,
+   "damage": 50,
+   "parry": "deflect",
+   "hitbox": {
+    "shape": "arc",
+    "radius": 5.0,
+    "angle": 200,
+    "height": 2.4
+   },
+   "hit_weight": "medium",
+   "weight": 3,
+   "cooldown_s": 4,
+   "range_m": [
+    0,
+    5
+   ],
+   "min_tier": 1,
+   "possession": "any"
+  },
+  {
+   "id": "spit_pass",
+   "name": "Spit Pass",
+   "primitive": "lob",
+   "uses_ball": true,
+   "rejectable": true,
+   "startup": 22,
+   "active": 2,
+   "recovery": 26,
+   "damage": 50,
+   "parry": "none",
+   "flight_s": 0.9,
+   "hitbox": {
+    "shape": "circle",
+    "radius": 2.0,
+    "height": 2.5
+   },
+   "hit_weight": "medium",
+   "weight": 4,
+   "cooldown_s": 2,
+   "range_m": [
+    2,
+    22
+   ],
+   "possession": "with_ball",
+   "min_tier": 1
+  },
+  {
+   "id": "third_rail",
+   "name": "Third Rail",
+   "primitive": "arena_event",
+   "event": "third_rail",
+   "body_attack": true,
+   "startup": 36,
+   "active": 2,
+   "recovery": 24,
+   "damage": 45,
+   "parry": "none",
+   "pattern": {
+    "kind": "lane",
+    "count": 9,
+    "spread_m": 10.0,
+    "delay_s": 0.8,
+    "stagger_s": 0.0
+   },
+   "status": {
+    "shock": 1.0
+   },
+   "hitbox": {
+    "shape": "circle",
+    "radius": 1.2,
+    "height": 1.0
+   },
+   "hit_weight": "medium",
+   "weight": 3,
+   "cooldown_s": 8,
+   "min_tier": 1,
+   "range_m": [
+    0,
+    30
+   ],
+   "possession": "any"
+  },
+  {
+   "id": "local_hops",
+   "name": "Local",
+   "primitive": "reposition",
+   "to": "random",
+   "repeat": 3,
+   "body_attack": true,
+   "startup": 18,
+   "active": 30,
+   "recovery": 12,
+   "damage": 50,
+   "parry": "none",
+   "hitbox": {
+    "shape": "circle",
+    "radius": 3.0,
+    "height": 2.0
+   },
+   "hit_weight": "medium",
+   "min_tier": 2,
+   "weight": 2,
+   "cooldown_s": 12,
+   "range_m": [
+    0,
+    30
+   ],
+   "possession": "any"
+  },
+  {
+   "id": "car_charge",
+   "name": "Car Charge",
+   "primitive": "charge_lane",
+   "axis_snap": true,
+   "body_attack": true,
+   "startup": 36,
+   "active": 24,
+   "recovery": 30,
+   "damage": 45,
+   "parry": "none",
+   "lunge_m": 10.0,
+   "hitbox": {
+    "shape": "box",
+    "length": 2.2,
+    "width": 2.4,
+    "height": 2.6
+   },
+   "hit_weight": "medium",
+   "weight": 0,
+   "cooldown_s": 0,
+   "min_tier": 1,
+   "range_m": [
+    0,
+    30
+   ],
+   "possession": "any"
+  },
+  {
+   "id": "rush_hour_crowd",
+   "name": "Rush Hour Crowd",
+   "primitive": "arena_event",
+   "event": "rush_hour_crowd",
+   "startup": 30,
+   "active": 2,
+   "recovery": 20,
+   "damage": 0,
+   "min_tier": 5,
+   "weight": 0,
+   "cooldown_s": 999,
+   "range_m": [
+    0,
+    30
+   ],
+   "possession": "any"
+  },
+  {
+   "id": "express_lob",
+   "name": "Express Lob",
+   "primitive": "lob",
+   "uses_ball": true,
+   "rejectable": true,
+   "startup": 30,
+   "active": 2,
+   "recovery": 32,
+   "damage": 50,
+   "parry": "none",
+   "flight_s": 1.2,
+   "hitbox": {
+    "shape": "circle",
+    "radius": 2.2,
+    "height": 2.5
+   },
+   "hit_weight": "medium",
+   "weight": 4,
+   "cooldown_s": 2,
+   "range_m": [
+    2,
+    24
+   ],
+   "possession": "with_ball",
+   "min_tier": 1
+  },
+  {
+   "id": "express_statement",
+   "name": "End of the Line",
+   "primitive": "statement_dunk",
+   "body_attack": true,
+   "startup": 42,
+   "active": 10,
+   "recovery": 30,
+   "damage": 95,
+   "parry": "none",
+   "hitbox": {
+    "shape": "circle",
+    "radius": 2.8,
+    "height": 5.0
+   },
+   "hit_weight": "heavy",
+   "weight": 3,
+   "cooldown_s": 10,
+   "possession": "with_ball",
+   "needs_paint": true,
+   "min_tier": 1,
+   "range_m": [
+    0,
+    30
+   ]
+  },
+  {
+   "id": "express_show",
+   "name": "Next Stop",
+   "primitive": "showboat",
+   "startup": 6,
+   "active": 84,
+   "recovery": 6,
+   "damage": 0,
+   "weight": 1,
+   "cooldown_s": 16,
+   "possession": "with_ball",
+   "min_tier": 1,
+   "range_m": [
+    0,
+    30
+   ]
+  }
+ ]
+}

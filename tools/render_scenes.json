@@ -131,6 +131,45 @@
       "scene": "res://world/district.tscn",
       "frames": 60,
       "district": "bx_highbridge"
+    },
+    {
+      "name": "boss_qn_express",
+      "scene": "res://world/arenas/boss_arena.tscn",
+      "frames": 180,
+      "boss": "qn_express",
+      "tier": 1
+    },
+    {
+      "name": "boss_qn_sauce",
+      "scene": "res://world/arenas/boss_arena.tscn",
+      "frames": 180,
+      "boss": "qn_sauce",
+      "tier": 1
+    },
+    {
+      "name": "boss_qn_atlas",
+      "scene": "res://world/arenas/boss_arena.tscn",
+      "frames": 180,
+      "boss": "qn_atlas",
+      "tier": 1
+    },
+    {
+      "name": "district_qn_roosevelt",
+      "scene": "res://world/district.tscn",
+      "frames": 60,
+      "district": "qn_roosevelt"
+    },
+    {
+      "name": "district_qn_astoria",
+      "scene": "res://world/district.tscn",
+      "frames": 60,
+      "district": "qn_astoria"
+    },
+    {
+      "name": "district_qn_flushing",
+      "scene": "res://world/district.tscn",
+      "frames": 60,
+      "district": "qn_flushing"
     }
   ]
 }

@@ -1,0 +1,465 @@
+{
+ "id": "qn_express",
+ "name": "THE EXPRESS",
+ "title": "Last Train Out",
+ "borough": "queens",
+ "district": "qn_roosevelt",
+ "kind": "mini",
+ "arena": {
+  "theme": "el_platform",
+  "size_m": [
+   16,
+   18
+  ],
+  "indoor": false,
+  "floor": "#4A4E58",
+  "key": "#FF7A00",
+  "props": [
+   {
+    "shape": "box",
+    "size": [
+     0.4,
+     0.3,
+     30.0
+    ],
+    "pos": [
+     -9.6,
+     0.15,
+     0
+    ],
+    "color": "#8A8A94",
+    "repeat": {
+     "count": 2,
+     "step": [
+      19.2,
+      0,
+      0
+     ]
+    }
+   },
+   {
+    "shape": "box",
+    "size": [
+     0.15,
+     0.2,
+     30.0
+    ],
+    "pos": [
+     -10.2,
+     0.25,
+     0
+    ],
+    "color": "#F4B400",
+    "emit": 0.8,
+    "repeat": {
+     "count": 2,
+     "step": [
+      20.4,
+      0,
+      0
+     ]
+    }
+   },
+   {
+    "shape": "box",
+    "size": [
+     0.15,
+     0.02,
+     18.0
+    ],
+    "pos": [
+     -4.0,
+     0.01,
+     0
+    ],
+    "color": "#FF7A00",
+    "neon": true,
+    "no_shadow": true,
+    "repeat": {
+     "count": 3,
+     "step": [
+      4.0,
+      0,
+      0
+     ]
+    }
+   },
+   {
+    "shape": "box",
+    "size": [
+     18.0,
+     1.2,
+     0.4
+    ],
+    "pos": [
+     0,
+     0.6,
+     -11.0
+    ],
+    "color": "#FF7A00"
+   },
+   {
+    "shape": "box",
+    "size": [
+     60.0,
+     0.4,
+     60.0
+    ],
+    "pos": [
+     0,
+     -6.0,
+     0
+    ],
+    "color": "#1A2A1A",
+    "no_shadow": true
+   },
+   {
+    "shape": "sphere",
+    "size": [
+     0.15
+    ],
+    "pos": [
+     -14.0,
+     -4.0,
+     -6.0
+    ],
+    "color": "#FFD08A",
+    "neon": true,
+    "repeat": {
+     "count": 14,
+     "step": [
+      2.0,
+      0,
+      1.0
+     ]
+    }
+   },
+   {
+    "pos": [
+     0,
+     -3.0,
+     0
+    ],
+    "light": {
+     "color": "#FF9A40",
+     "energy": 2.0,
+     "range": 14.0
+    }
+   },
+   {
+    "pos": [
+     -6.0,
+     6.0,
+     4.0
+    ],
+    "light": {
+     "color": "#E8F0FF",
+     "energy": 1.2,
+     "range": 12.0
+    }
+   }
+  ]
+ },
+ "base": {
+  "hp": 1800,
+  "composure": 200,
+  "contest_radius": 3.0,
+  "height_m": 3.4,
+  "radius_m": 1.5,
+  "speed": 5.0,
+  "poise": 9999
+ },
+ "phases": [
+  {
+   "id": 1,
+   "rules": {},
+   "moves": [
+    "express_charge",
+    "door_chomp",
+    "car_whip",
+    "spit_pass",
+    "third_rail",
+    "local_hops",
+    "express_statement",
+    "express_show"
+   ]
+  },
+  {
+   "id": 2,
+   "min_tier": 3,
+   "at_hp_pct": 0.5,
+   "transition": "decouple",
+   "rules": {
+    "speed_mult": 1.15
+   },
+   "moves": [
+    "express_charge",
+    "door_chomp",
+    "car_whip",
+    "spit_pass",
+    "third_rail",
+    "local_hops",
+    "express_statement",
+    "express_show"
+   ]
+  }
+ ],
+ "t5_event": {
+  "at_hp_pct": 0.25,
+  "move": "rush_hour_crowd"
+ },
+ "drops": [
+  "ball_third_rail",
+  "flash_express"
+ ],
+ "mic_check": "This is the LAST TRAIN. Stand clear of the closing doors, kid.",
+ "look": {
+  "colors": {
+   "steel": "#C8CCD4",
+   "steel_dk": "#8A8E98",
+   "stripe": "#FF7A00",
+   "window": "#9FE8FF",
+   "face": "#F2F2F2",
+   "mouth": "#141418",
+   "light": "#FFF2A0"
+  },
+  "joints": {
+   "hips": [
+    0,
+    1.6,
+    0
+   ],
+   "torso": [
+    0,
+    1.7,
+    0
+   ],
+   "head": [
+    0,
+    2.0,
+    -1.8
+   ],
+   "arm_l": [
+    -1.3,
+    2.0,
+    0
+   ],
+   "arm_r": [
+    1.3,
+    2.0,
+    0
+   ]
+  },
+  "parts": [
+   {
+    "joint": "torso",
+    "shape": "box",
+    "size": [
+     2.4,
+     3.0,
+     6.0
+    ],
+    "pos": [
+     0,
+     0.0,
+     1.2
+    ],
+    "color": "steel"
+   },
+   {
+    "joint": "torso",
+    "shape": "box",
+    "size": [
+     2.45,
+     0.35,
+     6.05
+    ],
+    "pos": [
+     0,
+     -0.4,
+     1.2
+    ],
+    "color": "stripe",
+    "emit": 0.3
+   },
+   {
+    "joint": "torso",
+    "shape": "box",
+    "size": [
+     2.46,
+     0.6,
+     1.0
+    ],
+    "pos": [
+     0,
+     0.6,
+     0.4
+    ],
+    "color": "window",
+    "emit": 0.6
+   },
+   {
+    "joint": "torso",
+    "shape": "box",
+    "size": [
+     2.46,
+     0.6,
+     1.0
+    ],
+    "pos": [
+     0,
+     0.6,
+     2.2
+    ],
+    "color": "window",
+    "emit": 0.6
+   },
+   {
+    "joint": "torso",
+    "shape": "box",
+    "size": [
+     0.1,
+     1.8,
+     0.9
+    ],
+    "pos": [
+     -1.24,
+     -0.2,
+     1.3
+    ],
+    "color": "steel_dk"
+   },
+   {
+    "joint": "torso",
+    "shape": "box",
+    "size": [
+     0.1,
+     1.8,
+     0.9
+    ],
+    "pos": [
+     1.24,
+     -0.2,
+     1.3
+    ],
+    "color": "steel_dk"
+   },
+   {
+    "joint": "head",
+    "shape": "box",
+    "size": [
+     2.3,
+     2.8,
+     0.4
+    ],
+    "pos": [
+     0,
+     -0.2,
+     0
+    ],
+    "color": "face"
+   },
+   {
+    "joint": "head",
+    "shape": "sphere",
+    "size": [
+     0.3
+    ],
+    "pos": [
+     -0.6,
+     0.6,
+     -0.15
+    ],
+    "color": "light",
+    "emit": 2.0
+   },
+   {
+    "joint": "head",
+    "shape": "sphere",
+    "size": [
+     0.3
+    ],
+    "pos": [
+     0.6,
+     0.6,
+     -0.15
+    ],
+    "color": "light",
+    "emit": 2.0
+   },
+   {
+    "joint": "head",
+    "shape": "box",
+    "size": [
+     1.4,
+     0.25,
+     0.1
+    ],
+    "pos": [
+     0,
+     -0.4,
+     -0.22
+    ],
+    "color": "mouth"
+   },
+   {
+    "joint": "head",
+    "shape": "box",
+    "size": [
+     1.6,
+     0.12,
+     0.1
+    ],
+    "pos": [
+     0,
+     -0.25,
+     -0.24
+    ],
+    "color": "stripe"
+   },
+   {
+    "joint": "arm_l",
+    "shape": "cylinder",
+    "size": [
+     0.45,
+     0.3
+    ],
+    "pos": [
+     0,
+     -1.6,
+     0.5
+    ],
+    "color": "steel_dk",
+    "rot": [
+     0,
+     0,
+     90
+    ]
+   },
+   {
+    "joint": "arm_r",
+    "shape": "cylinder",
+    "size": [
+     0.45,
+     0.3
+    ],
+    "pos": [
+     0,
+     -1.6,
+     0.5
+    ],
+    "color": "steel_dk",
+    "rot": [
+     0,
+     0,
+     90
+    ]
+   }
+  ]
+ },
+ "rewards": {
+  "rep": 2500,
+  "tokens": 800
+ },
+ "gimmick": "decouple"
+}

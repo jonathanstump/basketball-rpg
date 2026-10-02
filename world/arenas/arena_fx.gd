@@ -46,6 +46,34 @@ static func on_event(arena: BossArena, ev: Dictionary) -> void:
 				g.queue_free()
 		"headlight_on":
 			_headlight(arena, ev)
+		"orbits_on", "globe_dropped":
+			if arena.get_node_or_null("OrbitFx") == null and arena.boss != null and (arena.boss.controller as BossBrain).gimmick is AtlasGimmick:
+				var fx: OrbitFx = OrbitFx.new()
+				fx.name = "OrbitFx"
+				fx.gimmick = (arena.boss.controller as BossBrain).gimmick as AtlasGimmick
+				arena.add_child(fx)
+		"car_decoupled":
+			var car: SimActor = arena.sim.actor_by_id(int(ev["actor"]))
+			if car != null:
+				var cv: BossView = BossView.create_boss(car, arena.boss_data)
+				cv.scale = Vector3.ONE * 0.8
+				arena.add_child(cv)
+				arena.views[car.id] = cv
+		"car_removed":
+			if arena.views.has(int(ev["actor"])):
+				(arena.views[int(ev["actor"])] as Node).queue_free()
+		"commuter":
+			var cm: MeshInstance3D = MeshInstance3D.new()
+			cm.mesh = MeshLib.capsule(0.35, 1.8)
+			cm.material_override = ToonMaterials.toon(Color("#1A1A24"))
+			cm.position = (ev["pos"] as Vector3) + Vector3(0, 0.9, 0)
+			cm.add_to_group("commuters")
+			arena.add_child(cm)
+		"crowd_cleared":
+			for n: Node in arena.get_tree().get_nodes_in_group("commuters"):
+				n.queue_free()
+		"eclipse":
+			pass
 		"safe_lane":
 			arena.boss_bar.show_banner("FIND THE LANE!", 1.2)
 			_lane_marker(arena, float(ev["x"]), float(ev["width"]))
