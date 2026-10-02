@@ -280,7 +280,7 @@ func on_hit(res: Dictionary) -> void:
 		"guard_break":
 			_react("guard_break")
 		"hit":
-			if actor.hyper_armor:
+			if actor.hyper_armor or bool(res.get("no_flinch", false)):
 				return
 			if bool(res.get("knockdown", false)):
 				_react("knockdown")

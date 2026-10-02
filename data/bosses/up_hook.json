@@ -1,0 +1,456 @@
+{
+ "id": "up_hook",
+ "name": "THE HOOK",
+ "title": "Amateur Night Executioner",
+ "borough": "uptown",
+ "district": "up_harlem",
+ "kind": "mini",
+ "arena": {
+  "theme": "theater_stage",
+  "size_m": [
+   18,
+   14
+  ],
+  "indoor": true,
+  "floor": "#5A3A24",
+  "key": "#1E6FD9",
+  "props": [
+   {
+    "shape": "box",
+    "size": [
+     26.0,
+     12.0,
+     0.6
+    ],
+    "pos": [
+     0,
+     6.0,
+     -11.0
+    ],
+    "color": "#8A0A1E"
+   },
+   {
+    "shape": "box",
+    "size": [
+     3.0,
+     12.0,
+     0.8
+    ],
+    "pos": [
+     -11.5,
+     6.0,
+     -9.5
+    ],
+    "color": "#A01428"
+   },
+   {
+    "shape": "box",
+    "size": [
+     3.0,
+     12.0,
+     0.8
+    ],
+    "pos": [
+     11.5,
+     6.0,
+     -9.5
+    ],
+    "color": "#A01428"
+   },
+   {
+    "shape": "sphere",
+    "size": [
+     0.2
+    ],
+    "pos": [
+     -8.0,
+     0.2,
+     7.6
+    ],
+    "color": "#FFE6A0",
+    "neon": true,
+    "repeat": {
+     "count": 9,
+     "step": [
+      2.0,
+      0,
+      0
+     ]
+    }
+   },
+   {
+    "shape": "box",
+    "size": [
+     30.0,
+     3.0,
+     4.0
+    ],
+    "pos": [
+     0,
+     6.0,
+     14.0
+    ],
+    "color": "#1A1420",
+    "no_shadow": true
+   },
+   {
+    "shape": "sphere",
+    "size": [
+     0.35
+    ],
+    "pos": [
+     -12.0,
+     7.8,
+     13.0
+    ],
+    "color": "#0A0A10",
+    "repeat": {
+     "count": 13,
+     "step": [
+      2.0,
+      0,
+      0
+     ]
+    },
+    "no_shadow": true
+   },
+   {
+    "pos": [
+     0,
+     10.0,
+     0
+    ],
+    "light": {
+     "color": "#FFF2C8",
+     "energy": 2.6,
+     "range": 16.0
+    }
+   },
+   {
+    "pos": [
+     -8.0,
+     4.0,
+     6.0
+    ],
+    "light": {
+     "color": "#FFB060",
+     "energy": 1.0,
+     "range": 10.0
+    }
+   }
+  ]
+ },
+ "base": {
+  "hp": 1800,
+  "composure": 200,
+  "contest_radius": 3.0,
+  "height_m": 4.6,
+  "radius_m": 0.9,
+  "speed": 4.6,
+  "poise": 9999
+ },
+ "phases": [
+  {
+   "id": 1,
+   "rules": {},
+   "moves": [
+    "hook_yank",
+    "tap_routine",
+    "curtain_call",
+    "trapdoor",
+    "cane_juggle",
+    "encore",
+    "hook_lob",
+    "hook_statement"
+   ]
+  },
+  {
+   "id": 2,
+   "min_tier": 3,
+   "at_hp_pct": 0.5,
+   "transition": "spotlight_hunt",
+   "rules": {},
+   "moves": [
+    "hook_yank",
+    "tap_routine",
+    "curtain_call",
+    "trapdoor",
+    "cane_juggle",
+    "encore",
+    "hook_lob",
+    "hook_statement"
+   ]
+  }
+ ],
+ "t5_event": {
+  "at_hp_pct": 0.25,
+  "move": "standing_ovation"
+ },
+ "drops": [
+  "ball_spotlight",
+  "mixtape_showstopper"
+ ],
+ "mic_check": "Amateur Night! You know the rules. If they boo... THE HOOK COMES OUT.",
+ "look": {
+  "colors": {
+   "tux": "#141418",
+   "shirt": "#F2F2F2",
+   "skin": "#C68642",
+   "stache": "#0A0A0A",
+   "hook": "#C8CCD4",
+   "tie": "#C8102E",
+   "shoe": "#0A0A0A"
+  },
+  "joints": {
+   "hips": [
+    0,
+    2.0,
+    0
+   ],
+   "torso": [
+    0,
+    2.1,
+    0
+   ],
+   "head": [
+    0,
+    3.8,
+    0
+   ],
+   "arm_l": [
+    -0.65,
+    3.4,
+    0
+   ],
+   "arm_r": [
+    0.65,
+    3.4,
+    0
+   ],
+   "leg_l": [
+    -0.25,
+    2.0,
+    0
+   ],
+   "leg_r": [
+    0.25,
+    2.0,
+    0
+   ]
+  },
+  "parts": [
+   {
+    "joint": "leg_l",
+    "shape": "capsule",
+    "size": [
+     0.16,
+     2.0
+    ],
+    "pos": [
+     0,
+     -1.0,
+     0
+    ],
+    "color": "tux"
+   },
+   {
+    "joint": "leg_r",
+    "shape": "capsule",
+    "size": [
+     0.16,
+     2.0
+    ],
+    "pos": [
+     0,
+     -1.0,
+     0
+    ],
+    "color": "tux"
+   },
+   {
+    "joint": "leg_l",
+    "shape": "box",
+    "size": [
+     0.3,
+     0.16,
+     0.55
+    ],
+    "pos": [
+     0,
+     -1.95,
+     -0.1
+    ],
+    "color": "shoe"
+   },
+   {
+    "joint": "leg_r",
+    "shape": "box",
+    "size": [
+     0.3,
+     0.16,
+     0.55
+    ],
+    "pos": [
+     0,
+     -1.95,
+     -0.1
+    ],
+    "color": "shoe"
+   },
+   {
+    "joint": "torso",
+    "shape": "box",
+    "size": [
+     0.95,
+     1.6,
+     0.5
+    ],
+    "pos": [
+     0,
+     0.8,
+     0
+    ],
+    "color": "tux"
+   },
+   {
+    "joint": "torso",
+    "shape": "box",
+    "size": [
+     0.35,
+     1.2,
+     0.52
+    ],
+    "pos": [
+     0,
+     0.9,
+     0
+    ],
+    "color": "shirt"
+   },
+   {
+    "joint": "torso",
+    "shape": "box",
+    "size": [
+     0.3,
+     0.12,
+     0.54
+    ],
+    "pos": [
+     0,
+     1.45,
+     0
+    ],
+    "color": "tie"
+   },
+   {
+    "joint": "head",
+    "shape": "sphere",
+    "size": [
+     0.4
+    ],
+    "pos": [
+     0,
+     0.3,
+     0
+    ],
+    "color": "skin"
+   },
+   {
+    "joint": "head",
+    "shape": "box",
+    "size": [
+     0.36,
+     0.05,
+     0.06
+    ],
+    "pos": [
+     0,
+     0.18,
+     -0.38
+    ],
+    "color": "stache"
+   },
+   {
+    "joint": "head",
+    "shape": "cylinder",
+    "size": [
+     0.3,
+     0.7
+    ],
+    "pos": [
+     0,
+     0.95,
+     0
+    ],
+    "color": "tux"
+   },
+   {
+    "joint": "head",
+    "shape": "cylinder",
+    "size": [
+     0.5,
+     0.05
+    ],
+    "pos": [
+     0,
+     0.62,
+     0
+    ],
+    "color": "tux"
+   },
+   {
+    "joint": "arm_l",
+    "shape": "capsule",
+    "size": [
+     0.13,
+     1.4
+    ],
+    "pos": [
+     0,
+     -0.65,
+     0
+    ],
+    "color": "tux"
+   },
+   {
+    "joint": "arm_r",
+    "shape": "capsule",
+    "size": [
+     0.13,
+     1.4
+    ],
+    "pos": [
+     0,
+     -0.65,
+     0
+    ],
+    "color": "tux"
+   },
+   {
+    "joint": "arm_r",
+    "shape": "torus",
+    "size": [
+     0.4,
+     0.5
+    ],
+    "pos": [
+     0,
+     -1.6,
+     -0.35
+    ],
+    "color": "hook",
+    "rot": [
+     0,
+     0,
+     90
+    ],
+    "emit": 0.3
+   }
+  ]
+ },
+ "rewards": {
+  "rep": 2500,
+  "tokens": 800
+ },
+ "gimmick": "crowd"
+}

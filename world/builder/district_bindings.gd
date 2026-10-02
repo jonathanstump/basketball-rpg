@@ -8,8 +8,12 @@ extends RefCounted
 static func collect(bb: BoroughBuilder) -> void:
 	var m: MapData = bb.map
 	var lay: Dictionary = bb.layout
-	for c: Vector2i in m.cells_of("@"):
-		lay["start"] = m.world_pos(c, BoroughBuilder.CURB_H)
+	## Default start: the '@' tile, else the station (never inside a block).
+	var start_cells: Array[Vector2i] = m.cells_of("@")
+	if start_cells.is_empty():
+		start_cells = m.cells_of("S")
+	for c: Vector2i in start_cells:
+		lay["start"] = m.world_pos(c, BoroughBuilder.CURB_H) + (Vector3(1.5, 0, 0) if m.at(c) == "S" else Vector3.ZERO)
 	var k: int = 0
 	for c2: Vector2i in m.cells_of("S"):
 		var st: Dictionary = _dict(m.bound("S", k))

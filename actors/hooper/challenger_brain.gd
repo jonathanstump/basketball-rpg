@@ -129,6 +129,7 @@ func _reject_statement(input: ActorInput, a: SimActor, opp: SimActor, w: SimWorl
 	_reacted_to = key
 	input.press("jump")
 	input.press("hands_up")
+	w.emit("bot_reject_attempt", {"actor": a.id})
 	return true
 
 
@@ -157,6 +158,17 @@ func _offense(input: ActorInput, a: SimActor, opp: SimActor, h: Hooper, w: SimWo
 		var d_hoop: float = hoop.flat_distance(a.pos)
 		var mod: HooperBall = _ball_module(h)
 		var contest: float = float(mod.contest(a)[0]) if mod != null else 0.0
+		if h.stepback_timer_s > 0.0 and d_hoop < 8.5 and _cooldown <= 0:
+			## Fire right out of the stepback (it beats long contests).
+			contest = 0.0
+		elif d_hoop < 7.5 and contest >= 0.35 + 0.2 * (1.0 - skill) and _cooldown <= 0 and h.action == "" and rng.randf() < 0.04 * skill:
+			## Contested: create space with a stepback.
+			var away: Vector3 = (a.pos - opp.pos)
+			away.y = 0.0
+			var f: Vector3 = a.forward()
+			input.move = Vector2(-f.x, -f.z) if away.length() < 0.1 else Vector2(away.normalized().x, away.normalized().z)
+			input.press("dodge")
+			return
 		if d_hoop < 7.5 and contest < 0.35 + 0.2 * (1.0 - skill) and _cooldown <= 0:
 			input.press("shoot")
 			input.held["shoot"] = true
@@ -218,9 +230,10 @@ func _defense(input: ActorInput, a: SimActor, opp: SimActor, w: SimWorld) -> voi
 				_cooldown = 30
 			return
 	var d: float = opp.dist_to(a)
+	var save_wind: bool = opp.controller is BossBrain and opp.has_ball and a.wind.value < 40.0
 	if d > 1.4:
 		_move(input, a, opp.pos)
-	elif _cooldown <= 0:
+	elif _cooldown <= 0 and not save_wind:
 		input.press("heavy" if opp.has_ball and rng.randf() < 0.4 else "light")
 		_cooldown = int(lerpf(36.0, 14.0, skill))
 

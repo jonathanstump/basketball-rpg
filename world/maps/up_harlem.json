@@ -1,0 +1,191 @@
+{
+ "id": "up_harlem",
+ "borough": "uptown",
+ "palette": "uptown",
+ "seed": 1501,
+ "name": "Harlem 125th",
+ "heights": {
+  "B": [
+   3,
+   4
+  ],
+  "T": [
+   5,
+   6
+  ],
+  "H": [
+   10,
+   18
+  ],
+  "W": [
+   2,
+   3
+  ]
+ },
+ "shops": {
+  "K": [
+   "up_plug"
+  ],
+  "G": [
+   "up_pump_grip"
+  ],
+  "I": [
+   "up_ink"
+  ]
+ },
+ "graffiti": [
+  "the crowd decides",
+  "boos bring the hook",
+  "style = roses",
+  "spotlight = damage",
+  "bridge to the bronx",
+  "tri-bridge east",
+  "park gate needs 5 crowns",
+  "duke runs lenox",
+  "keepers whistle",
+  "glide don't touch down"
+ ],
+ "spawns": {
+  "e": [
+   "pigeon_keeper",
+   "ball_hog",
+   "showboat",
+   "hype_man",
+   "sniper",
+   "pigeon_keeper",
+   "pickpocket",
+   "ball_hog"
+  ],
+  "E": [
+   "captain:showboat"
+  ],
+  "c": [
+   "pigeon",
+   "pigeon",
+   "rat"
+  ]
+ },
+ "loot": {
+  "%": "bootleg",
+  "w": "up_wire",
+  "$": [
+   "up_retail",
+   "up_retail_locked",
+   "up_punch",
+   "up_retail",
+   "up_mixtape_0",
+   "up_secret"
+  ]
+ },
+ "bodegas": [
+  {
+   "id": "up_bodega_1",
+   "cat": "Duke",
+   "name": "Lenox Ave Deli"
+  },
+  {
+   "id": "up_bodega_2",
+   "cat": "Sugar",
+   "name": "125th St. Grocery"
+  }
+ ],
+ "stations": [
+  {
+   "id": "up_st_harlem",
+   "name": "125th St",
+   "line": "blue"
+  }
+ ],
+ "npcs": [
+  {
+   "id": "npc_stagehand",
+   "name": "Stagehand",
+   "lines": [
+    "Amateur Night never ended. He runs it now.",
+    "Make the crowd love you and they'll throw roses. He can't see a thing in the spotlight.",
+    "If they boo, the hook comes out. Don't miss."
+   ]
+  },
+  {
+   "id": "npc_mic_check_hl",
+   "name": "Mic Check",
+   "lines": [
+    "UPTOWN! Harlem! The marquee's lit but the show's a nightmare.",
+    "The park gate south goes into the City. Five Crowns opens it."
+   ]
+  },
+  {
+   "id": "npc_glide",
+   "name": "Glide",
+   "challenger": {
+    "id": "glide",
+    "tier_bonus": 0,
+    "skill": 0.55,
+    "drop": "kicks_uptown_4",
+    "points": 7
+   },
+   "lines": [
+    "They call me Glide 'cause my feet don't touch.",
+    "First to seven. Try and keep up."
+   ],
+   "look": {
+    "skin": "#5C3A21",
+    "top_color": "#1E6FD9",
+    "shorts_color": "#F2F2F2",
+    "hair_style": "waves",
+    "hair_color": "#1A1210"
+   }
+  }
+ ],
+ "crossings": [
+  {
+   "to": "up_heights",
+   "via": "st_nicholas",
+   "name": "Washington Heights"
+  },
+  {
+   "to": "qn_astoria",
+   "via": "tri_bridge",
+   "name": "The Tri-Bridge to Queens"
+  },
+  {
+   "to": "bx_mott_haven",
+   "via": "harlem_river_bridge",
+   "name": "Harlem River Bridge to the Bronx"
+  },
+  {
+   "to": "city_midtown",
+   "via": "park_north_gate",
+   "name": "The Park's North Gate into the City",
+   "locked": "crown_pass"
+  }
+ ],
+ "shortcuts": [
+  {
+   "id": "up_harlem_ladder_0",
+   "open_from": "s",
+   "kind": "ladder"
+  },
+  {
+   "id": "up_harlem_gate_0",
+   "open_from": "n",
+   "kind": "gate"
+  }
+ ],
+ "secrets": [
+  {
+   "id": "up_harlem_roof_0_out",
+   "kind": "rooftop"
+  },
+  {
+   "id": "up_harlem_roof_0_in",
+   "kind": "rooftop"
+  }
+ ],
+ "fights": {
+  "M": [
+   "up_hook"
+  ],
+  "X": []
+ }
+}

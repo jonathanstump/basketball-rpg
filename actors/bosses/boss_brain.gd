@@ -188,7 +188,8 @@ func weight_of(m: Dictionary) -> float:
 		w *= 1.5
 	if actor.has_ball and duel_state() == PossessionDuel.BOSS_OFFENSE:
 		## With the ball, bosses look to score: favor lobs / dunks / showboats.
-		w *= 2.0 if JU.s(m, "possession") == "with_ball" else 0.6
+		if JU.s(m, "primitive") != "statement_dunk":
+			w *= 2.0 if JU.s(m, "possession") == "with_ball" else 0.6
 	return w
 
 
@@ -211,18 +212,18 @@ func _force_ball_move() -> bool:
 	## Boss possession clock: after holding too long it must put the ball up
 	## (Statement Dunk if it can, else a lob regardless of range).
 	var lob: Dictionary = {}
+	var dunk: Dictionary = {}
 	for m: Dictionary in moves:
 		if JU.s(m, "possession") != "with_ball":
 			continue
-		if JU.s(m, "primitive") == "statement_dunk" and usable(m):
-			start_move(m)
-			hold_s = 0.0
-			return true
+		if JU.s(m, "primitive") == "statement_dunk" and usable(m) and dunk.is_empty():
+			dunk = m
 		if JU.s(m, "primitive") == "lob" and lob.is_empty():
 			lob = m
-	if lob.is_empty() or target == null:
+	var pick: Dictionary = lob if not lob.is_empty() else dunk
+	if pick.is_empty() or target == null:
 		return false
-	start_move(lob)
+	start_move(pick)
 	hold_s = 0.0
 	return true
 

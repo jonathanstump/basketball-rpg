@@ -19,7 +19,7 @@ func _init(w: SimWorld, b: BallSystem) -> void:
 
 func resolve(hb: Hitbox, t: SimActor) -> Dictionary:
 	var att: SimActor = world.actor_by_id(hb.owner_id)
-	var res: Dictionary = {"result": "", "attacker": hb.owner_id, "target": t.id, "move": hb.move_id,
+	var res: Dictionary = {"result": "", "attacker": hb.owner_id, "target": t.id, "move": hb.move_id, "no_flinch": bool(hb.tags.get("no_flinch", false)),
 		"damage": 0.0, "composure": 0.0, "broke": "", "kind": hb.kind, "unblockable": hb.unblockable}
 	if bool(t.flags.get("ankle_window", false)):
 		_ankle_breaker(att, t, hb, res)

@@ -1,0 +1,154 @@
+{
+ "id": "up_mecca",
+ "borough": "uptown",
+ "palette": "uptown",
+ "seed": 1503,
+ "name": "The Mecca",
+ "heights": {
+  "B": [
+   3,
+   4
+  ],
+  "T": [
+   5,
+   6
+  ],
+  "H": [
+   12,
+   24
+  ],
+  "W": [
+   2,
+   3
+  ]
+ },
+ "shops": {},
+ "graffiti": [
+  "step back on him",
+  "break ankles first",
+  "poster the giant",
+  "rain makes it slick",
+  "lightning is telegraphed",
+  "long arm strips from 6",
+  "lady guards the bleachers",
+  "cookie crumbles",
+  "the towers watch",
+  "every legend came here"
+ ],
+ "spawns": {
+  "e": [
+   "pigeon_keeper",
+   "big_man",
+   "ball_hog",
+   "showboat",
+   "pigeon_keeper",
+   "sniper",
+   "hype_man",
+   "pickpocket"
+  ],
+  "E": [
+   "captain:big_man"
+  ],
+  "c": [
+   "pigeon",
+   "rat",
+   "pigeon"
+  ]
+ },
+ "loot": {
+  "%": "bootleg",
+  "w": "up_wire",
+  "$": [
+   "up_retail",
+   "up_retail_locked",
+   "up_flash_1",
+   "up_retail",
+   "up_secret"
+  ]
+ },
+ "bodegas": [
+  {
+   "id": "up_bodega_4",
+   "cat": "Lady",
+   "name": "155th St. Deli"
+  }
+ ],
+ "stations": [
+  {
+   "id": "up_st_mecca",
+   "name": "155th St",
+   "line": "blue"
+  }
+ ],
+ "npcs": [
+  {
+   "id": "npc_mr_fundamental_up",
+   "name": "Cookie",
+   "challenger": {
+    "id": "mr_fundamental_up",
+    "tier_bonus": 1,
+    "skill": 0.7,
+    "drop": "kicks_uptown_5",
+    "points": 7
+   },
+   "lines": [
+    "Sweet handle, crumbly D. That's me.",
+    "Seven buckets. Uptown rules."
+   ],
+   "look": {
+    "skin": "#8D5524",
+    "top_color": "#F2F2F2",
+    "shorts_color": "#1E6FD9",
+    "hair_style": "afro",
+    "hair_color": "#1A1210"
+   }
+  },
+  {
+   "id": "npc_old_head",
+   "name": "Bleacher Old Head",
+   "lines": [
+    "I watched every legend get walked on that court.",
+    "His arms cover half the court. Shoot over him and he swats it.",
+    "Break his ankles. Step back. Dunk on him. That's how you beat reach."
+   ]
+  },
+  {
+   "id": "npc_mic_check_mc",
+   "name": "Mic Check",
+   "lines": [
+    "THE MECCA! The most famous court in the world!",
+    "Uptown's Crown is on that court. Go get it."
+   ]
+  }
+ ],
+ "crossings": [
+  {
+   "to": "up_heights",
+   "via": "155th_st",
+   "name": "Washington Heights"
+  }
+ ],
+ "shortcuts": [
+  {
+   "id": "up_mecca_gate_0",
+   "open_from": "n",
+   "kind": "gate"
+  }
+ ],
+ "secrets": [
+  {
+   "id": "up_mecca_roof_0_out",
+   "kind": "rooftop"
+  },
+  {
+   "id": "up_mecca_roof_0_in",
+   "kind": "rooftop"
+  }
+ ],
+ "fights": {
+  "M": [],
+  "X": [
+   "up_highrise"
+  ]
+ }
+}

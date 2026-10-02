@@ -25,3 +25,9 @@ static func attach(brain: BossBrain) -> void:
 			brain.gimmick = GeneralGimmick.new(brain)
 		"heap":
 			brain.gimmick = HeapGimmick.new(brain)
+		"crowd":
+			brain.gimmick = HookGimmick.new(brain)
+		"swarm":
+			brain.gimmick = CoopGimmick.new(brain)
+		"reach":
+			brain.gimmick = HighRiseGimmick.new(brain)

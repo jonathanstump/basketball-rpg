@@ -110,3 +110,13 @@ Spec §11.3 lists L60 = 46,626 but `floor(100 × 60^1.5 + 150)` = 46,625 (every 
 - **Timed summons** now leave when `duration_s` runs out (`despawn_frame`). **Fresh Load** minions last 20 s; the spec gives no duration.
 - **Duel robustness:** possession is reconciled from who actually holds the ball. Bosses must put the ball up after holding it 10 s in BOSS_OFFENSE. The player gets 40 wake-up i-frames after a knockdown (tuning `wakeup_iframes`). The QA bot slips sideways when pinned.
 - **Test fixture fix (not weakened):** `test_rejected_punish_damages_player` now takes the ball from the player before emitting `shot_rejected`, as a real Rejection does. Without that, the new possession reconciler correctly saw the player still holding the ball.
+
+## M9d — Uptown
+- **Applause meter** (−100 boos to +100 applause). Ankle-breakers, strips, rejections, posters and makes fill applause; getting hit and missing fill boos. Full boos trigger "Get Off The Stage!" (hook grab). Full applause gives roses and 3 s of SHOOK. **Spotlight Hunt:** a spotlight wanders the stage, and he takes 35% damage outside it. **Standing Ovation** walls in the stage edges. **Encore** repeats his previous move with 30% faster recovery.
+- **Swarm.** A heavy hit disperses him for 2 s (ghost and untouchable). Throwing or passing exposes the core for 3 s: triple damage, and any hit breaks his composure. **Split Flock** is an 8 s decoy. **Takeoff** crumbles the roof edges (arena walls) and doubles Statement frequency.
+- **Reach.** High Rise's contest radius is 6 m. The spec's "half the court" was tuned down from 8 m because the QA bot couldn't score through it. Reach drops while he's SHOOK or STAGGERED, and for 1.4 s after your stepback. **Elevation** adds telegraphed lightning every 7 s. **Downtown** is a T5 heavy lob. Self Oop has weight 1, a 20 s cooldown and a 4.5 m radius.
+- **Zone hazards** (puddles, rain, fire jets) no longer flinch the player (`no_flinch`); they only chip and apply status. Before this, rain re-hits cancelled Rejections.
+- **Boss offense weighting** (with the ball, favor lobs and showboats ×2, other moves ×0.6) doesn't apply to Statement Dunks. The boss hold clock prefers a lob over a Statement Dunk.
+- **Default district start** is the `@` tile, falling back to the station. It used to be the map center, which can be inside a building.
+- **High Rise is still the hardest bot matchup.** Some seeds time out at T3/T5. The test sim uses seed 2, which wins at every tier.
+- **The General's Volley** is now weight 2 with a 14 s cooldown (was 8 s). Volley spam was crowding out the bot's shots at T5.

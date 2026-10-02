@@ -209,6 +209,45 @@
       "scene": "res://world/district.tscn",
       "frames": 60,
       "district": "si_heap"
+    },
+    {
+      "name": "boss_up_hook",
+      "scene": "res://world/arenas/boss_arena.tscn",
+      "frames": 180,
+      "boss": "up_hook",
+      "tier": 1
+    },
+    {
+      "name": "boss_up_coop",
+      "scene": "res://world/arenas/boss_arena.tscn",
+      "frames": 180,
+      "boss": "up_coop",
+      "tier": 1
+    },
+    {
+      "name": "boss_up_highrise",
+      "scene": "res://world/arenas/boss_arena.tscn",
+      "frames": 180,
+      "boss": "up_highrise",
+      "tier": 1
+    },
+    {
+      "name": "district_up_harlem",
+      "scene": "res://world/district.tscn",
+      "frames": 60,
+      "district": "up_harlem"
+    },
+    {
+      "name": "district_up_heights",
+      "scene": "res://world/district.tscn",
+      "frames": 60,
+      "district": "up_heights"
+    },
+    {
+      "name": "district_up_mecca",
+      "scene": "res://world/district.tscn",
+      "frames": 60,
+      "district": "up_mecca"
     }
   ]
 }

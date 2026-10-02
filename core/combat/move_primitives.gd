@@ -99,6 +99,7 @@ static func frame(r: MoveRunner) -> void:
 				var hb5: Hitbox = _world_circle(r, m, c, int(JU.f(m, "duration_s", 6.0) * 60.0))
 				hb5.rehit_frames = 30
 				hb5.parryable = false
+				hb5.tags["no_flinch"] = true   # puddles / rain / fire: chip + status, no stunlock
 				r.world.emit("zone_spawned", {"actor": r.actor.id, "move": JU.s(m, "id"), "pos": c, "radius": hb5.volume.radius, "duration_s": JU.f(m, "duration_s", 6.0), "zone": JU.s(m, "zone", "puddle")})
 		"summon":
 			if first_active:

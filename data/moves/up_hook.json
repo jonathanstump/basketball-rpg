@@ -1,0 +1,276 @@
+{
+ "moves": [
+  {
+   "id": "hook_yank",
+   "name": "Hook Yank",
+   "primitive": "lunge",
+   "body_attack": true,
+   "startup": 22,
+   "active": 10,
+   "recovery": 26,
+   "damage": 40,
+   "parry": "deflect",
+   "lunge_m": 1.5,
+   "knockback_m": -3.5,
+   "hitbox": {
+    "shape": "arc",
+    "radius": 4.2,
+    "angle": 60,
+    "height": 2.4
+   },
+   "hit_weight": "medium",
+   "weight": 4,
+   "cooldown_s": 3,
+   "range_m": [
+    2,
+    5.5
+   ],
+   "min_tier": 1,
+   "possession": "any"
+  },
+  {
+   "id": "tap_routine",
+   "name": "Tap Routine",
+   "primitive": "ring_wave",
+   "body_attack": true,
+   "repeat": 3,
+   "startup": 14,
+   "active": 2,
+   "recovery": 10,
+   "damage": 30,
+   "parry": "none",
+   "ring_speed": 9.0,
+   "ring_max_m": 8.0,
+   "hit_weight": "light",
+   "weight": 4,
+   "cooldown_s": 5,
+   "range_m": [
+    0,
+    8
+   ],
+   "min_tier": 1,
+   "possession": "any"
+  },
+  {
+   "id": "curtain_call",
+   "name": "Curtain Call",
+   "primitive": "arena_event",
+   "event": "curtain_call",
+   "body_attack": true,
+   "startup": 30,
+   "active": 2,
+   "recovery": 24,
+   "damage": 45,
+   "parry": "none",
+   "pattern": {
+    "kind": "lane",
+    "count": 8,
+    "spread_m": 8.0,
+    "delay_s": 1.2,
+    "stagger_s": 0.1
+   },
+   "hitbox": {
+    "shape": "circle",
+    "radius": 1.3,
+    "height": 3.0
+   },
+   "knockdown": true,
+   "hit_weight": "medium",
+   "weight": 3,
+   "cooldown_s": 8,
+   "min_tier": 1,
+   "range_m": [
+    0,
+    30
+   ],
+   "possession": "any"
+  },
+  {
+   "id": "trapdoor",
+   "name": "Trapdoor",
+   "primitive": "arena_event",
+   "event": "trapdoor",
+   "body_attack": true,
+   "startup": 26,
+   "active": 2,
+   "recovery": 24,
+   "damage": 50,
+   "parry": "none",
+   "pattern": {
+    "kind": "random",
+    "count": 5,
+    "spread_m": 6.0,
+    "delay_s": 1.3,
+    "stagger_s": 0.2
+   },
+   "hitbox": {
+    "shape": "circle",
+    "radius": 1.5,
+    "height": 2.0
+   },
+   "status": {
+    "rooted": 0.8
+   },
+   "hit_weight": "medium",
+   "weight": 3,
+   "cooldown_s": 7,
+   "min_tier": 1,
+   "range_m": [
+    0,
+    30
+   ],
+   "possession": "any"
+  },
+  {
+   "id": "cane_juggle",
+   "name": "Cane Juggle",
+   "primitive": "showboat",
+   "startup": 6,
+   "active": 90,
+   "recovery": 6,
+   "damage": 0,
+   "weight": 1,
+   "cooldown_s": 16,
+   "possession": "with_ball",
+   "min_tier": 1,
+   "range_m": [
+    0,
+    30
+   ]
+  },
+  {
+   "id": "encore",
+   "name": "Encore",
+   "primitive": "mirror",
+   "startup": 10,
+   "active": 2,
+   "recovery": 6,
+   "damage": 0,
+   "min_tier": 2,
+   "weight": 2,
+   "cooldown_s": 12,
+   "range_m": [
+    0,
+    30
+   ],
+   "possession": "any"
+  },
+  {
+   "id": "get_off_the_stage",
+   "name": "Get Off The Stage!",
+   "primitive": "grab",
+   "body_attack": true,
+   "unblockable": true,
+   "startup": 18,
+   "active": 12,
+   "recovery": 30,
+   "damage": 160,
+   "parry": "none",
+   "lunge_m": 6.0,
+   "hitbox": {
+    "shape": "sphere",
+    "radius": 2.0,
+    "forward": 2.4,
+    "height": 3.0
+   },
+   "knockdown": true,
+   "hit_weight": "heavy",
+   "weight": 0,
+   "cooldown_s": 0,
+   "min_tier": 1,
+   "range_m": [
+    0,
+    30
+   ],
+   "possession": "any"
+  },
+  {
+   "id": "standing_ovation",
+   "name": "Standing Ovation",
+   "primitive": "arena_event",
+   "event": "standing_ovation",
+   "startup": 24,
+   "active": 2,
+   "recovery": 20,
+   "damage": 0,
+   "min_tier": 5,
+   "weight": 0,
+   "cooldown_s": 999,
+   "range_m": [
+    0,
+    30
+   ],
+   "possession": "any"
+  },
+  {
+   "id": "hook_lob",
+   "name": "Vaudeville Lob",
+   "primitive": "lob",
+   "uses_ball": true,
+   "rejectable": true,
+   "startup": 30,
+   "active": 2,
+   "recovery": 32,
+   "damage": 45,
+   "parry": "none",
+   "flight_s": 1.2,
+   "hitbox": {
+    "shape": "circle",
+    "radius": 2.2,
+    "height": 2.5
+   },
+   "hit_weight": "medium",
+   "weight": 4,
+   "cooldown_s": 2,
+   "range_m": [
+    2,
+    24
+   ],
+   "possession": "with_ball",
+   "min_tier": 1
+  },
+  {
+   "id": "hook_statement",
+   "name": "Showstopper Slam",
+   "primitive": "statement_dunk",
+   "body_attack": true,
+   "startup": 42,
+   "active": 10,
+   "recovery": 30,
+   "damage": 90,
+   "parry": "none",
+   "hitbox": {
+    "shape": "circle",
+    "radius": 2.8,
+    "height": 5.0
+   },
+   "hit_weight": "heavy",
+   "weight": 3,
+   "cooldown_s": 10,
+   "possession": "with_ball",
+   "needs_paint": true,
+   "min_tier": 1,
+   "range_m": [
+    0,
+    30
+   ]
+  },
+  {
+   "id": "hook_show",
+   "name": "Tip the Topper",
+   "primitive": "showboat",
+   "startup": 6,
+   "active": 84,
+   "recovery": 6,
+   "damage": 0,
+   "weight": 1,
+   "cooldown_s": 16,
+   "possession": "with_ball",
+   "min_tier": 1,
+   "range_m": [
+    0,
+    30
+   ]
+  }
+ ]
+}

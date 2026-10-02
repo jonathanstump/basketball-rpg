@@ -1,0 +1,142 @@
+{
+ "id": "up_heights",
+ "borough": "uptown",
+ "palette": "uptown",
+ "seed": 1502,
+ "name": "Washington Heights",
+ "heights": {
+  "B": [
+   3,
+   4
+  ],
+  "T": [
+   5,
+   7
+  ],
+  "H": [
+   10,
+   16
+  ],
+  "W": [
+   2,
+   3
+  ]
+ },
+ "shops": {},
+ "graffiti": [
+  "hit the white bird",
+  "he scatters, wait",
+  "feathers blind you",
+  "coop drop - mash",
+  "the bridge glows west",
+  "stairs everywhere",
+  "smokey knows the roofs",
+  "keepers whistle",
+  "the mecca is east",
+  "roof edges crumble"
+ ],
+ "spawns": {
+  "e": [
+   "pigeon_keeper",
+   "hype_man",
+   "ball_hog",
+   "pigeon_keeper",
+   "showboat",
+   "sniper",
+   "big_man",
+   "pickpocket"
+  ],
+  "E": [
+   "captain:pigeon_keeper"
+  ],
+  "c": [
+   "pigeon",
+   "pigeon",
+   "pigeon"
+  ]
+ },
+ "loot": {
+  "%": "bootleg",
+  "w": "up_wire",
+  "$": [
+   "up_retail",
+   "up_sugar",
+   "up_limited_locked",
+   "up_flash_0",
+   "up_grail"
+  ]
+ },
+ "bodegas": [
+  {
+   "id": "up_bodega_3",
+   "cat": "Smokey",
+   "name": "St. Nicholas Deli"
+  }
+ ],
+ "stations": [
+  {
+   "id": "up_st_heights",
+   "name": "181st St",
+   "line": "blue"
+  }
+ ],
+ "npcs": [
+  {
+   "id": "npc_mic_check_wh",
+   "name": "Mic Check",
+   "lines": [
+    "Washington Heights! Look west - that bridge glowing? Out of bounds, kid.",
+    "Up on the roof, the Coop King's waiting."
+   ]
+  },
+  {
+   "id": "npc_pigeon_fancier",
+   "name": "Pigeon Fancier",
+   "lines": [
+    "That ain't a man up there. That's every bird on the block.",
+    "Hit him hard and he scatters - wait for him to come back together.",
+    "When he throws, the white bird in his chest shows. Hit THAT."
+   ]
+  }
+ ],
+ "crossings": [
+  {
+   "to": "up_mecca",
+   "via": "155th_st",
+   "name": "The Mecca"
+  },
+  {
+   "to": "up_harlem",
+   "via": "st_nicholas",
+   "name": "Harlem 125th"
+  }
+ ],
+ "shortcuts": [
+  {
+   "id": "up_heights_ladder_0",
+   "open_from": "s",
+   "kind": "ladder"
+  },
+  {
+   "id": "up_heights_gate_0",
+   "open_from": "e",
+   "kind": "gate"
+  }
+ ],
+ "secrets": [
+  {
+   "id": "up_heights_roof_0_out",
+   "kind": "rooftop"
+  },
+  {
+   "id": "up_heights_roof_0_in",
+   "kind": "rooftop"
+  }
+ ],
+ "fights": {
+  "M": [
+   "up_coop"
+  ],
+  "X": []
+ }
+}

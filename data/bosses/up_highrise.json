@@ -1,0 +1,486 @@
+{
+ "id": "up_highrise",
+ "name": "HIGH RISE",
+ "title": "Legend of the Mecca",
+ "borough": "uptown",
+ "district": "up_mecca",
+ "kind": "king",
+ "arena": {
+  "theme": "mecca",
+  "size_m": [
+   24,
+   20
+  ],
+  "indoor": false,
+  "floor": "#2A4A6A",
+  "key": "#F2F2F2",
+  "props": [
+   {
+    "shape": "box",
+    "size": [
+     26.0,
+     4.0,
+     4.0
+    ],
+    "pos": [
+     0,
+     2.0,
+     14.0
+    ],
+    "color": "#3A4A5A"
+   },
+   {
+    "shape": "box",
+    "size": [
+     26.0,
+     4.0,
+     4.0
+    ],
+    "pos": [
+     0,
+     4.0,
+     17.0
+    ],
+    "color": "#2A3A4A"
+   },
+   {
+    "shape": "box",
+    "size": [
+     4.0,
+     4.0,
+     22.0
+    ],
+    "pos": [
+     -16.0,
+     2.0,
+     0
+    ],
+    "color": "#3A4A5A"
+   },
+   {
+    "shape": "box",
+    "size": [
+     4.0,
+     4.0,
+     22.0
+    ],
+    "pos": [
+     16.0,
+     2.0,
+     0
+    ],
+    "color": "#3A4A5A"
+   },
+   {
+    "shape": "sphere",
+    "size": [
+     0.35
+    ],
+    "pos": [
+     -11.0,
+     4.6,
+     13.5
+    ],
+    "color": "#0A0A10",
+    "repeat": {
+     "count": 12,
+     "step": [
+      2.0,
+      0,
+      0
+     ]
+    },
+    "no_shadow": true
+   },
+   {
+    "shape": "box",
+    "size": [
+     8.0,
+     40.0,
+     8.0
+    ],
+    "pos": [
+     -14.0,
+     20.0,
+     -40.0
+    ],
+    "color": "#1C2236",
+    "no_shadow": true
+   },
+   {
+    "shape": "box",
+    "size": [
+     8.0,
+     34.0,
+     8.0
+    ],
+    "pos": [
+     12.0,
+     17.0,
+     -44.0
+    ],
+    "color": "#1C2236",
+    "no_shadow": true
+   },
+   {
+    "pos": [
+     -8.0,
+     9.0,
+     2.0
+    ],
+    "light": {
+     "color": "#E8F0FF",
+     "energy": 2.2,
+     "range": 18.0
+    }
+   },
+   {
+    "pos": [
+     8.0,
+     9.0,
+     2.0
+    ],
+    "light": {
+     "color": "#E8F0FF",
+     "energy": 2.2,
+     "range": 18.0
+    }
+   }
+  ]
+ },
+ "base": {
+  "hp": 3200,
+  "composure": 300,
+  "contest_radius": 3.6,
+  "height_m": 10.0,
+  "radius_m": 1.5,
+  "speed": 3.6,
+  "poise": 9999
+ },
+ "phases": [
+  {
+   "id": 1,
+   "rules": {},
+   "moves": [
+    "wingspan_sweep",
+    "finger_wag",
+    "giant_step",
+    "crossover_quake",
+    "cloud_burst",
+    "long_arm",
+    "self_oop",
+    "highrise_lob",
+    "highrise_show"
+   ]
+  },
+  {
+   "id": 2,
+   "min_tier": 3,
+   "at_hp_pct": 0.5,
+   "transition": "elevation",
+   "rules": {
+    "scale": 1.2
+   },
+   "moves": [
+    "wingspan_sweep",
+    "finger_wag",
+    "giant_step",
+    "crossover_quake",
+    "cloud_burst",
+    "long_arm",
+    "self_oop",
+    "highrise_lob",
+    "highrise_show"
+   ]
+  }
+ ],
+ "t5_event": {
+  "at_hp_pct": 0.25,
+  "move": "downtown"
+ },
+ "drops": [
+  "crown_uptown",
+  "ball_mecca",
+  "flash_crown"
+ ],
+ "mic_check": "Every legend in this city came through THIS court. Every one of them got WALKED by HIM.",
+ "look": {
+  "colors": {
+   "jersey": "#1E6FD9",
+   "num": "#F2F2F2",
+   "skin": "#5C3A21",
+   "sock": "#F2F2F2",
+   "stripe": "#1E6FD9",
+   "shoe": "#F2F2F2",
+   "cloud": "#D8E0EC"
+  },
+  "joints": {
+   "hips": [
+    0,
+    4.8,
+    0
+   ],
+   "torso": [
+    0,
+    5.0,
+    0
+   ],
+   "head": [
+    0,
+    9.0,
+    0
+   ],
+   "arm_l": [
+    -1.0,
+    8.4,
+    0
+   ],
+   "arm_r": [
+    1.0,
+    8.4,
+    0
+   ],
+   "leg_l": [
+    -0.4,
+    4.8,
+    0
+   ],
+   "leg_r": [
+    0.4,
+    4.8,
+    0
+   ]
+  },
+  "parts": [
+   {
+    "joint": "leg_l",
+    "shape": "capsule",
+    "size": [
+     0.22,
+     4.8
+    ],
+    "pos": [
+     0,
+     -2.4,
+     0
+    ],
+    "color": "skin"
+   },
+   {
+    "joint": "leg_r",
+    "shape": "capsule",
+    "size": [
+     0.22,
+     4.8
+    ],
+    "pos": [
+     0,
+     -2.4,
+     0
+    ],
+    "color": "skin"
+   },
+   {
+    "joint": "leg_l",
+    "shape": "cylinder",
+    "size": [
+     0.25,
+     1.6
+    ],
+    "pos": [
+     0,
+     -3.6,
+     0
+    ],
+    "color": "sock"
+   },
+   {
+    "joint": "leg_r",
+    "shape": "cylinder",
+    "size": [
+     0.25,
+     1.6
+    ],
+    "pos": [
+     0,
+     -3.6,
+     0
+    ],
+    "color": "sock"
+   },
+   {
+    "joint": "leg_l",
+    "shape": "cylinder",
+    "size": [
+     0.26,
+     0.15
+    ],
+    "pos": [
+     0,
+     -3.0,
+     0
+    ],
+    "color": "stripe"
+   },
+   {
+    "joint": "leg_r",
+    "shape": "cylinder",
+    "size": [
+     0.26,
+     0.15
+    ],
+    "pos": [
+     0,
+     -3.0,
+     0
+    ],
+    "color": "stripe"
+   },
+   {
+    "joint": "leg_l",
+    "shape": "box",
+    "size": [
+     0.5,
+     0.3,
+     0.9
+    ],
+    "pos": [
+     0,
+     -4.7,
+     -0.2
+    ],
+    "color": "shoe"
+   },
+   {
+    "joint": "leg_r",
+    "shape": "box",
+    "size": [
+     0.5,
+     0.3,
+     0.9
+    ],
+    "pos": [
+     0,
+     -4.7,
+     -0.2
+    ],
+    "color": "shoe"
+   },
+   {
+    "joint": "hips",
+    "shape": "box",
+    "size": [
+     1.2,
+     0.9,
+     0.7
+    ],
+    "pos": [
+     0,
+     0.0,
+     0
+    ],
+    "color": "jersey"
+   },
+   {
+    "joint": "torso",
+    "shape": "box",
+    "size": [
+     1.3,
+     3.2,
+     0.7
+    ],
+    "pos": [
+     0,
+     1.8,
+     0
+    ],
+    "color": "jersey"
+   },
+   {
+    "joint": "torso",
+    "shape": "torus",
+    "size": [
+     0.3,
+     0.42
+    ],
+    "pos": [
+     0,
+     2.4,
+     -0.36
+    ],
+    "color": "num",
+    "rot": [
+     90,
+     0,
+     0
+    ]
+   },
+   {
+    "joint": "head",
+    "shape": "sphere",
+    "size": [
+     0.45
+    ],
+    "pos": [
+     0,
+     0.4,
+     0
+    ],
+    "color": "skin"
+   },
+   {
+    "joint": "head",
+    "shape": "torus",
+    "size": [
+     0.9,
+     1.6
+    ],
+    "pos": [
+     0,
+     0.0,
+     0
+    ],
+    "color": "cloud",
+    "scale": [
+     1,
+     0.4,
+     1
+    ],
+    "emit": 0.3
+   },
+   {
+    "joint": "arm_l",
+    "shape": "capsule",
+    "size": [
+     0.17,
+     4.2
+    ],
+    "pos": [
+     0,
+     -2.0,
+     0
+    ],
+    "color": "skin"
+   },
+   {
+    "joint": "arm_r",
+    "shape": "capsule",
+    "size": [
+     0.17,
+     4.2
+    ],
+    "pos": [
+     0,
+     -2.0,
+     0
+    ],
+    "color": "skin"
+   }
+  ]
+ },
+ "rewards": {
+  "rep": 5000,
+  "tokens": 1500
+ },
+ "gimmick": "reach"
+}

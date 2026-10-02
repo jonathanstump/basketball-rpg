@@ -50,6 +50,17 @@
     {"id": "si_sugar", "tier": "retail", "brands": ["STRATA"], "tokens": [60, 100], "extra": ["sugar_rush"]},
     {"id": "si_mixtape_0", "tier": "retail", "brands": ["GHOST"], "tokens": [40, 80], "extra": ["mixtape_tunnel"]},
     {"id": "si_flash_0", "tier": "limited", "brands": ["GHOST"], "tokens": [80, 140], "extra": ["flash_hustle"]},
-    {"id": "si_flash_1", "tier": "limited", "brands": ["GHOST"], "tokens": [80, 140], "extra": ["flash_scale"]}
+    {"id": "si_flash_1", "tier": "limited", "brands": ["GHOST"], "tokens": [80, 140], "extra": ["flash_scale"]},
+    {"id": "up_retail", "tier": "retail", "brands": ["STRATA", "AIRWAVE", "LOCKDOWN"], "tokens": [40, 120]},
+    {"id": "up_retail_locked", "tier": "retail", "brands": ["STRATA", "AIRWAVE"], "tokens": [80, 160], "bonus_rolls": 1},
+    {"id": "up_limited_locked", "tier": "limited", "brands": ["STRATA", "AIRWAVE"], "tokens": [100, 200]},
+    {"id": "up_secret", "tier": "limited", "brands": ["GHOST"], "tokens": [150, 250]},
+    {"id": "up_wire", "tier": "wire", "brands": ["AIRWAVE", "VELOCI"], "slots": ["kicks"], "tokens": [0, 0]},
+    {"id": "up_grail", "tier": "grail", "fixed": "kicks_grail_uptown", "tokens": [0, 0]},
+    {"id": "up_punch", "tier": "retail", "brands": ["STRATA"], "tokens": [60, 100], "extra": ["punch_card"]},
+    {"id": "up_sugar", "tier": "retail", "brands": ["AIRWAVE"], "tokens": [60, 100], "extra": ["sugar_rush"]},
+    {"id": "up_mixtape_0", "tier": "retail", "brands": ["STRATA"], "tokens": [40, 80], "extra": ["mixtape_third_rail"]},
+    {"id": "up_flash_0", "tier": "limited", "brands": ["STRATA"], "tokens": [80, 140], "extra": ["flash_mic"]},
+    {"id": "up_flash_1", "tier": "limited", "brands": ["STRATA"], "tokens": [80, 140], "extra": ["flash_chain_link"]}
   ]
 }
