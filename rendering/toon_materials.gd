@@ -55,7 +55,7 @@ static func facade(wall: Color, seed_value: float, lit_ratio: float = 0.4, groun
 	return m
 
 
-static func asphalt(color: Color = Color("#1E1E24"), puddles: float = 0.42) -> ShaderMaterial:
+static func asphalt(color: Color = Color("#2A2A32"), puddles: float = 0.3) -> ShaderMaterial:
 	var key: String = "asphalt|%s|%s" % [color.to_html(), puddles]
 	if _cache.has(key):
 		return _cache[key]

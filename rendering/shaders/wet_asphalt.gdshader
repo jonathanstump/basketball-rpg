@@ -4,7 +4,7 @@ shader_type spatial;
 
 uniform vec4 albedo : source_color = vec4(0.118, 0.118, 0.141, 1.0);
 uniform vec4 line_color : source_color = vec4(0.85, 0.75, 0.3, 1.0);
-uniform float puddle_amount : hint_range(0.0, 1.0) = 0.42;
+uniform float puddle_amount : hint_range(0.0, 1.0) = 0.3;
 uniform float puddle_scale = 0.18;
 uniform float lane_lines = 0.0;
 
@@ -36,7 +36,7 @@ void fragment() {
 		float dash = step(0.5, fract(world_pos.x * 0.25)) * (1.0 - step(0.12, abs(fract(world_pos.z / 8.0 + 0.5) - 0.5) * 8.0));
 		base = mix(base, line_color.rgb * 0.6, dash * 0.0);
 	}
-	ALBEDO = mix(base, base * 0.4, puddle);
+	ALBEDO = mix(base, base * 0.7, puddle);
 	ROUGHNESS = mix(0.82, 0.04, puddle);
 	SPECULAR = mix(0.35, 0.9, puddle);
 	METALLIC = 0.0;

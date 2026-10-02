@@ -35,6 +35,7 @@ func _spawn(rec: Dictionary) -> SimActor:
 		var box: SimActor = EnemyFactory.spawn(world, combat, balls, "boombox", a.pos + Vector3(0.6, 0, 0), int(rec["tier"]))
 		a.flags["boombox_id"] = box.id
 		box.flags["owner_id"] = a.id
+		world.emit("enemy_spawned", {"actor": box.id, "enemy": "boombox"})
 	world.emit("enemy_spawned", {"actor": a.id, "enemy": rec["enemy"]})
 	return a
 

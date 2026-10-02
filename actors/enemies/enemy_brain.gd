@@ -178,14 +178,18 @@ func _engage() -> void:
 		return
 	var d: float = actor.dist_to(target)
 	actor.turn_toward(target.pos - actor.pos, 0.25)
-	var m: Dictionary = pick_move(d)
-	if not m.is_empty() and recover_s <= 0.0 and tokens().request(actor, target.id):
-		start_move(m)
-		return
-	var want: float = preferred_range()
-	if tokens().has_token(actor.id, target.id) or d > JU.f(ai, "circle_max_m", 6.0) + 2.0:
-		if d > want:
+	var has_tok: bool = tokens().has_token(actor.id, target.id)
+	if not has_tok and recover_s <= 0.0:
+		has_tok = tokens().request(actor, target.id)
+	if has_tok:
+		var m: Dictionary = pick_move(d)
+		if not m.is_empty() and recover_s <= 0.0:
+			start_move(m)
+			return
+		if d > preferred_range():
 			go_to(target.pos, speed())
+	elif d > JU.f(ai, "circle_max_m", 6.0) + 2.0:
+		go_to(target.pos, speed())
 	else:
 		circle(d)
 

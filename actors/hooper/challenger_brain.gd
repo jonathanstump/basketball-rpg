@@ -14,6 +14,7 @@ var _release_at: float = -1.0
 var _cooldown: int = 0
 var _reacted_to: int = -1
 var aggressive: bool = true
+var passive_frames: int = 0       # holds fire for a while (QA warm-up)
 
 
 static func for_tier(tier: int, seed_value: int = 7) -> ChallengerBrain:
@@ -31,6 +32,9 @@ func fill(input: ActorInput, a: SimActor, w: SimWorld) -> void:
 	if not a.alive:
 		return
 	_cooldown -= 1
+	if passive_frames > 0:
+		passive_frames -= 1
+		_cooldown = maxi(_cooldown, 2)
 	var h: Hooper = a.controller as Hooper
 	var opp: SimActor = _opponent(a, w)
 	if h == null:

@@ -20,6 +20,9 @@ const CATALOGS: Dictionary = {
 	"hair_styles": {"id": "string", "name": "string", "parts": "array"},
 	"environments": {"id": "string", "sky_top": "string", "sky_horizon": "string", "ambient": "string",
 		"ambient_energy": "number", "fog_density": "number", "rim": "string", "moon_energy": "number"},
+	"enemies": {"id": "string", "name": "string", "kind": "enum:common|critter|unique|elite|prop_target",
+		"hp": "number", "damage": "number", "composure": "number", "speed": "number", "rep": "number",
+		"tokens": "number", "behavior": "string", "moves": "refs:move@enemies", "captain_move": "ref?:move@enemies"},
 	"bag_moves": {
 		"id": "string", "name": "string", "hype": "number", "effect": "string",
 		"impl": "string", "source": "string",

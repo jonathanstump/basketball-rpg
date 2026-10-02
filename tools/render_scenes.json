@@ -27,6 +27,12 @@
       "name": "combat_lab",
       "scene": "res://world/labs/combat_lab.tscn",
       "frames": 70
+    },
+    {
+      "name": "enemy_lab",
+      "scene": "res://world/labs/enemy_lab.tscn",
+      "frames": 40,
+      "mode": "overview"
     }
   ]
 }
