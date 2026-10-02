@@ -21,11 +21,16 @@ var presenter: SimPresenter
 var hud_layer: CanvasLayer
 var shot_meter: ShotMeter
 var player_ball_module: HooperBall = null
+var combat: CombatSystem
+var lifecycle: PlayerLifecycle
+var time_fx: TimeFX
+var hud: HUD
 
 
 func _init() -> void:
 	sim = SimWorld.new(1)
 	balls = BallSystem.new(sim)
+	combat = CombatSystem.new(sim, balls)
 
 
 func setup_world(region_id: String) -> void:
@@ -61,6 +66,15 @@ func setup_world(region_id: String) -> void:
 	shot_meter = ShotMeter.new()
 	shot_meter.name = "ShotMeter"
 	hud_layer.add_child(shot_meter)
+	hud = HUD.new()
+	hud.name = "HUDDraw"
+	hud.game = self
+	hud_layer.add_child(hud)
+	time_fx = TimeFX.new()
+	time_fx.name = "TimeFX"
+	add_child(time_fx)
+	lifecycle = PlayerLifecycle.new(self)
+	add_child(lifecycle)
 	sim.sim_event.connect(_on_sim_event)
 	AudioDirector.set_region(region)
 
@@ -75,19 +89,21 @@ func spawn_player(pos: Vector3, profile: Dictionary = {}, stats: Dictionary = {}
 	if a.stats.is_empty():
 		a.stats = JU.dict(DataDB.archetype("two_way"), "stats").duplicate()
 	sim.add_actor(a)
-	player_hooper = Hooper.new(a, sim)
-	a.controller = player_hooper
+	var item: String = str(GameState.equipment.get("ball_1", "ball_rec"))
+	if not DataDB.has_item("balls", item):
+		item = "ball_rec"
+	player_hooper = CombatSim.equip_hooper(sim, balls, combat, a, item, true)
+	for m: RefCounted in player_hooper.modules:
+		if m is HooperBall:
+			player_ball_module = m
 	human_input = HumanInput.new()
 	human_input.camera = camera_rig
 	a.input_source = human_input
 	player = a
-	player_ball_module = HooperBall.new(balls)
-	player_hooper.add_module(player_ball_module)
-	var item: String = str(GameState.equipment.get("ball_1", "ball_rec"))
-	if not DataDB.has_item("balls", item):
-		item = "ball_rec"
-	balls.give(balls.spawn_ball(item, pos, a), a)
-	BallProps.apply(a, item)
+	a.flags["qw"] = GameState.quarter_waters
+	a.flags["qw_heal_pct"] = 0.35 + 0.05 * float(GameState.sugar_rush)
+	a.flags["bag_move"] = str(GameState.equipment.get("bag_move", ""))
+	lifecycle.respawn_point = pos
 	add_actor_view(a, profile if not profile.is_empty() else GameState.profile)
 	shot_meter.module = player_ball_module
 	shot_meter.actor = a
@@ -122,6 +138,9 @@ func _physics_process(_delta: float) -> void:
 	_player_lock_on()
 	sim.step()
 	presenter.sync_balls()
+	lifecycle.physics_check()
+	if player != null:
+		GameState.quarter_waters = int(player.flags.get("qw", 0))
 	for v: Variant in views.values():
 		if v is ActorView:
 			(v as ActorView).physics_synced()
@@ -169,8 +188,35 @@ func _on_sim_event(ev: Dictionary) -> void:
 	## Hook for subclasses; also forwards presentation events.
 	presenter.on_event(ev)
 	match str(ev.get("type", "")):
+		"actor_killed":
+			if player != null and int(ev["actor"]) == player.id:
+				lifecycle.on_player_killed()
 		"hitstop":
 			EventBus.hitstop_requested.emit(int(ev.get("frames", 3)))
+
+
+func respawn_player(point: Vector3) -> void:
+	## Back on your feet (labs: spawn point; districts override with bodegas).
+	if player == null:
+		return
+	player.alive = true
+	player.hp = player.hp_max
+	player.pos = point
+	player.vel = Vector3.ZERO
+	player.wind.value = player.wind.max_value
+	player_hooper.end_action()
+	player.flags["qw"] = GameState.quarter_water_max
+	if not player.has_ball:
+		var item: String = str(player.flags.get("ball_item", "ball_rec"))
+		balls.give(balls.spawn_ball(item, point, player), player)
+	EventBus.player_respawned.emit(GameState.respawn_bodega)
+	camera_rig.snap()
+
+
+func add_dummy(pos: Vector3, mode: String = "attack") -> TrainingDummy:
+	var d: TrainingDummy = TrainingDummy.spawn(sim, combat, pos, mode)
+	add_actor_view(d.actor, {"top_color": "#C8A060", "shorts_color": "#6A5030", "skin": "#B08A5A", "hair_style": "bald", "height": 1.35, "shoe_color": "#5A4632"})
+	return d
 
 
 func _exit_tree() -> void:

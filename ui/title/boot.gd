@@ -14,4 +14,5 @@ func _ready() -> void:
 	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	label.set_anchors_preset(Control.PRESET_FULL_RECT)
 	label.add_theme_font_size_override("font_size", 48)
+	label.add_theme_font_override("font", UIFonts.title())
 	add_child(label)

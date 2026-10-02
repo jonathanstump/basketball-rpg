@@ -95,6 +95,88 @@ func on_event(ev: Dictionary) -> void:
 				_popup("SPARE BALL", at, "miss")
 		"popup":
 			_popup(str(ev.get("text", "")), ev.get("pos", at), str(ev.get("style", "good")))
+		"hit_resolved":
+			_on_hit(ev)
+		"composure_broken":
+			var who: SimActor = game.sim.actor_by_id(int(ev["actor"]))
+			if who != null and who != game.player:
+				_popup("SHOOK!" if str(ev["kind"]) == "shook" else "STAGGER!", who.pos, "style")
+				EventBus.composure_broken.emit(who.id, str(ev["kind"]))
+		"actor_killed":
+			var dead: SimActor = game.sim.actor_by_id(int(ev["actor"]))
+			EventBus.actor_died.emit(int(ev["actor"]), str(ev["kind"]))
+			if dead != null and dead != game.player and game.views.has(dead.id):
+				var v: Node3D = game.views[dead.id]
+				var tw: Tween = v.create_tween()
+				tw.tween_interval(1.2)
+				tw.tween_property(v, "scale", Vector3(1.2, 0.01, 1.2), 0.35)
+		"takeover_started":
+			if is_player:
+				_popup("ON FIRE!", at, "big")
+				EventBus.takeover_started.emit()
+		"takeover_ended":
+			if is_player:
+				EventBus.takeover_ended.emit()
+		"taunt_completed":
+			_popup("+HYPE", at, "hype")
+			EventBus.taunt_completed.emit(int(ev["actor"]))
+		"hype_short":
+			if is_player:
+				_popup("NEED HYPE", at, "miss")
+		"qw_empty":
+			if is_player:
+				_popup("NO WATER", at, "miss")
+		"healed":
+			if is_player:
+				_popup("+%d" % int(ev["amount"]), at, "good")
+		"steal":
+			_popup("PICKED!", at, "style")
+		"rose_saved":
+			_popup("NOT TODAY", at, "hype")
+
+
+func _on_hit(ev: Dictionary) -> void:
+	var r: String = str(ev["result"])
+	var tgt: SimActor = game.sim.actor_by_id(int(ev["target"]))
+	var att: SimActor = game.sim.actor_by_id(int(ev["attacker"]))
+	var tpos: Vector3 = tgt.pos if tgt != null else Vector3.ZERO
+	match r:
+		"ankle_breaker":
+			_popup("ANKLES!", tpos, "big")
+			EventBus.slowmo_requested.emit(0.3, 0.6)
+			EventBus.ankle_broken.emit(int(ev["target"]), int(ev["attacker"]))
+			AudioDirector.play_sfx("crowd_ooh", tpos)
+			if tgt == game.player:
+				GameState.bump_counter("ankle_breakers")
+		"strip":
+			_popup("STRIP!", tpos, "style")
+			EventBus.strip_landed.emit(int(ev["target"]), int(ev["attacker"]))
+			if tgt == game.player:
+				GameState.bump_counter("strips")
+		"deflect":
+			_popup("DEFLECT", tpos, "good")
+			EventBus.deflect_landed.emit(int(ev["target"]), int(ev["attacker"]))
+		"read":
+			_popup("READ", tpos, "good")
+		"rejection":
+			_popup("GET THAT OUTTA HERE!", tpos, "style")
+			EventBus.rejection_landed.emit(int(ev["target"]), int(ev["attacker"]))
+		"guarded":
+			_popup("BLOCK", tpos, "miss")
+		"guard_break":
+			_popup("GUARD BREAK", tpos, "bad")
+			EventBus.screen_shake_requested.emit(0.6)
+		"hit":
+			var dmg: float = float(ev.get("damage", 0.0))
+			EventBus.actor_damaged.emit(int(ev["target"]), dmg, int(ev["attacker"]))
+			if tgt != null and game.views.has(tgt.id):
+				(game.views[tgt.id] as ActorView).flash()
+			var heavy: bool = str(ev.get("weight", "")) == "heavy"
+			EventBus.screen_shake_requested.emit(0.45 if heavy else 0.18)
+			if tgt == game.player:
+				EventBus.screen_shake_requested.emit(0.5)
+			elif att == game.player and dmg > 0.0:
+				_popup(("%d!" if bool(ev.get("crit", false)) else "%d") % int(dmg), tpos, "damage")
 
 
 func _popup(text: String, pos: Variant, style: String) -> void:

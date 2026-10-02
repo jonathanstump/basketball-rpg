@@ -22,6 +22,11 @@
       "scene": "res://world/labs/ball_lab.tscn",
       "frames": 24,
       "mode": "shoot"
+    },
+    {
+      "name": "combat_lab",
+      "scene": "res://world/labs/combat_lab.tscn",
+      "frames": 70
     }
   ]
 }

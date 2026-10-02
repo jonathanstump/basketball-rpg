@@ -78,7 +78,12 @@ func step() -> bool:
 		actor.flags["unblockable_flash"] = false
 	actor.desired_vel = Vector3.ZERO
 	MovePrimitives.frame(self)
-	actor.anim_state = JU.s(move, "anim", "attack") if frame <= startup() + active() else "recover"
+	if frame <= startup():
+		actor.anim_state = JU.s(move, "anim_windup", "windup")
+	elif frame <= startup() + active():
+		actor.anim_state = JU.s(move, "anim", "attack")
+	else:
+		actor.anim_state = "recover"
 	actor.anim_frame = frame
 	if frame >= total:
 		running = false

@@ -15,6 +15,7 @@ var last_yaw: float = 0.0
 var lean: float = 0.0
 var squash_v: float = 0.0
 var look_target: Vector3 = Vector3.INF
+var _last_state: String = ""
 
 
 func _init(pose_set: String = "hooper") -> void:
@@ -32,8 +33,11 @@ func play(name: String, restart: bool = false) -> void:
 
 func update(rig: PuppetRig, actor: SimActor, delta: float) -> void:
 	var want: String = lib.anim_for_state(actor.anim_state)
-	if actor.anim_state != "" and want != anim:
-		play(want)
+	if actor.anim_state != "" and (want != anim or (actor.anim_frame == 1 and _last_state != actor.anim_state)):
+		play(want, true)
+	_last_state = actor.anim_state if actor.anim_frame <= 1 else _last_state
+	if actor.anim_frame > 1:
+		_last_state = ""
 	var rate: float = 1.0
 	if anim == "walk" or anim == "run" or anim == "sprint":
 		rate = clampf(actor.anim_speed / {"walk": 3.5, "run": 6.0, "sprint": 8.5}[anim], 0.5, 1.6)
