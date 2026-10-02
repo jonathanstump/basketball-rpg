@@ -38,7 +38,8 @@ var poise: float = 0.0
 var alive: bool = true
 var invulnerable: bool = false    # i-frames active this frame
 var hyper_armor: bool = false
-var has_ball: bool = true
+var has_ball: bool = false
+var contest_radius: float = 1.5
 
 # Presentation hints (views read these; sim never depends on them).
 var anim_state: String = "idle"

@@ -74,13 +74,13 @@ func move_data(id: String) -> Dictionary:
 	return v if v is Dictionary else {}
 
 
-func begin(id: String, dir: Vector3 = Vector3.ZERO, owner: RefCounted = null) -> bool:
+func begin(id: String, dir: Vector3 = Vector3.ZERO, owner: RefCounted = null, spend_wind: bool = true) -> bool:
 	var m: Dictionary = move_data(id)
 	if m.is_empty():
 		push_warning("Hooper: unknown move " + id)
 		return false
 	var cost: float = JU.f(m, "wind")
-	if cost > 0.0 and not actor.wind.spend(cost * _wind_cost_mult()):
+	if spend_wind and cost > 0.0 and not actor.wind.spend(cost * _wind_cost_mult()):
 		return false
 	action = id
 	action_frame = 0

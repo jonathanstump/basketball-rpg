@@ -50,6 +50,9 @@ func dispose() -> void:
 		a.controller = null
 		a.input_source = null
 	actors.clear()
+	for s: RefCounted in systems:
+		if s.has_method("dispose"):
+			s.call("dispose")
 	systems.clear()
 	events.clear()
 

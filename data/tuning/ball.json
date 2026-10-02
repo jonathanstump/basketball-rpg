@@ -1,0 +1,22 @@
+{
+  "radius": 0.12,
+  "bounce": 0.78,
+  "ground_friction": 0.82,
+  "roll_friction_per_s": 1.6,
+  "air_damping_per_s": 0.05,
+  "gravity": 14.0,
+  "pickup_radius": 0.75,
+  "pickup_max_height": 1.7,
+  "hand_height": 1.05,
+  "chest_pass": { "speed": 30, "range": 18, "return_speed": 22 },
+  "baseball_pass": { "speed": 34, "range": 35, "pierce": 2, "hold_frames": 36 },
+  "lob": { "apex_m": 5.0, "time_s": 0.9, "radius": 2.0, "default_range_m": 10, "max_range_m": 16 },
+  "shot": { "max_range_m": 11.5, "release_height": 2.0, "flight_min_s": 0.55, "flight_per_m": 0.05, "apex_extra_m": 1.8, "in_net_s": 0.35, "reject_flight_s": 0.15, "release_recovery_frames": 14 },
+  "rim": { "radius": 0.23, "tube": 0.02, "height": 3.05, "backboard_offset": 0.38, "backboard_size": [1.8, 1.05] },
+  "crate": { "height": 3.0, "half": 0.18, "pole_offset": 0.25 },
+  "aim_assist_deg": 25,
+  "lost_ball_s": 10,
+  "oob_respawn_s": 1.0,
+  "spare_ball": "ball_rec",
+  "wire_kicks_radius": 0.7
+}

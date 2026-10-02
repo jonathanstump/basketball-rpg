@@ -1,8 +1,141 @@
 {
-  "moves": [
-    { "id": "crossover", "name": "Crossover", "primitive": "dodge", "input": "B", "with_ball": true, "startup": 2, "active": 12, "recovery": 8, "damage": 0, "wind": 18, "distance_m": 3.2, "notes": "i-frames 3-14, total 22f. Perfect = Ankle Breaker." },
-    { "id": "stepback", "name": "Stepback", "primitive": "dodge", "input": "B+back", "with_ball": true, "startup": 2, "active": 12, "recovery": 8, "damage": 0, "wind": 18, "distance_m": 3.2, "stepback_window_s": 0.8 },
-    { "id": "defensive_slide", "name": "Defensive Slide", "primitive": "dodge", "input": "B", "with_ball": false, "startup": 2, "active": 10, "recovery": 8, "damage": 0, "wind": 15, "distance_m": 2.8, "notes": "i-frames 3-12, total 20f. Perfect = Read (+5 Hype)." },
-    { "id": "land", "name": "Landing", "primitive": "recovery", "startup": 0, "active": 0, "recovery": 4, "damage": 0 }
-  ]
+ "moves": [
+  {
+   "id": "crossover",
+   "name": "Crossover",
+   "primitive": "dodge",
+   "input": "B",
+   "with_ball": true,
+   "startup": 2,
+   "active": 12,
+   "recovery": 8,
+   "damage": 0,
+   "wind": 18,
+   "distance_m": 3.2,
+   "notes": "i-frames 3-14, total 22f. Perfect = Ankle Breaker."
+  },
+  {
+   "id": "stepback",
+   "name": "Stepback",
+   "primitive": "dodge",
+   "input": "B+back",
+   "with_ball": true,
+   "startup": 2,
+   "active": 12,
+   "recovery": 8,
+   "damage": 0,
+   "wind": 18,
+   "distance_m": 3.2,
+   "stepback_window_s": 0.8
+  },
+  {
+   "id": "defensive_slide",
+   "name": "Defensive Slide",
+   "primitive": "dodge",
+   "input": "B",
+   "with_ball": false,
+   "startup": 2,
+   "active": 10,
+   "recovery": 8,
+   "damage": 0,
+   "wind": 15,
+   "distance_m": 2.8,
+   "notes": "i-frames 3-12, total 20f. Perfect = Read (+5 Hype)."
+  },
+  {
+   "id": "land",
+   "name": "Landing",
+   "primitive": "recovery",
+   "startup": 0,
+   "active": 0,
+   "recovery": 4,
+   "damage": 0
+  },
+  {
+   "id": "shot_gather",
+   "name": "Jumper (gather)",
+   "primitive": "shot",
+   "input": "RB hold",
+   "with_ball": true,
+   "startup": 0,
+   "active": 600,
+   "recovery": 0,
+   "damage": 0,
+   "notes": "Meter fills over the ball's gather time; release in the window."
+  },
+  {
+   "id": "shot_release",
+   "name": "Jumper (follow-through)",
+   "primitive": "recovery",
+   "startup": 0,
+   "active": 0,
+   "recovery": 14,
+   "damage": 0
+  },
+  {
+   "id": "chest_pass",
+   "name": "Chest Pass",
+   "primitive": "pass",
+   "input": "Y",
+   "with_ball": true,
+   "startup": 12,
+   "active": 1,
+   "recovery": 18,
+   "damage": 45,
+   "composure": 20,
+   "wind": 20,
+   "stat": "handles",
+   "notes": "30 m/s, 18 m. Hit = ricochet back. Miss = loose."
+  },
+  {
+   "id": "baseball_pass",
+   "name": "Baseball Pass",
+   "primitive": "pass",
+   "input": "Hold Y >= 36f",
+   "with_ball": true,
+   "startup": 20,
+   "active": 1,
+   "recovery": 30,
+   "damage": 90,
+   "composure": 40,
+   "wind": 35,
+   "stat": "handles",
+   "hold_frames": 36,
+   "notes": "35 m, pierces 2 commons, always ends loose."
+  },
+  {
+   "id": "lob",
+   "name": "Lob",
+   "primitive": "lob",
+   "input": "RB, no hoop in range",
+   "with_ball": true,
+   "startup": 14,
+   "active": 1,
+   "recovery": 20,
+   "damage": 35,
+   "composure": 12,
+   "wind": 18,
+   "stat": "handles",
+   "radius": 2.0
+  },
+  {
+   "id": "pass_charge",
+   "name": "Pass wind-up (charging)",
+   "primitive": "charge",
+   "with_ball": true,
+   "startup": 0,
+   "active": 120,
+   "recovery": 0,
+   "damage": 0
+  },
+  {
+   "id": "pass_recovery",
+   "name": "Pass follow-through",
+   "primitive": "recovery",
+   "startup": 0,
+   "active": 0,
+   "recovery": 18,
+   "damage": 0
+  }
+ ]
 }
