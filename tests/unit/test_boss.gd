@@ -120,6 +120,7 @@ func test_rejected_punish_damages_player() -> void:
 	ctl.start()
 	ctl.duel.state = PossessionDuel.PLAYER_OFFENSE
 	var hp0: float = p.actor.hp
+	sim.balls.take_from(p.actor)   # a real Rejection knocks the ball away
 	sim.world.emit("shot_rejected", {"ball": 1, "actor": p.actor.id, "blocker": (a["boss"] as SimActor).id})
 	ctl.step()
 	assert_almost_eq(hp0 - p.actor.hp, p.actor.hp_max * 0.18, 0.5, "18% of max Heart at T1")

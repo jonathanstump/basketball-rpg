@@ -70,6 +70,15 @@ func speed() -> float:
 func step() -> void:
 	state_t += DT
 	actor.desired_vel = Vector3.ZERO
+	if actor.alive and world.frame >= int(actor.flags.get("despawn_frame", 1 << 40)):
+		## Timed summons (Block Party, Rush Order, Fresh Load) leave.
+		actor.alive = false
+		if actor.has_ball and balls != null:
+			var b: SimBall = balls.take_from(actor)
+			if b != null:
+				b.vel = Vector3(0, 3, 0)
+		world.emit("summon_scattered", {"actor": actor.id})
+		return
 	for k: Variant in cooldowns.keys():
 		cooldowns[k] = float(cooldowns[k]) - DT
 	recover_s -= DT

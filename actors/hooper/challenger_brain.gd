@@ -16,6 +16,8 @@ var _reacted_to: int = -1
 var aggressive: bool = true
 var _spot: Vector3 = Vector3.ZERO
 var _stuck: int = 0
+var _still: int = 0
+var _last_pos: Vector3 = Vector3.ZERO
 var passive_frames: int = 0       # holds fire for a while (QA warm-up)
 var duel: PossessionDuel = null   # court rules awareness (boss duels, challengers)
 
@@ -168,6 +170,17 @@ func _offense(input: ActorInput, a: SimActor, opp: SimActor, h: Hooper, w: SimWo
 			dest = hoop.floor_point() + hoop.facing * 2.5
 		if a.pos.distance_to(dest) < 1.2:
 			_stuck += 1
+		## Pinned (walled by the defender / a corner): slip out sideways.
+		if a.pos.distance_to(_last_pos) < 0.02 and a.pos.distance_to(dest) >= 1.2:
+			_still += 1
+		else:
+			_still = 0
+		_last_pos = a.pos
+		if _still > 45:
+			_still = 0
+			_spot = hoop.floor_point() + hoop.facing.rotated(Vector3.UP, deg_to_rad(rng.randf_range(-80.0, 80.0))) * rng.randf_range(4.0, 7.5)
+			input.press("dodge")
+			return
 		if _stuck > 50:
 			## Contested at the spot: try another angle around the arc.
 			_stuck = 0
@@ -187,6 +200,16 @@ func _offense(input: ActorInput, a: SimActor, opp: SimActor, h: Hooper, w: SimWo
 
 
 func _defense(input: ActorInput, a: SimActor, opp: SimActor, w: SimWorld) -> void:
+	for hb: SimBall in _balls(a, w):
+		## Somebody else (a summoned crew member) ran off with our ball: get it back.
+		if hb.state == SimBall.State.HELD and hb.holder_id != opp.id and hb.holder_id != a.id:
+			var thief: SimActor = w.actor_by_id(hb.holder_id)
+			if thief != null and thief.team != a.team and thief.alive and thief.dist_to(a) < 16.0:
+				_move(input, a, thief.pos)
+				if thief.dist_to(a) < 2.0 and _cooldown <= 0:
+					input.press("light")
+					_cooldown = 20
+				return
 	for b: SimBall in (_balls(a, w)):
 		if b.state == SimBall.State.LOOSE and b.pos.distance_to(a.pos) < 14.0:
 			_move(input, a, b.pos)

@@ -1,0 +1,298 @@
+{
+ "moves": [
+  {
+   "id": "cavalry_charge",
+   "name": "Cavalry Charge",
+   "primitive": "charge_lane",
+   "body_attack": true,
+   "startup": 28,
+   "active": 26,
+   "recovery": 24,
+   "damage": 70,
+   "parry": "none",
+   "lunge_m": 12.0,
+   "hitbox": {
+    "shape": "box",
+    "length": 2.8,
+    "width": 2.6,
+    "height": 2.8
+   },
+   "knockdown": true,
+   "hit_weight": "heavy",
+   "weight": 4,
+   "cooldown_s": 5,
+   "range_m": [
+    3,
+    15
+   ],
+   "min_tier": 1,
+   "possession": "any"
+  },
+  {
+   "id": "rearing_stomp",
+   "name": "Rearing Stomp",
+   "primitive": "slam_circle",
+   "body_attack": true,
+   "startup": 34,
+   "active": 6,
+   "recovery": 34,
+   "damage": 80,
+   "parry": "none",
+   "knockdown": true,
+   "hitbox": {
+    "shape": "circle",
+    "radius": 3.6,
+    "forward": 1.6,
+    "height": 2.5
+   },
+   "hit_weight": "heavy",
+   "weight": 4,
+   "cooldown_s": 4,
+   "range_m": [
+    0,
+    5
+   ],
+   "min_tier": 1,
+   "possession": "any"
+  },
+  {
+   "id": "volley",
+   "name": "Volley",
+   "primitive": "arena_event",
+   "event": "volley",
+   "body_attack": true,
+   "startup": 30,
+   "active": 2,
+   "recovery": 24,
+   "damage": 55,
+   "parry": "none",
+   "pattern": {
+    "kind": "random",
+    "count": 6,
+    "spread_m": 7.0,
+    "delay_s": 2.4,
+    "stagger_s": 0.12
+   },
+   "hitbox": {
+    "shape": "circle",
+    "radius": 1.6,
+    "height": 3.0
+   },
+   "knockdown": true,
+   "hit_weight": "heavy",
+   "weight": 3,
+   "cooldown_s": 8,
+   "min_tier": 1,
+   "range_m": [
+    0,
+    30
+   ],
+   "possession": "any"
+  },
+  {
+   "id": "salute",
+   "name": "Salute",
+   "primitive": "showboat",
+   "startup": 6,
+   "active": 96,
+   "recovery": 6,
+   "damage": 0,
+   "weight": 1,
+   "cooldown_s": 16,
+   "possession": "with_ball",
+   "min_tier": 1,
+   "range_m": [
+    0,
+    30
+   ]
+  },
+  {
+   "id": "saber_ball",
+   "name": "Saber Ball",
+   "primitive": "melee_arc",
+   "body_attack": true,
+   "startup": 20,
+   "active": 10,
+   "recovery": 26,
+   "damage": 55,
+   "parry": "strip",
+   "hitbox": {
+    "shape": "arc",
+    "radius": 3.8,
+    "angle": 180,
+    "height": 2.4
+   },
+   "hit_weight": "medium",
+   "weight": 4,
+   "cooldown_s": 3,
+   "range_m": [
+    0,
+    4.2
+   ],
+   "possession": "with_ball",
+   "min_tier": 1
+  },
+  {
+   "id": "flank",
+   "name": "Flank",
+   "primitive": "charge_lane",
+   "body_attack": true,
+   "curve_deg": 4.0,
+   "startup": 24,
+   "active": 40,
+   "recovery": 24,
+   "damage": 65,
+   "parry": "none",
+   "lunge_m": 16.0,
+   "hitbox": {
+    "shape": "box",
+    "length": 2.6,
+    "width": 2.6,
+    "height": 2.8
+   },
+   "knockdown": true,
+   "hit_weight": "heavy",
+   "min_tier": 2,
+   "weight": 2,
+   "cooldown_s": 9,
+   "range_m": [
+    4,
+    18
+   ],
+   "possession": "any"
+  },
+  {
+   "id": "horse_charge",
+   "name": "Riderless Charge",
+   "primitive": "charge_lane",
+   "body_attack": true,
+   "startup": 34,
+   "active": 26,
+   "recovery": 30,
+   "damage": 55,
+   "parry": "none",
+   "lunge_m": 11.0,
+   "hitbox": {
+    "shape": "box",
+    "length": 2.4,
+    "width": 2.4,
+    "height": 2.4
+   },
+   "knockdown": true,
+   "hit_weight": "heavy",
+   "weight": 0,
+   "cooldown_s": 0,
+   "min_tier": 1,
+   "range_m": [
+    0,
+    30
+   ],
+   "possession": "any"
+  },
+  {
+   "id": "siege",
+   "name": "Siege",
+   "primitive": "arena_event",
+   "event": "siege",
+   "body_attack": true,
+   "unblockable": true,
+   "startup": 40,
+   "active": 2,
+   "recovery": 30,
+   "damage": 80,
+   "parry": "none",
+   "pattern": {
+    "kind": "safe_lane",
+    "spread_m": 9.0,
+    "delay_s": 2.0,
+    "stagger_s": 0.15,
+    "step_m": 3.0
+   },
+   "hitbox": {
+    "shape": "circle",
+    "radius": 1.6,
+    "height": 3.0
+   },
+   "knockdown": true,
+   "hit_weight": "heavy",
+   "min_tier": 5,
+   "weight": 0,
+   "cooldown_s": 999,
+   "range_m": [
+    0,
+    30
+   ],
+   "possession": "any"
+  },
+  {
+   "id": "general_lob",
+   "name": "Cannon Lob",
+   "primitive": "lob",
+   "uses_ball": true,
+   "rejectable": true,
+   "startup": 30,
+   "active": 2,
+   "recovery": 32,
+   "damage": 45,
+   "parry": "none",
+   "flight_s": 1.2,
+   "hitbox": {
+    "shape": "circle",
+    "radius": 2.2,
+    "height": 2.5
+   },
+   "hit_weight": "medium",
+   "weight": 4,
+   "cooldown_s": 2,
+   "range_m": [
+    2,
+    24
+   ],
+   "possession": "with_ball",
+   "min_tier": 1
+  },
+  {
+   "id": "general_statement",
+   "name": "Charge!",
+   "primitive": "statement_dunk",
+   "body_attack": true,
+   "startup": 42,
+   "active": 10,
+   "recovery": 30,
+   "damage": 90,
+   "parry": "none",
+   "hitbox": {
+    "shape": "circle",
+    "radius": 2.8,
+    "height": 5.0
+   },
+   "hit_weight": "heavy",
+   "weight": 3,
+   "cooldown_s": 10,
+   "possession": "with_ball",
+   "needs_paint": true,
+   "min_tier": 1,
+   "range_m": [
+    0,
+    30
+   ]
+  },
+  {
+   "id": "general_show",
+   "name": "At Ease",
+   "primitive": "showboat",
+   "startup": 6,
+   "active": 84,
+   "recovery": 6,
+   "damage": 0,
+   "weight": 1,
+   "cooldown_s": 16,
+   "possession": "with_ball",
+   "min_tier": 1,
+   "range_m": [
+    0,
+    30
+   ]
+  }
+ ]
+}

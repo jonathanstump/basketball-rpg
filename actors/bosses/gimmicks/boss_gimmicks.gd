@@ -19,3 +19,9 @@ static func attach(brain: BossBrain) -> void:
 			brain.gimmick = SauceGimmick.new(brain)
 		"orbits":
 			brain.gimmick = AtlasGimmick.new(brain)
+		"tide":
+			brain.gimmick = FerrymanGimmick.new(brain)
+		"cannons":
+			brain.gimmick = GeneralGimmick.new(brain)
+		"heap":
+			brain.gimmick = HeapGimmick.new(brain)

@@ -59,7 +59,7 @@ func step() -> void:
 	if not actor.alive:
 		actor.desired_vel = Vector3.ZERO
 		return
-	actor.invulnerable = false
+	actor.invulnerable = world.frame < int(actor.flags.get("wakeup_until", -1))
 	for f: String in FRAME_FLAGS:
 		actor.flags[f] = false
 	guarding = false
@@ -116,6 +116,9 @@ func end_action() -> void:
 	action_move = {}
 	action_owner = null
 	actor.steer_locked = false
+	if ended == "knockdown":
+		## Wake-up i-frames so a knockdown can't chain into another.
+		actor.flags["wakeup_until"] = world.frame + int(JU.f(tuning, "wakeup_iframes", 40.0))
 	if owner != null and owner.has_method("on_end"):
 		owner.call("on_end", self, ended)
 

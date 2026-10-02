@@ -65,6 +65,7 @@ func step() -> void:
 	if duel.state == PossessionDuel.PLAYER_OFFENSE and not duel.player_cleared and player.has_ball and hoop.flat_distance(player.pos) > JU.f(duel.cfg, "arc_m", 6.75):
 		duel.player_cleared_arc()
 	_check_rebound()
+	_reconcile_possession()
 	_check_hp()
 	_drain()
 
@@ -111,6 +112,10 @@ func _on_event(ev: Dictionary) -> void:
 		"ball_stolen":
 			if who == boss.id:
 				duel.feed("boss_took")
+		"ball_knocked_loose":
+			## Gimmicks that knock the ball out of your hands (gull snatch).
+			if who == player.id:
+				duel.feed("boss_stole")
 		"ball_thrown":
 			if who == boss.id:
 				duel.feed("boss_threw")
@@ -174,6 +179,18 @@ func _dunk_attempt() -> void:
 			balls.give(b, boss)
 		_punish(1.0)
 		duel.feed("player_rejected")
+
+
+func _reconcile_possession() -> void:
+	## Whoever actually holds the ball owns the possession: covers pickups the
+	## events missed (a boss scooping a ball you dropped while knocked down).
+	## Only the two duelists count (summoned crews carry their own balls).
+	if player.has_ball and duel.state in [PossessionDuel.LOOSE_BALL, PossessionDuel.BOSS_OFFENSE]:
+		duel.feed("player_picked")
+	elif boss.has_ball and duel.state == PossessionDuel.PLAYER_OFFENSE:
+		duel.feed("boss_took")
+	elif boss.has_ball and duel.state == PossessionDuel.LOOSE_BALL:
+		duel.feed("boss_picked")
 
 
 func _keep_inside(a: SimActor) -> void:

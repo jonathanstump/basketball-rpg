@@ -1,0 +1,186 @@
+{
+ "id": "si_st_george",
+ "borough": "staten_island",
+ "palette": "staten_island",
+ "seed": 1401,
+ "name": "St. George",
+ "heights": {
+  "B": [
+   2,
+   3
+  ],
+  "T": [
+   4,
+   5
+  ],
+  "H": [
+   8,
+   12
+  ],
+  "W": [
+   2,
+   3
+  ]
+ },
+ "shops": {
+  "K": [
+   "si_plug"
+  ],
+  "G": [
+   "si_pump_grip"
+  ],
+  "I": [
+   "si_ink"
+  ]
+ },
+ "graffiti": [
+  "the deck tilts",
+  "jump the waves",
+  "fare costs 5%",
+  "the fog horn stuns",
+  "ferry needs 5 crowns",
+  "gulls steal tokens",
+  "deer charge straight",
+  "gus is grumpy",
+  "seawall secrets",
+  "steve shocks"
+ ],
+ "spawns": {
+  "e": [
+   "gull",
+   "ball_hog",
+   "showboat",
+   "gull",
+   "sniper",
+   "night_deer",
+   "pickpocket",
+   "ball_hog"
+  ],
+  "E": [
+   "captain:big_man"
+  ],
+  "c": [
+   "gull",
+   "gull",
+   "rat"
+  ]
+ },
+ "loot": {
+  "%": "bootleg",
+  "w": "si_wire",
+  "$": [
+   "si_retail",
+   "si_retail_locked",
+   "si_retail",
+   "si_mixtape_0",
+   "si_punch",
+   "si_secret"
+  ]
+ },
+ "bodegas": [
+  {
+   "id": "si_bodega_1",
+   "cat": "Gus",
+   "name": "Bay St. Deli"
+  },
+  {
+   "id": "si_bodega_2",
+   "cat": "Rocco",
+   "name": "Victory Blvd Grocery"
+  }
+ ],
+ "stations": [
+  {
+   "id": "si_st_st_george",
+   "name": "St. George",
+   "line": "orange"
+  }
+ ],
+ "npcs": [
+  {
+   "id": "npc_mic_check_sg",
+   "name": "Mic Check",
+   "lines": [
+    "STATEN ISLAND! The forgotten borough remembers EVERYTHING.",
+    "The ferry to the City only runs for Crown holders. Five of 'em."
+   ]
+  },
+  {
+   "id": "npc_deckhand",
+   "name": "Old Deckhand",
+   "lines": [
+    "That ferry ain't going anywhere till HE says so.",
+    "Every twenty seconds the deck tilts. Jump the wave or ride it.",
+    "Go over the rail and you'll be swimming back. It hurts."
+   ]
+  },
+  {
+   "id": "npc_lefty_lou_si",
+   "name": "Static Steve",
+   "challenger": {
+    "id": "lefty_lou_si",
+    "tier_bonus": 0,
+    "skill": 0.55,
+    "drop": "kicks_staten_island_4",
+    "points": 7
+   },
+   "lines": [
+    "My hands are always charged. Touch the ball, get shocked.",
+    "First to seven."
+   ],
+   "look": {
+    "skin": "#FFE0C4",
+    "top_color": "#1E6FD9",
+    "shorts_color": "#FF7A00",
+    "hair_style": "mohawk",
+    "hair_color": "#2A6AE0"
+   }
+  }
+ ],
+ "crossings": [
+  {
+   "to": "city_downtown",
+   "via": "ferry",
+   "name": "The Ferry to the City",
+   "locked": "crown_pass"
+  },
+  {
+   "to": "si_narrows",
+   "via": "bay_street",
+   "name": "The Narrows"
+  },
+  {
+   "to": "si_heap",
+   "via": "richmond_terrace",
+   "name": "The Heap"
+  }
+ ],
+ "shortcuts": [
+  {
+   "id": "si_st_george_ladder_0",
+   "open_from": "s",
+   "kind": "ladder"
+  },
+  {
+   "id": "si_st_george_gate_0",
+   "open_from": "n",
+   "kind": "gate"
+  }
+ ],
+ "secrets": [
+  {
+   "id": "si_st_george_roof_0_out",
+   "kind": "rooftop"
+  },
+  {
+   "id": "si_st_george_roof_0_in",
+   "kind": "rooftop"
+  }
+ ],
+ "fights": {
+  "M": [
+   "si_ferryman"
+  ],
+  "X": []
+ }
+}

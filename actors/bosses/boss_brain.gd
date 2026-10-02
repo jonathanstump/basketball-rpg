@@ -28,6 +28,8 @@ var paint_pos: Vector3 = Vector3.ZERO
 var t5_done: bool = false
 var statement_cd_mult: float = 1.0
 var repeats_left: int = 0
+var hold_s: float = 0.0
+const HOLD_LIMIT_S: float = 10.0
 var last_move: Dictionary = {}
 var history: Array[String] = []    # every move started (gimmicks replay these)
 var gimmick: RefCounted = null    # optional per-boss script (on_step/on_event hooks)
@@ -110,6 +112,12 @@ func step() -> void:
 			_walk(paint_pos, 1.0)
 		actor.anim_state = "idle"
 		return
+	if actor.has_ball and st == PossessionDuel.BOSS_OFFENSE:
+		hold_s += DT
+		if hold_s > HOLD_LIMIT_S and recover_s <= 0.0 and _force_ball_move():
+			return
+	else:
+		hold_s = 0.0
 	think_s -= DT
 	if think_s > 0.0 or recover_s > 0.0:
 		_position(st)
@@ -178,6 +186,9 @@ func weight_of(m: Dictionary) -> float:
 		w *= 0.3 if recent[recent.size() - 1] == id else 0.6
 	if world.frame < aggro_until and JU.s(m, "primitive") != "showboat":
 		w *= 1.5
+	if actor.has_ball and duel_state() == PossessionDuel.BOSS_OFFENSE:
+		## With the ball, bosses look to score: favor lobs / dunks / showboats.
+		w *= 2.0 if JU.s(m, "possession") == "with_ball" else 0.6
 	return w
 
 
@@ -194,6 +205,26 @@ func start_move(m: Dictionary) -> void:
 	if history.size() > 8:
 		history.pop_front()
 	runner.start(m, target)
+
+
+func _force_ball_move() -> bool:
+	## Boss possession clock: after holding too long it must put the ball up
+	## (Statement Dunk if it can, else a lob regardless of range).
+	var lob: Dictionary = {}
+	for m: Dictionary in moves:
+		if JU.s(m, "possession") != "with_ball":
+			continue
+		if JU.s(m, "primitive") == "statement_dunk" and usable(m):
+			start_move(m)
+			hold_s = 0.0
+			return true
+		if JU.s(m, "primitive") == "lob" and lob.is_empty():
+			lob = m
+	if lob.is_empty() or target == null:
+		return false
+	start_move(lob)
+	hold_s = 0.0
+	return true
 
 
 func run_event_move(id: String) -> void:

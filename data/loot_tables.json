@@ -39,6 +39,17 @@
     {"id": "qn_sugar", "tier": "retail", "brands": ["AIRWAVE"], "tokens": [60, 100], "extra": ["sugar_rush"]},
     {"id": "qn_mixtape_0", "tier": "retail", "brands": ["LOCKDOWN"], "tokens": [40, 80], "extra": ["mixtape_rainbow_lob"]},
     {"id": "qn_flash_0", "tier": "limited", "brands": ["LOCKDOWN"], "tokens": [80, 140], "extra": ["flash_dice"]},
-    {"id": "qn_flash_1", "tier": "limited", "brands": ["LOCKDOWN"], "tokens": [80, 140], "extra": ["flash_slice"]}
+    {"id": "qn_flash_1", "tier": "limited", "brands": ["LOCKDOWN"], "tokens": [80, 140], "extra": ["flash_slice"]},
+    {"id": "si_retail", "tier": "retail", "brands": ["GHOST", "STRATA", "KONG"], "tokens": [40, 120]},
+    {"id": "si_retail_locked", "tier": "retail", "brands": ["GHOST", "STRATA"], "tokens": [80, 160], "bonus_rolls": 1},
+    {"id": "si_limited_locked", "tier": "limited", "brands": ["GHOST", "STRATA"], "tokens": [100, 200]},
+    {"id": "si_secret", "tier": "limited", "brands": ["GHOST"], "tokens": [150, 250]},
+    {"id": "si_wire", "tier": "wire", "brands": ["AIRWAVE", "VELOCI"], "slots": ["kicks"], "tokens": [0, 0]},
+    {"id": "si_grail", "tier": "grail", "fixed": "kicks_grail_staten_island", "tokens": [0, 0]},
+    {"id": "si_punch", "tier": "retail", "brands": ["GHOST"], "tokens": [60, 100], "extra": ["punch_card"]},
+    {"id": "si_sugar", "tier": "retail", "brands": ["STRATA"], "tokens": [60, 100], "extra": ["sugar_rush"]},
+    {"id": "si_mixtape_0", "tier": "retail", "brands": ["GHOST"], "tokens": [40, 80], "extra": ["mixtape_tunnel"]},
+    {"id": "si_flash_0", "tier": "limited", "brands": ["GHOST"], "tokens": [80, 140], "extra": ["flash_hustle"]},
+    {"id": "si_flash_1", "tier": "limited", "brands": ["GHOST"], "tokens": [80, 140], "extra": ["flash_scale"]}
   ]
 }

@@ -74,6 +74,10 @@ func _draw() -> void:
 	draw_rect(Rect2(pos, Vector2(w, 24)), Color("#24242E"))
 	draw_rect(Rect2(pos, Vector2(w * clampf(_ghost, 0, 1), 24)), Color(1, 1, 1, 0.4))
 	draw_rect(Rect2(pos, Vector2(w * clampf(boss.hp / maxf(1.0, boss.hp_max), 0, 1), 24)), Color("#E8344A"))
+	var armor: float = float(boss.flags.get("armor", 0.0))
+	if armor > 0.0:
+		## King of the Heap's trash armor: a white bar over the Heart bar.
+		draw_rect(Rect2(pos, Vector2(w * clampf(armor / maxf(1.0, float(boss.flags.get("armor_max", armor))), 0, 1), 8)), Color("#F2F2F2"))
 	if boss.composure != null:
 		var cp: Vector2 = pos + Vector2(0, 32)
 		draw_rect(Rect2(cp, Vector2(w, 10)), Color("#24242E"))

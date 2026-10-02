@@ -1,0 +1,154 @@
+{
+ "id": "si_heap",
+ "borough": "staten_island",
+ "palette": "staten_island",
+ "seed": 1403,
+ "name": "The Heap",
+ "heights": {
+  "B": [
+   2,
+   3
+  ],
+  "T": [
+   4,
+   5
+  ],
+  "H": [
+   8,
+   10
+  ],
+  "W": [
+   3,
+   6
+  ]
+ },
+ "shops": {},
+ "graffiti": [
+  "don't hold it six",
+  "gulls are the clock",
+  "buckets break armor",
+  "absorb = punish",
+  "truck lane",
+  "the woods are close",
+  "deer at night",
+  "ferry the cat",
+  "the hill is the paint",
+  "trash has a crown"
+ ],
+ "spawns": {
+  "e": [
+   "gull",
+   "big_man",
+   "gull",
+   "night_deer",
+   "ball_hog",
+   "sniper",
+   "night_deer",
+   "hype_man"
+  ],
+  "E": [
+   "captain:big_man"
+  ],
+  "c": [
+   "gull",
+   "gull",
+   "rat"
+  ]
+ },
+ "loot": {
+  "%": "bootleg",
+  "w": "si_wire",
+  "$": [
+   "si_retail",
+   "si_retail_locked",
+   "si_retail",
+   "si_flash_1",
+   "si_secret"
+  ]
+ },
+ "bodegas": [
+  {
+   "id": "si_bodega_4",
+   "cat": "Ferry",
+   "name": "Arthur Kill Deli"
+  }
+ ],
+ "stations": [
+  {
+   "id": "si_st_heap",
+   "name": "Travis",
+   "line": "orange"
+  }
+ ],
+ "npcs": [
+  {
+   "id": "npc_tiny_tornado",
+   "name": "Tiny Tornado",
+   "challenger": {
+    "id": "tiny_tornado",
+    "tier_bonus": 1,
+    "skill": 0.7,
+    "drop": "kicks_staten_island_5",
+    "points": 7
+   },
+   "lines": [
+    "Small? I'm a natural disaster.",
+    "Seven buckets. Spin with me."
+   ],
+   "look": {
+    "skin": "#8D5524",
+    "top_color": "#FF7A00",
+    "shorts_color": "#1E6FD9",
+    "hair_style": "bantu_knots",
+    "hair_color": "#1A1210"
+   }
+  },
+  {
+   "id": "npc_sanitation",
+   "name": "Sanitation Worker",
+   "lines": [
+    "The King up top soaks up trash like armor. Knock it off him.",
+    "Don't hold the ball. The gulls count to six.",
+    "When he crumbles, the truck starts running. Stay out of its lane."
+   ]
+  },
+  {
+   "id": "npc_mic_check_he",
+   "name": "Mic Check",
+   "lines": [
+    "THE HEAP! Everything this city threw away...",
+    "...and the King who rules it. Bring a Crown home."
+   ]
+  }
+ ],
+ "crossings": [
+  {
+   "to": "si_st_george",
+   "via": "richmond_terrace",
+   "name": "St. George"
+  }
+ ],
+ "shortcuts": [
+  {
+   "id": "si_heap_gate_0",
+   "open_from": "n",
+   "kind": "gate"
+  }
+ ],
+ "secrets": [
+  {
+   "id": "si_heap_roof_0_out",
+   "kind": "rooftop"
+  },
+  {
+   "id": "si_heap_roof_0_in",
+   "kind": "rooftop"
+  }
+ ],
+ "fights": {
+  "M": [],
+  "X": [
+   "si_heap"
+  ]
+ }
+}

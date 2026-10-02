@@ -100,3 +100,13 @@ Spec §11.3 lists L60 = 46,626 but `floor(100 × 60^1.5 + 150)` = 46,625 (every 
 - **Shock** status now roots the player like `rooted`. **Gravity Well** uses a generic `pull_mps` move field.
 - **Lock-on camera** frames tall targets by including their height and allowing a longer distance (8 m + 1.4 × height).
 - **The River Tunnel** (Flushing → City) is locked behind the Crown Pass and targets `city_midtown`.
+
+## M9c — Staten Island
+- **Tide.** The deck tilts every 20 s (every 8 s after the T5 Storm) for 3.5 s. A wave pushes grounded players 3 m downhill. Going past the rail costs 20% Heart and puts you back on deck. **Undertow** pulls you toward the nearest rail for 1.5 s. **Fog Bank** is the Phase 2 lunge set; the fog visuals are presentation.
+- **Cannons.** Four cannons on the ramparts. A Volley (or Siege) lights them for 2.5 s, and a pass that comes within 2.2 m of a lit cannon backfires on the General: 90 composure and 4% Heart.
+- **Split bosses** share `BossSplit`: Express cars and the General's riderless horse, each with shared HP.
+- **Armor** is a generic actor flag that soaks damage before Heart. The Heap starts with 10% of his Heart as armor, and Absorb adds 1.5%/s while active (a bucket or a heavy hit interrupts it). The boss bar shows it as a white bar.
+- **Gull shot clock.** Holding the ball 6 s in PLAYER_OFFENSE (not counting a shot gather) knocks it loose toward the King. **Garbage truck** sweeps a lane every 25 s in Phase 2.
+- **Timed summons** now leave when `duration_s` runs out (`despawn_frame`). **Fresh Load** minions last 20 s; the spec gives no duration.
+- **Duel robustness:** possession is reconciled from who actually holds the ball. Bosses must put the ball up after holding it 10 s in BOSS_OFFENSE. The player gets 40 wake-up i-frames after a knockdown (tuning `wakeup_iframes`). The QA bot slips sideways when pinned.
+- **Test fixture fix (not weakened):** `test_rejected_punish_damages_player` now takes the ball from the player before emitting `shot_rejected`, as a real Rejection does. Without that, the new possession reconciler correctly saw the player still holding the ball.

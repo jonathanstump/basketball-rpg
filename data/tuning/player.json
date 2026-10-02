@@ -12,6 +12,7 @@
   "wind_regen_per_s": 45,
   "wind_regen_delay_s": 0.6,
   "wind_regen_guarding_per_s": 15,
+  "wakeup_iframes": 40,
   "coyote_frames": 5,
   "input_buffer_frames": 8,
   "low_wind_ratio": 0.25,

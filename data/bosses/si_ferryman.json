@@ -1,0 +1,450 @@
+{
+ "id": "si_ferryman",
+ "name": "THE FERRYMAN",
+ "title": "Free Fare, No Return",
+ "borough": "staten_island",
+ "district": "si_st_george",
+ "kind": "mini",
+ "arena": {
+  "theme": "ferry_deck",
+  "size_m": [
+   18,
+   16
+  ],
+  "indoor": false,
+  "floor": "#5A3A2A",
+  "key": "#FF7A00",
+  "props": [
+   {
+    "shape": "box",
+    "size": [
+     0.2,
+     1.1,
+     22.0
+    ],
+    "pos": [
+     -10.8,
+     0.55,
+     0
+    ],
+    "color": "#FF7A00",
+    "repeat": {
+     "count": 2,
+     "step": [
+      21.6,
+      0,
+      0
+     ]
+    }
+   },
+   {
+    "shape": "box",
+    "size": [
+     8.0,
+     4.0,
+     4.0
+    ],
+    "pos": [
+     0,
+     2.0,
+     -12.5
+    ],
+    "color": "#FF7A00"
+   },
+   {
+    "shape": "box",
+    "size": [
+     8.4,
+     0.8,
+     4.4
+    ],
+    "pos": [
+     0,
+     4.4,
+     -12.5
+    ],
+    "color": "#F2F2F2"
+   },
+   {
+    "shape": "box",
+    "size": [
+     7.0,
+     1.0,
+     0.2
+    ],
+    "pos": [
+     0,
+     3.0,
+     -10.4
+    ],
+    "color": "#9FE8FF",
+    "emit": 0.8
+   },
+   {
+    "shape": "box",
+    "size": [
+     140.0,
+     0.2,
+     140.0
+    ],
+    "pos": [
+     0,
+     -1.2,
+     0
+    ],
+    "color": "#0A1A2E",
+    "no_shadow": true
+   },
+   {
+    "shape": "cylinder",
+    "size": [
+     0.6,
+     8.0
+    ],
+    "pos": [
+     -40.0,
+     3.0,
+     -60.0
+    ],
+    "color": "#4E8C74",
+    "no_shadow": true
+   },
+   {
+    "shape": "sphere",
+    "size": [
+     0.8
+    ],
+    "pos": [
+     -40.0,
+     8.0,
+     -60.0
+    ],
+    "color": "#FFD08A",
+    "neon": true
+   },
+   {
+    "pos": [
+     -6.0,
+     6.0,
+     3.0
+    ],
+    "light": {
+     "color": "#FFB060",
+     "energy": 1.4,
+     "range": 12.0
+    }
+   },
+   {
+    "pos": [
+     6.0,
+     6.0,
+     3.0
+    ],
+    "light": {
+     "color": "#9FE8FF",
+     "energy": 1.0,
+     "range": 12.0
+    }
+   }
+  ]
+ },
+ "base": {
+  "hp": 1800,
+  "composure": 200,
+  "contest_radius": 3.0,
+  "height_m": 4.6,
+  "radius_m": 0.9,
+  "speed": 4.4,
+  "poise": 9999
+ },
+ "phases": [
+  {
+   "id": 1,
+   "rules": {},
+   "moves": [
+    "lantern_swing",
+    "undertow",
+    "fog_horn",
+    "fare",
+    "rope_line",
+    "man_overboard",
+    "ferry_lob",
+    "ferry_statement",
+    "ferry_show"
+   ]
+  },
+  {
+   "id": 2,
+   "min_tier": 3,
+   "at_hp_pct": 0.5,
+   "transition": "fog_bank",
+   "rules": {
+    "speed_mult": 1.1
+   },
+   "moves": [
+    "lantern_swing",
+    "undertow",
+    "fog_horn",
+    "fare",
+    "rope_line",
+    "man_overboard",
+    "fog_lunge",
+    "ferry_lob",
+    "ferry_statement",
+    "ferry_show"
+   ]
+  }
+ ],
+ "t5_event": {
+  "at_hp_pct": 0.25,
+  "move": "storm"
+ },
+ "drops": [
+  "ball_lantern",
+  "flash_anchor"
+ ],
+ "mic_check": "The ride is free. Getting OFF is gonna cost you.",
+ "look": {
+  "colors": {
+   "slicker": "#FF7A00",
+   "slicker_dk": "#C85A00",
+   "face": "#2A3A3A",
+   "eye": "#3EF2B0",
+   "lantern": "#FFD08A",
+   "metal": "#3A3A44",
+   "boot": "#1A1A24"
+  },
+  "joints": {
+   "hips": [
+    0,
+    2.0,
+    0
+   ],
+   "torso": [
+    0,
+    2.1,
+    0
+   ],
+   "head": [
+    0,
+    3.9,
+    -0.1
+   ],
+   "arm_l": [
+    -0.7,
+    3.5,
+    0
+   ],
+   "arm_r": [
+    0.7,
+    3.5,
+    0
+   ],
+   "leg_l": [
+    -0.3,
+    2.0,
+    0
+   ],
+   "leg_r": [
+    0.3,
+    2.0,
+    0
+   ]
+  },
+  "parts": [
+   {
+    "joint": "leg_l",
+    "shape": "capsule",
+    "size": [
+     0.18,
+     2.0
+    ],
+    "pos": [
+     0,
+     -1.0,
+     0
+    ],
+    "color": "slicker_dk"
+   },
+   {
+    "joint": "leg_r",
+    "shape": "capsule",
+    "size": [
+     0.18,
+     2.0
+    ],
+    "pos": [
+     0,
+     -1.0,
+     0
+    ],
+    "color": "slicker_dk"
+   },
+   {
+    "joint": "leg_l",
+    "shape": "box",
+    "size": [
+     0.32,
+     0.25,
+     0.55
+    ],
+    "pos": [
+     0,
+     -1.95,
+     -0.1
+    ],
+    "color": "boot"
+   },
+   {
+    "joint": "leg_r",
+    "shape": "box",
+    "size": [
+     0.32,
+     0.25,
+     0.55
+    ],
+    "pos": [
+     0,
+     -1.95,
+     -0.1
+    ],
+    "color": "boot"
+   },
+   {
+    "joint": "torso",
+    "shape": "capsule",
+    "size": [
+     0.55,
+     2.0
+    ],
+    "pos": [
+     0,
+     0.8,
+     0
+    ],
+    "color": "slicker"
+   },
+   {
+    "joint": "head",
+    "shape": "sphere",
+    "size": [
+     0.45
+    ],
+    "pos": [
+     0,
+     0.2,
+     0
+    ],
+    "color": "face"
+   },
+   {
+    "joint": "head",
+    "shape": "sphere",
+    "size": [
+     0.6
+    ],
+    "pos": [
+     0,
+     0.35,
+     0.12
+    ],
+    "color": "slicker",
+    "scale": [
+     1,
+     1.1,
+     1
+    ]
+   },
+   {
+    "joint": "head",
+    "shape": "sphere",
+    "size": [
+     0.08
+    ],
+    "pos": [
+     -0.15,
+     0.22,
+     -0.4
+    ],
+    "color": "eye",
+    "emit": 3.0
+   },
+   {
+    "joint": "head",
+    "shape": "sphere",
+    "size": [
+     0.08
+    ],
+    "pos": [
+     0.15,
+     0.22,
+     -0.4
+    ],
+    "color": "eye",
+    "emit": 3.0
+   },
+   {
+    "joint": "arm_l",
+    "shape": "capsule",
+    "size": [
+     0.14,
+     1.6
+    ],
+    "pos": [
+     0,
+     -0.75,
+     0
+    ],
+    "color": "slicker"
+   },
+   {
+    "joint": "arm_r",
+    "shape": "capsule",
+    "size": [
+     0.14,
+     1.6
+    ],
+    "pos": [
+     0,
+     -0.75,
+     0
+    ],
+    "color": "slicker"
+   },
+   {
+    "joint": "arm_r",
+    "shape": "box",
+    "size": [
+     0.4,
+     0.55,
+     0.4
+    ],
+    "pos": [
+     0,
+     -1.8,
+     -0.2
+    ],
+    "color": "metal"
+   },
+   {
+    "joint": "arm_r",
+    "shape": "sphere",
+    "size": [
+     0.18
+    ],
+    "pos": [
+     0,
+     -1.8,
+     -0.2
+    ],
+    "color": "lantern",
+    "emit": 3.0
+   }
+  ]
+ },
+ "rewards": {
+  "rep": 2500,
+  "tokens": 800
+ },
+ "gimmick": "tide"
+}

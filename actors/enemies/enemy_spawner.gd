@@ -86,6 +86,8 @@ func _on_event(ev: Dictionary) -> void:
 				var s: SimActor = EnemyFactory.spawn(world, combat, balls, str(ev["archetype"]), who.pos + off, who.tier)
 				if s != null:
 					summoned[s.id] = who.id
+					if float(ev.get("duration_s", 0.0)) > 0.0:
+						s.flags["despawn_frame"] = world.frame + int(float(ev["duration_s"]) * 60.0)
 					(s.controller as EnemyBrain).alert((who.controller as EnemyBrain).target if who.controller is EnemyBrain else null)
 					world.emit("enemy_spawned", {"actor": s.id, "enemy": ev["archetype"], "summoned": true})
 		"tokens_snatched":

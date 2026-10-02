@@ -1,0 +1,552 @@
+{
+ "id": "si_heap",
+ "name": "KING OF THE HEAP",
+ "title": "Lord of the Landfill",
+ "borough": "staten_island",
+ "district": "si_heap",
+ "kind": "king",
+ "arena": {
+  "theme": "landfill",
+  "size_m": [
+   24,
+   20
+  ],
+  "indoor": false,
+  "floor": "#4A3E30",
+  "key": "#1E6FD9",
+  "props": [
+   {
+    "shape": "box",
+    "size": [
+     30.0,
+     3.0,
+     4.0
+    ],
+    "pos": [
+     0,
+     1.5,
+     -13.5
+    ],
+    "color": "#3A3428",
+    "rot": [
+     8,
+     0,
+     0
+    ]
+   },
+   {
+    "shape": "sphere",
+    "size": [
+     2.0
+    ],
+    "pos": [
+     -13.0,
+     0.8,
+     -8.0
+    ],
+    "color": "#2A2A30",
+    "repeat": {
+     "count": 4,
+     "step": [
+      0,
+      0,
+      5.5
+     ]
+    }
+   },
+   {
+    "shape": "sphere",
+    "size": [
+     2.2
+    ],
+    "pos": [
+     13.0,
+     0.8,
+     -8.0
+    ],
+    "color": "#3A2E22",
+    "repeat": {
+     "count": 4,
+     "step": [
+      0,
+      0,
+      5.5
+     ]
+    }
+   },
+   {
+    "shape": "cylinder",
+    "size": [
+     1.2,
+     0.5
+    ],
+    "pos": [
+     0,
+     0.25,
+     -12.0
+    ],
+    "color": "#141418",
+    "repeat": {
+     "count": 6,
+     "step": [
+      0,
+      0.5,
+      0
+     ]
+    }
+   },
+   {
+    "shape": "cylinder",
+    "size": [
+     0.3,
+     12.0
+    ],
+    "pos": [
+     -15.0,
+     6.0,
+     10.0
+    ],
+    "color": "#5A5A64"
+   },
+   {
+    "shape": "box",
+    "size": [
+     2.0,
+     1.0,
+     1.0
+    ],
+    "pos": [
+     -15.0,
+     12.2,
+     10.0
+    ],
+    "color": "#FF9A40",
+    "emit": 2.0
+   },
+   {
+    "shape": "cylinder",
+    "size": [
+     0.3,
+     12.0
+    ],
+    "pos": [
+     15.0,
+     6.0,
+     10.0
+    ],
+    "color": "#5A5A64"
+   },
+   {
+    "shape": "box",
+    "size": [
+     2.0,
+     1.0,
+     1.0
+    ],
+    "pos": [
+     15.0,
+     12.2,
+     10.0
+    ],
+    "color": "#FF9A40",
+    "emit": 2.0
+   },
+   {
+    "pos": [
+     -12.0,
+     11.0,
+     8.0
+    ],
+    "light": {
+     "color": "#FFA040",
+     "energy": 3.0,
+     "range": 26.0
+    }
+   },
+   {
+    "pos": [
+     12.0,
+     11.0,
+     8.0
+    ],
+    "light": {
+     "color": "#FFA040",
+     "energy": 3.0,
+     "range": 26.0
+    }
+   }
+  ]
+ },
+ "base": {
+  "hp": 3200,
+  "composure": 300,
+  "contest_radius": 3.6,
+  "height_m": 9.0,
+  "radius_m": 2.2,
+  "speed": 3.2,
+  "poise": 9999
+ },
+ "phases": [
+  {
+   "id": 1,
+   "rules": {},
+   "moves": [
+    "bag_avalanche",
+    "fridge_slam",
+    "cart_grab",
+    "compactor",
+    "methane_vent",
+    "absorb",
+    "recycle",
+    "heap_lob",
+    "heap_statement",
+    "heap_show"
+   ]
+  },
+  {
+   "id": 2,
+   "min_tier": 3,
+   "at_hp_pct": 0.5,
+   "transition": "collapse",
+   "rules": {
+    "scale": 1.15
+   },
+   "moves": [
+    "bag_avalanche",
+    "fridge_slam",
+    "cart_grab",
+    "compactor",
+    "methane_vent",
+    "absorb",
+    "recycle",
+    "heap_lob",
+    "heap_statement",
+    "heap_show"
+   ]
+  }
+ ],
+ "t5_event": {
+  "at_hp_pct": 0.25,
+  "move": "fresh_load"
+ },
+ "drops": [
+  "crown_staten_island",
+  "ball_junk",
+  "mixtape_trash_talk"
+ ],
+ "mic_check": "Everything this city ever threw away ended up HERE. And it CHOSE A KING.",
+ "look": {
+  "colors": {
+   "bag": "#1A1A20",
+   "bag_hi": "#3A3A44",
+   "mattress": "#E8DCC0",
+   "stripe": "#5A8ADA",
+   "cart": "#C8CCD4",
+   "tv": "#3A3A44",
+   "screen": "#C8D8D0",
+   "hubcap": "#E8E8F0"
+  },
+  "joints": {
+   "hips": [
+    0,
+    3.0,
+    0
+   ],
+   "torso": [
+    0,
+    3.2,
+    0
+   ],
+   "head": [
+    0,
+    7.4,
+    0
+   ],
+   "arm_l": [
+    -2.4,
+    6.4,
+    0
+   ],
+   "arm_r": [
+    2.4,
+    6.4,
+    0
+   ],
+   "leg_l": [
+    -1.0,
+    3.0,
+    0
+   ],
+   "leg_r": [
+    1.0,
+    3.0,
+    0
+   ]
+  },
+  "parts": [
+   {
+    "joint": "leg_l",
+    "shape": "sphere",
+    "size": [
+     1.3
+    ],
+    "pos": [
+     0,
+     -1.6,
+     0
+    ],
+    "color": "bag"
+   },
+   {
+    "joint": "leg_r",
+    "shape": "sphere",
+    "size": [
+     1.3
+    ],
+    "pos": [
+     0,
+     -1.6,
+     0
+    ],
+    "color": "bag"
+   },
+   {
+    "joint": "hips",
+    "shape": "sphere",
+    "size": [
+     1.8
+    ],
+    "pos": [
+     0,
+     0.3,
+     0
+    ],
+    "color": "bag_hi"
+   },
+   {
+    "joint": "torso",
+    "shape": "sphere",
+    "size": [
+     2.2
+    ],
+    "pos": [
+     0,
+     2.0,
+     0.2
+    ],
+    "color": "bag",
+    "scale": [
+     1.1,
+     1.2,
+     0.9
+    ]
+   },
+   {
+    "joint": "torso",
+    "shape": "box",
+    "size": [
+     2.8,
+     3.0,
+     0.5
+    ],
+    "pos": [
+     0,
+     2.2,
+     -1.8
+    ],
+    "color": "mattress"
+   },
+   {
+    "joint": "torso",
+    "shape": "box",
+    "size": [
+     2.8,
+     0.2,
+     0.52
+    ],
+    "pos": [
+     0,
+     2.8,
+     -1.8
+    ],
+    "color": "stripe"
+   },
+   {
+    "joint": "torso",
+    "shape": "box",
+    "size": [
+     2.8,
+     0.2,
+     0.52
+    ],
+    "pos": [
+     0,
+     1.6,
+     -1.8
+    ],
+    "color": "stripe"
+   },
+   {
+    "joint": "head",
+    "shape": "box",
+    "size": [
+     2.2,
+     1.7,
+     1.6
+    ],
+    "pos": [
+     0,
+     0.6,
+     0
+    ],
+    "color": "tv"
+   },
+   {
+    "joint": "head",
+    "shape": "box",
+    "size": [
+     1.8,
+     1.3,
+     0.1
+    ],
+    "pos": [
+     0,
+     0.6,
+     -0.82
+    ],
+    "color": "screen",
+    "emit": 1.4
+   },
+   {
+    "joint": "head",
+    "shape": "cylinder",
+    "size": [
+     0.4,
+     0.12
+    ],
+    "pos": [
+     -0.7,
+     1.7,
+     0
+    ],
+    "color": "hubcap",
+    "rot": [
+     90,
+     0,
+     0
+    ]
+   },
+   {
+    "joint": "head",
+    "shape": "cylinder",
+    "size": [
+     0.4,
+     0.12
+    ],
+    "pos": [
+     0,
+     1.85,
+     0
+    ],
+    "color": "hubcap",
+    "rot": [
+     90,
+     0,
+     0
+    ]
+   },
+   {
+    "joint": "head",
+    "shape": "cylinder",
+    "size": [
+     0.4,
+     0.12
+    ],
+    "pos": [
+     0.7,
+     1.7,
+     0
+    ],
+    "color": "hubcap",
+    "rot": [
+     90,
+     0,
+     0
+    ]
+   },
+   {
+    "joint": "arm_l",
+    "shape": "box",
+    "size": [
+     1.0,
+     3.2,
+     1.6
+    ],
+    "pos": [
+     0,
+     -1.6,
+     0
+    ],
+    "color": "cart"
+   },
+   {
+    "joint": "arm_r",
+    "shape": "box",
+    "size": [
+     1.0,
+     3.2,
+     1.6
+    ],
+    "pos": [
+     0,
+     -1.6,
+     0
+    ],
+    "color": "cart"
+   },
+   {
+    "joint": "arm_l",
+    "shape": "cylinder",
+    "size": [
+     0.3,
+     0.2
+    ],
+    "pos": [
+     0,
+     -3.3,
+     0.5
+    ],
+    "color": "bag",
+    "rot": [
+     0,
+     0,
+     90
+    ]
+   },
+   {
+    "joint": "arm_r",
+    "shape": "cylinder",
+    "size": [
+     0.3,
+     0.2
+    ],
+    "pos": [
+     0,
+     -3.3,
+     0.5
+    ],
+    "color": "bag",
+    "rot": [
+     0,
+     0,
+     90
+    ]
+   }
+  ]
+ },
+ "rewards": {
+  "rep": 5000,
+  "tokens": 1500
+ },
+ "gimmick": "heap"
+}

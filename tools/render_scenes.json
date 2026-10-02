@@ -170,6 +170,45 @@
       "scene": "res://world/district.tscn",
       "frames": 60,
       "district": "qn_flushing"
+    },
+    {
+      "name": "boss_si_ferryman",
+      "scene": "res://world/arenas/boss_arena.tscn",
+      "frames": 180,
+      "boss": "si_ferryman",
+      "tier": 1
+    },
+    {
+      "name": "boss_si_general",
+      "scene": "res://world/arenas/boss_arena.tscn",
+      "frames": 180,
+      "boss": "si_general",
+      "tier": 1
+    },
+    {
+      "name": "boss_si_heap",
+      "scene": "res://world/arenas/boss_arena.tscn",
+      "frames": 180,
+      "boss": "si_heap",
+      "tier": 1
+    },
+    {
+      "name": "district_si_st_george",
+      "scene": "res://world/district.tscn",
+      "frames": 60,
+      "district": "si_st_george"
+    },
+    {
+      "name": "district_si_narrows",
+      "scene": "res://world/district.tscn",
+      "frames": 60,
+      "district": "si_narrows"
+    },
+    {
+      "name": "district_si_heap",
+      "scene": "res://world/district.tscn",
+      "frames": 60,
+      "district": "si_heap"
     }
   ]
 }

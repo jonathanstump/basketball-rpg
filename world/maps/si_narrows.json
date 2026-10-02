@@ -1,0 +1,137 @@
+{
+ "id": "si_narrows",
+ "borough": "staten_island",
+ "palette": "staten_island",
+ "seed": 1402,
+ "name": "The Narrows",
+ "heights": {
+  "B": [
+   3,
+   4
+  ],
+  "T": [
+   5,
+   6
+  ],
+  "H": [
+   10,
+   18
+  ],
+  "W": [
+   2,
+   3
+  ]
+ },
+ "shops": {},
+ "graffiti": [
+  "pass into a lit cannon",
+  "salute = steal",
+  "the horse flanks",
+  "bridge to coney",
+  "fort walls hide a door",
+  "siege has a safe lane",
+  "pickles knows",
+  "deer don't turn",
+  "the cliff is high",
+  "two bodies one heart"
+ ],
+ "spawns": {
+  "e": [
+   "night_deer",
+   "gull",
+   "ball_hog",
+   "showboat",
+   "sniper",
+   "night_deer",
+   "big_man",
+   "pickpocket"
+  ],
+  "E": [
+   "captain:showboat"
+  ],
+  "c": [
+   "gull",
+   "rat",
+   "gull"
+  ]
+ },
+ "loot": {
+  "%": "bootleg",
+  "w": "si_wire",
+  "$": [
+   "si_retail",
+   "si_limited_locked",
+   "si_flash_0",
+   "si_sugar",
+   "si_grail"
+  ]
+ },
+ "bodegas": [
+  {
+   "id": "si_bodega_3",
+   "cat": "Pickles",
+   "name": "Fort Wadsworth Deli"
+  }
+ ],
+ "stations": [
+  {
+   "id": "si_st_narrows",
+   "name": "Fort Wadsworth",
+   "line": "orange"
+  }
+ ],
+ "npcs": [
+  {
+   "id": "npc_fort_ranger",
+   "name": "Fort Ranger",
+   "lines": [
+    "The General still thinks it's wartime.",
+    "When his cannons light up, pass the ball INTO one. It'll turn on him.",
+    "Later the horse goes off on its own. Same hurt, two bodies."
+   ]
+  },
+  {
+   "id": "npc_mic_check_na",
+   "name": "Mic Check",
+   "lines": [
+    "The Narrows! That bridge goes all the way to Coney Island.",
+    "Respect your elders. Unless they're a cannon-firing statue."
+   ]
+  }
+ ],
+ "crossings": [
+  {
+   "to": "si_st_george",
+   "via": "bay_street",
+   "name": "St. George"
+  },
+  {
+   "to": "bk_coney",
+   "via": "narrows_bridge",
+   "name": "The Narrows Bridge to Brooklyn"
+  }
+ ],
+ "shortcuts": [
+  {
+   "id": "si_narrows_ladder_0",
+   "open_from": "s",
+   "kind": "ladder"
+  }
+ ],
+ "secrets": [
+  {
+   "id": "si_narrows_roof_0_out",
+   "kind": "rooftop"
+  },
+  {
+   "id": "si_narrows_roof_0_in",
+   "kind": "rooftop"
+  }
+ ],
+ "fights": {
+  "M": [
+   "si_general"
+  ],
+  "X": []
+ }
+}

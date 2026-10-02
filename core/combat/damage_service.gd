@@ -204,6 +204,13 @@ func _apply_damage(t: SimActor, dmg: float, res: Dictionary) -> void:
 		dmg = 0.0
 	if t.team != 0 and DebugConsole.one_hit:
 		dmg = t.hp + 1.0
+	var armor: float = float(t.flags.get("armor", 0.0))
+	if armor > 0.0 and dmg > 0.0:
+		## Armor bar over Heart (King of the Heap): soaks damage first.
+		var soak: float = minf(armor, dmg)
+		t.flags["armor"] = armor - soak
+		dmg -= soak
+		world.emit("armor_hit", {"actor": t.id, "absorbed": soak, "left": armor - soak})
 	if not res.is_empty():
 		res["damage"] = dmg
 	t.hp -= dmg
