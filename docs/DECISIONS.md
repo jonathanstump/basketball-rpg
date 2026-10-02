@@ -65,3 +65,17 @@ Format: date · decision · reason. Spec rule §0.1: when the spec is silent, pi
 
 ## M7 — Level curve L60 value
 Spec §11.3 lists L60 = 46,626 but `floor(100 × 60^1.5 + 150)` = 46,625 (every other row in the table is floored). The formula wins; the test asserts 46,625.
+
+## M8 — Brooklyn vertical slice
+- **Start boroughs before M9.** All five start boroughs appear in the creator with their tier maps, but a borough whose start district map is not authored yet shows "(closed tonight)" and can't be picked. `FrontEndFlow.start_district` falls back to Bed-Stuy.
+- **Barker T5 "Hall of Mirrors"** is implemented as a wide projectile fan (6 rings) instead of true mirror-wall ricochets of both players' passes. TODO(spec §9.3): ricochet off the arena mirror walls once the ball system supports wall bounces.
+- **Barker phase 2 "Tilt"** slides the player and loose balls for 4 s every 15 s instead of physically rotating the floor panels. The coaster cars are a telegraphed lane of hazard circles.
+- **The Toll's booth** holds exactly what Pay Up took. Stripping him while it glows (6 s) spills it all back, and anything left over is refunded when you win. Toll Gate is an axis-aligned 7 m wall between you and the hoop for 6 s.
+- **Rush Hour headlights** sweep across X every 5 s, and the glare status cuts the shot window to 60%. Traffic drums are a rolling lane of hazards.
+- **Bridge Collapse** is a full-area grid of falling debris with one safe column (new `safe_lane` pattern).
+- **Pickup Challengers** play first to 7 (2s and 3s), make it take it. Dropping to 1 Heart loses the run instead of cooking you, and the clear rule is not enforced in pickup runs. Brooklyn has three (Sweet Pea and Wheels in Coney Island, Knots in DUMBO), one more than the "2 per borough" minimum.
+- **Boss drop "Bag Move: X"** is a mixtape item that teaches the move on pickup (Toll → Toll Booth).
+- **Earned nickname** uses style counters bumped by the presenter (ankle-breakers, posters, threes, strips, taunts). If none has been used, the fallback is "Next Up".
+- **Bot defense.** The QA bot now goes for Rejections on Statement Dunks (Jump + Hands Up 7 frames before the dunk lands). Without it, the Kings out-healed the bot.
+- **Placed loot.** Loot pools can list `extra` items that always drop. This is how the authored mixtapes, Punch Card, Sugar Rush and flash sheets sit in specific shoeboxes.
+- **Profanity filter.** A short blocked-word list in data/creator.json. Words of 3 letters or fewer only match whole words, to avoid false positives like "Cassidy".

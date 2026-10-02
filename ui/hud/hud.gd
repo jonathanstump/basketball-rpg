@@ -2,7 +2,8 @@ class_name HUD
 extends Control
 ## In-game HUD (spec §14): top-left Heart/Wind/Hype (flame meter), bottom-left
 ## Quarter Waters, bottom-right ball slots + Bag Move + Takeover-ready glow,
-## top-right tokens and Rep, lock-on reticle, context prompt. Boss bar is a
+## top-right tokens and Rep, lock-on reticle, context prompt, name/nickname
+## tag with Crowns. Boss bar is a
 ## separate node (ui/boss_bar).
 
 var game: GameWorld
@@ -20,6 +21,7 @@ func _ready() -> void:
 	_label("tokens", Vector2(1480, 36), UIFonts.title(), 28, HORIZONTAL_ALIGNMENT_RIGHT, 400)
 	_label("rep", Vector2(1480, 74), UIFonts.title(), 24, HORIZONTAL_ALIGNMENT_RIGHT, 400)
 	_label("prompt", Vector2(660, 880), UIFonts.title(), 26, HORIZONTAL_ALIGNMENT_CENTER, 600)
+	_label("tag", Vector2(40, 124), UIFonts.graffiti(), 22, HORIZONTAL_ALIGNMENT_LEFT, 600)
 
 
 func _label(key: String, pos: Vector2, font: Font, size_px: int, align: HorizontalAlignment, width: float) -> Label:
@@ -56,6 +58,8 @@ func _process(delta: float) -> void:
 		_text("tokens", tr("%d TOKENS") % GameState.tokens, Color("#FFD860"))
 		_text("rep", tr("%d REP") % GameState.rep, Color("#F2F6FF"))
 		_text("prompt", prompt)
+		var crowns: String = "  " + "*".repeat(GameState.crowns.size()) if not GameState.crowns.is_empty() else ""
+		_text("tag", NicknameRules.display_name() + crowns, Color("#F4B400") if GameState.nickname != "" else Color("#C8C8D8"))
 	queue_redraw()
 
 

@@ -119,25 +119,36 @@ func _victory(ev: Dictionary) -> void:
 	finished = true
 	boss_bar.show_banner("GAME!", 3.0)
 	var r: Dictionary = ev["rewards"]
-	GameState.add_rep(PlayerBuild.reward_rep(int(r["rep"])))
-	GameState.add_tokens(PlayerBuild.reward_tokens(int(r["tokens"])))
-	for d: String in (r["drops"] as PackedStringArray):
-		GameState.add_item(d, 1)
-	if not GameState.defeated_bosses.has(boss_id):
-		GameState.defeated_bosses.append(boss_id)
-	if str(r["crown"]) != "":
-		GameState.award_crown(str(r["crown"]))
-		var nick: String = NicknameRules.award_if_first_crown()
-		if nick != "":
-			get_tree().create_timer(2.0).timeout.connect(func() -> void:
-				EventBus.dialogue_requested.emit("Mic Check", PackedStringArray([
-					"LADIES AND GENTLEMEN, %s HAS A CROWN!" % JU.s(DataDB.item("boroughs", str(r["crown"])), "name", "THE BOROUGH").to_upper(),
-					"From now on, this city calls you... \"%s\"!" % nick])))
+	var nick: String = grant_rewards(boss_id, r)
+	if nick != "":
+		get_tree().create_timer(2.0).timeout.connect(func() -> void:
+			EventBus.dialogue_requested.emit("Mic Check", PackedStringArray([
+				"LADIES AND GENTLEMEN, %s HAS A CROWN!" % JU.s(DataDB.item("boroughs", str(r["crown"])), "name", "THE BOROUGH").to_upper(),
+				"From now on, this city calls you... \"%s\"!" % nick])))
 	EventBus.boss_defeated.emit(boss_id)
 	ArenaBuilder.open_gate(sim)
 	SaveSystem.request_autosave()
 	if not return_to.is_empty():
 		get_tree().create_timer(4.0).timeout.connect(_leave)
+
+
+static func grant_rewards(id: String, r: Dictionary) -> String:
+	## Rep, tokens, drops, the Crown (+1 tattoo slot) and, on the first Crown,
+	## the earned nickname (returned, else "").
+	GameState.add_rep(PlayerBuild.reward_rep(int(r["rep"])))
+	GameState.add_tokens(PlayerBuild.reward_tokens(int(r["tokens"])))
+	for d: String in (r["drops"] as PackedStringArray):
+		GameState.add_item(d, 1)
+		if DataDB.has_item("mixtapes", d):
+			var teaches: String = JU.s(DataDB.item("mixtapes", d), "teaches")
+			if not GameState.known_bag_moves.has(teaches):
+				GameState.known_bag_moves.append(teaches)
+	if not GameState.defeated_bosses.has(id):
+		GameState.defeated_bosses.append(id)
+	if str(r["crown"]) == "":
+		return ""
+	GameState.award_crown(str(r["crown"]))
+	return NicknameRules.award_if_first_crown()
 
 
 func _leave() -> void:

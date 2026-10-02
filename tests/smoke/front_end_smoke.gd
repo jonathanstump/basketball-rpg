@@ -37,11 +37,11 @@ func _ready() -> void:
 	if pro.phase != "call":
 		problems.append("prologue: walk-up did not reach the court (%s)" % pro.phase)
 	pro.call_next()
-	await _frames(240)
+	await _frames(100)
 	if pro.crew.is_empty():
 		problems.append("prologue: no crew")
 	pro.skip_tutorial()
-	await _frames(300)
+	await _frames(260)
 	if pro.phase != "out" or not pro.tracker.is_done("cameo"):
 		problems.append("prologue: cameo did not finish (%s)" % pro.phase)
 	pro.queue_free()
@@ -54,9 +54,9 @@ func _ready() -> void:
 	bot.hoop_id = court.duel.hoop.id
 	bot.opponent_id = court.rival.id
 	court.use_scripted_input(bot)
-	await _frames(400)
+	await _frames(300)
 	if int(court.duel.score[court.player.id]) + int(court.duel.score[court.rival.id]) == 0:
-		problems.append("challenger court: nobody scored in 400 frames")
+		problems.append("challenger court: nobody scored in 300 frames")
 	if problems.is_empty():
 		print("SMOKE OK front_end_smoke")
 	else:

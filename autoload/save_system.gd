@@ -11,6 +11,12 @@ var _pending_autosave_s: float = -1.0
 
 
 func _ready() -> void:
+	for a: String in OS.get_cmdline_user_args():
+		if a.begins_with("--qa-run="):
+			save_dir = "user://qa_saves"   # QA runs never touch the player's saves
+	for a2: String in OS.get_cmdline_args():
+		if a2.begins_with("res://tests/") or a2.ends_with("gut_cmdln.gd"):
+			save_dir = "user://test_saves"   # smoke scenes and GUT neither
 	DirAccess.make_dir_recursive_absolute(save_dir)
 
 
