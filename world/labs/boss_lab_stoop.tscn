@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://world/arenas/boss_arena.gd" id="1"]
+
+[node name="BossLabStoop" type="Node3D"]
+script = ExtResource("1")
+boss_id = "bk_stoop"
+tier = 1

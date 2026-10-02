@@ -1,0 +1,81 @@
+class_name BossBar
+extends Control
+## Boss HUD (spec §9.1, §14): bottom-center name in graffiti type + title,
+## Heart bar, Composure bar under it; duel banner (CHECK, GAME POINT, TAKE
+## IT BACK) and the clear-the-ball hint.
+
+var boss: SimActor = null
+var duel: PossessionDuel = null
+var title: String = ""
+var banner: String = ""
+var _banner_t: float = 0.0
+var _ghost: float = 1.0
+var _name: Label
+var _title: Label
+var _banner: Label
+var _hint: Label
+
+
+func _ready() -> void:
+	set_anchors_preset(Control.PRESET_FULL_RECT)
+	mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_name = _mk(UIFonts.graffiti(), 44, Vector2(560, 902), Color("#F2F6FF"))
+	_title = _mk(UIFonts.title(), 18, Vector2(560, 952), Color("#F4B400"))
+	_banner = _mk(UIFonts.graffiti(), 96, Vector2(360, 300), Color("#FF3EA5"))
+	_banner.size = Vector2(1200, 140)
+	_banner.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_hint = _mk(UIFonts.title(), 22, Vector2(660, 840), Color("#F4B400"))
+	_hint.size = Vector2(600, 30)
+	_hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+
+
+func _mk(font: Font, size_px: int, pos: Vector2, col: Color) -> Label:
+	var l: Label = Label.new()
+	l.add_theme_font_override("font", font)
+	l.add_theme_font_size_override("font_size", size_px)
+	l.add_theme_color_override("font_color", col)
+	l.add_theme_color_override("font_outline_color", Color("#0B0B10"))
+	l.add_theme_constant_override("outline_size", 12)
+	l.position = pos
+	l.size = Vector2(800, size_px + 16)
+	l.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(l)
+	return l
+
+
+func show_banner(text: String, seconds: float = 1.4) -> void:
+	banner = tr(text)
+	_banner_t = seconds
+
+
+func _process(delta: float) -> void:
+	visible = boss != null
+	if boss == null:
+		return
+	_name.text = tr(boss.display_name)
+	_title.text = tr(title)
+	_banner_t -= delta
+	_banner.text = banner if _banner_t > 0.0 else ""
+	_banner.scale = Vector2.ONE * (1.0 + maxf(0.0, _banner_t - 1.0) * 0.6)
+	var hint: String = ""
+	if duel != null and duel.state == PossessionDuel.PLAYER_OFFENSE and not duel.player_cleared:
+		hint = tr("CLEAR IT - TAKE IT PAST THE ARC")
+	_hint.text = hint
+	_ghost = lerpf(_ghost, boss.hp / maxf(1.0, boss.hp_max), clampf(delta * 2.0, 0.0, 1.0))
+	queue_redraw()
+
+
+func _draw() -> void:
+	if boss == null:
+		return
+	var pos: Vector2 = Vector2(560, 990)
+	var w: float = 800.0
+	draw_rect(Rect2(pos - Vector2(5, 5), Vector2(w + 10, 34)), Color("#0B0B10"))
+	draw_rect(Rect2(pos, Vector2(w, 24)), Color("#24242E"))
+	draw_rect(Rect2(pos, Vector2(w * clampf(_ghost, 0, 1), 24)), Color(1, 1, 1, 0.4))
+	draw_rect(Rect2(pos, Vector2(w * clampf(boss.hp / maxf(1.0, boss.hp_max), 0, 1), 24)), Color("#E8344A"))
+	if boss.composure != null:
+		var cp: Vector2 = pos + Vector2(0, 32)
+		draw_rect(Rect2(cp, Vector2(w, 10)), Color("#24242E"))
+		var col: Color = Color("#FFE040") if boss.composure.broken != "" else Color("#F4B400")
+		draw_rect(Rect2(cp, Vector2(w * boss.composure.ratio(), 10)), col)

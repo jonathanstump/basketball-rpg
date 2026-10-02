@@ -15,6 +15,7 @@ var _cooldown: int = 0
 var _reacted_to: int = -1
 var aggressive: bool = true
 var passive_frames: int = 0       # holds fire for a while (QA warm-up)
+var duel: PossessionDuel = null   # court rules awareness (boss duels, challengers)
 
 
 static func for_tier(tier: int, seed_value: int = 7) -> ChallengerBrain:
@@ -40,6 +41,8 @@ func fill(input: ActorInput, a: SimActor, w: SimWorld) -> void:
 	if h == null:
 		return
 	if opp == null:
+		return
+	if duel != null and _duel_rules(input, a, h):
 		return
 	if _react_to_threat(input, a, opp, w):
 		return
@@ -73,6 +76,10 @@ func _threat_frame(opp: SimActor) -> int:
 		var prim: String = JU.s(oh.action_move, "primitive")
 		if (prim == "strike" or prim == "slam") and oh.action_frame <= JU.i(oh.action_move, "startup"):
 			return JU.i(oh.action_move, "startup") - oh.action_frame
+	if opp.controller is BossBrain:
+		var br: MoveRunner = (opp.controller as BossBrain).runner
+		if br.running and br.frame <= br.startup():
+			return br.startup() - br.frame
 	if opp.controller is TrainingDummy:
 		var tr: MoveRunner = (opp.controller as TrainingDummy).runner
 		if tr.running and tr.frame <= tr.startup():
@@ -97,6 +104,23 @@ func _react_to_threat(input: ActorInput, a: SimActor, opp: SimActor, w: SimWorld
 		else:
 			input.press("hands_up")
 		return true
+	return false
+
+
+func _duel_rules(input: ActorInput, a: SimActor, h: Hooper) -> bool:
+	## Court rules: wait out CHECK/transitions, clear the ball past the arc.
+	match duel.state:
+		PossessionDuel.CHECK, PossessionDuel.PHASE_TRANSITION, PossessionDuel.VICTORY, PossessionDuel.DEFEAT:
+			input.release("shoot")
+			return true
+		PossessionDuel.PLAYER_OFFENSE:
+			if a.has_ball and not duel.player_cleared and h.action == "":
+				var hoop: SimHoop = _hoop(h)
+				if hoop != null:
+					var out: Vector3 = a.pos - hoop.floor_point()
+					out.y = 0.0
+					_move(input, a, hoop.floor_point() + out.normalized() * 7.8)
+					return true
 	return false
 
 

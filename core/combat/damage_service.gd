@@ -70,6 +70,11 @@ func resolve(hb: Hitbox, t: SimActor) -> Dictionary:
 			if sb != null:
 				balls.give(sb, att)
 				world.emit("ball_stolen", {"actor": att.id, "target": t.id, "ball": sb.id, "home": sb.home_id})
+		if hb.tags.has("knockback_m") and t.kind != "boss":
+			var away: Vector3 = t.pos - (att.pos if att != null else hb.volume.center())
+			away.y = 0.0
+			if away.length() > 0.01:
+				t.pos = world.collision.resolve(t.pos + away.normalized() * float(hb.tags["knockback_m"]), t.radius)
 		if hb.tags.has("snatch_pct"):
 			world.emit("tokens_snatched", {"actor": att.id, "target": t.id, "pct": float(hb.tags["snatch_pct"])})
 	res["weight"] = hb.weight
@@ -139,6 +144,9 @@ func _rejection(att: SimActor, t: SimActor, hb: Hitbox, res: Dictionary) -> void
 	if ball_id != 0 and balls != null:
 		for b: SimBall in balls.balls:
 			if b.id == ball_id:
+				var holder: SimActor = world.actor_by_id(b.holder_id) if b.state == SimBall.State.HELD else null
+				if holder != null:
+					holder.has_ball = false
 				if not t.has_ball:
 					balls.give(b, t)
 				else:

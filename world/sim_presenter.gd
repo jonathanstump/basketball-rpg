@@ -97,6 +97,15 @@ func on_event(ev: Dictionary) -> void:
 			_popup(str(ev.get("text", "")), ev.get("pos", at), str(ev.get("style", "good")))
 		"hit_resolved":
 			_on_hit(ev)
+		"telegraph_circle":
+			_ring(ev["pos"], float(ev["radius"]), float(ev["delay_s"]), Color("#FF3E3E"))
+		"zone_spawned":
+			_ring(ev["pos"], float(ev["radius"]), float(ev["duration_s"]), Color("#F2F2F2") if str(ev.get("zone", "")) == "white" else Color("#FF7A20"))
+		"move_started":
+			if bool(ev.get("unblockable", false)):
+				var ua: SimActor = game.sim.actor_by_id(int(ev["actor"]))
+				if ua != null:
+					_popup("!", ua.pos + Vector3(0, ua.height * 0.4, 0), "bad")
 		"composure_broken":
 			var who: SimActor = game.sim.actor_by_id(int(ev["actor"]))
 			if who != null and who != game.player:
@@ -182,3 +191,25 @@ func _on_hit(ev: Dictionary) -> void:
 func _popup(text: String, pos: Variant, style: String) -> void:
 	var p: Vector3 = pos if pos is Vector3 else Vector3.ZERO
 	EventBus.popup_text.emit(text, p, style)
+
+
+func _ring(pos: Vector3, radius: float, life_s: float, col: Color) -> void:
+	## Ground telegraph (spec §8.1 "ground reticle"): a flat ring that fills in.
+	var mi: MeshInstance3D = MeshInstance3D.new()
+	mi.mesh = MeshLib.torus(maxf(0.05, radius - 0.12), radius)
+	mi.material_override = ToonMaterials.neon(col, 2.5)
+	mi.position = Vector3(pos.x, game.sim.collision.ground_height(pos + Vector3(0, 2, 0)) + 0.05, pos.z)
+	mi.scale = Vector3(1, 0.15, 1)
+	game.add_child(mi)
+	var fill: MeshInstance3D = MeshInstance3D.new()
+	fill.mesh = MeshLib.cylinder(radius, 0.02)
+	var fm: StandardMaterial3D = StandardMaterial3D.new()
+	fm.albedo_color = Color(col.r, col.g, col.b, 0.25)
+	fm.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	fm.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	fill.material_override = fm
+	fill.scale = Vector3(0.05, 1, 0.05)
+	mi.add_child(fill)
+	var tw: Tween = mi.create_tween()
+	tw.tween_property(fill, "scale", Vector3(1, 1, 1), maxf(0.05, life_s))
+	tw.tween_callback(mi.queue_free)

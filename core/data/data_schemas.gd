@@ -23,6 +23,9 @@ const CATALOGS: Dictionary = {
 	"enemies": {"id": "string", "name": "string", "kind": "enum:common|critter|unique|elite|prop_target",
 		"hp": "number", "damage": "number", "composure": "number", "speed": "number", "rep": "number",
 		"tokens": "number", "behavior": "string", "moves": "refs:move@enemies", "captain_move": "ref?:move@enemies"},
+	"bosses": {"id": "string", "name": "string", "title": "string", "borough": "string",
+		"kind": "enum:mini|king|landmark|final|superboss|rival", "arena": "dict", "phases": "array",
+		"drops": "array", "rewards": "dict?", "mic_check": "string", "look": "dict"},
 	"bag_moves": {
 		"id": "string", "name": "string", "hype": "number", "effect": "string",
 		"impl": "string", "source": "string",
@@ -92,6 +95,15 @@ static func custom_checks(db: DataStore) -> PackedStringArray:
 		for st: String in STATS:
 			if not stats.has(st):
 				errs.append("archetype %s missing stat %s" % [arch_id, st])
+	for boss_id: Variant in db.catalog("bosses").keys():
+		var boss: Dictionary = db.boss(str(boss_id))
+		for p: Variant in JU.a(boss, "phases"):
+			for mid: Variant in JU.a(p as Dictionary, "moves"):
+				if not db.moves_for(str(boss_id)).has(str(mid)) and not db.moves_for(JU.s(boss, "borrow_from", "")).has(str(mid)):
+					errs.append("boss %s phase move %s not found" % [boss_id, mid])
+		var ev: Dictionary = JU.dict(boss, "t5_event")
+		if not ev.is_empty() and not db.moves_for(str(boss_id)).has(JU.s(ev, "move")):
+			errs.append("boss %s t5 move %s not found" % [boss_id, JU.s(ev, "move")])
 	for ball_id: Variant in db.catalog("balls").keys():
 		var sc: Dictionary = JU.dict(db.ball(str(ball_id)), "scaling")
 		for st2: Variant in sc.keys():

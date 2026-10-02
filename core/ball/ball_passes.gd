@@ -149,7 +149,7 @@ static func _seg_point_dist(a: Vector3, b: Vector3, p: Vector3) -> float:
 
 # ------------------------------------------------------------------ lobs
 
-func lob(b: SimBall, thrower: SimActor, target: Vector3) -> void:
+func lob(b: SimBall, thrower: SimActor, target: Vector3, flight_s: float = -1.0) -> void:
 	var lc: Dictionary = JU.dict(sys.cfg, "lob")
 	var flat: Vector3 = target - thrower.pos
 	flat.y = 0.0
@@ -164,7 +164,7 @@ func lob(b: SimBall, thrower: SimActor, target: Vector3) -> void:
 	b.shooter_id = thrower.id
 	b.last_touch_id = thrower.id
 	b.lob_damage = true
-	b.flight = ShotFlight.make(start, target, JU.f(lc, "apex_m", 5.0), JU.f(lc, "time_s", 0.9))
+	b.flight = ShotFlight.make(start, target, JU.f(lc, "apex_m", 5.0), flight_s if flight_s > 0.0 else JU.f(lc, "time_s", 0.9))
 	sys.world.emit("lob_released", {"ball": b.id, "actor": thrower.id, "target": target})
 
 
@@ -173,7 +173,7 @@ func land_lob(b: SimBall) -> void:
 	var thrower: SimActor = sys.world.actor_by_id(b.shooter_id)
 	var radius: float = JU.f(lc, "radius", 2.0)
 	var targets: Array[int] = []
-	for o: SimActor in sys.world.actors:
+	for o: SimActor in (sys.world.actors if b.lob_damage else [] as Array[SimActor]):
 		if not o.alive or o.kind == "prop" or (thrower != null and o.team == thrower.team):
 			continue
 		if Vector2(o.pos.x - b.pos.x, o.pos.z - b.pos.z).length() <= radius + o.radius:

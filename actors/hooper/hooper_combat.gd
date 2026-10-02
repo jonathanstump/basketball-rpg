@@ -251,10 +251,13 @@ func _reach_in(h: Hooper) -> void:
 	vol.yaw = a.facing
 	a.flags["reach_missed"] = true
 	for o: SimActor in combat.world.hostiles_of(a):
-		if not o.has_ball or not vol.hits(o) or o.flags.has("move") or bool(o.flags.get("unstealable", false)):
+		var showboating: bool = bool(o.flags.get("showboat", false))
+		if not o.has_ball or not vol.hits(o) or (o.flags.has("move") and not showboating) or bool(o.flags.get("unstealable", false)):
 			continue
 		var chance: float = JU.f(h.action_move, "steal_chance", 0.35) + float(a.stat("hands") - 10) * JU.f(JU.dict(DataDB.tuning("combat"), "reach_in"), "hands_per_pt", 0.01)
 		chance -= float(o.flags.get("ball_security", 0.0))
+		if showboating:
+			chance = 1.0
 		if combat.world.rng.randf() < chance:
 			var b: SimBall = balls.take_from(o)
 			if b != null:
@@ -262,7 +265,12 @@ func _reach_in(h: Hooper) -> void:
 				o.flags["disarmed"] = true
 				a.hype.gain("strip")
 				a.flags["reach_missed"] = false
-				combat.world.emit("steal", {"actor": a.id, "target": o.id})
+				if showboating and o.composure != null:
+					var comp: float = JU.f(JU.dict(DataDB.tuning("combat"), "parry"), "strip_composure", 30.0) * JU.f(JU.dict(DataDB.tuning("bosses"), "duel"), "showboat_strip_mult", 2.0)
+					if o.composure.add(comp, "stagger") != "":
+						combat.world.emit("composure_broken", {"actor": o.id, "kind": "stagger"})
+					o.flags["showboat"] = false
+				combat.world.emit("steal", {"actor": a.id, "target": o.id, "showboat": showboating})
 		return
 
 

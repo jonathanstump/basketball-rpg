@@ -49,7 +49,13 @@ static func frame(r: MoveRunner) -> void:
 					var p: Vector3 = r.target.pos if r.target != null else r.actor.pos + r.dir * 8.0
 					if i2 > 0:
 						p += Vector3(r.world.rng.randf_range(-3, 3), 0, r.world.rng.randf_range(-3, 3))
-					_delayed_circle(r, m, p, JU.f(m, "flight_s", 1.1) + 0.25 * float(i2), true)
+					var flight: float = JU.f(m, "flight_s", 1.1) + 0.25 * float(i2)
+					var hb_l: Hitbox = _delayed_circle(r, m, p, flight, true)
+					if i2 == 0 and JU.b(m, "uses_ball") and r.balls != null and r.actor.has_ball:
+						var ball: SimBall = r.balls.lob_ball(r.actor, p, flight, false)
+						if ball != null:
+							hb_l.tags["ball"] = ball.id
+							r.world.emit("ball_thrown", {"actor": r.actor.id, "ball": ball.id})
 		"ring_wave":
 			if first_active:
 				var hb2: Hitbox = r.make_hitbox({"shape": "ring", "radius": 0.6, "width": 0.7, "height": JU.f(m, "ring_height", 0.55)}, int(JU.f(m, "ring_max_m", 9.0) / JU.f(m, "ring_speed", 9.0) * 60.0))
@@ -93,6 +99,12 @@ static func frame(r: MoveRunner) -> void:
 				var hb6: Hitbox = r.make_hitbox(_vol(m, {"shape": "circle", "radius": 2.5, "height": 4.0}), r.active())
 				hb6.lob = true
 				hb6.tags["statement"] = true
+				if r.balls != null and r.actor.has_ball:
+					var sb: SimBall = r.balls.ball_of(r.actor)
+					if sb != null:
+						hb6.tags["ball"] = sb.id
+			if r.frame == r.total - 1:
+				r.world.emit("statement_dunk_finished", {"actor": r.actor.id})
 		"reposition":
 			r.actor.invulnerable = r.in_active()
 			if r.frame == s + r.active():
@@ -146,11 +158,12 @@ static func _world_circle(r: MoveRunner, m: Dictionary, c: Vector3, frames: int)
 	return hb
 
 
-static func _delayed_circle(r: MoveRunner, m: Dictionary, c: Vector3, delay_s: float, is_lob: bool) -> void:
+static func _delayed_circle(r: MoveRunner, m: Dictionary, c: Vector3, delay_s: float, is_lob: bool) -> Hitbox:
 	var hb: Hitbox = _world_circle(r, m, c, 4)
 	hb.delay = int(delay_s * 60.0)
 	hb.lob = is_lob and JU.b(m, "rejectable", is_lob)
 	r.world.emit("telegraph_circle", {"actor": r.actor.id, "pos": c, "radius": hb.volume.radius, "delay_s": delay_s, "move": JU.s(m, "id")})
+	return hb
 
 
 static func _pattern(r: MoveRunner, m: Dictionary) -> void:

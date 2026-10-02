@@ -125,7 +125,7 @@ func contest(a: SimActor) -> Array:
 	var best: float = 0.0
 	var who: SimActor = null
 	for o: SimActor in sys.world.hostiles_of(a):
-		if bool(o.flags.get("shook", false)) or bool(o.flags.get("staggered", false)):
+		if o.is_broken() or bool(o.flags.get("downed", false)):
 			continue
 		var cv: float = ShotResolver.contest_of(a.pos, o.pos, o.forward(), o.contest_radius * float(o.flags.get("contest_mult", 1.0)))
 		if cv > best:
@@ -152,7 +152,7 @@ func _ctx(h: Hooper, contest_v: float) -> ShotContext:
 
 func _wide_open(a: SimActor) -> bool:
 	for o: SimActor in sys.world.hostiles_of(a):
-		if o.kind == "boss" and bool(o.flags.get("shook", false)):
+		if o.kind == "boss" and o.is_shook():
 			return true
 	return false
 

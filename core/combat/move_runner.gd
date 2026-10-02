@@ -16,6 +16,7 @@ var dir: Vector3 = Vector3.FORWARD
 var target: SimActor = null
 var state: Dictionary = {}          # per-move scratch for primitives
 var speed_mult: float = 1.0         # tier/aggression recovery scaling
+var balls: BallSystem = null        # set by brains whose moves use the real ball
 
 
 func _init(a: SimActor, w: SimWorld, c: CombatSystem) -> void:
@@ -125,6 +126,8 @@ func make_hitbox(volume_dict: Dictionary, frames: int) -> Hitbox:
 	hb.status = JU.dict(move, "status")
 	if JU.b(move, "steal"):
 		hb.tags["steal"] = true
+	if JU.f(move, "knockback_m") > 0.0:
+		hb.tags["knockback_m"] = JU.f(move, "knockback_m")
 	if JU.b(move, "snatch"):
 		hb.tags["snatch_pct"] = float(actor.flags.get("snatch_pct", 0.05))
 	return combat.add(hb)

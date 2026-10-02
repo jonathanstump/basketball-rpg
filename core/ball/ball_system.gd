@@ -119,12 +119,13 @@ func pass_ball(a: SimActor, kind: String, target_point: Vector3, homing_target: 
 	return b
 
 
-func lob_ball(a: SimActor, target: Vector3) -> SimBall:
+func lob_ball(a: SimActor, target: Vector3, flight_s: float = -1.0, deal_damage: bool = true) -> SimBall:
 	var b: SimBall = ball_of(a)
 	if b == null:
 		return null
 	a.has_ball = false
-	passes.lob(b, a, target)
+	passes.lob(b, a, target, flight_s)
+	b.lob_damage = deal_damage
 	return b
 
 

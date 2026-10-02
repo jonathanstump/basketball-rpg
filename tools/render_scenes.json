@@ -33,6 +33,11 @@
       "scene": "res://world/labs/enemy_lab.tscn",
       "frames": 40,
       "mode": "overview"
+    },
+    {
+      "name": "boss_lab_stoop",
+      "scene": "res://world/labs/boss_lab_stoop.tscn",
+      "frames": 360
     }
   ]
 }

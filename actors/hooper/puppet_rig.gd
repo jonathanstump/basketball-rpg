@@ -59,7 +59,17 @@ func apply_pose(pose: Dictionary) -> void:
 	scale = Vector3(1.0 + s * 0.5, 1.0 - s, 1.0 + s * 0.5)
 
 
+var _tint: Color = Color.WHITE
+var _meshes: Array[MeshInstance3D] = []
+
+
 func set_tint(c: Color) -> void:
 	## Hit-flash / glow tint through the toon shader's instance uniform.
-	for n: Node in find_children("*", "MeshInstance3D", true, false):
-		(n as MeshInstance3D).set_instance_shader_parameter("tint", c)
+	if c == _tint:
+		return
+	_tint = c
+	if _meshes.is_empty():
+		for n: Node in find_children("*", "MeshInstance3D", true, false):
+			_meshes.append(n as MeshInstance3D)
+	for mi: MeshInstance3D in _meshes:
+		mi.set_instance_shader_parameter("tint", c)
