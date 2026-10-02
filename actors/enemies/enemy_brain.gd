@@ -85,7 +85,7 @@ func step() -> void:
 			actor.flags["knocked"] = false
 			actor.flags["downed"] = false
 		return
-	if actor.is_broken():
+	if actor.is_broken() or StatusEffects.has(actor, "frozen"):
 		runner.interrupt()
 		actor.anim_state = "hit"
 		return
@@ -171,7 +171,7 @@ func _engage() -> void:
 		if target == null or not target.alive:
 			set_state("idle")
 			return
-	if actor.pos.distance_to(actor.home) > JU.f(ai, "leash_m", 35.0) * float(actor.flags.get("leash_mult", 1.0)):
+	if actor.pos.distance_to(actor.home) > JU.f(ai, "leash_m", 35.0) * float(actor.flags.get("leash_mult", 1.0)) * float(GameState.flags.get("enemy_leash_mult", 1.0)):
 		set_state("leash")
 		return
 	if EnemyBehaviors.engage(self):
@@ -227,6 +227,8 @@ func move_usable(m: Dictionary, d: float) -> bool:
 
 
 func pick_move(d: float) -> Dictionary:
+	if StatusEffects.has(actor, "blind"):
+		return {}
 	var total: float = 0.0
 	var cands: Array[Dictionary] = []
 	for m: Dictionary in moves:

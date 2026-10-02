@@ -1,0 +1,1079 @@
+{
+ "kicks": [
+  {
+   "id": "kicks_bronx_0",
+   "name": "Classic Lows (Bronx)",
+   "slot": "kicks",
+   "rarity": "common",
+   "brand": "VELOCI",
+   "borough": "bronx",
+   "effects": {
+    "speed_mult": 0.05
+   },
+   "price": 600,
+   "flavor": "Low-tops that never go out of style. Stitched under the El, one train at a time."
+  },
+  {
+   "id": "kicks_bronx_1",
+   "name": "Bronx Shell Tops",
+   "slot": "kicks",
+   "rarity": "common",
+   "brand": "KONG",
+   "borough": "bronx",
+   "effects": {
+    "poise_add": 10
+   },
+   "price": 500,
+   "flavor": "Toe caps like armor. Stitched under the El, one train at a time."
+  },
+  {
+   "id": "kicks_bronx_2",
+   "name": "Bronx Street Runners",
+   "slot": "kicks",
+   "rarity": "common",
+   "brand": "VELOCI",
+   "borough": "bronx",
+   "effects": {
+    "dodge_dist_mult": 0.1
+   },
+   "price": 500,
+   "flavor": "Built for cutting corners. Literally. Smells like the block party never ended."
+  },
+  {
+   "id": "kicks_bronx_3",
+   "name": "Bronx High-Flyers",
+   "slot": "kicks",
+   "rarity": "common",
+   "brand": "AIRWAVE",
+   "borough": "bronx",
+   "effects": {
+    "jump_add": 0.25,
+    "dunk_range_mult": 0.1
+   },
+   "price": 700,
+   "flavor": "Air units you can hear. Smells like the block party never ended."
+  },
+  {
+   "id": "kicks_bronx_4",
+   "name": "Bronx Lockdown Mids",
+   "slot": "kicks",
+   "rarity": "rare",
+   "brand": "LOCKDOWN",
+   "borough": "bronx",
+   "effects": {
+    "parry_frames_add": 2
+   },
+   "price": 1350,
+   "flavor": "Lateral support for hands-up defense. Murals on the inside lining."
+  },
+  {
+   "id": "kicks_bronx_5",
+   "name": "Bronx Slides & Socks",
+   "slot": "kicks",
+   "rarity": "rare",
+   "brand": "GHOST",
+   "borough": "bronx",
+   "effects": {
+    "speed_mult": -0.15,
+    "taunt_hype_mult": 1.0
+   },
+   "price": 1800,
+   "flavor": "A joke. A powerful joke. Murals on the inside lining."
+  },
+  {
+   "id": "kicks_bronx_6",
+   "name": "Bronx Kong Force",
+   "slot": "kicks",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "bronx",
+   "effects": {
+    "poise_mult": 0.15,
+    "dr_add": 0.05
+   },
+   "price": 1600,
+   "flavor": "Heavy. Proud of it. Murals on the inside lining."
+  },
+  {
+   "id": "kicks_bronx_7",
+   "name": "Bronx Strata Pro",
+   "slot": "kicks",
+   "rarity": "rare",
+   "brand": "STRATA",
+   "borough": "bronx",
+   "effects": {
+    "perfect_add": 0.01
+   },
+   "price": 1400,
+   "flavor": "Shooters swear by the heel cup. Smells like the block party never ended."
+  },
+  {
+   "id": "kicks_bronx_8",
+   "name": "Bronx Veloci Blur",
+   "slot": "kicks",
+   "rarity": "epic",
+   "brand": "VELOCI",
+   "borough": "bronx",
+   "effects": {
+    "speed_mult": 0.12,
+    "dodge_wind_mult": -0.25
+   },
+   "price": 3250,
+   "flavor": "Blink and they're gone. Stitched under the El, one train at a time."
+  },
+  {
+   "id": "kicks_bronx_9",
+   "name": "Bronx Ghost Walkers",
+   "slot": "kicks",
+   "rarity": "epic",
+   "brand": "GHOST",
+   "borough": "bronx",
+   "effects": {
+    "dodge_decoy": 1
+   },
+   "price": 4750,
+   "flavor": "Leave a step behind you. Stitched under the El, one train at a time."
+  },
+  {
+   "id": "kicks_bronx_10",
+   "name": "Bronx Court Grips",
+   "slot": "kicks",
+   "rarity": "epic",
+   "brand": "LOCKDOWN",
+   "borough": "bronx",
+   "effects": {
+    "ball_security_add": 0.15
+   },
+   "price": 3550,
+   "flavor": "Rubber that won't let go. Murals on the inside lining."
+  },
+  {
+   "id": "kicks_bronx_11",
+   "name": "Bronx Bounce Boosts",
+   "slot": "kicks",
+   "rarity": "epic",
+   "brand": "AIRWAVE",
+   "borough": "bronx",
+   "effects": {
+    "jump_add": 0.15
+   },
+   "price": 4900,
+   "flavor": "Springs, basically. Murals on the inside lining."
+  },
+  {
+   "id": "kicks_brooklyn_0",
+   "name": "Classic Lows (Brooklyn)",
+   "slot": "kicks",
+   "rarity": "common",
+   "brand": "VELOCI",
+   "borough": "brooklyn",
+   "effects": {
+    "speed_mult": 0.05
+   },
+   "price": 750,
+   "flavor": "Low-tops that never go out of style. Survived a summer on the Coney sand."
+  },
+  {
+   "id": "kicks_brooklyn_1",
+   "name": "Brooklyn Shell Tops",
+   "slot": "kicks",
+   "rarity": "common",
+   "brand": "KONG",
+   "borough": "brooklyn",
+   "effects": {
+    "poise_add": 10
+   },
+   "price": 500,
+   "flavor": "Toe caps like armor. Stoop-tested, grandma-approved."
+  },
+  {
+   "id": "kicks_brooklyn_2",
+   "name": "Brooklyn Street Runners",
+   "slot": "kicks",
+   "rarity": "common",
+   "brand": "VELOCI",
+   "borough": "brooklyn",
+   "effects": {
+    "dodge_dist_mult": 0.1
+   },
+   "price": 450,
+   "flavor": "Built for cutting corners. Literally. Brownstone brown with a boardwalk soul."
+  },
+  {
+   "id": "kicks_brooklyn_3",
+   "name": "Brooklyn High-Flyers",
+   "slot": "kicks",
+   "rarity": "common",
+   "brand": "AIRWAVE",
+   "borough": "brooklyn",
+   "effects": {
+    "jump_add": 0.25,
+    "dunk_range_mult": 0.1
+   },
+   "price": 450,
+   "flavor": "Air units you can hear. Brownstone brown with a boardwalk soul."
+  },
+  {
+   "id": "kicks_brooklyn_4",
+   "name": "Brooklyn Lockdown Mids",
+   "slot": "kicks",
+   "rarity": "rare",
+   "brand": "LOCKDOWN",
+   "borough": "brooklyn",
+   "effects": {
+    "parry_frames_add": 2
+   },
+   "price": 1850,
+   "flavor": "Lateral support for hands-up defense. Survived a summer on the Coney sand."
+  },
+  {
+   "id": "kicks_brooklyn_5",
+   "name": "Brooklyn Slides & Socks",
+   "slot": "kicks",
+   "rarity": "rare",
+   "brand": "GHOST",
+   "borough": "brooklyn",
+   "effects": {
+    "speed_mult": -0.15,
+    "taunt_hype_mult": 1.0
+   },
+   "price": 1600,
+   "flavor": "A joke. A powerful joke. Survived a summer on the Coney sand."
+  },
+  {
+   "id": "kicks_brooklyn_6",
+   "name": "Brooklyn Kong Force",
+   "slot": "kicks",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "brooklyn",
+   "effects": {
+    "poise_mult": 0.15,
+    "dr_add": 0.05
+   },
+   "price": 1250,
+   "flavor": "Heavy. Proud of it. Survived a summer on the Coney sand."
+  },
+  {
+   "id": "kicks_brooklyn_7",
+   "name": "Brooklyn Strata Pro",
+   "slot": "kicks",
+   "rarity": "rare",
+   "brand": "STRATA",
+   "borough": "brooklyn",
+   "effects": {
+    "perfect_add": 0.01
+   },
+   "price": 1650,
+   "flavor": "Shooters swear by the heel cup. Survived a summer on the Coney sand."
+  },
+  {
+   "id": "kicks_brooklyn_8",
+   "name": "Brooklyn Veloci Blur",
+   "slot": "kicks",
+   "rarity": "epic",
+   "brand": "VELOCI",
+   "borough": "brooklyn",
+   "effects": {
+    "speed_mult": 0.12,
+    "dodge_wind_mult": -0.25
+   },
+   "price": 4500,
+   "flavor": "Blink and they're gone. Stoop-tested, grandma-approved."
+  },
+  {
+   "id": "kicks_brooklyn_9",
+   "name": "Brooklyn Ghost Walkers",
+   "slot": "kicks",
+   "rarity": "epic",
+   "brand": "GHOST",
+   "borough": "brooklyn",
+   "effects": {
+    "dodge_decoy": 1
+   },
+   "price": 3200,
+   "flavor": "Leave a step behind you. Stoop-tested, grandma-approved."
+  },
+  {
+   "id": "kicks_brooklyn_10",
+   "name": "Brooklyn Court Grips",
+   "slot": "kicks",
+   "rarity": "epic",
+   "brand": "LOCKDOWN",
+   "borough": "brooklyn",
+   "effects": {
+    "ball_security_add": 0.15
+   },
+   "price": 3150,
+   "flavor": "Rubber that won't let go. Stoop-tested, grandma-approved."
+  },
+  {
+   "id": "kicks_brooklyn_11",
+   "name": "Brooklyn Bounce Boosts",
+   "slot": "kicks",
+   "rarity": "epic",
+   "brand": "AIRWAVE",
+   "borough": "brooklyn",
+   "effects": {
+    "jump_add": 0.15
+   },
+   "price": 4350,
+   "flavor": "Springs, basically. Survived a summer on the Coney sand."
+  },
+  {
+   "id": "kicks_queens_0",
+   "name": "Classic Lows (Queens)",
+   "slot": "kicks",
+   "rarity": "common",
+   "brand": "VELOCI",
+   "borough": "queens",
+   "effects": {
+    "speed_mult": 0.05
+   },
+   "price": 550,
+   "flavor": "Low-tops that never go out of style. Ran the fountain loop at the old fairground."
+  },
+  {
+   "id": "kicks_queens_1",
+   "name": "Queens Shell Tops",
+   "slot": "kicks",
+   "rarity": "common",
+   "brand": "KONG",
+   "borough": "queens",
+   "effects": {
+    "poise_add": 10
+   },
+   "price": 500,
+   "flavor": "Toe caps like armor. Night market haggle price, worth every token."
+  },
+  {
+   "id": "kicks_queens_2",
+   "name": "Queens Street Runners",
+   "slot": "kicks",
+   "rarity": "common",
+   "brand": "VELOCI",
+   "borough": "queens",
+   "effects": {
+    "dodge_dist_mult": 0.1
+   },
+   "price": 700,
+   "flavor": "Built for cutting corners. Literally. Seven train certified."
+  },
+  {
+   "id": "kicks_queens_3",
+   "name": "Queens High-Flyers",
+   "slot": "kicks",
+   "rarity": "common",
+   "brand": "AIRWAVE",
+   "borough": "queens",
+   "effects": {
+    "jump_add": 0.25,
+    "dunk_range_mult": 0.1
+   },
+   "price": 650,
+   "flavor": "Air units you can hear. Ran the fountain loop at the old fairground."
+  },
+  {
+   "id": "kicks_queens_4",
+   "name": "Queens Lockdown Mids",
+   "slot": "kicks",
+   "rarity": "rare",
+   "brand": "LOCKDOWN",
+   "borough": "queens",
+   "effects": {
+    "parry_frames_add": 2
+   },
+   "price": 1800,
+   "flavor": "Lateral support for hands-up defense. Seven train certified."
+  },
+  {
+   "id": "kicks_queens_5",
+   "name": "Queens Slides & Socks",
+   "slot": "kicks",
+   "rarity": "rare",
+   "brand": "GHOST",
+   "borough": "queens",
+   "effects": {
+    "speed_mult": -0.15,
+    "taunt_hype_mult": 1.0
+   },
+   "price": 1550,
+   "flavor": "A joke. A powerful joke. Ran the fountain loop at the old fairground."
+  },
+  {
+   "id": "kicks_queens_6",
+   "name": "Queens Kong Force",
+   "slot": "kicks",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "queens",
+   "effects": {
+    "poise_mult": 0.15,
+    "dr_add": 0.05
+   },
+   "price": 1650,
+   "flavor": "Heavy. Proud of it. Night market haggle price, worth every token."
+  },
+  {
+   "id": "kicks_queens_7",
+   "name": "Queens Strata Pro",
+   "slot": "kicks",
+   "rarity": "rare",
+   "brand": "STRATA",
+   "borough": "queens",
+   "effects": {
+    "perfect_add": 0.01
+   },
+   "price": 1350,
+   "flavor": "Shooters swear by the heel cup. Seven train certified."
+  },
+  {
+   "id": "kicks_queens_8",
+   "name": "Queens Veloci Blur",
+   "slot": "kicks",
+   "rarity": "epic",
+   "brand": "VELOCI",
+   "borough": "queens",
+   "effects": {
+    "speed_mult": 0.12,
+    "dodge_wind_mult": -0.25
+   },
+   "price": 3050,
+   "flavor": "Blink and they're gone. Seven train certified."
+  },
+  {
+   "id": "kicks_queens_9",
+   "name": "Queens Ghost Walkers",
+   "slot": "kicks",
+   "rarity": "epic",
+   "brand": "GHOST",
+   "borough": "queens",
+   "effects": {
+    "dodge_decoy": 1
+   },
+   "price": 4500,
+   "flavor": "Leave a step behind you. Night market haggle price, worth every token."
+  },
+  {
+   "id": "kicks_queens_10",
+   "name": "Queens Court Grips",
+   "slot": "kicks",
+   "rarity": "epic",
+   "brand": "LOCKDOWN",
+   "borough": "queens",
+   "effects": {
+    "ball_security_add": 0.15
+   },
+   "price": 3750,
+   "flavor": "Rubber that won't let go. Night market haggle price, worth every token."
+  },
+  {
+   "id": "kicks_queens_11",
+   "name": "Queens Bounce Boosts",
+   "slot": "kicks",
+   "rarity": "epic",
+   "brand": "AIRWAVE",
+   "borough": "queens",
+   "effects": {
+    "jump_add": 0.15
+   },
+   "price": 3650,
+   "flavor": "Springs, basically. Ran the fountain loop at the old fairground."
+  },
+  {
+   "id": "kicks_staten_island_0",
+   "name": "Classic Lows (Staten Island)",
+   "slot": "kicks",
+   "rarity": "common",
+   "brand": "VELOCI",
+   "borough": "staten_island",
+   "effects": {
+    "speed_mult": 0.05
+   },
+   "price": 700,
+   "flavor": "Low-tops that never go out of style. The deer stare, but they don't judge."
+  },
+  {
+   "id": "kicks_staten_island_1",
+   "name": "Staten Island Shell Tops",
+   "slot": "kicks",
+   "rarity": "common",
+   "brand": "KONG",
+   "borough": "staten_island",
+   "effects": {
+    "poise_add": 10
+   },
+   "price": 550,
+   "flavor": "Toe caps like armor. Broken in on the landfill hills."
+  },
+  {
+   "id": "kicks_staten_island_2",
+   "name": "Staten Island Street Runners",
+   "slot": "kicks",
+   "rarity": "common",
+   "brand": "VELOCI",
+   "borough": "staten_island",
+   "effects": {
+    "dodge_dist_mult": 0.1
+   },
+   "price": 600,
+   "flavor": "Built for cutting corners. Literally. Smells faintly of ferry diesel."
+  },
+  {
+   "id": "kicks_staten_island_3",
+   "name": "Staten Island High-Flyers",
+   "slot": "kicks",
+   "rarity": "common",
+   "brand": "AIRWAVE",
+   "borough": "staten_island",
+   "effects": {
+    "jump_add": 0.25,
+    "dunk_range_mult": 0.1
+   },
+   "price": 750,
+   "flavor": "Air units you can hear. Broken in on the landfill hills."
+  },
+  {
+   "id": "kicks_staten_island_4",
+   "name": "Staten Island Lockdown Mids",
+   "slot": "kicks",
+   "rarity": "rare",
+   "brand": "LOCKDOWN",
+   "borough": "staten_island",
+   "effects": {
+    "parry_frames_add": 2
+   },
+   "price": 1800,
+   "flavor": "Lateral support for hands-up defense. Broken in on the landfill hills."
+  },
+  {
+   "id": "kicks_staten_island_5",
+   "name": "Staten Island Slides & Socks",
+   "slot": "kicks",
+   "rarity": "rare",
+   "brand": "GHOST",
+   "borough": "staten_island",
+   "effects": {
+    "speed_mult": -0.15,
+    "taunt_hype_mult": 1.0
+   },
+   "price": 1600,
+   "flavor": "A joke. A powerful joke. Broken in on the landfill hills."
+  },
+  {
+   "id": "kicks_staten_island_6",
+   "name": "Staten Island Kong Force",
+   "slot": "kicks",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "staten_island",
+   "effects": {
+    "poise_mult": 0.15,
+    "dr_add": 0.05
+   },
+   "price": 1500,
+   "flavor": "Heavy. Proud of it. Smells faintly of ferry diesel."
+  },
+  {
+   "id": "kicks_staten_island_7",
+   "name": "Staten Island Strata Pro",
+   "slot": "kicks",
+   "rarity": "rare",
+   "brand": "STRATA",
+   "borough": "staten_island",
+   "effects": {
+    "perfect_add": 0.01
+   },
+   "price": 1600,
+   "flavor": "Shooters swear by the heel cup. The deer stare, but they don't judge."
+  },
+  {
+   "id": "kicks_staten_island_8",
+   "name": "Staten Island Veloci Blur",
+   "slot": "kicks",
+   "rarity": "epic",
+   "brand": "VELOCI",
+   "borough": "staten_island",
+   "effects": {
+    "speed_mult": 0.12,
+    "dodge_wind_mult": -0.25
+   },
+   "price": 4700,
+   "flavor": "Blink and they're gone. The deer stare, but they don't judge."
+  },
+  {
+   "id": "kicks_staten_island_9",
+   "name": "Staten Island Ghost Walkers",
+   "slot": "kicks",
+   "rarity": "epic",
+   "brand": "GHOST",
+   "borough": "staten_island",
+   "effects": {
+    "dodge_decoy": 1
+   },
+   "price": 4300,
+   "flavor": "Leave a step behind you. The deer stare, but they don't judge."
+  },
+  {
+   "id": "kicks_staten_island_10",
+   "name": "Staten Island Court Grips",
+   "slot": "kicks",
+   "rarity": "epic",
+   "brand": "LOCKDOWN",
+   "borough": "staten_island",
+   "effects": {
+    "ball_security_add": 0.15
+   },
+   "price": 4250,
+   "flavor": "Rubber that won't let go. Smells faintly of ferry diesel."
+  },
+  {
+   "id": "kicks_staten_island_11",
+   "name": "Staten Island Bounce Boosts",
+   "slot": "kicks",
+   "rarity": "epic",
+   "brand": "AIRWAVE",
+   "borough": "staten_island",
+   "effects": {
+    "jump_add": 0.15
+   },
+   "price": 4800,
+   "flavor": "Springs, basically. Broken in on the landfill hills."
+  },
+  {
+   "id": "kicks_uptown_0",
+   "name": "Classic Lows (Uptown)",
+   "slot": "kicks",
+   "rarity": "common",
+   "brand": "VELOCI",
+   "borough": "uptown",
+   "effects": {
+    "speed_mult": 0.05
+   },
+   "price": 400,
+   "flavor": "Low-tops that never go out of style. Pigeon-coop fresh."
+  },
+  {
+   "id": "kicks_uptown_1",
+   "name": "Uptown Shell Tops",
+   "slot": "kicks",
+   "rarity": "common",
+   "brand": "KONG",
+   "borough": "uptown",
+   "effects": {
+    "poise_add": 10
+   },
+   "price": 700,
+   "flavor": "Toe caps like armor. Pigeon-coop fresh."
+  },
+  {
+   "id": "kicks_uptown_2",
+   "name": "Uptown Street Runners",
+   "slot": "kicks",
+   "rarity": "common",
+   "brand": "VELOCI",
+   "borough": "uptown",
+   "effects": {
+    "dodge_dist_mult": 0.1
+   },
+   "price": 700,
+   "flavor": "Built for cutting corners. Literally. Every legend's been through here. Now you."
+  },
+  {
+   "id": "kicks_uptown_3",
+   "name": "Uptown High-Flyers",
+   "slot": "kicks",
+   "rarity": "common",
+   "brand": "AIRWAVE",
+   "borough": "uptown",
+   "effects": {
+    "jump_add": 0.25,
+    "dunk_range_mult": 0.1
+   },
+   "price": 500,
+   "flavor": "Air units you can hear. Pigeon-coop fresh."
+  },
+  {
+   "id": "kicks_uptown_4",
+   "name": "Uptown Lockdown Mids",
+   "slot": "kicks",
+   "rarity": "rare",
+   "brand": "LOCKDOWN",
+   "borough": "uptown",
+   "effects": {
+    "parry_frames_add": 2
+   },
+   "price": 1200,
+   "flavor": "Lateral support for hands-up defense. Pigeon-coop fresh."
+  },
+  {
+   "id": "kicks_uptown_5",
+   "name": "Uptown Slides & Socks",
+   "slot": "kicks",
+   "rarity": "rare",
+   "brand": "GHOST",
+   "borough": "uptown",
+   "effects": {
+    "speed_mult": -0.15,
+    "taunt_hype_mult": 1.0
+   },
+   "price": 1650,
+   "flavor": "A joke. A powerful joke. Pigeon-coop fresh."
+  },
+  {
+   "id": "kicks_uptown_6",
+   "name": "Uptown Kong Force",
+   "slot": "kicks",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "uptown",
+   "effects": {
+    "poise_mult": 0.15,
+    "dr_add": 0.05
+   },
+   "price": 1700,
+   "flavor": "Heavy. Proud of it. Walked the Mecca bleachers twice."
+  },
+  {
+   "id": "kicks_uptown_7",
+   "name": "Uptown Strata Pro",
+   "slot": "kicks",
+   "rarity": "rare",
+   "brand": "STRATA",
+   "borough": "uptown",
+   "effects": {
+    "perfect_add": 0.01
+   },
+   "price": 1700,
+   "flavor": "Shooters swear by the heel cup. Pigeon-coop fresh."
+  },
+  {
+   "id": "kicks_uptown_8",
+   "name": "Uptown Veloci Blur",
+   "slot": "kicks",
+   "rarity": "epic",
+   "brand": "VELOCI",
+   "borough": "uptown",
+   "effects": {
+    "speed_mult": 0.12,
+    "dodge_wind_mult": -0.25
+   },
+   "price": 4200,
+   "flavor": "Blink and they're gone. Pigeon-coop fresh."
+  },
+  {
+   "id": "kicks_uptown_9",
+   "name": "Uptown Ghost Walkers",
+   "slot": "kicks",
+   "rarity": "epic",
+   "brand": "GHOST",
+   "borough": "uptown",
+   "effects": {
+    "dodge_decoy": 1
+   },
+   "price": 4300,
+   "flavor": "Leave a step behind you. Every legend's been through here. Now you."
+  },
+  {
+   "id": "kicks_uptown_10",
+   "name": "Uptown Court Grips",
+   "slot": "kicks",
+   "rarity": "epic",
+   "brand": "LOCKDOWN",
+   "borough": "uptown",
+   "effects": {
+    "ball_security_add": 0.15
+   },
+   "price": 3200,
+   "flavor": "Rubber that won't let go. Pigeon-coop fresh."
+  },
+  {
+   "id": "kicks_uptown_11",
+   "name": "Uptown Bounce Boosts",
+   "slot": "kicks",
+   "rarity": "epic",
+   "brand": "AIRWAVE",
+   "borough": "uptown",
+   "effects": {
+    "jump_add": 0.15
+   },
+   "price": 3100,
+   "flavor": "Springs, basically. Walked the Mecca bleachers twice."
+  },
+  {
+   "id": "kicks_city_0",
+   "name": "Classic Lows (City)",
+   "slot": "kicks",
+   "rarity": "rare",
+   "brand": "VELOCI",
+   "borough": "city",
+   "effects": {
+    "speed_mult": 0.08
+   },
+   "price": 1650,
+   "flavor": "Low-tops that never go out of style. Billboard bright, sidewalk tough."
+  },
+  {
+   "id": "kicks_city_1",
+   "name": "City Shell Tops",
+   "slot": "kicks",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "city",
+   "effects": {
+    "poise_add": 10
+   },
+   "price": 1350,
+   "flavor": "Toe caps like armor. Seen on a hundred screens at once."
+  },
+  {
+   "id": "kicks_city_2",
+   "name": "City Street Runners",
+   "slot": "kicks",
+   "rarity": "rare",
+   "brand": "VELOCI",
+   "borough": "city",
+   "effects": {
+    "dodge_dist_mult": 0.16
+   },
+   "price": 1250,
+   "flavor": "Built for cutting corners. Literally. Priced in Midtown dollars."
+  },
+  {
+   "id": "kicks_city_3",
+   "name": "City High-Flyers",
+   "slot": "kicks",
+   "rarity": "rare",
+   "brand": "AIRWAVE",
+   "borough": "city",
+   "effects": {
+    "jump_add": 0.4,
+    "dunk_range_mult": 0.16
+   },
+   "price": 1950,
+   "flavor": "Air units you can hear. Billboard bright, sidewalk tough."
+  },
+  {
+   "id": "kicks_city_4",
+   "name": "City Lockdown Mids",
+   "slot": "kicks",
+   "rarity": "epic",
+   "brand": "LOCKDOWN",
+   "borough": "city",
+   "effects": {
+    "parry_frames_add": 2
+   },
+   "price": 4450,
+   "flavor": "Lateral support for hands-up defense. Seen on a hundred screens at once."
+  },
+  {
+   "id": "kicks_city_5",
+   "name": "City Slides & Socks",
+   "slot": "kicks",
+   "rarity": "epic",
+   "brand": "GHOST",
+   "borough": "city",
+   "effects": {
+    "speed_mult": -0.216,
+    "taunt_hype_mult": 1.437
+   },
+   "price": 4200,
+   "flavor": "A joke. A powerful joke. Seen on a hundred screens at once."
+  },
+  {
+   "id": "kicks_city_6",
+   "name": "City Kong Force",
+   "slot": "kicks",
+   "rarity": "epic",
+   "brand": "KONG",
+   "borough": "city",
+   "effects": {
+    "poise_mult": 0.216,
+    "dr_add": 0.072
+   },
+   "price": 3650,
+   "flavor": "Heavy. Proud of it. Seen on a hundred screens at once."
+  },
+  {
+   "id": "kicks_city_7",
+   "name": "City Strata Pro",
+   "slot": "kicks",
+   "rarity": "epic",
+   "brand": "STRATA",
+   "borough": "city",
+   "effects": {
+    "perfect_add": 0.014
+   },
+   "price": 4550,
+   "flavor": "Shooters swear by the heel cup. Priced in Midtown dollars."
+  },
+  {
+   "id": "kicks_city_8",
+   "name": "City Veloci Blur",
+   "slot": "kicks",
+   "rarity": "legendary",
+   "brand": "VELOCI",
+   "borough": "city",
+   "effects": {
+    "speed_mult": 0.157,
+    "dodge_wind_mult": -0.326
+   },
+   "price": 8050,
+   "flavor": "Blink and they're gone. Seen on a hundred screens at once."
+  },
+  {
+   "id": "kicks_city_9",
+   "name": "City Ghost Walkers",
+   "slot": "kicks",
+   "rarity": "legendary",
+   "brand": "GHOST",
+   "borough": "city",
+   "effects": {
+    "dodge_decoy": 1
+   },
+   "price": 10050,
+   "flavor": "Leave a step behind you. Priced in Midtown dollars."
+  },
+  {
+   "id": "kicks_city_10",
+   "name": "City Court Grips",
+   "slot": "kicks",
+   "rarity": "legendary",
+   "brand": "LOCKDOWN",
+   "borough": "city",
+   "effects": {
+    "ball_security_add": 0.196
+   },
+   "price": 9600,
+   "flavor": "Rubber that won't let go. Priced in Midtown dollars."
+  },
+  {
+   "id": "kicks_city_11",
+   "name": "City Bounce Boosts",
+   "slot": "kicks",
+   "rarity": "legendary",
+   "brand": "AIRWAVE",
+   "borough": "city",
+   "effects": {
+    "jump_add": 0.196
+   },
+   "price": 11500,
+   "flavor": "Springs, basically. Priced in Midtown dollars."
+  },
+  {
+   "id": "kicks_grail_bronx",
+   "name": "Concourse Kings",
+   "slot": "kicks",
+   "rarity": "grail",
+   "brand": "GHOST",
+   "borough": "bronx",
+   "effects": {
+    "speed_mult": 0.08,
+    "jump_add": 0.2,
+    "perfect_add": 0.008,
+    "poise_add": 10
+   },
+   "price": 550,
+   "flavor": "One pair. One owner. Found in a Grail box in Bronx.",
+   "no_shop": true
+  },
+  {
+   "id": "kicks_grail_brooklyn",
+   "name": "Stoop Legends",
+   "slot": "kicks",
+   "rarity": "grail",
+   "brand": "GHOST",
+   "borough": "brooklyn",
+   "effects": {
+    "speed_mult": 0.08,
+    "jump_add": 0.2,
+    "perfect_add": 0.008,
+    "poise_add": 10
+   },
+   "price": 450,
+   "flavor": "One pair. One owner. Found in a Grail box in Brooklyn.",
+   "no_shop": true
+  },
+  {
+   "id": "kicks_grail_queens",
+   "name": "Seven Line",
+   "slot": "kicks",
+   "rarity": "grail",
+   "brand": "GHOST",
+   "borough": "queens",
+   "effects": {
+    "speed_mult": 0.08,
+    "jump_add": 0.2,
+    "perfect_add": 0.008,
+    "poise_add": 10
+   },
+   "price": 700,
+   "flavor": "One pair. One owner. Found in a Grail box in Queens.",
+   "no_shop": true
+  },
+  {
+   "id": "kicks_grail_staten_island",
+   "name": "Ferry Night",
+   "slot": "kicks",
+   "rarity": "grail",
+   "brand": "GHOST",
+   "borough": "staten_island",
+   "effects": {
+    "speed_mult": 0.08,
+    "jump_add": 0.2,
+    "perfect_add": 0.008,
+    "poise_add": 10
+   },
+   "price": 750,
+   "flavor": "One pair. One owner. Found in a Grail box in Staten Island.",
+   "no_shop": true
+  },
+  {
+   "id": "kicks_grail_uptown",
+   "name": "Mecca Royals",
+   "slot": "kicks",
+   "rarity": "grail",
+   "brand": "GHOST",
+   "borough": "uptown",
+   "effects": {
+    "speed_mult": 0.08,
+    "jump_add": 0.2,
+    "perfect_add": 0.008,
+    "poise_add": 10
+   },
+   "price": 700,
+   "flavor": "One pair. One owner. Found in a Grail box in Uptown.",
+   "no_shop": true
+  },
+  {
+   "id": "kicks_stoop_legends",
+   "name": "Stoop Legends (Grail)",
+   "slot": "kicks",
+   "rarity": "grail",
+   "brand": "GHOST",
+   "borough": "brooklyn",
+   "effects": {
+    "speed_mult": 0.08,
+    "jump_add": 0.2,
+    "parry_frames_add": 1
+   },
+   "price": 650,
+   "flavor": "Sat on every stoop in Bed-Stuy. Every single one.",
+   "no_shop": true
+  },
+  {
+   "id": "kicks_golden_hour",
+   "name": "Golden Hour",
+   "slot": "kicks",
+   "rarity": "grail",
+   "brand": "GHOST",
+   "borough": "city",
+   "effects": {
+    "all_mult": 0.1
+   },
+   "price": 650,
+   "flavor": "The Plug's last word on the Grail Hunt. +10% to everything.",
+   "no_shop": true
+  }
+ ]
+}

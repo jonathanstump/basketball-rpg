@@ -1,0 +1,1120 @@
+{
+ "fits": [
+  {
+   "id": "fit_bronx_0",
+   "name": "Tank & Shorts (Bronx)",
+   "slot": "fit",
+   "rarity": "common",
+   "brand": "KONG",
+   "borough": "bronx",
+   "effects": {
+    "dr_add": 0.02
+   },
+   "price": 450,
+   "flavor": "Light fit. Murals on the inside lining.",
+   "weight": "light"
+  },
+  {
+   "id": "fit_bronx_1",
+   "name": "Practice Jersey (Bronx)",
+   "slot": "fit",
+   "rarity": "common",
+   "brand": "VELOCI",
+   "borough": "bronx",
+   "effects": {
+    "dr_add": 0.03
+   },
+   "price": 700,
+   "flavor": "Light fit. Smells like the block party never ended.",
+   "weight": "light"
+  },
+  {
+   "id": "fit_bronx_2",
+   "name": "Hoodie & Joggers (Bronx)",
+   "slot": "fit",
+   "rarity": "common",
+   "brand": "LOCKDOWN",
+   "borough": "bronx",
+   "effects": {
+    "dr_add": 0.06,
+    "dodge_dist_mult": -0.1
+   },
+   "price": 750,
+   "flavor": "Medium fit. Smells like the block party never ended.",
+   "weight": "medium"
+  },
+  {
+   "id": "fit_bronx_3",
+   "name": "Tracksuit (Bronx)",
+   "slot": "fit",
+   "rarity": "common",
+   "brand": "KONG",
+   "borough": "bronx",
+   "effects": {
+    "dr_add": 0.07,
+    "wind_regen_mult": 0.1,
+    "dodge_dist_mult": -0.1
+   },
+   "price": 400,
+   "flavor": "Medium fit. Murals on the inside lining.",
+   "weight": "medium"
+  },
+  {
+   "id": "fit_bronx_4",
+   "name": "Windbreaker (Bronx)",
+   "slot": "fit",
+   "rarity": "rare",
+   "brand": "LOCKDOWN",
+   "borough": "bronx",
+   "effects": {
+    "dr_add": 0.06,
+    "push_resist_add": 0.3,
+    "dodge_dist_mult": -0.1
+   },
+   "price": 1650,
+   "flavor": "Medium fit. Stitched under the El, one train at a time.",
+   "weight": "medium"
+  },
+  {
+   "id": "fit_bronx_5",
+   "name": "Puffer Jacket (Bronx)",
+   "slot": "fit",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "bronx",
+   "effects": {
+    "dr_add": 0.12,
+    "dodge_dist_mult": -0.25,
+    "recovery_frames_add": 4
+   },
+   "price": 1850,
+   "flavor": "Heavy fit. Smells like the block party never ended.",
+   "weight": "heavy"
+  },
+  {
+   "id": "fit_bronx_6",
+   "name": "Leather Bomber (Bronx)",
+   "slot": "fit",
+   "rarity": "rare",
+   "brand": "VELOCI",
+   "borough": "bronx",
+   "effects": {
+    "dr_add": 0.1,
+    "poise_add": 15,
+    "dodge_dist_mult": -0.25,
+    "recovery_frames_add": 4
+   },
+   "price": 1900,
+   "flavor": "Heavy fit. Smells like the block party never ended.",
+   "weight": "heavy"
+  },
+  {
+   "id": "fit_bronx_7",
+   "name": "Shooting Shirt (Bronx)",
+   "slot": "fit",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "bronx",
+   "effects": {
+    "dr_add": 0.03,
+    "perfect_add": 0.004
+   },
+   "price": 1650,
+   "flavor": "Light fit. Smells like the block party never ended.",
+   "weight": "light"
+  },
+  {
+   "id": "fit_bronx_8",
+   "name": "Warm-Up Set (Bronx)",
+   "slot": "fit",
+   "rarity": "epic",
+   "brand": "VELOCI",
+   "borough": "bronx",
+   "effects": {
+    "dr_add": 0.06,
+    "hype_gain_mult": 0.05,
+    "dodge_dist_mult": -0.1
+   },
+   "price": 3500,
+   "flavor": "Medium fit. Stitched under the El, one train at a time.",
+   "weight": "medium"
+  },
+  {
+   "id": "fit_bronx_9",
+   "name": "Block Party Denim Set",
+   "slot": "fit",
+   "rarity": "epic",
+   "brand": "KONG",
+   "borough": "bronx",
+   "effects": {
+    "dr_add": 0.08,
+    "dodge_dist_mult": -0.1
+   },
+   "price": 4850,
+   "flavor": "Medium fit. Stitched under the El, one train at a time.",
+   "weight": "medium"
+  },
+  {
+   "id": "fit_bronx_10",
+   "name": "Block Party Rain Shell",
+   "slot": "fit",
+   "rarity": "epic",
+   "brand": "KONG",
+   "borough": "bronx",
+   "effects": {
+    "dr_add": 0.04,
+    "status_resist_add": 0.1
+   },
+   "price": 4900,
+   "flavor": "Light fit. Stitched under the El, one train at a time.",
+   "weight": "light"
+  },
+  {
+   "id": "fit_bronx_11",
+   "name": "Block Party Block Party Set",
+   "slot": "fit",
+   "rarity": "epic",
+   "brand": "LOCKDOWN",
+   "borough": "bronx",
+   "effects": {
+    "dr_add": 0.11,
+    "hype_gain_mult": 0.08,
+    "dodge_dist_mult": -0.25,
+    "recovery_frames_add": 4
+   },
+   "price": 3700,
+   "flavor": "Heavy fit. Smells like the block party never ended.",
+   "weight": "heavy"
+  },
+  {
+   "id": "fit_brooklyn_0",
+   "name": "Tank & Shorts (Brooklyn)",
+   "slot": "fit",
+   "rarity": "common",
+   "brand": "KONG",
+   "borough": "brooklyn",
+   "effects": {
+    "dr_add": 0.02
+   },
+   "price": 500,
+   "flavor": "Light fit. Stoop-tested, grandma-approved.",
+   "weight": "light"
+  },
+  {
+   "id": "fit_brooklyn_1",
+   "name": "Practice Jersey (Brooklyn)",
+   "slot": "fit",
+   "rarity": "common",
+   "brand": "KONG",
+   "borough": "brooklyn",
+   "effects": {
+    "dr_add": 0.03
+   },
+   "price": 450,
+   "flavor": "Light fit. Brownstone brown with a boardwalk soul.",
+   "weight": "light"
+  },
+  {
+   "id": "fit_brooklyn_2",
+   "name": "Hoodie & Joggers (Brooklyn)",
+   "slot": "fit",
+   "rarity": "common",
+   "brand": "LOCKDOWN",
+   "borough": "brooklyn",
+   "effects": {
+    "dr_add": 0.06,
+    "dodge_dist_mult": -0.1
+   },
+   "price": 700,
+   "flavor": "Medium fit. Brownstone brown with a boardwalk soul.",
+   "weight": "medium"
+  },
+  {
+   "id": "fit_brooklyn_3",
+   "name": "Tracksuit (Brooklyn)",
+   "slot": "fit",
+   "rarity": "common",
+   "brand": "KONG",
+   "borough": "brooklyn",
+   "effects": {
+    "dr_add": 0.07,
+    "wind_regen_mult": 0.1,
+    "dodge_dist_mult": -0.1
+   },
+   "price": 750,
+   "flavor": "Medium fit. Brownstone brown with a boardwalk soul.",
+   "weight": "medium"
+  },
+  {
+   "id": "fit_brooklyn_4",
+   "name": "Windbreaker (Brooklyn)",
+   "slot": "fit",
+   "rarity": "rare",
+   "brand": "VELOCI",
+   "borough": "brooklyn",
+   "effects": {
+    "dr_add": 0.06,
+    "push_resist_add": 0.3,
+    "dodge_dist_mult": -0.1
+   },
+   "price": 1450,
+   "flavor": "Medium fit. Stoop-tested, grandma-approved.",
+   "weight": "medium"
+  },
+  {
+   "id": "fit_brooklyn_5",
+   "name": "Puffer Jacket (Brooklyn)",
+   "slot": "fit",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "brooklyn",
+   "effects": {
+    "dr_add": 0.12,
+    "dodge_dist_mult": -0.25,
+    "recovery_frames_add": 4
+   },
+   "price": 1700,
+   "flavor": "Heavy fit. Brownstone brown with a boardwalk soul.",
+   "weight": "heavy"
+  },
+  {
+   "id": "fit_brooklyn_6",
+   "name": "Leather Bomber (Brooklyn)",
+   "slot": "fit",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "brooklyn",
+   "effects": {
+    "dr_add": 0.1,
+    "poise_add": 15,
+    "dodge_dist_mult": -0.25,
+    "recovery_frames_add": 4
+   },
+   "price": 1650,
+   "flavor": "Heavy fit. Survived a summer on the Coney sand.",
+   "weight": "heavy"
+  },
+  {
+   "id": "fit_brooklyn_7",
+   "name": "Shooting Shirt (Brooklyn)",
+   "slot": "fit",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "brooklyn",
+   "effects": {
+    "dr_add": 0.03,
+    "perfect_add": 0.004
+   },
+   "price": 1500,
+   "flavor": "Light fit. Survived a summer on the Coney sand.",
+   "weight": "light"
+  },
+  {
+   "id": "fit_brooklyn_8",
+   "name": "Warm-Up Set (Brooklyn)",
+   "slot": "fit",
+   "rarity": "epic",
+   "brand": "LOCKDOWN",
+   "borough": "brooklyn",
+   "effects": {
+    "dr_add": 0.06,
+    "hype_gain_mult": 0.05,
+    "dodge_dist_mult": -0.1
+   },
+   "price": 3800,
+   "flavor": "Medium fit. Survived a summer on the Coney sand.",
+   "weight": "medium"
+  },
+  {
+   "id": "fit_brooklyn_9",
+   "name": "Boardwalk Denim Set",
+   "slot": "fit",
+   "rarity": "epic",
+   "brand": "KONG",
+   "borough": "brooklyn",
+   "effects": {
+    "dr_add": 0.08,
+    "dodge_dist_mult": -0.1
+   },
+   "price": 4950,
+   "flavor": "Medium fit. Brownstone brown with a boardwalk soul.",
+   "weight": "medium"
+  },
+  {
+   "id": "fit_brooklyn_10",
+   "name": "Boardwalk Rain Shell",
+   "slot": "fit",
+   "rarity": "epic",
+   "brand": "KONG",
+   "borough": "brooklyn",
+   "effects": {
+    "dr_add": 0.04,
+    "status_resist_add": 0.1
+   },
+   "price": 3050,
+   "flavor": "Light fit. Stoop-tested, grandma-approved.",
+   "weight": "light"
+  },
+  {
+   "id": "fit_brooklyn_11",
+   "name": "Boardwalk Block Party Set",
+   "slot": "fit",
+   "rarity": "epic",
+   "brand": "LOCKDOWN",
+   "borough": "brooklyn",
+   "effects": {
+    "dr_add": 0.11,
+    "hype_gain_mult": 0.08,
+    "dodge_dist_mult": -0.25,
+    "recovery_frames_add": 4
+   },
+   "price": 3450,
+   "flavor": "Heavy fit. Brownstone brown with a boardwalk soul.",
+   "weight": "heavy"
+  },
+  {
+   "id": "fit_queens_0",
+   "name": "Tank & Shorts (Queens)",
+   "slot": "fit",
+   "rarity": "common",
+   "brand": "LOCKDOWN",
+   "borough": "queens",
+   "effects": {
+    "dr_add": 0.02
+   },
+   "price": 600,
+   "flavor": "Light fit. Seven train certified.",
+   "weight": "light"
+  },
+  {
+   "id": "fit_queens_1",
+   "name": "Practice Jersey (Queens)",
+   "slot": "fit",
+   "rarity": "common",
+   "brand": "KONG",
+   "borough": "queens",
+   "effects": {
+    "dr_add": 0.03
+   },
+   "price": 500,
+   "flavor": "Light fit. Night market haggle price, worth every token.",
+   "weight": "light"
+  },
+  {
+   "id": "fit_queens_2",
+   "name": "Hoodie & Joggers (Queens)",
+   "slot": "fit",
+   "rarity": "common",
+   "brand": "LOCKDOWN",
+   "borough": "queens",
+   "effects": {
+    "dr_add": 0.06,
+    "dodge_dist_mult": -0.1
+   },
+   "price": 650,
+   "flavor": "Medium fit. Night market haggle price, worth every token.",
+   "weight": "medium"
+  },
+  {
+   "id": "fit_queens_3",
+   "name": "Tracksuit (Queens)",
+   "slot": "fit",
+   "rarity": "common",
+   "brand": "KONG",
+   "borough": "queens",
+   "effects": {
+    "dr_add": 0.07,
+    "wind_regen_mult": 0.1,
+    "dodge_dist_mult": -0.1
+   },
+   "price": 700,
+   "flavor": "Medium fit. Night market haggle price, worth every token.",
+   "weight": "medium"
+  },
+  {
+   "id": "fit_queens_4",
+   "name": "Windbreaker (Queens)",
+   "slot": "fit",
+   "rarity": "rare",
+   "brand": "LOCKDOWN",
+   "borough": "queens",
+   "effects": {
+    "dr_add": 0.06,
+    "push_resist_add": 0.3,
+    "dodge_dist_mult": -0.1
+   },
+   "price": 1550,
+   "flavor": "Medium fit. Seven train certified.",
+   "weight": "medium"
+  },
+  {
+   "id": "fit_queens_5",
+   "name": "Puffer Jacket (Queens)",
+   "slot": "fit",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "queens",
+   "effects": {
+    "dr_add": 0.12,
+    "dodge_dist_mult": -0.25,
+    "recovery_frames_add": 4
+   },
+   "price": 1450,
+   "flavor": "Heavy fit. Night market haggle price, worth every token.",
+   "weight": "heavy"
+  },
+  {
+   "id": "fit_queens_6",
+   "name": "Leather Bomber (Queens)",
+   "slot": "fit",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "queens",
+   "effects": {
+    "dr_add": 0.1,
+    "poise_add": 15,
+    "dodge_dist_mult": -0.25,
+    "recovery_frames_add": 4
+   },
+   "price": 1600,
+   "flavor": "Heavy fit. Seven train certified.",
+   "weight": "heavy"
+  },
+  {
+   "id": "fit_queens_7",
+   "name": "Shooting Shirt (Queens)",
+   "slot": "fit",
+   "rarity": "rare",
+   "brand": "LOCKDOWN",
+   "borough": "queens",
+   "effects": {
+    "dr_add": 0.03,
+    "perfect_add": 0.004
+   },
+   "price": 1350,
+   "flavor": "Light fit. Seven train certified.",
+   "weight": "light"
+  },
+  {
+   "id": "fit_queens_8",
+   "name": "Warm-Up Set (Queens)",
+   "slot": "fit",
+   "rarity": "epic",
+   "brand": "KONG",
+   "borough": "queens",
+   "effects": {
+    "dr_add": 0.06,
+    "hype_gain_mult": 0.05,
+    "dodge_dist_mult": -0.1
+   },
+   "price": 4900,
+   "flavor": "Medium fit. Seven train certified.",
+   "weight": "medium"
+  },
+  {
+   "id": "fit_queens_9",
+   "name": "Night Market Denim Set",
+   "slot": "fit",
+   "rarity": "epic",
+   "brand": "KONG",
+   "borough": "queens",
+   "effects": {
+    "dr_add": 0.08,
+    "dodge_dist_mult": -0.1
+   },
+   "price": 3950,
+   "flavor": "Medium fit. Seven train certified.",
+   "weight": "medium"
+  },
+  {
+   "id": "fit_queens_10",
+   "name": "Night Market Rain Shell",
+   "slot": "fit",
+   "rarity": "epic",
+   "brand": "KONG",
+   "borough": "queens",
+   "effects": {
+    "dr_add": 0.04,
+    "status_resist_add": 0.1
+   },
+   "price": 3700,
+   "flavor": "Light fit. Seven train certified.",
+   "weight": "light"
+  },
+  {
+   "id": "fit_queens_11",
+   "name": "Night Market Block Party Set",
+   "slot": "fit",
+   "rarity": "epic",
+   "brand": "KONG",
+   "borough": "queens",
+   "effects": {
+    "dr_add": 0.11,
+    "hype_gain_mult": 0.08,
+    "dodge_dist_mult": -0.25,
+    "recovery_frames_add": 4
+   },
+   "price": 4150,
+   "flavor": "Heavy fit. Ran the fountain loop at the old fairground.",
+   "weight": "heavy"
+  },
+  {
+   "id": "fit_staten_island_0",
+   "name": "Tank & Shorts (Staten Island)",
+   "slot": "fit",
+   "rarity": "common",
+   "brand": "KONG",
+   "borough": "staten_island",
+   "effects": {
+    "dr_add": 0.02
+   },
+   "price": 550,
+   "flavor": "Light fit. Smells faintly of ferry diesel.",
+   "weight": "light"
+  },
+  {
+   "id": "fit_staten_island_1",
+   "name": "Practice Jersey (Staten Island)",
+   "slot": "fit",
+   "rarity": "common",
+   "brand": "KONG",
+   "borough": "staten_island",
+   "effects": {
+    "dr_add": 0.03
+   },
+   "price": 650,
+   "flavor": "Light fit. The deer stare, but they don't judge.",
+   "weight": "light"
+  },
+  {
+   "id": "fit_staten_island_2",
+   "name": "Hoodie & Joggers (Staten Island)",
+   "slot": "fit",
+   "rarity": "common",
+   "brand": "LOCKDOWN",
+   "borough": "staten_island",
+   "effects": {
+    "dr_add": 0.06,
+    "dodge_dist_mult": -0.1
+   },
+   "price": 600,
+   "flavor": "Medium fit. Smells faintly of ferry diesel.",
+   "weight": "medium"
+  },
+  {
+   "id": "fit_staten_island_3",
+   "name": "Tracksuit (Staten Island)",
+   "slot": "fit",
+   "rarity": "common",
+   "brand": "KONG",
+   "borough": "staten_island",
+   "effects": {
+    "dr_add": 0.07,
+    "wind_regen_mult": 0.1,
+    "dodge_dist_mult": -0.1
+   },
+   "price": 500,
+   "flavor": "Medium fit. The deer stare, but they don't judge.",
+   "weight": "medium"
+  },
+  {
+   "id": "fit_staten_island_4",
+   "name": "Windbreaker (Staten Island)",
+   "slot": "fit",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "staten_island",
+   "effects": {
+    "dr_add": 0.06,
+    "push_resist_add": 0.3,
+    "dodge_dist_mult": -0.1
+   },
+   "price": 1350,
+   "flavor": "Medium fit. The deer stare, but they don't judge.",
+   "weight": "medium"
+  },
+  {
+   "id": "fit_staten_island_5",
+   "name": "Puffer Jacket (Staten Island)",
+   "slot": "fit",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "staten_island",
+   "effects": {
+    "dr_add": 0.12,
+    "dodge_dist_mult": -0.25,
+    "recovery_frames_add": 4
+   },
+   "price": 1200,
+   "flavor": "Heavy fit. The deer stare, but they don't judge.",
+   "weight": "heavy"
+  },
+  {
+   "id": "fit_staten_island_6",
+   "name": "Leather Bomber (Staten Island)",
+   "slot": "fit",
+   "rarity": "rare",
+   "brand": "VELOCI",
+   "borough": "staten_island",
+   "effects": {
+    "dr_add": 0.1,
+    "poise_add": 15,
+    "dodge_dist_mult": -0.25,
+    "recovery_frames_add": 4
+   },
+   "price": 1600,
+   "flavor": "Heavy fit. Broken in on the landfill hills.",
+   "weight": "heavy"
+  },
+  {
+   "id": "fit_staten_island_7",
+   "name": "Shooting Shirt (Staten Island)",
+   "slot": "fit",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "staten_island",
+   "effects": {
+    "dr_add": 0.03,
+    "perfect_add": 0.004
+   },
+   "price": 1900,
+   "flavor": "Light fit. The deer stare, but they don't judge.",
+   "weight": "light"
+  },
+  {
+   "id": "fit_staten_island_8",
+   "name": "Warm-Up Set (Staten Island)",
+   "slot": "fit",
+   "rarity": "epic",
+   "brand": "KONG",
+   "borough": "staten_island",
+   "effects": {
+    "dr_add": 0.06,
+    "hype_gain_mult": 0.05,
+    "dodge_dist_mult": -0.1
+   },
+   "price": 4550,
+   "flavor": "Medium fit. The deer stare, but they don't judge.",
+   "weight": "medium"
+  },
+  {
+   "id": "fit_staten_island_9",
+   "name": "Ferry Night Denim Set",
+   "slot": "fit",
+   "rarity": "epic",
+   "brand": "LOCKDOWN",
+   "borough": "staten_island",
+   "effects": {
+    "dr_add": 0.08,
+    "dodge_dist_mult": -0.1
+   },
+   "price": 4750,
+   "flavor": "Medium fit. Smells faintly of ferry diesel.",
+   "weight": "medium"
+  },
+  {
+   "id": "fit_staten_island_10",
+   "name": "Ferry Night Rain Shell",
+   "slot": "fit",
+   "rarity": "epic",
+   "brand": "LOCKDOWN",
+   "borough": "staten_island",
+   "effects": {
+    "dr_add": 0.04,
+    "status_resist_add": 0.1
+   },
+   "price": 4850,
+   "flavor": "Light fit. The deer stare, but they don't judge.",
+   "weight": "light"
+  },
+  {
+   "id": "fit_staten_island_11",
+   "name": "Ferry Night Block Party Set",
+   "slot": "fit",
+   "rarity": "epic",
+   "brand": "LOCKDOWN",
+   "borough": "staten_island",
+   "effects": {
+    "dr_add": 0.11,
+    "hype_gain_mult": 0.08,
+    "dodge_dist_mult": -0.25,
+    "recovery_frames_add": 4
+   },
+   "price": 4250,
+   "flavor": "Heavy fit. Smells faintly of ferry diesel.",
+   "weight": "heavy"
+  },
+  {
+   "id": "fit_uptown_0",
+   "name": "Tank & Shorts (Uptown)",
+   "slot": "fit",
+   "rarity": "common",
+   "brand": "KONG",
+   "borough": "uptown",
+   "effects": {
+    "dr_add": 0.02
+   },
+   "price": 550,
+   "flavor": "Light fit. Walked the Mecca bleachers twice.",
+   "weight": "light"
+  },
+  {
+   "id": "fit_uptown_1",
+   "name": "Practice Jersey (Uptown)",
+   "slot": "fit",
+   "rarity": "common",
+   "brand": "VELOCI",
+   "borough": "uptown",
+   "effects": {
+    "dr_add": 0.03
+   },
+   "price": 450,
+   "flavor": "Light fit. Every legend's been through here. Now you.",
+   "weight": "light"
+  },
+  {
+   "id": "fit_uptown_2",
+   "name": "Hoodie & Joggers (Uptown)",
+   "slot": "fit",
+   "rarity": "common",
+   "brand": "KONG",
+   "borough": "uptown",
+   "effects": {
+    "dr_add": 0.06,
+    "dodge_dist_mult": -0.1
+   },
+   "price": 550,
+   "flavor": "Medium fit. Every legend's been through here. Now you.",
+   "weight": "medium"
+  },
+  {
+   "id": "fit_uptown_3",
+   "name": "Tracksuit (Uptown)",
+   "slot": "fit",
+   "rarity": "common",
+   "brand": "VELOCI",
+   "borough": "uptown",
+   "effects": {
+    "dr_add": 0.07,
+    "wind_regen_mult": 0.1,
+    "dodge_dist_mult": -0.1
+   },
+   "price": 500,
+   "flavor": "Medium fit. Pigeon-coop fresh.",
+   "weight": "medium"
+  },
+  {
+   "id": "fit_uptown_4",
+   "name": "Windbreaker (Uptown)",
+   "slot": "fit",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "uptown",
+   "effects": {
+    "dr_add": 0.06,
+    "push_resist_add": 0.3,
+    "dodge_dist_mult": -0.1
+   },
+   "price": 1200,
+   "flavor": "Medium fit. Every legend's been through here. Now you.",
+   "weight": "medium"
+  },
+  {
+   "id": "fit_uptown_5",
+   "name": "Puffer Jacket (Uptown)",
+   "slot": "fit",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "uptown",
+   "effects": {
+    "dr_add": 0.12,
+    "dodge_dist_mult": -0.25,
+    "recovery_frames_add": 4
+   },
+   "price": 1850,
+   "flavor": "Heavy fit. Every legend's been through here. Now you.",
+   "weight": "heavy"
+  },
+  {
+   "id": "fit_uptown_6",
+   "name": "Leather Bomber (Uptown)",
+   "slot": "fit",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "uptown",
+   "effects": {
+    "dr_add": 0.1,
+    "poise_add": 15,
+    "dodge_dist_mult": -0.25,
+    "recovery_frames_add": 4
+   },
+   "price": 1950,
+   "flavor": "Heavy fit. Walked the Mecca bleachers twice.",
+   "weight": "heavy"
+  },
+  {
+   "id": "fit_uptown_7",
+   "name": "Shooting Shirt (Uptown)",
+   "slot": "fit",
+   "rarity": "rare",
+   "brand": "VELOCI",
+   "borough": "uptown",
+   "effects": {
+    "dr_add": 0.03,
+    "perfect_add": 0.004
+   },
+   "price": 1750,
+   "flavor": "Light fit. Every legend's been through here. Now you.",
+   "weight": "light"
+  },
+  {
+   "id": "fit_uptown_8",
+   "name": "Warm-Up Set (Uptown)",
+   "slot": "fit",
+   "rarity": "epic",
+   "brand": "KONG",
+   "borough": "uptown",
+   "effects": {
+    "dr_add": 0.06,
+    "hype_gain_mult": 0.05,
+    "dodge_dist_mult": -0.1
+   },
+   "price": 3650,
+   "flavor": "Medium fit. Pigeon-coop fresh.",
+   "weight": "medium"
+  },
+  {
+   "id": "fit_uptown_9",
+   "name": "Uptown Royal Denim Set",
+   "slot": "fit",
+   "rarity": "epic",
+   "brand": "VELOCI",
+   "borough": "uptown",
+   "effects": {
+    "dr_add": 0.08,
+    "dodge_dist_mult": -0.1
+   },
+   "price": 3450,
+   "flavor": "Medium fit. Pigeon-coop fresh.",
+   "weight": "medium"
+  },
+  {
+   "id": "fit_uptown_10",
+   "name": "Uptown Royal Rain Shell",
+   "slot": "fit",
+   "rarity": "epic",
+   "brand": "KONG",
+   "borough": "uptown",
+   "effects": {
+    "dr_add": 0.04,
+    "status_resist_add": 0.1
+   },
+   "price": 4750,
+   "flavor": "Light fit. Pigeon-coop fresh.",
+   "weight": "light"
+  },
+  {
+   "id": "fit_uptown_11",
+   "name": "Uptown Royal Block Party Set",
+   "slot": "fit",
+   "rarity": "epic",
+   "brand": "KONG",
+   "borough": "uptown",
+   "effects": {
+    "dr_add": 0.11,
+    "hype_gain_mult": 0.08,
+    "dodge_dist_mult": -0.25,
+    "recovery_frames_add": 4
+   },
+   "price": 3300,
+   "flavor": "Heavy fit. Pigeon-coop fresh.",
+   "weight": "heavy"
+  },
+  {
+   "id": "fit_city_0",
+   "name": "Tank & Shorts (City)",
+   "slot": "fit",
+   "rarity": "common",
+   "brand": "VELOCI",
+   "borough": "city",
+   "effects": {
+    "dr_add": 0.02
+   },
+   "price": 550,
+   "flavor": "Light fit. Billboard bright, sidewalk tough.",
+   "weight": "light"
+  },
+  {
+   "id": "fit_city_1",
+   "name": "Practice Jersey (City)",
+   "slot": "fit",
+   "rarity": "common",
+   "brand": "LOCKDOWN",
+   "borough": "city",
+   "effects": {
+    "dr_add": 0.03
+   },
+   "price": 450,
+   "flavor": "Light fit. Seen on a hundred screens at once.",
+   "weight": "light"
+  },
+  {
+   "id": "fit_city_2",
+   "name": "Hoodie & Joggers (City)",
+   "slot": "fit",
+   "rarity": "common",
+   "brand": "LOCKDOWN",
+   "borough": "city",
+   "effects": {
+    "dr_add": 0.06,
+    "dodge_dist_mult": -0.1
+   },
+   "price": 600,
+   "flavor": "Medium fit. Priced in Midtown dollars.",
+   "weight": "medium"
+  },
+  {
+   "id": "fit_city_3",
+   "name": "Tracksuit (City)",
+   "slot": "fit",
+   "rarity": "common",
+   "brand": "VELOCI",
+   "borough": "city",
+   "effects": {
+    "dr_add": 0.07,
+    "wind_regen_mult": 0.1,
+    "dodge_dist_mult": -0.1
+   },
+   "price": 450,
+   "flavor": "Medium fit. Billboard bright, sidewalk tough.",
+   "weight": "medium"
+  },
+  {
+   "id": "fit_city_4",
+   "name": "Windbreaker (City)",
+   "slot": "fit",
+   "rarity": "rare",
+   "brand": "LOCKDOWN",
+   "borough": "city",
+   "effects": {
+    "dr_add": 0.06,
+    "push_resist_add": 0.3,
+    "dodge_dist_mult": -0.1
+   },
+   "price": 1750,
+   "flavor": "Medium fit. Billboard bright, sidewalk tough.",
+   "weight": "medium"
+  },
+  {
+   "id": "fit_city_5",
+   "name": "Puffer Jacket (City)",
+   "slot": "fit",
+   "rarity": "rare",
+   "brand": "LOCKDOWN",
+   "borough": "city",
+   "effects": {
+    "dr_add": 0.12,
+    "dodge_dist_mult": -0.25,
+    "recovery_frames_add": 4
+   },
+   "price": 1650,
+   "flavor": "Heavy fit. Priced in Midtown dollars.",
+   "weight": "heavy"
+  },
+  {
+   "id": "fit_city_6",
+   "name": "Leather Bomber (City)",
+   "slot": "fit",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "city",
+   "effects": {
+    "dr_add": 0.1,
+    "poise_add": 15,
+    "dodge_dist_mult": -0.25,
+    "recovery_frames_add": 4
+   },
+   "price": 1400,
+   "flavor": "Heavy fit. Priced in Midtown dollars.",
+   "weight": "heavy"
+  },
+  {
+   "id": "fit_city_7",
+   "name": "Shooting Shirt (City)",
+   "slot": "fit",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "city",
+   "effects": {
+    "dr_add": 0.03,
+    "perfect_add": 0.004
+   },
+   "price": 1600,
+   "flavor": "Light fit. Billboard bright, sidewalk tough.",
+   "weight": "light"
+  },
+  {
+   "id": "fit_city_8",
+   "name": "Warm-Up Set (City)",
+   "slot": "fit",
+   "rarity": "epic",
+   "brand": "LOCKDOWN",
+   "borough": "city",
+   "effects": {
+    "dr_add": 0.06,
+    "hype_gain_mult": 0.05,
+    "dodge_dist_mult": -0.1
+   },
+   "price": 4350,
+   "flavor": "Medium fit. Billboard bright, sidewalk tough.",
+   "weight": "medium"
+  },
+  {
+   "id": "fit_city_9",
+   "name": "Midtown Denim Set",
+   "slot": "fit",
+   "rarity": "epic",
+   "brand": "VELOCI",
+   "borough": "city",
+   "effects": {
+    "dr_add": 0.08,
+    "dodge_dist_mult": -0.1
+   },
+   "price": 4450,
+   "flavor": "Medium fit. Billboard bright, sidewalk tough.",
+   "weight": "medium"
+  },
+  {
+   "id": "fit_city_10",
+   "name": "Midtown Rain Shell",
+   "slot": "fit",
+   "rarity": "epic",
+   "brand": "LOCKDOWN",
+   "borough": "city",
+   "effects": {
+    "dr_add": 0.04,
+    "status_resist_add": 0.1
+   },
+   "price": 3800,
+   "flavor": "Light fit. Billboard bright, sidewalk tough.",
+   "weight": "light"
+  },
+  {
+   "id": "fit_city_11",
+   "name": "Midtown Block Party Set",
+   "slot": "fit",
+   "rarity": "epic",
+   "brand": "VELOCI",
+   "borough": "city",
+   "effects": {
+    "dr_add": 0.11,
+    "hype_gain_mult": 0.08,
+    "dodge_dist_mult": -0.25,
+    "recovery_frames_add": 4
+   },
+   "price": 4300,
+   "flavor": "Heavy fit. Priced in Midtown dollars.",
+   "weight": "heavy"
+  }
+ ]
+}

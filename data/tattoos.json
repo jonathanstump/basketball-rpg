@@ -1,0 +1,239 @@
+{
+ "tattoos": [
+  {
+   "id": "tattoo_crown",
+   "name": "Crown",
+   "effects": {
+    "full_heart_damage_mult": 0.1
+   },
+   "source": "High Rise",
+   "description": "+10% damage at full Heart",
+   "flash": "flash_crown"
+  },
+  {
+   "id": "tattoo_clock",
+   "name": "Clock",
+   "effects": {
+    "low_heart_window_mult": 0.35
+   },
+   "source": "Pops",
+   "description": "Heart < 30%: shot windows +35%",
+   "flash": "flash_clock"
+  },
+  {
+   "id": "tattoo_wings",
+   "name": "Wings",
+   "effects": {
+    "jump_mult": 0.2,
+    "dunk_range_mult": 0.1
+   },
+   "source": "Coop King",
+   "description": "+20% jump height, +10% dunk range",
+   "flash": "flash_wings"
+  },
+  {
+   "id": "tattoo_rose",
+   "name": "Rose",
+   "effects": {
+    "rose": 1
+   },
+   "source": "Stoop Queen",
+   "description": "Once per rest, survive a lethal hit at 1 HP",
+   "flash": "flash_rose"
+  },
+  {
+   "id": "tattoo_boombox",
+   "name": "Boombox",
+   "effects": {
+    "taunt_hype_mult": 0.5
+   },
+   "source": "Grandmaster Boom",
+   "description": "Taunts give +50% Hype",
+   "flash": "flash_boombox"
+  },
+  {
+   "id": "tattoo_claw",
+   "name": "Claw",
+   "effects": {
+    "strip_damage_add": 40
+   },
+   "source": "King Crab",
+   "description": "Strips also deal 40 dmg (scaled)",
+   "flash": "flash_claw"
+  },
+  {
+   "id": "tattoo_ticket",
+   "name": "Ticket",
+   "effects": {
+    "tokens_mult": 0.15
+   },
+   "source": "The Barker",
+   "description": "+15% tokens",
+   "flash": "flash_ticket"
+  },
+  {
+   "id": "tattoo_anchor",
+   "name": "Anchor",
+   "effects": {
+    "guard_stability_mult": 0.3,
+    "push_resist_add": 0.5
+   },
+   "source": "The Ferryman",
+   "description": "+30% guard stability, 50% resist to pushes",
+   "flash": "flash_anchor"
+  },
+  {
+   "id": "tattoo_globe",
+   "name": "Globe",
+   "effects": {
+    "pass_homing_add": 0.35
+   },
+   "source": "Atlas",
+   "description": "Passes curve toward the locked target",
+   "flash": "flash_globe"
+  },
+  {
+   "id": "tattoo_star",
+   "name": "Star",
+   "effects": {
+    "poster_composure_mult": 0.2
+   },
+   "source": "The General",
+   "description": "+20% composure dmg on dunks/posters",
+   "flash": "flash_star"
+  },
+  {
+   "id": "tattoo_express",
+   "name": "Express",
+   "effects": {
+    "speed_mult": 0.08,
+    "free_sprint": 1
+   },
+   "source": "The Express",
+   "description": "+8% move speed; sprint is free out of combat",
+   "flash": "flash_express"
+  },
+  {
+   "id": "tattoo_flame",
+   "name": "Flame",
+   "effects": {
+    "takeover_bonus_add": 4.0
+   },
+   "source": "Bronx GHOST box",
+   "description": "Takeover +4 s",
+   "flash": "flash_flame"
+  },
+  {
+   "id": "tattoo_dice",
+   "name": "Dice",
+   "effects": {
+    "double_bucket_add": 0.1
+   },
+   "source": "Queens GHOST box",
+   "description": "10%: a make deals double bucket damage",
+   "flash": "flash_dice"
+  },
+  {
+   "id": "tattoo_brick",
+   "name": "Brick",
+   "effects": {
+    "brick_damage_add": 30
+   },
+   "source": "Staten Island GHOST box",
+   "description": "Your misses deal 30 dmg near the rim",
+   "flash": "flash_brick"
+  },
+  {
+   "id": "tattoo_hustle",
+   "name": "Hustle",
+   "effects": {
+    "hustle": 1
+   },
+   "source": "Uptown GHOST box",
+   "description": "Loose-ball pickups: +5 Hype, +10% speed 3 s",
+   "flash": "flash_hustle"
+  },
+  {
+   "id": "tattoo_chain_link",
+   "name": "Chain Link",
+   "effects": {
+    "dr_add": 0.15,
+    "speed_mult": -0.05
+   },
+   "source": "Chain Link",
+   "description": "+15% DR, -5% speed",
+   "flash": "flash_chain_link"
+  },
+  {
+   "id": "tattoo_bridge",
+   "name": "Bridge",
+   "effects": {
+    "pass_range_mult": 0.4,
+    "pass_ricochet_add": 1
+   },
+   "source": "Suspension",
+   "description": "Chest Pass +40% range, one extra ricochet",
+   "flash": "flash_bridge"
+  },
+  {
+   "id": "tattoo_mic",
+   "name": "Mic",
+   "effects": {
+    "ankle_hype_mult": 1.0
+   },
+   "source": "Prime Time",
+   "description": "Ankle-breakers give double Hype",
+   "flash": "flash_mic"
+  },
+  {
+   "id": "tattoo_scale",
+   "name": "Scale",
+   "effects": {
+    "status_resist_add": 0.25
+   },
+   "source": "The Gator",
+   "description": "+25% status resist",
+   "flash": "flash_scale"
+  },
+  {
+   "id": "tattoo_skyline",
+   "name": "Skyline",
+   "effects": {
+    "stat_all_add": 3
+   },
+   "source": "The Gargoyle",
+   "description": "+3 all stats",
+   "flash": "flash_skyline"
+  },
+  {
+   "id": "tattoo_nine_lives",
+   "name": "Nine Lives",
+   "effects": {
+    "nine_lives": 1
+   },
+   "source": "Lost Cat quest",
+   "description": "Your dropped chain survives one extra death",
+   "flash": "flash_nine_lives"
+  },
+  {
+   "id": "tattoo_slice",
+   "name": "Slice",
+   "effects": {
+    "qw_hype_add": 20
+   },
+   "source": "Pizza Rat King",
+   "description": "Quarter Waters also give +20 Hype",
+   "flash": "flash_slice"
+  },
+  {
+   "id": "tattoo_midnight",
+   "name": "Midnight",
+   "effects": {
+    "takeover_cost_add": -25
+   },
+   "source": "Midnight",
+   "description": "Takeover usable at 75 Hype",
+   "flash": "flash_midnight"
+  }
+ ]
+}

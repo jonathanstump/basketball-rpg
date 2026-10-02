@@ -1,0 +1,164 @@
+{
+ "mixtapes": [
+  {
+   "id": "mixtape_snatchback",
+   "name": "Snatchback Mixtape",
+   "slot": "mixtape",
+   "rarity": "epic",
+   "teaches": "snatchback",
+   "price": 0,
+   "no_shop": true,
+   "flavor": "Side A: Yank the ball back, slide 4 m back, deflect one projectile. Side B: hiss."
+  },
+  {
+   "id": "mixtape_spin_cycle",
+   "name": "Spin Cycle Mixtape",
+   "slot": "mixtape",
+   "rarity": "epic",
+   "teaches": "spin_cycle",
+   "price": 0,
+   "no_shop": true,
+   "flavor": "Side A: 360 spin, multi-hit AoE r 2 m. Side B: hiss."
+  },
+  {
+   "id": "mixtape_hesi",
+   "name": "Hesi Mixtape",
+   "slot": "mixtape",
+   "rarity": "epic",
+   "teaches": "hesi",
+   "price": 0,
+   "no_shop": true,
+   "flavor": "Side A: Hesitation; next attack within 1 s does +100% composure. Side B: hiss."
+  },
+  {
+   "id": "mixtape_orbit",
+   "name": "Orbit Mixtape",
+   "slot": "mixtape",
+   "rarity": "epic",
+   "teaches": "orbit",
+   "price": 0,
+   "no_shop": true,
+   "flavor": "Side A: Ball orbits you 5 s, hitting anything close. Side B: hiss."
+  },
+  {
+   "id": "mixtape_third_rail",
+   "name": "Third Rail Mixtape",
+   "slot": "mixtape",
+   "rarity": "epic",
+   "teaches": "third_rail",
+   "price": 0,
+   "no_shop": true,
+   "flavor": "Side A: Electrified dash through enemies. Side B: hiss."
+  },
+  {
+   "id": "mixtape_self_oop",
+   "name": "Self Oop Mixtape",
+   "slot": "mixtape",
+   "rarity": "epic",
+   "teaches": "self_oop",
+   "price": 0,
+   "no_shop": true,
+   "flavor": "Side A: Off the ground, slam: dunk AoE anywhere. Side B: hiss."
+  },
+  {
+   "id": "mixtape_euro_glide",
+   "name": "Euro Glide Mixtape",
+   "slot": "mixtape",
+   "rarity": "epic",
+   "teaches": "euro_glide",
+   "price": 0,
+   "no_shop": true,
+   "flavor": "Side A: Long evasive two-step with i-frames. Side B: hiss."
+  },
+  {
+   "id": "mixtape_rainbow_lob",
+   "name": "Rainbow Lob Mixtape",
+   "slot": "mixtape",
+   "rarity": "epic",
+   "teaches": "rainbow_lob",
+   "price": 0,
+   "no_shop": true,
+   "flavor": "Side A: Giant lob landing as 3 impact zones. Side B: hiss."
+  },
+  {
+   "id": "mixtape_bass_drop",
+   "name": "Bass Drop Mixtape",
+   "slot": "mixtape",
+   "rarity": "epic",
+   "teaches": "bass_drop",
+   "price": 0,
+   "no_shop": true,
+   "flavor": "Side A: Three ground shockwave rings. Side B: hiss."
+  },
+  {
+   "id": "mixtape_tunnel",
+   "name": "Tunnel Mixtape",
+   "slot": "mixtape",
+   "rarity": "epic",
+   "teaches": "tunnel",
+   "price": 0,
+   "no_shop": true,
+   "flavor": "Side A: Roll it through their legs, appear behind them, guaranteed composure hit. Side B: hiss."
+  },
+  {
+   "id": "mixtape_chest_pound",
+   "name": "Chest Pound Mixtape",
+   "slot": "mixtape",
+   "rarity": "epic",
+   "teaches": "chest_pound",
+   "price": 0,
+   "no_shop": true,
+   "flavor": "Side A: Taunt that heals 15% Heart. Side B: hiss."
+  },
+  {
+   "id": "mixtape_toll_booth",
+   "name": "Toll Booth Mixtape",
+   "slot": "mixtape",
+   "rarity": "epic",
+   "teaches": "toll_booth",
+   "price": 0,
+   "no_shop": true,
+   "flavor": "Side A: Stance that reflects the next projectile. Side B: hiss."
+  },
+  {
+   "id": "mixtape_steam_fake",
+   "name": "Steam Fake Mixtape",
+   "slot": "mixtape",
+   "rarity": "epic",
+   "teaches": "steam_fake",
+   "price": 0,
+   "no_shop": true,
+   "flavor": "Side A: Pump fake; steam blinds enemies 2 s. Side B: hiss."
+  },
+  {
+   "id": "mixtape_trash_talk",
+   "name": "Trash Talk Mixtape",
+   "slot": "mixtape",
+   "rarity": "epic",
+   "teaches": "trash_talk",
+   "price": 0,
+   "no_shop": true,
+   "flavor": "Side A: Enemies within 10 m deal -25% dmg for 15 s. Side B: hiss."
+  },
+  {
+   "id": "mixtape_showstopper",
+   "name": "Showstopper Mixtape",
+   "slot": "mixtape",
+   "rarity": "epic",
+   "teaches": "showstopper",
+   "price": 0,
+   "no_shop": true,
+   "flavor": "Side A: Spotlight cone freezes enemies 2 s. Side B: hiss."
+  },
+  {
+   "id": "mixtape_iso",
+   "name": "Iso Mixtape",
+   "slot": "mixtape",
+   "rarity": "epic",
+   "teaches": "iso",
+   "price": 0,
+   "no_shop": true,
+   "flavor": "Side A: 3 s slow-mo bubble, ankle-breaker windows x2. Side B: hiss."
+  }
+ ]
+}

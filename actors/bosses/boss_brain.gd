@@ -78,7 +78,7 @@ func step() -> void:
 		actor.anim_state = "transition"
 		return
 	actor.invulnerable = false
-	if actor.is_broken():
+	if actor.is_broken() or StatusEffects.has(actor, "frozen"):
 		runner.interrupt()
 		actor.anim_state = "shook" if actor.is_shook() else "stagger"
 		return
@@ -133,6 +133,8 @@ func usable(m: Dictionary) -> bool:
 
 
 func pick_move() -> Dictionary:
+	if StatusEffects.has(actor, "blind"):
+		return {}
 	var cands: Array[Dictionary] = []
 	var total: float = 0.0
 	for m: Dictionary in moves:

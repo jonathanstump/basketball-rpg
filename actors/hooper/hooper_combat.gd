@@ -19,8 +19,15 @@ func _init(c: CombatSystem, b: BallSystem) -> void:
 	balls = b
 
 
-static func damage_buffs(a: SimActor) -> float:
-	var m: float = float(a.flags.get("damage_mult", 1.0))
+static func damage_buffs(a: SimActor, move: Dictionary = {}) -> float:
+	var m: float = float(a.flags.get("damage_mult", 1.0)) * float(a.flags.get("buff_damage_mult", 1.0))
+	if a.hp >= a.hp_max - 0.01:
+		m *= float(a.flags.get("full_heart_damage_mult", 1.0))
+	var prim: String = JU.s(move, "primitive")
+	if prim == "strike" and JU.s(move, "stat") == "handles":
+		m *= float(a.flags.get("dribble_damage_mult", 1.0))
+	elif prim == "slam" or prim == "finisher" or prim == "dunk":
+		m *= float(a.flags.get("dunk_damage_mult", 1.0))
 	if bool(a.flags.get("takeover", false)):
 		m *= JU.f(JU.dict(DataDB.tuning("combat"), "takeover"), "damage_mult", 1.25)
 	return m
@@ -78,6 +85,7 @@ func on_begin(h: Hooper) -> void:
 			var w: float = StatFormulas.parry_window_frames(a.stat("hands") + int(a.flags.get("parry_bonus", 0)), JU.f(JU.dict(DataDB.tuning("combat"), "parry"), "base_window_frames", 10.0))
 			if a.team == 0 and Settings.get_bool("rookie_mode"):
 				w *= 1.25
+			w += float(a.flags.get("parry_bonus_frames", 0.0))
 			h.action_move = h.action_move.duplicate()
 			h.action_move["active"] = int(w)
 			h.action_total = int(w) + JU.i(h.action_move, "recovery", 18)
@@ -179,7 +187,7 @@ func _hitbox(h: Hooper, m: Dictionary, frames: int) -> Hitbox:
 	hb.volume.origin = a.pos
 	hb.volume.yaw = a.facing
 	hb.frames_left = maxi(1, frames)
-	hb.damage = DamageMath.hooper_damage(m, a, damage_buffs(a))
+	hb.damage = DamageMath.hooper_damage(m, a, damage_buffs(a, m))
 	hb.composure = JU.f(m, "composure")
 	hb.kind = JU.s(m, "type", "ball")
 	hb.weight = JU.s(m, "hit_weight", "light")
@@ -254,7 +262,7 @@ func _reach_in(h: Hooper) -> void:
 		var showboating: bool = bool(o.flags.get("showboat", false))
 		if not o.has_ball or not vol.hits(o) or (o.flags.has("move") and not showboating) or bool(o.flags.get("unstealable", false)):
 			continue
-		var chance: float = JU.f(h.action_move, "steal_chance", 0.35) + float(a.stat("hands") - 10) * JU.f(JU.dict(DataDB.tuning("combat"), "reach_in"), "hands_per_pt", 0.01)
+		var chance: float = JU.f(h.action_move, "steal_chance", 0.35) + float(a.stat("hands") - 10) * JU.f(JU.dict(DataDB.tuning("combat"), "reach_in"), "hands_per_pt", 0.01) + float(a.flags.get("steal_bonus", 0.0))
 		chance -= float(o.flags.get("ball_security", 0.0))
 		if showboating:
 			chance = 1.0

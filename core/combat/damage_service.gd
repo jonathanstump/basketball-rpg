@@ -62,10 +62,10 @@ func resolve(hb: Hitbox, t: SimActor) -> Dictionary:
 		res["composure"] = comp
 		res["broke"] = t.composure.add(comp, hb.break_kind)
 	if not hb.status.is_empty() and res["result"] == "hit":
-		StatusEffects.apply(t, hb.status, float(t.flags.get("status_resist", 0.0)))
+		StatusEffects.apply(t, hb.status, float(t.flags.get("status_resist", 0.0)) + (float(t.flags.get("burn_resist", 0.0)) if hb.status.has("burn") else 0.0))
 	res["knockdown"] = hb.knockdown or (hb.knockdown_commons and t.kind == "enemy")
 	if res["result"] == "hit" and att != null:
-		if bool(hb.tags.get("steal", false)) and t.has_ball and balls != null and not bool(t.flags.get("unstealable", false)) and not att.has_ball:
+		if bool(hb.tags.get("steal", false)) and t.has_ball and balls != null and not bool(t.flags.get("unstealable", false)) and not att.has_ball and world.rng.randf() >= float(t.flags.get("ball_security", 0.0)):
 			var sb: SimBall = balls.take_from(t)
 			if sb != null:
 				balls.give(sb, att)
@@ -74,7 +74,7 @@ func resolve(hb: Hitbox, t: SimActor) -> Dictionary:
 			var away: Vector3 = t.pos - (att.pos if att != null else hb.volume.center())
 			away.y = 0.0
 			if away.length() > 0.01:
-				t.pos = world.collision.resolve(t.pos + away.normalized() * float(hb.tags["knockback_m"]), t.radius)
+				t.pos = world.collision.resolve(t.pos + away.normalized() * float(hb.tags["knockback_m"]) * (1.0 - clampf(float(t.flags.get("push_resist", 0.0)), 0.0, 0.9)), t.radius)
 		if hb.tags.has("snatch_pct"):
 			world.emit("tokens_snatched", {"actor": att.id, "target": t.id, "pct": float(hb.tags["snatch_pct"])})
 	res["weight"] = hb.weight

@@ -95,6 +95,19 @@ func _on_event(ev: Dictionary) -> void:
 		"lob_landed":
 			for tid: Variant in (ev["targets"] as Array):
 				_direct(int(ev["actor"]), int(tid), "lob", 1.0)
+		"shot_missed":
+			var shooter2: SimActor = world.actor_by_id(int(ev.get("actor", 0)))
+			if shooter2 != null and float(shooter2.flags.get("brick_damage", 0.0)) > 0.0 and balls != null:
+				var hp: SimHoop = balls.hoop_by_id(str(ev.get("hoop", "")))
+				if hp != null:
+					for o: SimActor in world.hostiles_of(shooter2):
+						if o.flat_pos().distance_to(Vector2(hp.rim.x, hp.rim.z)) <= 3.0:
+							damage.apply_raw(o, float(shooter2.flags["brick_damage"]))
+		"ball_picked":
+			var picker: SimActor = world.actor_by_id(int(ev.get("actor", 0)))
+			if picker != null and bool(picker.flags.get("hustle", false)):
+				picker.hype.add(5.0)
+				picker.flags["hustle_until"] = world.frame + 180
 		"bucket_blast":
 			var shooter: SimActor = world.actor_by_id(int(ev["actor"]))
 			if shooter != null:

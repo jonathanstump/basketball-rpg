@@ -574,6 +574,183 @@
    "active": 12,
    "recovery": 10,
    "damage": 0
+  },
+  {
+   "id": "bag_orbit",
+   "name": "Orbit",
+   "primitive": "bag",
+   "startup": 4,
+   "active": 2,
+   "recovery": 6,
+   "damage": 14,
+   "composure": 4,
+   "type": "ball",
+   "stat": "handles",
+   "duration_s": 5.0,
+   "hitbox": {
+    "shape": "circle",
+    "radius": 1.8,
+    "height": 1.6
+   },
+   "hit_weight": "light"
+  },
+  {
+   "id": "bag_dash_strike",
+   "name": "Third Rail",
+   "primitive": "bag",
+   "startup": 4,
+   "active": 14,
+   "recovery": 10,
+   "damage": 30,
+   "composure": 12,
+   "type": "ball",
+   "stat": "handles",
+   "distance_m": 7.0,
+   "hitbox": {
+    "shape": "box",
+    "length": 1.6,
+    "width": 2.0,
+    "height": 1.8
+   },
+   "status": {
+    "shock": 1.0
+   },
+   "hit_weight": "medium"
+  },
+  {
+   "id": "bag_self_oop",
+   "name": "Self Oop",
+   "primitive": "bag",
+   "startup": 26,
+   "active": 6,
+   "recovery": 20,
+   "damage": 60,
+   "composure": 30,
+   "type": "ball",
+   "stat": "bounce",
+   "hitbox": {
+    "shape": "circle",
+    "radius": 3.5,
+    "height": 3.0
+   },
+   "knockdown_commons": true,
+   "hit_weight": "heavy"
+  },
+  {
+   "id": "bag_euro_glide",
+   "name": "Euro Glide",
+   "primitive": "bag",
+   "startup": 2,
+   "active": 18,
+   "recovery": 8,
+   "damage": 0,
+   "distance_m": 6.0
+  },
+  {
+   "id": "bag_rainbow_lob",
+   "name": "Rainbow Lob",
+   "primitive": "bag",
+   "startup": 18,
+   "active": 2,
+   "recovery": 20,
+   "damage": 35,
+   "composure": 12,
+   "type": "ball",
+   "stat": "handles",
+   "hitbox": {
+    "shape": "circle",
+    "radius": 2.2,
+    "height": 2.5
+   },
+   "hit_weight": "medium"
+  },
+  {
+   "id": "bag_bass_drop",
+   "name": "Bass Drop",
+   "primitive": "bag",
+   "startup": 10,
+   "active": 30,
+   "recovery": 14,
+   "damage": 22,
+   "composure": 10,
+   "type": "ball",
+   "stat": "handles",
+   "hit_weight": "medium"
+  },
+  {
+   "id": "bag_tunnel",
+   "name": "Tunnel",
+   "primitive": "bag",
+   "startup": 6,
+   "active": 6,
+   "recovery": 8,
+   "damage": 0,
+   "composure": 40,
+   "range_m": 6.0
+  },
+  {
+   "id": "bag_chest_pound",
+   "name": "Chest Pound",
+   "primitive": "bag",
+   "startup": 0,
+   "active": 60,
+   "recovery": 0,
+   "damage": 0,
+   "heal_pct": 0.15
+  },
+  {
+   "id": "bag_toll_booth",
+   "name": "Toll Booth",
+   "primitive": "bag",
+   "startup": 4,
+   "active": 8,
+   "recovery": 6,
+   "damage": 0,
+   "duration_s": 3.0
+  },
+  {
+   "id": "bag_steam_fake",
+   "name": "Steam Fake",
+   "primitive": "bag",
+   "startup": 8,
+   "active": 4,
+   "recovery": 10,
+   "damage": 0,
+   "radius": 6.0,
+   "blind_s": 2.0
+  },
+  {
+   "id": "bag_trash_talk",
+   "name": "Trash Talk",
+   "primitive": "bag",
+   "startup": 10,
+   "active": 4,
+   "recovery": 10,
+   "damage": 0,
+   "radius": 10.0,
+   "duration_s": 15.0
+  },
+  {
+   "id": "bag_showstopper",
+   "name": "Showstopper",
+   "primitive": "bag",
+   "startup": 12,
+   "active": 4,
+   "recovery": 12,
+   "damage": 0,
+   "radius": 10.0,
+   "angle": 60.0,
+   "freeze_s": 2.0
+  },
+  {
+   "id": "bag_iso",
+   "name": "Iso",
+   "primitive": "bag",
+   "startup": 4,
+   "active": 4,
+   "recovery": 4,
+   "damage": 0,
+   "duration_s": 3.0
   }
  ]
 }

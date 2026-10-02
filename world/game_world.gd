@@ -26,6 +26,7 @@ var spawner: EnemySpawner
 var lifecycle: PlayerLifecycle
 var time_fx: TimeFX
 var hud: HUD
+var menu: CanvasLayer = null
 
 
 func _init() -> void:
@@ -106,6 +107,8 @@ func spawn_player(pos: Vector3, profile: Dictionary = {}, stats: Dictionary = {}
 	a.flags["qw_heal_pct"] = 0.35 + 0.05 * float(GameState.sugar_rush)
 	a.flags["bag_move"] = str(GameState.equipment.get("bag_move", ""))
 	lifecycle.respawn_point = pos
+	PlayerBuild.apply(a, player_hooper)
+	a.flags["qw"] = GameState.quarter_waters
 	add_actor_view(a, profile if not profile.is_empty() else GameState.profile)
 	shot_meter.module = player_ball_module
 	shot_meter.actor = a
@@ -132,6 +135,29 @@ func remove_actor(a: SimActor) -> void:
 	if views.has(a.id):
 		(views[a.id] as Node).queue_free()
 		views.erase(a.id)
+
+
+func open_menu(m: CanvasLayer) -> void:
+	close_menu()
+	add_child(m)
+	menu = m
+	paused_sim = true
+
+
+func close_menu() -> void:
+	if menu != null and is_instance_valid(menu):
+		menu.queue_free()
+	menu = null
+	paused_sim = false
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("menu") and menu == null and player != null:
+		PauseMenu.open(self)
+		get_viewport().set_input_as_handled()
+	elif menu is MapScreen and (event.is_action_pressed("map") or event.is_action_pressed("menu") or event.is_action_pressed("ui_cancel")):
+		close_menu()
+		get_viewport().set_input_as_handled()
 
 
 func _physics_process(_delta: float) -> void:
@@ -193,6 +219,8 @@ func _on_sim_event(ev: Dictionary) -> void:
 		"actor_killed":
 			if player != null and int(ev["actor"]) == player.id:
 				lifecycle.on_player_killed()
+		"rose_saved":
+			GameState.flags["rose_ready"] = false
 		"enemy_spawned":
 			var ea: SimActor = sim.actor_by_id(int(ev["actor"]))
 			if ea != null and not views.has(ea.id):
@@ -200,8 +228,8 @@ func _on_sim_event(ev: Dictionary) -> void:
 				add_child(ev_view)
 				views[ea.id] = ev_view
 		"enemy_defeated":
-			GameState.add_rep(int(ev["rep"]))
-			GameState.add_tokens(int(ev["tokens"]))
+			GameState.add_rep(PlayerBuild.reward_rep(int(ev["rep"])))
+			GameState.add_tokens(PlayerBuild.reward_tokens(int(ev["tokens"])))
 			for drop: String in (ev["drops"] as PackedStringArray):
 				if not drop.begins_with("loot:"):
 					GameState.add_item(drop, 1)

@@ -1,0 +1,48 @@
+{
+ "materials": [
+  {
+   "id": "grip_tape",
+   "name": "Grip Tape",
+   "rarity": "common",
+   "price": 150,
+   "flavor": "Upgrades a ball from +0 to +5.",
+   "slot": "material"
+  },
+  {
+   "id": "pro_grip",
+   "name": "Pro Grip",
+   "rarity": "rare",
+   "price": 600,
+   "flavor": "Upgrades a ball from +5 to +10.",
+   "slot": "material",
+   "no_shop": true
+  },
+  {
+   "id": "box_key",
+   "name": "Box Key",
+   "rarity": "rare",
+   "price": 0,
+   "flavor": "Opens a locked shoebox. Crew Captains carry them.",
+   "slot": "material",
+   "no_shop": true
+  },
+  {
+   "id": "punch_card",
+   "name": "Punch Card",
+   "rarity": "rare",
+   "price": 0,
+   "flavor": "Ten punches = one more Quarter Water. Trade it at any bodega.",
+   "slot": "material",
+   "no_shop": true
+  },
+  {
+   "id": "sugar_rush",
+   "name": "Sugar Rush",
+   "rarity": "rare",
+   "price": 0,
+   "flavor": "Pure sugar. Quarter Waters heal +5% more (max 5).",
+   "slot": "material",
+   "no_shop": true
+  }
+ ]
+}

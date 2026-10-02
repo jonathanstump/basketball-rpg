@@ -79,6 +79,8 @@ func on_frame(h: Hooper) -> void:
 
 func tick(h: Hooper) -> void:
 	var a: SimActor = h.actor
+	BagMoves.tick(h, combat)
+	PlayerBuffs.tick(a, combat.world.frame, DT)
 	if bool(a.flags.get("takeover", false)):
 		h.regen_mult = JU.f(JU.dict(DataDB.tuning("combat"), "takeover"), "wind_regen_mult", 1.5)
 		if combat.world.frame >= int(a.flags.get("takeover_until", 0)):

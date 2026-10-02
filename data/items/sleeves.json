@@ -1,0 +1,952 @@
+{
+ "sleeves": [
+  {
+   "id": "sleeve_bronx_0",
+   "name": "Compression (Bronx)",
+   "slot": "sleeve",
+   "rarity": "common",
+   "brand": "KONG",
+   "borough": "bronx",
+   "effects": {
+    "dr_add": 0.03
+   },
+   "price": 800,
+   "flavor": "Murals on the inside lining."
+  },
+  {
+   "id": "sleeve_bronx_1",
+   "name": "Shooter Sleeve (Bronx)",
+   "slot": "sleeve",
+   "rarity": "common",
+   "brand": "STRATA",
+   "borough": "bronx",
+   "effects": {
+    "gather_mult": -0.08
+   },
+   "price": 500,
+   "flavor": "Murals on the inside lining."
+  },
+  {
+   "id": "sleeve_bronx_2",
+   "name": "Lockdown Sleeve (Bronx)",
+   "slot": "sleeve",
+   "rarity": "common",
+   "brand": "LOCKDOWN",
+   "borough": "bronx",
+   "effects": {
+    "parry_frames_add": 1
+   },
+   "price": 650,
+   "flavor": "Stitched under the El, one train at a time."
+  },
+  {
+   "id": "sleeve_bronx_3",
+   "name": "Grip Sleeve (Bronx)",
+   "slot": "sleeve",
+   "rarity": "common",
+   "brand": "LOCKDOWN",
+   "borough": "bronx",
+   "effects": {
+    "ball_security_add": 0.15
+   },
+   "price": 500,
+   "flavor": "Murals on the inside lining."
+  },
+  {
+   "id": "sleeve_bronx_4",
+   "name": "Thermal (Bronx)",
+   "slot": "sleeve",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "bronx",
+   "effects": {
+    "burn_resist_add": 0.5
+   },
+   "price": 1850,
+   "flavor": "Murals on the inside lining."
+  },
+  {
+   "id": "sleeve_bronx_5",
+   "name": "Ice Sleeve (Bronx)",
+   "slot": "sleeve",
+   "rarity": "rare",
+   "brand": "VELOCI",
+   "borough": "bronx",
+   "effects": {
+    "wind_regen_mult": 0.1
+   },
+   "price": 1450,
+   "flavor": "Smells like the block party never ended."
+  },
+  {
+   "id": "sleeve_bronx_6",
+   "name": "Arm Wrap (Bronx)",
+   "slot": "sleeve",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "bronx",
+   "effects": {
+    "dr_add": 0.04
+   },
+   "price": 1500,
+   "flavor": "Stitched under the El, one train at a time."
+  },
+  {
+   "id": "sleeve_bronx_7",
+   "name": "Release Sleeve (Bronx)",
+   "slot": "sleeve",
+   "rarity": "rare",
+   "brand": "STRATA",
+   "borough": "bronx",
+   "effects": {
+    "gather_mult": -0.1
+   },
+   "price": 1750,
+   "flavor": "Stitched under the El, one train at a time."
+  },
+  {
+   "id": "sleeve_bronx_8",
+   "name": "Strip Sleeve (Bronx)",
+   "slot": "sleeve",
+   "rarity": "epic",
+   "brand": "LOCKDOWN",
+   "borough": "bronx",
+   "effects": {
+    "steal_add": 0.08
+   },
+   "price": 4650,
+   "flavor": "Stitched under the El, one train at a time."
+  },
+  {
+   "id": "sleeve_bronx_9",
+   "name": "Fire Sleeve (Bronx)",
+   "slot": "sleeve",
+   "rarity": "epic",
+   "brand": "AIRWAVE",
+   "borough": "bronx",
+   "effects": {
+    "burn_resist_add": 0.6,
+    "dunk_damage_mult": 0.05
+   },
+   "price": 4700,
+   "flavor": "Stitched under the El, one train at a time."
+  },
+  {
+   "id": "sleeve_bronx_10",
+   "name": "Wind Sleeve (Bronx)",
+   "slot": "sleeve",
+   "rarity": "epic",
+   "brand": "VELOCI",
+   "borough": "bronx",
+   "effects": {
+    "wind_regen_mult": 0.14
+   },
+   "price": 4250,
+   "flavor": "Stitched under the El, one train at a time."
+  },
+  {
+   "id": "sleeve_bronx_11",
+   "name": "Armor Sleeve (Bronx)",
+   "slot": "sleeve",
+   "rarity": "epic",
+   "brand": "KONG",
+   "borough": "bronx",
+   "effects": {
+    "dr_add": 0.05,
+    "poise_add": 5
+   },
+   "price": 3100,
+   "flavor": "Murals on the inside lining."
+  },
+  {
+   "id": "sleeve_brooklyn_0",
+   "name": "Compression (Brooklyn)",
+   "slot": "sleeve",
+   "rarity": "common",
+   "brand": "KONG",
+   "borough": "brooklyn",
+   "effects": {
+    "dr_add": 0.03
+   },
+   "price": 600,
+   "flavor": "Survived a summer on the Coney sand."
+  },
+  {
+   "id": "sleeve_brooklyn_1",
+   "name": "Shooter Sleeve (Brooklyn)",
+   "slot": "sleeve",
+   "rarity": "common",
+   "brand": "STRATA",
+   "borough": "brooklyn",
+   "effects": {
+    "gather_mult": -0.08
+   },
+   "price": 550,
+   "flavor": "Stoop-tested, grandma-approved."
+  },
+  {
+   "id": "sleeve_brooklyn_2",
+   "name": "Lockdown Sleeve (Brooklyn)",
+   "slot": "sleeve",
+   "rarity": "common",
+   "brand": "LOCKDOWN",
+   "borough": "brooklyn",
+   "effects": {
+    "parry_frames_add": 1
+   },
+   "price": 450,
+   "flavor": "Stoop-tested, grandma-approved."
+  },
+  {
+   "id": "sleeve_brooklyn_3",
+   "name": "Grip Sleeve (Brooklyn)",
+   "slot": "sleeve",
+   "rarity": "common",
+   "brand": "LOCKDOWN",
+   "borough": "brooklyn",
+   "effects": {
+    "ball_security_add": 0.15
+   },
+   "price": 650,
+   "flavor": "Survived a summer on the Coney sand."
+  },
+  {
+   "id": "sleeve_brooklyn_4",
+   "name": "Thermal (Brooklyn)",
+   "slot": "sleeve",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "brooklyn",
+   "effects": {
+    "burn_resist_add": 0.5
+   },
+   "price": 1650,
+   "flavor": "Stoop-tested, grandma-approved."
+  },
+  {
+   "id": "sleeve_brooklyn_5",
+   "name": "Ice Sleeve (Brooklyn)",
+   "slot": "sleeve",
+   "rarity": "rare",
+   "brand": "VELOCI",
+   "borough": "brooklyn",
+   "effects": {
+    "wind_regen_mult": 0.1
+   },
+   "price": 1600,
+   "flavor": "Brownstone brown with a boardwalk soul."
+  },
+  {
+   "id": "sleeve_brooklyn_6",
+   "name": "Arm Wrap (Brooklyn)",
+   "slot": "sleeve",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "brooklyn",
+   "effects": {
+    "dr_add": 0.04
+   },
+   "price": 1550,
+   "flavor": "Survived a summer on the Coney sand."
+  },
+  {
+   "id": "sleeve_brooklyn_7",
+   "name": "Release Sleeve (Brooklyn)",
+   "slot": "sleeve",
+   "rarity": "rare",
+   "brand": "STRATA",
+   "borough": "brooklyn",
+   "effects": {
+    "gather_mult": -0.1
+   },
+   "price": 1650,
+   "flavor": "Survived a summer on the Coney sand."
+  },
+  {
+   "id": "sleeve_brooklyn_8",
+   "name": "Strip Sleeve (Brooklyn)",
+   "slot": "sleeve",
+   "rarity": "epic",
+   "brand": "LOCKDOWN",
+   "borough": "brooklyn",
+   "effects": {
+    "steal_add": 0.08
+   },
+   "price": 4800,
+   "flavor": "Survived a summer on the Coney sand."
+  },
+  {
+   "id": "sleeve_brooklyn_9",
+   "name": "Fire Sleeve (Brooklyn)",
+   "slot": "sleeve",
+   "rarity": "epic",
+   "brand": "AIRWAVE",
+   "borough": "brooklyn",
+   "effects": {
+    "burn_resist_add": 0.6,
+    "dunk_damage_mult": 0.05
+   },
+   "price": 4450,
+   "flavor": "Brownstone brown with a boardwalk soul."
+  },
+  {
+   "id": "sleeve_brooklyn_10",
+   "name": "Wind Sleeve (Brooklyn)",
+   "slot": "sleeve",
+   "rarity": "epic",
+   "brand": "VELOCI",
+   "borough": "brooklyn",
+   "effects": {
+    "wind_regen_mult": 0.14
+   },
+   "price": 4300,
+   "flavor": "Brownstone brown with a boardwalk soul."
+  },
+  {
+   "id": "sleeve_brooklyn_11",
+   "name": "Armor Sleeve (Brooklyn)",
+   "slot": "sleeve",
+   "rarity": "epic",
+   "brand": "KONG",
+   "borough": "brooklyn",
+   "effects": {
+    "dr_add": 0.05,
+    "poise_add": 5
+   },
+   "price": 4450,
+   "flavor": "Survived a summer on the Coney sand."
+  },
+  {
+   "id": "sleeve_queens_0",
+   "name": "Compression (Queens)",
+   "slot": "sleeve",
+   "rarity": "common",
+   "brand": "KONG",
+   "borough": "queens",
+   "effects": {
+    "dr_add": 0.03
+   },
+   "price": 500,
+   "flavor": "Night market haggle price, worth every token."
+  },
+  {
+   "id": "sleeve_queens_1",
+   "name": "Shooter Sleeve (Queens)",
+   "slot": "sleeve",
+   "rarity": "common",
+   "brand": "STRATA",
+   "borough": "queens",
+   "effects": {
+    "gather_mult": -0.08
+   },
+   "price": 600,
+   "flavor": "Seven train certified."
+  },
+  {
+   "id": "sleeve_queens_2",
+   "name": "Lockdown Sleeve (Queens)",
+   "slot": "sleeve",
+   "rarity": "common",
+   "brand": "LOCKDOWN",
+   "borough": "queens",
+   "effects": {
+    "parry_frames_add": 1
+   },
+   "price": 650,
+   "flavor": "Seven train certified."
+  },
+  {
+   "id": "sleeve_queens_3",
+   "name": "Grip Sleeve (Queens)",
+   "slot": "sleeve",
+   "rarity": "common",
+   "brand": "LOCKDOWN",
+   "borough": "queens",
+   "effects": {
+    "ball_security_add": 0.15
+   },
+   "price": 650,
+   "flavor": "Ran the fountain loop at the old fairground."
+  },
+  {
+   "id": "sleeve_queens_4",
+   "name": "Thermal (Queens)",
+   "slot": "sleeve",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "queens",
+   "effects": {
+    "burn_resist_add": 0.5
+   },
+   "price": 1600,
+   "flavor": "Seven train certified."
+  },
+  {
+   "id": "sleeve_queens_5",
+   "name": "Ice Sleeve (Queens)",
+   "slot": "sleeve",
+   "rarity": "rare",
+   "brand": "VELOCI",
+   "borough": "queens",
+   "effects": {
+    "wind_regen_mult": 0.1
+   },
+   "price": 1750,
+   "flavor": "Night market haggle price, worth every token."
+  },
+  {
+   "id": "sleeve_queens_6",
+   "name": "Arm Wrap (Queens)",
+   "slot": "sleeve",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "queens",
+   "effects": {
+    "dr_add": 0.04
+   },
+   "price": 1700,
+   "flavor": "Ran the fountain loop at the old fairground."
+  },
+  {
+   "id": "sleeve_queens_7",
+   "name": "Release Sleeve (Queens)",
+   "slot": "sleeve",
+   "rarity": "rare",
+   "brand": "STRATA",
+   "borough": "queens",
+   "effects": {
+    "gather_mult": -0.1
+   },
+   "price": 1750,
+   "flavor": "Ran the fountain loop at the old fairground."
+  },
+  {
+   "id": "sleeve_queens_8",
+   "name": "Strip Sleeve (Queens)",
+   "slot": "sleeve",
+   "rarity": "epic",
+   "brand": "LOCKDOWN",
+   "borough": "queens",
+   "effects": {
+    "steal_add": 0.08
+   },
+   "price": 4450,
+   "flavor": "Night market haggle price, worth every token."
+  },
+  {
+   "id": "sleeve_queens_9",
+   "name": "Fire Sleeve (Queens)",
+   "slot": "sleeve",
+   "rarity": "epic",
+   "brand": "AIRWAVE",
+   "borough": "queens",
+   "effects": {
+    "burn_resist_add": 0.6,
+    "dunk_damage_mult": 0.05
+   },
+   "price": 3050,
+   "flavor": "Ran the fountain loop at the old fairground."
+  },
+  {
+   "id": "sleeve_queens_10",
+   "name": "Wind Sleeve (Queens)",
+   "slot": "sleeve",
+   "rarity": "epic",
+   "brand": "VELOCI",
+   "borough": "queens",
+   "effects": {
+    "wind_regen_mult": 0.14
+   },
+   "price": 4900,
+   "flavor": "Seven train certified."
+  },
+  {
+   "id": "sleeve_queens_11",
+   "name": "Armor Sleeve (Queens)",
+   "slot": "sleeve",
+   "rarity": "epic",
+   "brand": "KONG",
+   "borough": "queens",
+   "effects": {
+    "dr_add": 0.05,
+    "poise_add": 5
+   },
+   "price": 4100,
+   "flavor": "Seven train certified."
+  },
+  {
+   "id": "sleeve_staten_island_0",
+   "name": "Compression (Staten Island)",
+   "slot": "sleeve",
+   "rarity": "common",
+   "brand": "KONG",
+   "borough": "staten_island",
+   "effects": {
+    "dr_add": 0.03
+   },
+   "price": 600,
+   "flavor": "Smells faintly of ferry diesel."
+  },
+  {
+   "id": "sleeve_staten_island_1",
+   "name": "Shooter Sleeve (Staten Island)",
+   "slot": "sleeve",
+   "rarity": "common",
+   "brand": "STRATA",
+   "borough": "staten_island",
+   "effects": {
+    "gather_mult": -0.08
+   },
+   "price": 800,
+   "flavor": "Broken in on the landfill hills."
+  },
+  {
+   "id": "sleeve_staten_island_2",
+   "name": "Lockdown Sleeve (Staten Island)",
+   "slot": "sleeve",
+   "rarity": "common",
+   "brand": "LOCKDOWN",
+   "borough": "staten_island",
+   "effects": {
+    "parry_frames_add": 1
+   },
+   "price": 400,
+   "flavor": "Smells faintly of ferry diesel."
+  },
+  {
+   "id": "sleeve_staten_island_3",
+   "name": "Grip Sleeve (Staten Island)",
+   "slot": "sleeve",
+   "rarity": "common",
+   "brand": "LOCKDOWN",
+   "borough": "staten_island",
+   "effects": {
+    "ball_security_add": 0.15
+   },
+   "price": 500,
+   "flavor": "The deer stare, but they don't judge."
+  },
+  {
+   "id": "sleeve_staten_island_4",
+   "name": "Thermal (Staten Island)",
+   "slot": "sleeve",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "staten_island",
+   "effects": {
+    "burn_resist_add": 0.5
+   },
+   "price": 1250,
+   "flavor": "Smells faintly of ferry diesel."
+  },
+  {
+   "id": "sleeve_staten_island_5",
+   "name": "Ice Sleeve (Staten Island)",
+   "slot": "sleeve",
+   "rarity": "rare",
+   "brand": "VELOCI",
+   "borough": "staten_island",
+   "effects": {
+    "wind_regen_mult": 0.1
+   },
+   "price": 1700,
+   "flavor": "Broken in on the landfill hills."
+  },
+  {
+   "id": "sleeve_staten_island_6",
+   "name": "Arm Wrap (Staten Island)",
+   "slot": "sleeve",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "staten_island",
+   "effects": {
+    "dr_add": 0.04
+   },
+   "price": 1400,
+   "flavor": "Smells faintly of ferry diesel."
+  },
+  {
+   "id": "sleeve_staten_island_7",
+   "name": "Release Sleeve (Staten Island)",
+   "slot": "sleeve",
+   "rarity": "rare",
+   "brand": "STRATA",
+   "borough": "staten_island",
+   "effects": {
+    "gather_mult": -0.1
+   },
+   "price": 1400,
+   "flavor": "The deer stare, but they don't judge."
+  },
+  {
+   "id": "sleeve_staten_island_8",
+   "name": "Strip Sleeve (Staten Island)",
+   "slot": "sleeve",
+   "rarity": "epic",
+   "brand": "LOCKDOWN",
+   "borough": "staten_island",
+   "effects": {
+    "steal_add": 0.08
+   },
+   "price": 4400,
+   "flavor": "Broken in on the landfill hills."
+  },
+  {
+   "id": "sleeve_staten_island_9",
+   "name": "Fire Sleeve (Staten Island)",
+   "slot": "sleeve",
+   "rarity": "epic",
+   "brand": "AIRWAVE",
+   "borough": "staten_island",
+   "effects": {
+    "burn_resist_add": 0.6,
+    "dunk_damage_mult": 0.05
+   },
+   "price": 3400,
+   "flavor": "Smells faintly of ferry diesel."
+  },
+  {
+   "id": "sleeve_staten_island_10",
+   "name": "Wind Sleeve (Staten Island)",
+   "slot": "sleeve",
+   "rarity": "epic",
+   "brand": "VELOCI",
+   "borough": "staten_island",
+   "effects": {
+    "wind_regen_mult": 0.14
+   },
+   "price": 4400,
+   "flavor": "The deer stare, but they don't judge."
+  },
+  {
+   "id": "sleeve_staten_island_11",
+   "name": "Armor Sleeve (Staten Island)",
+   "slot": "sleeve",
+   "rarity": "epic",
+   "brand": "KONG",
+   "borough": "staten_island",
+   "effects": {
+    "dr_add": 0.05,
+    "poise_add": 5
+   },
+   "price": 3800,
+   "flavor": "The deer stare, but they don't judge."
+  },
+  {
+   "id": "sleeve_uptown_0",
+   "name": "Compression (Uptown)",
+   "slot": "sleeve",
+   "rarity": "common",
+   "brand": "KONG",
+   "borough": "uptown",
+   "effects": {
+    "dr_add": 0.03
+   },
+   "price": 750,
+   "flavor": "Every legend's been through here. Now you."
+  },
+  {
+   "id": "sleeve_uptown_1",
+   "name": "Shooter Sleeve (Uptown)",
+   "slot": "sleeve",
+   "rarity": "common",
+   "brand": "STRATA",
+   "borough": "uptown",
+   "effects": {
+    "gather_mult": -0.08
+   },
+   "price": 750,
+   "flavor": "Walked the Mecca bleachers twice."
+  },
+  {
+   "id": "sleeve_uptown_2",
+   "name": "Lockdown Sleeve (Uptown)",
+   "slot": "sleeve",
+   "rarity": "common",
+   "brand": "LOCKDOWN",
+   "borough": "uptown",
+   "effects": {
+    "parry_frames_add": 1
+   },
+   "price": 750,
+   "flavor": "Pigeon-coop fresh."
+  },
+  {
+   "id": "sleeve_uptown_3",
+   "name": "Grip Sleeve (Uptown)",
+   "slot": "sleeve",
+   "rarity": "common",
+   "brand": "LOCKDOWN",
+   "borough": "uptown",
+   "effects": {
+    "ball_security_add": 0.15
+   },
+   "price": 600,
+   "flavor": "Every legend's been through here. Now you."
+  },
+  {
+   "id": "sleeve_uptown_4",
+   "name": "Thermal (Uptown)",
+   "slot": "sleeve",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "uptown",
+   "effects": {
+    "burn_resist_add": 0.5
+   },
+   "price": 1750,
+   "flavor": "Every legend's been through here. Now you."
+  },
+  {
+   "id": "sleeve_uptown_5",
+   "name": "Ice Sleeve (Uptown)",
+   "slot": "sleeve",
+   "rarity": "rare",
+   "brand": "VELOCI",
+   "borough": "uptown",
+   "effects": {
+    "wind_regen_mult": 0.1
+   },
+   "price": 1600,
+   "flavor": "Every legend's been through here. Now you."
+  },
+  {
+   "id": "sleeve_uptown_6",
+   "name": "Arm Wrap (Uptown)",
+   "slot": "sleeve",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "uptown",
+   "effects": {
+    "dr_add": 0.04
+   },
+   "price": 1600,
+   "flavor": "Pigeon-coop fresh."
+  },
+  {
+   "id": "sleeve_uptown_7",
+   "name": "Release Sleeve (Uptown)",
+   "slot": "sleeve",
+   "rarity": "rare",
+   "brand": "STRATA",
+   "borough": "uptown",
+   "effects": {
+    "gather_mult": -0.1
+   },
+   "price": 1600,
+   "flavor": "Every legend's been through here. Now you."
+  },
+  {
+   "id": "sleeve_uptown_8",
+   "name": "Strip Sleeve (Uptown)",
+   "slot": "sleeve",
+   "rarity": "epic",
+   "brand": "LOCKDOWN",
+   "borough": "uptown",
+   "effects": {
+    "steal_add": 0.08
+   },
+   "price": 4800,
+   "flavor": "Walked the Mecca bleachers twice."
+  },
+  {
+   "id": "sleeve_uptown_9",
+   "name": "Fire Sleeve (Uptown)",
+   "slot": "sleeve",
+   "rarity": "epic",
+   "brand": "AIRWAVE",
+   "borough": "uptown",
+   "effects": {
+    "burn_resist_add": 0.6,
+    "dunk_damage_mult": 0.05
+   },
+   "price": 5000,
+   "flavor": "Walked the Mecca bleachers twice."
+  },
+  {
+   "id": "sleeve_uptown_10",
+   "name": "Wind Sleeve (Uptown)",
+   "slot": "sleeve",
+   "rarity": "epic",
+   "brand": "VELOCI",
+   "borough": "uptown",
+   "effects": {
+    "wind_regen_mult": 0.14
+   },
+   "price": 3750,
+   "flavor": "Pigeon-coop fresh."
+  },
+  {
+   "id": "sleeve_uptown_11",
+   "name": "Armor Sleeve (Uptown)",
+   "slot": "sleeve",
+   "rarity": "epic",
+   "brand": "KONG",
+   "borough": "uptown",
+   "effects": {
+    "dr_add": 0.05,
+    "poise_add": 5
+   },
+   "price": 3050,
+   "flavor": "Every legend's been through here. Now you."
+  },
+  {
+   "id": "sleeve_city_0",
+   "name": "Compression (City)",
+   "slot": "sleeve",
+   "rarity": "common",
+   "brand": "KONG",
+   "borough": "city",
+   "effects": {
+    "dr_add": 0.03
+   },
+   "price": 500,
+   "flavor": "Billboard bright, sidewalk tough."
+  },
+  {
+   "id": "sleeve_city_1",
+   "name": "Shooter Sleeve (City)",
+   "slot": "sleeve",
+   "rarity": "common",
+   "brand": "STRATA",
+   "borough": "city",
+   "effects": {
+    "gather_mult": -0.08
+   },
+   "price": 500,
+   "flavor": "Priced in Midtown dollars."
+  },
+  {
+   "id": "sleeve_city_2",
+   "name": "Lockdown Sleeve (City)",
+   "slot": "sleeve",
+   "rarity": "common",
+   "brand": "LOCKDOWN",
+   "borough": "city",
+   "effects": {
+    "parry_frames_add": 1
+   },
+   "price": 550,
+   "flavor": "Priced in Midtown dollars."
+  },
+  {
+   "id": "sleeve_city_3",
+   "name": "Grip Sleeve (City)",
+   "slot": "sleeve",
+   "rarity": "common",
+   "brand": "LOCKDOWN",
+   "borough": "city",
+   "effects": {
+    "ball_security_add": 0.15
+   },
+   "price": 600,
+   "flavor": "Seen on a hundred screens at once."
+  },
+  {
+   "id": "sleeve_city_4",
+   "name": "Thermal (City)",
+   "slot": "sleeve",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "city",
+   "effects": {
+    "burn_resist_add": 0.5
+   },
+   "price": 1500,
+   "flavor": "Billboard bright, sidewalk tough."
+  },
+  {
+   "id": "sleeve_city_5",
+   "name": "Ice Sleeve (City)",
+   "slot": "sleeve",
+   "rarity": "rare",
+   "brand": "VELOCI",
+   "borough": "city",
+   "effects": {
+    "wind_regen_mult": 0.1
+   },
+   "price": 1250,
+   "flavor": "Seen on a hundred screens at once."
+  },
+  {
+   "id": "sleeve_city_6",
+   "name": "Arm Wrap (City)",
+   "slot": "sleeve",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "city",
+   "effects": {
+    "dr_add": 0.04
+   },
+   "price": 1800,
+   "flavor": "Billboard bright, sidewalk tough."
+  },
+  {
+   "id": "sleeve_city_7",
+   "name": "Release Sleeve (City)",
+   "slot": "sleeve",
+   "rarity": "rare",
+   "brand": "STRATA",
+   "borough": "city",
+   "effects": {
+    "gather_mult": -0.1
+   },
+   "price": 1250,
+   "flavor": "Billboard bright, sidewalk tough."
+  },
+  {
+   "id": "sleeve_city_8",
+   "name": "Strip Sleeve (City)",
+   "slot": "sleeve",
+   "rarity": "epic",
+   "brand": "LOCKDOWN",
+   "borough": "city",
+   "effects": {
+    "steal_add": 0.08
+   },
+   "price": 3150,
+   "flavor": "Billboard bright, sidewalk tough."
+  },
+  {
+   "id": "sleeve_city_9",
+   "name": "Fire Sleeve (City)",
+   "slot": "sleeve",
+   "rarity": "epic",
+   "brand": "AIRWAVE",
+   "borough": "city",
+   "effects": {
+    "burn_resist_add": 0.6,
+    "dunk_damage_mult": 0.05
+   },
+   "price": 4550,
+   "flavor": "Priced in Midtown dollars."
+  },
+  {
+   "id": "sleeve_city_10",
+   "name": "Wind Sleeve (City)",
+   "slot": "sleeve",
+   "rarity": "epic",
+   "brand": "VELOCI",
+   "borough": "city",
+   "effects": {
+    "wind_regen_mult": 0.14
+   },
+   "price": 3050,
+   "flavor": "Seen on a hundred screens at once."
+  },
+  {
+   "id": "sleeve_city_11",
+   "name": "Armor Sleeve (City)",
+   "slot": "sleeve",
+   "rarity": "epic",
+   "brand": "KONG",
+   "borough": "city",
+   "effects": {
+    "dr_add": 0.05,
+    "poise_add": 5
+   },
+   "price": 4550,
+   "flavor": "Billboard bright, sidewalk tough."
+  }
+ ]
+}

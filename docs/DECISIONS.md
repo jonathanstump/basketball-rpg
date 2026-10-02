@@ -62,3 +62,6 @@ Format: date · decision · reason. Spec rule §0.1: when the spec is silent, pi
 | 2026-10-01 | Scene changes go through `SceneRouter` with a one-shot params dictionary; fast travel and crossings show the subway-car ride while the destination preloads on a thread; doors and court gates switch directly. Player Heart carries between scenes as `GameState.flags.hp_ratio` (rest resets it). | §5.3 "the loading screen is the ride". |
 | 2026-10-01 | Exploration camera picks its initial yaw automatically (fewest walls between camera and player) on arrival. | Arrivals next to buildings otherwise opened on a dithered wall. |
 | 2026-10-01 | Courts on district maps are fenced until their boss is beaten (gate `M`/`X` loads the boss arena); afterwards the fence/collision is gone and the court hoop is live for free practice. | §9.1 re-entry. |
+
+## M7 — Level curve L60 value
+Spec §11.3 lists L60 = 46,626 but `floor(100 × 60^1.5 + 150)` = 46,625 (every other row in the table is floored). The formula wins; the test asserts 46,625.

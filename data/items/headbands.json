@@ -1,0 +1,960 @@
+{
+ "headbands": [
+  {
+   "id": "headband_bronx_0",
+   "name": "Sweatband (Bronx)",
+   "slot": "headband",
+   "rarity": "common",
+   "brand": "KONG",
+   "borough": "bronx",
+   "effects": {
+    "damage_mult": 0.05
+   },
+   "price": 550,
+   "flavor": "Stitched under the El, one train at a time."
+  },
+  {
+   "id": "headband_bronx_1",
+   "name": "Splash Band (Bronx)",
+   "slot": "headband",
+   "rarity": "common",
+   "brand": "STRATA",
+   "borough": "bronx",
+   "effects": {
+    "perfect_add": 0.008
+   },
+   "price": 500,
+   "flavor": "Murals on the inside lining."
+  },
+  {
+   "id": "headband_bronx_2",
+   "name": "Ninja Tie (Bronx)",
+   "slot": "headband",
+   "rarity": "common",
+   "brand": "VELOCI",
+   "borough": "bronx",
+   "effects": {
+    "crit_add": 0.08
+   },
+   "price": 700,
+   "flavor": "Smells like the block party never ended."
+  },
+  {
+   "id": "headband_bronx_3",
+   "name": "Rec League (Bronx)",
+   "slot": "headband",
+   "rarity": "common",
+   "brand": "GHOST",
+   "borough": "bronx",
+   "effects": {
+    "hype_gain_mult": 0.1
+   },
+   "price": 800,
+   "flavor": "Smells like the block party never ended."
+  },
+  {
+   "id": "headband_bronx_4",
+   "name": "Bandana (Bronx)",
+   "slot": "headband",
+   "rarity": "rare",
+   "brand": "VELOCI",
+   "borough": "bronx",
+   "effects": {
+    "dribble_damage_mult": 0.12
+   },
+   "price": 1450,
+   "flavor": "Smells like the block party never ended."
+  },
+  {
+   "id": "headband_bronx_5",
+   "name": "Terry Wrap (Bronx)",
+   "slot": "headband",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "bronx",
+   "effects": {
+    "damage_mult": 0.06
+   },
+   "price": 1250,
+   "flavor": "Murals on the inside lining."
+  },
+  {
+   "id": "headband_bronx_6",
+   "name": "Visor Band (Bronx)",
+   "slot": "headband",
+   "rarity": "rare",
+   "brand": "STRATA",
+   "borough": "bronx",
+   "effects": {
+    "perfect_add": 0.006,
+    "crit_add": 0.03
+   },
+   "price": 1950,
+   "flavor": "Smells like the block party never ended."
+  },
+  {
+   "id": "headband_bronx_7",
+   "name": "Hype Wrap (Bronx)",
+   "slot": "headband",
+   "rarity": "rare",
+   "brand": "GHOST",
+   "borough": "bronx",
+   "effects": {
+    "hype_gain_mult": 0.12
+   },
+   "price": 1450,
+   "flavor": "Murals on the inside lining."
+  },
+  {
+   "id": "headband_bronx_8",
+   "name": "Grip Band (Bronx)",
+   "slot": "headband",
+   "rarity": "epic",
+   "brand": "LOCKDOWN",
+   "borough": "bronx",
+   "effects": {
+    "ball_security_add": 0.1
+   },
+   "price": 4650,
+   "flavor": "Stitched under the El, one train at a time."
+  },
+  {
+   "id": "headband_bronx_9",
+   "name": "Crown Band (Bronx)",
+   "slot": "headband",
+   "rarity": "epic",
+   "brand": "KONG",
+   "borough": "bronx",
+   "effects": {
+    "damage_mult": 0.08
+   },
+   "price": 3900,
+   "flavor": "Murals on the inside lining."
+  },
+  {
+   "id": "headband_bronx_10",
+   "name": "Glow Band (Bronx)",
+   "slot": "headband",
+   "rarity": "epic",
+   "brand": "AIRWAVE",
+   "borough": "bronx",
+   "effects": {
+    "dunk_damage_mult": 0.1
+   },
+   "price": 3800,
+   "flavor": "Smells like the block party never ended."
+  },
+  {
+   "id": "headband_bronx_11",
+   "name": "Static Band (Bronx)",
+   "slot": "headband",
+   "rarity": "epic",
+   "brand": "VELOCI",
+   "borough": "bronx",
+   "effects": {
+    "crit_add": 0.1
+   },
+   "price": 4500,
+   "flavor": "Murals on the inside lining."
+  },
+  {
+   "id": "headband_brooklyn_0",
+   "name": "Sweatband (Brooklyn)",
+   "slot": "headband",
+   "rarity": "common",
+   "brand": "KONG",
+   "borough": "brooklyn",
+   "effects": {
+    "damage_mult": 0.05
+   },
+   "price": 550,
+   "flavor": "Stoop-tested, grandma-approved."
+  },
+  {
+   "id": "headband_brooklyn_1",
+   "name": "Splash Band (Brooklyn)",
+   "slot": "headband",
+   "rarity": "common",
+   "brand": "STRATA",
+   "borough": "brooklyn",
+   "effects": {
+    "perfect_add": 0.008
+   },
+   "price": 750,
+   "flavor": "Survived a summer on the Coney sand."
+  },
+  {
+   "id": "headband_brooklyn_2",
+   "name": "Ninja Tie (Brooklyn)",
+   "slot": "headband",
+   "rarity": "common",
+   "brand": "VELOCI",
+   "borough": "brooklyn",
+   "effects": {
+    "crit_add": 0.08
+   },
+   "price": 600,
+   "flavor": "Stoop-tested, grandma-approved."
+  },
+  {
+   "id": "headband_brooklyn_3",
+   "name": "Rec League (Brooklyn)",
+   "slot": "headband",
+   "rarity": "common",
+   "brand": "GHOST",
+   "borough": "brooklyn",
+   "effects": {
+    "hype_gain_mult": 0.1
+   },
+   "price": 400,
+   "flavor": "Survived a summer on the Coney sand."
+  },
+  {
+   "id": "headband_brooklyn_4",
+   "name": "Bandana (Brooklyn)",
+   "slot": "headband",
+   "rarity": "rare",
+   "brand": "VELOCI",
+   "borough": "brooklyn",
+   "effects": {
+    "dribble_damage_mult": 0.12
+   },
+   "price": 1800,
+   "flavor": "Survived a summer on the Coney sand."
+  },
+  {
+   "id": "headband_brooklyn_5",
+   "name": "Terry Wrap (Brooklyn)",
+   "slot": "headband",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "brooklyn",
+   "effects": {
+    "damage_mult": 0.06
+   },
+   "price": 1700,
+   "flavor": "Survived a summer on the Coney sand."
+  },
+  {
+   "id": "headband_brooklyn_6",
+   "name": "Visor Band (Brooklyn)",
+   "slot": "headband",
+   "rarity": "rare",
+   "brand": "STRATA",
+   "borough": "brooklyn",
+   "effects": {
+    "perfect_add": 0.006,
+    "crit_add": 0.03
+   },
+   "price": 1550,
+   "flavor": "Stoop-tested, grandma-approved."
+  },
+  {
+   "id": "headband_brooklyn_7",
+   "name": "Hype Wrap (Brooklyn)",
+   "slot": "headband",
+   "rarity": "rare",
+   "brand": "GHOST",
+   "borough": "brooklyn",
+   "effects": {
+    "hype_gain_mult": 0.12
+   },
+   "price": 1700,
+   "flavor": "Survived a summer on the Coney sand."
+  },
+  {
+   "id": "headband_brooklyn_8",
+   "name": "Grip Band (Brooklyn)",
+   "slot": "headband",
+   "rarity": "epic",
+   "brand": "LOCKDOWN",
+   "borough": "brooklyn",
+   "effects": {
+    "ball_security_add": 0.1
+   },
+   "price": 4450,
+   "flavor": "Brownstone brown with a boardwalk soul."
+  },
+  {
+   "id": "headband_brooklyn_9",
+   "name": "Crown Band (Brooklyn)",
+   "slot": "headband",
+   "rarity": "epic",
+   "brand": "KONG",
+   "borough": "brooklyn",
+   "effects": {
+    "damage_mult": 0.08
+   },
+   "price": 3900,
+   "flavor": "Stoop-tested, grandma-approved."
+  },
+  {
+   "id": "headband_brooklyn_10",
+   "name": "Glow Band (Brooklyn)",
+   "slot": "headband",
+   "rarity": "epic",
+   "brand": "AIRWAVE",
+   "borough": "brooklyn",
+   "effects": {
+    "dunk_damage_mult": 0.1
+   },
+   "price": 3350,
+   "flavor": "Brownstone brown with a boardwalk soul."
+  },
+  {
+   "id": "headband_brooklyn_11",
+   "name": "Static Band (Brooklyn)",
+   "slot": "headband",
+   "rarity": "epic",
+   "brand": "VELOCI",
+   "borough": "brooklyn",
+   "effects": {
+    "crit_add": 0.1
+   },
+   "price": 4150,
+   "flavor": "Brownstone brown with a boardwalk soul."
+  },
+  {
+   "id": "headband_queens_0",
+   "name": "Sweatband (Queens)",
+   "slot": "headband",
+   "rarity": "common",
+   "brand": "KONG",
+   "borough": "queens",
+   "effects": {
+    "damage_mult": 0.05
+   },
+   "price": 800,
+   "flavor": "Ran the fountain loop at the old fairground."
+  },
+  {
+   "id": "headband_queens_1",
+   "name": "Splash Band (Queens)",
+   "slot": "headband",
+   "rarity": "common",
+   "brand": "STRATA",
+   "borough": "queens",
+   "effects": {
+    "perfect_add": 0.008
+   },
+   "price": 800,
+   "flavor": "Ran the fountain loop at the old fairground."
+  },
+  {
+   "id": "headband_queens_2",
+   "name": "Ninja Tie (Queens)",
+   "slot": "headband",
+   "rarity": "common",
+   "brand": "VELOCI",
+   "borough": "queens",
+   "effects": {
+    "crit_add": 0.08
+   },
+   "price": 750,
+   "flavor": "Ran the fountain loop at the old fairground."
+  },
+  {
+   "id": "headband_queens_3",
+   "name": "Rec League (Queens)",
+   "slot": "headband",
+   "rarity": "common",
+   "brand": "GHOST",
+   "borough": "queens",
+   "effects": {
+    "hype_gain_mult": 0.1
+   },
+   "price": 750,
+   "flavor": "Night market haggle price, worth every token."
+  },
+  {
+   "id": "headband_queens_4",
+   "name": "Bandana (Queens)",
+   "slot": "headband",
+   "rarity": "rare",
+   "brand": "VELOCI",
+   "borough": "queens",
+   "effects": {
+    "dribble_damage_mult": 0.12
+   },
+   "price": 1950,
+   "flavor": "Ran the fountain loop at the old fairground."
+  },
+  {
+   "id": "headband_queens_5",
+   "name": "Terry Wrap (Queens)",
+   "slot": "headband",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "queens",
+   "effects": {
+    "damage_mult": 0.06
+   },
+   "price": 1550,
+   "flavor": "Ran the fountain loop at the old fairground."
+  },
+  {
+   "id": "headband_queens_6",
+   "name": "Visor Band (Queens)",
+   "slot": "headband",
+   "rarity": "rare",
+   "brand": "STRATA",
+   "borough": "queens",
+   "effects": {
+    "perfect_add": 0.006,
+    "crit_add": 0.03
+   },
+   "price": 1850,
+   "flavor": "Night market haggle price, worth every token."
+  },
+  {
+   "id": "headband_queens_7",
+   "name": "Hype Wrap (Queens)",
+   "slot": "headband",
+   "rarity": "rare",
+   "brand": "GHOST",
+   "borough": "queens",
+   "effects": {
+    "hype_gain_mult": 0.12
+   },
+   "price": 1900,
+   "flavor": "Seven train certified."
+  },
+  {
+   "id": "headband_queens_8",
+   "name": "Grip Band (Queens)",
+   "slot": "headband",
+   "rarity": "epic",
+   "brand": "LOCKDOWN",
+   "borough": "queens",
+   "effects": {
+    "ball_security_add": 0.1
+   },
+   "price": 4200,
+   "flavor": "Ran the fountain loop at the old fairground."
+  },
+  {
+   "id": "headband_queens_9",
+   "name": "Crown Band (Queens)",
+   "slot": "headband",
+   "rarity": "epic",
+   "brand": "KONG",
+   "borough": "queens",
+   "effects": {
+    "damage_mult": 0.08
+   },
+   "price": 4150,
+   "flavor": "Seven train certified."
+  },
+  {
+   "id": "headband_queens_10",
+   "name": "Glow Band (Queens)",
+   "slot": "headband",
+   "rarity": "epic",
+   "brand": "AIRWAVE",
+   "borough": "queens",
+   "effects": {
+    "dunk_damage_mult": 0.1
+   },
+   "price": 3200,
+   "flavor": "Night market haggle price, worth every token."
+  },
+  {
+   "id": "headband_queens_11",
+   "name": "Static Band (Queens)",
+   "slot": "headband",
+   "rarity": "epic",
+   "brand": "VELOCI",
+   "borough": "queens",
+   "effects": {
+    "crit_add": 0.1
+   },
+   "price": 3250,
+   "flavor": "Night market haggle price, worth every token."
+  },
+  {
+   "id": "headband_staten_island_0",
+   "name": "Sweatband (Staten Island)",
+   "slot": "headband",
+   "rarity": "common",
+   "brand": "KONG",
+   "borough": "staten_island",
+   "effects": {
+    "damage_mult": 0.05
+   },
+   "price": 450,
+   "flavor": "Smells faintly of ferry diesel."
+  },
+  {
+   "id": "headband_staten_island_1",
+   "name": "Splash Band (Staten Island)",
+   "slot": "headband",
+   "rarity": "common",
+   "brand": "STRATA",
+   "borough": "staten_island",
+   "effects": {
+    "perfect_add": 0.008
+   },
+   "price": 650,
+   "flavor": "Broken in on the landfill hills."
+  },
+  {
+   "id": "headband_staten_island_2",
+   "name": "Ninja Tie (Staten Island)",
+   "slot": "headband",
+   "rarity": "common",
+   "brand": "VELOCI",
+   "borough": "staten_island",
+   "effects": {
+    "crit_add": 0.08
+   },
+   "price": 550,
+   "flavor": "Smells faintly of ferry diesel."
+  },
+  {
+   "id": "headband_staten_island_3",
+   "name": "Rec League (Staten Island)",
+   "slot": "headband",
+   "rarity": "common",
+   "brand": "GHOST",
+   "borough": "staten_island",
+   "effects": {
+    "hype_gain_mult": 0.1
+   },
+   "price": 550,
+   "flavor": "The deer stare, but they don't judge."
+  },
+  {
+   "id": "headband_staten_island_4",
+   "name": "Bandana (Staten Island)",
+   "slot": "headband",
+   "rarity": "rare",
+   "brand": "VELOCI",
+   "borough": "staten_island",
+   "effects": {
+    "dribble_damage_mult": 0.12
+   },
+   "price": 1600,
+   "flavor": "The deer stare, but they don't judge."
+  },
+  {
+   "id": "headband_staten_island_5",
+   "name": "Terry Wrap (Staten Island)",
+   "slot": "headband",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "staten_island",
+   "effects": {
+    "damage_mult": 0.06
+   },
+   "price": 1500,
+   "flavor": "Broken in on the landfill hills."
+  },
+  {
+   "id": "headband_staten_island_6",
+   "name": "Visor Band (Staten Island)",
+   "slot": "headband",
+   "rarity": "rare",
+   "brand": "STRATA",
+   "borough": "staten_island",
+   "effects": {
+    "perfect_add": 0.006,
+    "crit_add": 0.03
+   },
+   "price": 1900,
+   "flavor": "Smells faintly of ferry diesel."
+  },
+  {
+   "id": "headband_staten_island_7",
+   "name": "Hype Wrap (Staten Island)",
+   "slot": "headband",
+   "rarity": "rare",
+   "brand": "GHOST",
+   "borough": "staten_island",
+   "effects": {
+    "hype_gain_mult": 0.12
+   },
+   "price": 1650,
+   "flavor": "The deer stare, but they don't judge."
+  },
+  {
+   "id": "headband_staten_island_8",
+   "name": "Grip Band (Staten Island)",
+   "slot": "headband",
+   "rarity": "epic",
+   "brand": "LOCKDOWN",
+   "borough": "staten_island",
+   "effects": {
+    "ball_security_add": 0.1
+   },
+   "price": 3250,
+   "flavor": "Broken in on the landfill hills."
+  },
+  {
+   "id": "headband_staten_island_9",
+   "name": "Crown Band (Staten Island)",
+   "slot": "headband",
+   "rarity": "epic",
+   "brand": "KONG",
+   "borough": "staten_island",
+   "effects": {
+    "damage_mult": 0.08
+   },
+   "price": 5000,
+   "flavor": "Smells faintly of ferry diesel."
+  },
+  {
+   "id": "headband_staten_island_10",
+   "name": "Glow Band (Staten Island)",
+   "slot": "headband",
+   "rarity": "epic",
+   "brand": "AIRWAVE",
+   "borough": "staten_island",
+   "effects": {
+    "dunk_damage_mult": 0.1
+   },
+   "price": 3050,
+   "flavor": "Smells faintly of ferry diesel."
+  },
+  {
+   "id": "headband_staten_island_11",
+   "name": "Static Band (Staten Island)",
+   "slot": "headband",
+   "rarity": "epic",
+   "brand": "VELOCI",
+   "borough": "staten_island",
+   "effects": {
+    "crit_add": 0.1
+   },
+   "price": 4000,
+   "flavor": "The deer stare, but they don't judge."
+  },
+  {
+   "id": "headband_uptown_0",
+   "name": "Sweatband (Uptown)",
+   "slot": "headband",
+   "rarity": "common",
+   "brand": "KONG",
+   "borough": "uptown",
+   "effects": {
+    "damage_mult": 0.05
+   },
+   "price": 500,
+   "flavor": "Walked the Mecca bleachers twice."
+  },
+  {
+   "id": "headband_uptown_1",
+   "name": "Splash Band (Uptown)",
+   "slot": "headband",
+   "rarity": "common",
+   "brand": "STRATA",
+   "borough": "uptown",
+   "effects": {
+    "perfect_add": 0.008
+   },
+   "price": 550,
+   "flavor": "Walked the Mecca bleachers twice."
+  },
+  {
+   "id": "headband_uptown_2",
+   "name": "Ninja Tie (Uptown)",
+   "slot": "headband",
+   "rarity": "common",
+   "brand": "VELOCI",
+   "borough": "uptown",
+   "effects": {
+    "crit_add": 0.08
+   },
+   "price": 700,
+   "flavor": "Every legend's been through here. Now you."
+  },
+  {
+   "id": "headband_uptown_3",
+   "name": "Rec League (Uptown)",
+   "slot": "headband",
+   "rarity": "common",
+   "brand": "GHOST",
+   "borough": "uptown",
+   "effects": {
+    "hype_gain_mult": 0.1
+   },
+   "price": 400,
+   "flavor": "Every legend's been through here. Now you."
+  },
+  {
+   "id": "headband_uptown_4",
+   "name": "Bandana (Uptown)",
+   "slot": "headband",
+   "rarity": "rare",
+   "brand": "VELOCI",
+   "borough": "uptown",
+   "effects": {
+    "dribble_damage_mult": 0.12
+   },
+   "price": 1850,
+   "flavor": "Walked the Mecca bleachers twice."
+  },
+  {
+   "id": "headband_uptown_5",
+   "name": "Terry Wrap (Uptown)",
+   "slot": "headband",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "uptown",
+   "effects": {
+    "damage_mult": 0.06
+   },
+   "price": 1500,
+   "flavor": "Every legend's been through here. Now you."
+  },
+  {
+   "id": "headband_uptown_6",
+   "name": "Visor Band (Uptown)",
+   "slot": "headband",
+   "rarity": "rare",
+   "brand": "STRATA",
+   "borough": "uptown",
+   "effects": {
+    "perfect_add": 0.006,
+    "crit_add": 0.03
+   },
+   "price": 1750,
+   "flavor": "Pigeon-coop fresh."
+  },
+  {
+   "id": "headband_uptown_7",
+   "name": "Hype Wrap (Uptown)",
+   "slot": "headband",
+   "rarity": "rare",
+   "brand": "GHOST",
+   "borough": "uptown",
+   "effects": {
+    "hype_gain_mult": 0.12
+   },
+   "price": 1300,
+   "flavor": "Pigeon-coop fresh."
+  },
+  {
+   "id": "headband_uptown_8",
+   "name": "Grip Band (Uptown)",
+   "slot": "headband",
+   "rarity": "epic",
+   "brand": "LOCKDOWN",
+   "borough": "uptown",
+   "effects": {
+    "ball_security_add": 0.1
+   },
+   "price": 4700,
+   "flavor": "Every legend's been through here. Now you."
+  },
+  {
+   "id": "headband_uptown_9",
+   "name": "Crown Band (Uptown)",
+   "slot": "headband",
+   "rarity": "epic",
+   "brand": "KONG",
+   "borough": "uptown",
+   "effects": {
+    "damage_mult": 0.08
+   },
+   "price": 4750,
+   "flavor": "Walked the Mecca bleachers twice."
+  },
+  {
+   "id": "headband_uptown_10",
+   "name": "Glow Band (Uptown)",
+   "slot": "headband",
+   "rarity": "epic",
+   "brand": "AIRWAVE",
+   "borough": "uptown",
+   "effects": {
+    "dunk_damage_mult": 0.1
+   },
+   "price": 3250,
+   "flavor": "Pigeon-coop fresh."
+  },
+  {
+   "id": "headband_uptown_11",
+   "name": "Static Band (Uptown)",
+   "slot": "headband",
+   "rarity": "epic",
+   "brand": "VELOCI",
+   "borough": "uptown",
+   "effects": {
+    "crit_add": 0.1
+   },
+   "price": 5000,
+   "flavor": "Pigeon-coop fresh."
+  },
+  {
+   "id": "headband_city_0",
+   "name": "Sweatband (City)",
+   "slot": "headband",
+   "rarity": "common",
+   "brand": "KONG",
+   "borough": "city",
+   "effects": {
+    "damage_mult": 0.05
+   },
+   "price": 450,
+   "flavor": "Seen on a hundred screens at once."
+  },
+  {
+   "id": "headband_city_1",
+   "name": "Splash Band (City)",
+   "slot": "headband",
+   "rarity": "common",
+   "brand": "STRATA",
+   "borough": "city",
+   "effects": {
+    "perfect_add": 0.008
+   },
+   "price": 450,
+   "flavor": "Billboard bright, sidewalk tough."
+  },
+  {
+   "id": "headband_city_2",
+   "name": "Ninja Tie (City)",
+   "slot": "headband",
+   "rarity": "common",
+   "brand": "VELOCI",
+   "borough": "city",
+   "effects": {
+    "crit_add": 0.08
+   },
+   "price": 750,
+   "flavor": "Priced in Midtown dollars."
+  },
+  {
+   "id": "headband_city_3",
+   "name": "Rec League (City)",
+   "slot": "headband",
+   "rarity": "common",
+   "brand": "GHOST",
+   "borough": "city",
+   "effects": {
+    "hype_gain_mult": 0.1
+   },
+   "price": 550,
+   "flavor": "Seen on a hundred screens at once."
+  },
+  {
+   "id": "headband_city_4",
+   "name": "Bandana (City)",
+   "slot": "headband",
+   "rarity": "rare",
+   "brand": "VELOCI",
+   "borough": "city",
+   "effects": {
+    "dribble_damage_mult": 0.12
+   },
+   "price": 1950,
+   "flavor": "Billboard bright, sidewalk tough."
+  },
+  {
+   "id": "headband_city_5",
+   "name": "Terry Wrap (City)",
+   "slot": "headband",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "city",
+   "effects": {
+    "damage_mult": 0.06
+   },
+   "price": 1400,
+   "flavor": "Seen on a hundred screens at once."
+  },
+  {
+   "id": "headband_city_6",
+   "name": "Visor Band (City)",
+   "slot": "headband",
+   "rarity": "rare",
+   "brand": "STRATA",
+   "borough": "city",
+   "effects": {
+    "perfect_add": 0.006,
+    "crit_add": 0.03
+   },
+   "price": 1400,
+   "flavor": "Priced in Midtown dollars."
+  },
+  {
+   "id": "headband_city_7",
+   "name": "Hype Wrap (City)",
+   "slot": "headband",
+   "rarity": "rare",
+   "brand": "GHOST",
+   "borough": "city",
+   "effects": {
+    "hype_gain_mult": 0.12
+   },
+   "price": 1450,
+   "flavor": "Seen on a hundred screens at once."
+  },
+  {
+   "id": "headband_city_8",
+   "name": "Grip Band (City)",
+   "slot": "headband",
+   "rarity": "epic",
+   "brand": "LOCKDOWN",
+   "borough": "city",
+   "effects": {
+    "ball_security_add": 0.1
+   },
+   "price": 4650,
+   "flavor": "Seen on a hundred screens at once."
+  },
+  {
+   "id": "headband_city_9",
+   "name": "Crown Band (City)",
+   "slot": "headband",
+   "rarity": "epic",
+   "brand": "KONG",
+   "borough": "city",
+   "effects": {
+    "damage_mult": 0.08
+   },
+   "price": 4400,
+   "flavor": "Priced in Midtown dollars."
+  },
+  {
+   "id": "headband_city_10",
+   "name": "Glow Band (City)",
+   "slot": "headband",
+   "rarity": "epic",
+   "brand": "AIRWAVE",
+   "borough": "city",
+   "effects": {
+    "dunk_damage_mult": 0.1
+   },
+   "price": 4900,
+   "flavor": "Priced in Midtown dollars."
+  },
+  {
+   "id": "headband_city_11",
+   "name": "Static Band (City)",
+   "slot": "headband",
+   "rarity": "epic",
+   "brand": "VELOCI",
+   "borough": "city",
+   "effects": {
+    "crit_add": 0.1
+   },
+   "price": 3450,
+   "flavor": "Priced in Midtown dollars."
+  },
+  {
+   "id": "headband_deuce",
+   "name": "Deuce's Band",
+   "slot": "headband",
+   "rarity": "legendary",
+   "brand": "GHOST",
+   "borough": "city",
+   "effects": {
+    "ankle_frames_add": 3
+   },
+   "price": 8250,
+   "flavor": "Red. Frayed. He wanted you to have it.",
+   "no_shop": true
+  }
+ ]
+}

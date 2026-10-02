@@ -31,7 +31,21 @@ const CATALOGS: Dictionary = {
 		"id": "string", "name": "string", "hype": "number", "effect": "string",
 		"impl": "string", "source": "string",
 	},
+	"kicks": GEAR, "headbands": GEAR, "sleeves": GEAR, "chains": GEAR,
+	"fits": {"id": "string", "name": "string", "rarity": RARITIES, "slot": "string", "borough": "string",
+		"brand": "string", "effects": "dict", "price": "int", "flavor": "string", "weight": "enum:light|medium|heavy"},
+	"flash_sheets": {"id": "string", "name": "string", "rarity": RARITIES, "price": "int", "tattoo": "ref:tattoos", "flavor": "string"},
+	"key_items": {"id": "string", "name": "string", "rarity": RARITIES, "flavor": "string"},
+	"materials": {"id": "string", "name": "string", "rarity": RARITIES, "price": "int", "flavor": "string"},
+	"mixtapes": {"id": "string", "name": "string", "rarity": RARITIES, "teaches": "ref:bag_moves", "flavor": "string"},
+	"tattoos": {"id": "string", "name": "string", "effects": "dict", "flash": "ref:flash_sheets",
+		"source": "string", "description": "string"},
+	"consumables": {"id": "string", "name": "string", "effects": "dict", "price": "int", "max_carry": "int", "flavor": "string"},
 }
+
+## Shared schema for slot gear catalogs (spec §10).
+const GEAR: Dictionary = {"id": "string", "name": "string", "rarity": RARITIES, "slot": "string", "borough": "string",
+	"brand": "string", "effects": "dict", "price": "int", "flavor": "string"}
 
 ## Catalogs that may legitimately be empty in early milestones.
 const OPTIONAL_CATALOGS: PackedStringArray = []

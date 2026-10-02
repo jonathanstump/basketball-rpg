@@ -16,7 +16,6 @@ var dialogue: DialogueBox
 var tier: int = 1
 var arrive: Dictionary = {}
 var _reveal_t: int = 0
-var menu: CanvasLayer = null
 
 
 func _ready() -> void:
@@ -147,22 +146,7 @@ func open_map() -> void:
 	ms.map = map
 	ms.layout = layout
 	ms.player_pos = player.pos
-	add_child(ms)
-	menu = ms
-	paused_sim = true
-
-
-func close_menu() -> void:
-	if menu != null:
-		menu.queue_free()
-	menu = null
-	paused_sim = false
-
-
-func _unhandled_input(event: InputEvent) -> void:
-	if menu is MapScreen and (event.is_action_pressed("map") or event.is_action_pressed("menu") or event.is_action_pressed("ui_cancel")):
-		close_menu()
-		get_viewport().set_input_as_handled()
+	open_menu(ms)
 
 
 func _on_sim_event(ev: Dictionary) -> void:

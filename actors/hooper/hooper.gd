@@ -71,7 +71,7 @@ func step() -> void:
 		_tick_action()
 	if action == "":
 		_free_state()
-	actor.wind.tick(DT, guarding, regen_mult)
+	actor.wind.tick(DT, guarding, regen_mult * float(actor.flags.get("buff_wind_regen_mult", 1.0)))
 	_update_anim()
 
 
@@ -88,6 +88,8 @@ func begin(id: String, dir: Vector3 = Vector3.ZERO, owner: RefCounted = null, sp
 		push_warning("Hooper: unknown move " + id)
 		return false
 	var cost: float = JU.f(m, "wind")
+	if JU.s(m, "primitive") == "dodge":
+		cost *= float(actor.flags.get("dodge_wind_mult", 1.0))
 	if spend_wind and cost > 0.0 and not actor.wind.spend(cost * _wind_cost_mult()):
 		return false
 	action = id
@@ -95,6 +97,8 @@ func begin(id: String, dir: Vector3 = Vector3.ZERO, owner: RefCounted = null, sp
 	action_move = m
 	action_dir = dir.normalized() if dir.length() > 0.001 else actor.forward()
 	action_total = JU.i(m, "startup") + JU.i(m, "active") + JU.i(m, "recovery")
+	if JU.s(m, "primitive") == "dodge":
+		action_total += int(actor.flags.get("recovery_frames_add", 0.0))
 	action_owner = owner
 	sprinting = false
 	if owner != null and owner.has_method("on_begin"):
@@ -185,12 +189,15 @@ func _locomotion() -> void:
 	if mag > 0.1:
 		if sprinting:
 			speed = JU.f(tuning, "sprint_speed", 8.5)
-			actor.wind.drain(JU.f(tuning, "sprint_wind_per_s", 12.0) * DT * _sprint_cost_mult())
+			if not (bool(actor.flags.get("free_sprint", false)) and world.nearest_hostile(actor, 15.0) == null):
+				actor.wind.drain(JU.f(tuning, "sprint_wind_per_s", 12.0) * DT * _sprint_cost_mult())
 		elif mag >= JU.f(tuning, "run_stick_threshold", 0.6):
 			speed = JU.f(tuning, "run_speed", 6.0)
 		else:
 			speed = JU.f(tuning, "walk_speed", 3.5)
-	speed *= speed_mult
+	speed *= speed_mult * float(actor.flags.get("buff_speed_mult", 1.0))
+	if world.frame < int(actor.flags.get("hustle_until", -1)):
+		speed *= 1.1
 	var target_vel: Vector3 = dir.normalized() * speed if mag > 0.1 else Vector3.ZERO
 	if actor.on_ground:
 		actor.desired_vel = target_vel
@@ -238,7 +245,7 @@ func _dodge_frame() -> void:
 	elif action == "defensive_slide":
 		actor.flags["read_window"] = actor.invulnerable
 	if action_frame <= w.y:
-		var speed: float = JU.f(action_move, "distance_m") / (float(w.y) * DT)
+		var speed: float = JU.f(action_move, "distance_m") * float(actor.flags.get("dodge_dist_mult", 1.0)) / (float(w.y) * DT)
 		actor.desired_vel = action_dir * speed
 	else:
 		actor.desired_vel = action_dir * 1.0

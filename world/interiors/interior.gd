@@ -10,7 +10,6 @@ extends GameWorld
 var return_to: Dictionary = {}
 var interact: Interactables = Interactables.new()
 var dialogue: DialogueBox
-var menu: CanvasLayer = null
 var info: Dictionary = {}
 
 
@@ -172,20 +171,10 @@ func counter_menu() -> void:
 
 
 func _open_menu(m: ListMenu, title: String, opts: Array[Dictionary], handler: Callable) -> void:
-	close_menu()
 	m.set_options(title, opts, "Tokens: %d   Rep: %d" % [GameState.tokens, GameState.rep])
 	m.chosen.connect(handler)
 	m.cancelled.connect(close_menu)
-	add_child(m)
-	menu = m
-	paused_sim = true
-
-
-func close_menu() -> void:
-	if menu != null:
-		menu.queue_free()
-	menu = null
-	paused_sim = false
+	open_menu(m)
 
 
 func _on_counter(id: String) -> void:

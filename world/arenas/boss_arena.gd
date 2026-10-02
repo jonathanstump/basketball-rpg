@@ -115,8 +115,8 @@ func _victory(ev: Dictionary) -> void:
 	finished = true
 	boss_bar.show_banner("GAME!", 3.0)
 	var r: Dictionary = ev["rewards"]
-	GameState.add_rep(int(r["rep"]))
-	GameState.add_tokens(int(r["tokens"]))
+	GameState.add_rep(PlayerBuild.reward_rep(int(r["rep"])))
+	GameState.add_tokens(PlayerBuild.reward_tokens(int(r["tokens"])))
 	for d: String in (r["drops"] as PackedStringArray):
 		GameState.add_item(d, 1)
 	if not GameState.defeated_bosses.has(boss_id):

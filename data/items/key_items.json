@@ -1,0 +1,94 @@
+{
+ "key_items": [
+  {
+   "id": "crown_bronx",
+   "name": "The Bronx Crown",
+   "slot": "key",
+   "rarity": "grail",
+   "price": 0,
+   "no_shop": true,
+   "flavor": "Proof. +1 tattoo slot."
+  },
+  {
+   "id": "crown_brooklyn",
+   "name": "The Brooklyn Crown",
+   "slot": "key",
+   "rarity": "grail",
+   "price": 0,
+   "no_shop": true,
+   "flavor": "Proof. +1 tattoo slot."
+  },
+  {
+   "id": "crown_queens",
+   "name": "The Queens Crown",
+   "slot": "key",
+   "rarity": "grail",
+   "price": 0,
+   "no_shop": true,
+   "flavor": "Proof. +1 tattoo slot."
+  },
+  {
+   "id": "crown_staten_island",
+   "name": "The Staten Island Crown",
+   "slot": "key",
+   "rarity": "grail",
+   "price": 0,
+   "no_shop": true,
+   "flavor": "Proof. +1 tattoo slot."
+  },
+  {
+   "id": "crown_uptown",
+   "name": "The Uptown Crown",
+   "slot": "key",
+   "rarity": "grail",
+   "price": 0,
+   "no_shop": true,
+   "flavor": "Proof. +1 tattoo slot."
+  },
+  {
+   "id": "garden_ticket_1",
+   "name": "Garden Ticket Stub",
+   "slot": "key",
+   "rarity": "legendary",
+   "price": 0,
+   "no_shop": true,
+   "flavor": "One of five. The Garden is waiting."
+  },
+  {
+   "id": "garden_ticket_2",
+   "name": "Garden Ticket Stub",
+   "slot": "key",
+   "rarity": "legendary",
+   "price": 0,
+   "no_shop": true,
+   "flavor": "One of five. The Garden is waiting."
+  },
+  {
+   "id": "garden_ticket_3",
+   "name": "Garden Ticket Stub",
+   "slot": "key",
+   "rarity": "legendary",
+   "price": 0,
+   "no_shop": true,
+   "flavor": "One of five. The Garden is waiting."
+  },
+  {
+   "id": "garden_ticket_4",
+   "name": "Garden Ticket Stub",
+   "slot": "key",
+   "rarity": "legendary",
+   "price": 0,
+   "no_shop": true,
+   "flavor": "One of five. The Garden is waiting."
+  },
+  {
+   "id": "garden_ticket_5",
+   "name": "Garden Ticket Stub",
+   "slot": "key",
+   "rarity": "legendary",
+   "price": 0,
+   "no_shop": true,
+   "flavor": "One of five. The Garden is waiting."
+  }
+ ]
+}

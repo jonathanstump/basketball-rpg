@@ -1,0 +1,77 @@
+{
+ "consumables": [
+  {
+   "id": "chopped_cheese",
+   "name": "Chopped Cheese",
+   "effects": {
+    "heal_over_time_pct": 0.4,
+    "duration_s": 20
+   },
+   "price": 220,
+   "max_carry": 5,
+   "flavor": "Hot, heavy, perfect. +40% Heart over 20 s.",
+   "rarity": "common"
+  },
+  {
+   "id": "bacon_egg_cheese",
+   "name": "Bacon Egg & Cheese",
+   "effects": {
+    "wind_regen_mult": 0.5,
+    "duration_s": 60
+   },
+   "price": 160,
+   "max_carry": 5,
+   "flavor": "Salt, pepper, ketchup. +50% Wind regen for 60 s.",
+   "rarity": "common"
+  },
+  {
+   "id": "blue_cup_coffee",
+   "name": "Coffee in a Blue Cup",
+   "effects": {
+    "speed_mult": 0.1,
+    "duration_s": 60
+   },
+   "price": 80,
+   "max_carry": 5,
+   "flavor": "We are happy to serve you. +10% speed for 60 s.",
+   "rarity": "common"
+  },
+  {
+   "id": "italian_ice",
+   "name": "Italian Ice",
+   "effects": {
+    "cure": "burn",
+    "burn_resist_add": 1.0,
+    "duration_s": 60
+   },
+   "price": 120,
+   "max_carry": 5,
+   "flavor": "Lemon. Always lemon. Cures burn, fire resist 60 s.",
+   "rarity": "common"
+  },
+  {
+   "id": "sunflower_seeds",
+   "name": "Sunflower Seeds",
+   "effects": {
+    "hype_per_s": 1.0,
+    "duration_s": 30
+   },
+   "price": 100,
+   "max_carry": 5,
+   "flavor": "Spit the shells, keep the Hype. +1 Hype/s for 30 s.",
+   "rarity": "common"
+  },
+  {
+   "id": "honey_bun",
+   "name": "Honey Bun",
+   "effects": {
+    "damage_mult": 0.1,
+    "duration_s": 30
+   },
+   "price": 300,
+   "max_carry": 5,
+   "flavor": "Glazed and dangerous. +10% damage for 30 s.",
+   "rarity": "common"
+  }
+ ]
+}

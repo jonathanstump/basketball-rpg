@@ -1,0 +1,967 @@
+{
+ "chains": [
+  {
+   "id": "chain_bronx_0",
+   "name": "Gold Rope (Bronx)",
+   "slot": "chain",
+   "rarity": "common",
+   "brand": "STRATA",
+   "borough": "bronx",
+   "effects": {
+    "rep_mult": 0.1
+   },
+   "price": 700,
+   "flavor": "Murals on the inside lining."
+  },
+  {
+   "id": "chain_bronx_1",
+   "name": "Cuban Link (Bronx)",
+   "slot": "chain",
+   "rarity": "common",
+   "brand": "STRATA",
+   "borough": "bronx",
+   "effects": {
+    "heart_mult": 0.08
+   },
+   "price": 550,
+   "flavor": "Murals on the inside lining."
+  },
+  {
+   "id": "chain_bronx_2",
+   "name": "Dog Tags (Bronx)",
+   "slot": "chain",
+   "rarity": "common",
+   "brand": "STRATA",
+   "borough": "bronx",
+   "effects": {
+    "poise_add": 15
+   },
+   "price": 750,
+   "flavor": "Murals on the inside lining."
+  },
+  {
+   "id": "chain_bronx_3",
+   "name": "Rope Twist (Bronx)",
+   "slot": "chain",
+   "rarity": "common",
+   "brand": "GHOST",
+   "borough": "bronx",
+   "effects": {
+    "hype_decay_mult": -0.4
+   },
+   "price": 800,
+   "flavor": "Murals on the inside lining."
+  },
+  {
+   "id": "chain_bronx_4",
+   "name": "Token Chain (Bronx)",
+   "slot": "chain",
+   "rarity": "rare",
+   "brand": "STRATA",
+   "borough": "bronx",
+   "effects": {
+    "tokens_mult": 0.1
+   },
+   "price": 1250,
+   "flavor": "Smells like the block party never ended."
+  },
+  {
+   "id": "chain_bronx_5",
+   "name": "Bodega Key (Bronx)",
+   "slot": "chain",
+   "rarity": "rare",
+   "brand": "GHOST",
+   "borough": "bronx",
+   "effects": {
+    "qw_heal_add": 0.05
+   },
+   "price": 1550,
+   "flavor": "Stitched under the El, one train at a time."
+  },
+  {
+   "id": "chain_bronx_6",
+   "name": "Whistle (Bronx)",
+   "slot": "chain",
+   "rarity": "rare",
+   "brand": "STRATA",
+   "borough": "bronx",
+   "effects": {
+    "enemy_leash_mult": -0.3
+   },
+   "price": 1500,
+   "flavor": "Smells like the block party never ended."
+  },
+  {
+   "id": "chain_bronx_7",
+   "name": "Name Plate (Bronx)",
+   "slot": "chain",
+   "rarity": "rare",
+   "brand": "STRATA",
+   "borough": "bronx",
+   "effects": {
+    "damage_mult": 0.05
+   },
+   "price": 1500,
+   "flavor": "Smells like the block party never ended."
+  },
+  {
+   "id": "chain_bronx_8",
+   "name": "Tennis Chain (Bronx)",
+   "slot": "chain",
+   "rarity": "epic",
+   "brand": "KONG",
+   "borough": "bronx",
+   "effects": {
+    "rep_mult": 0.08,
+    "tokens_mult": 0.05
+   },
+   "price": 4150,
+   "flavor": "Murals on the inside lining."
+  },
+  {
+   "id": "chain_bronx_9",
+   "name": "Cross Chain (Bronx)",
+   "slot": "chain",
+   "rarity": "epic",
+   "brand": "STRATA",
+   "borough": "bronx",
+   "effects": {
+    "heart_mult": 0.06,
+    "dr_add": 0.02
+   },
+   "price": 3250,
+   "flavor": "Murals on the inside lining."
+  },
+  {
+   "id": "chain_bronx_10",
+   "name": "Rosary Beads (Bronx)",
+   "slot": "chain",
+   "rarity": "epic",
+   "brand": "KONG",
+   "borough": "bronx",
+   "effects": {
+    "status_resist_add": 0.15
+   },
+   "price": 4350,
+   "flavor": "Smells like the block party never ended."
+  },
+  {
+   "id": "chain_bronx_11",
+   "name": "Herringbone (Bronx)",
+   "slot": "chain",
+   "rarity": "epic",
+   "brand": "STRATA",
+   "borough": "bronx",
+   "effects": {
+    "crit_add": 0.05
+   },
+   "price": 4000,
+   "flavor": "Murals on the inside lining."
+  },
+  {
+   "id": "chain_brooklyn_0",
+   "name": "Gold Rope (Brooklyn)",
+   "slot": "chain",
+   "rarity": "common",
+   "brand": "STRATA",
+   "borough": "brooklyn",
+   "effects": {
+    "rep_mult": 0.1
+   },
+   "price": 700,
+   "flavor": "Brownstone brown with a boardwalk soul."
+  },
+  {
+   "id": "chain_brooklyn_1",
+   "name": "Cuban Link (Brooklyn)",
+   "slot": "chain",
+   "rarity": "common",
+   "brand": "GHOST",
+   "borough": "brooklyn",
+   "effects": {
+    "heart_mult": 0.08
+   },
+   "price": 550,
+   "flavor": "Brownstone brown with a boardwalk soul."
+  },
+  {
+   "id": "chain_brooklyn_2",
+   "name": "Dog Tags (Brooklyn)",
+   "slot": "chain",
+   "rarity": "common",
+   "brand": "GHOST",
+   "borough": "brooklyn",
+   "effects": {
+    "poise_add": 15
+   },
+   "price": 700,
+   "flavor": "Survived a summer on the Coney sand."
+  },
+  {
+   "id": "chain_brooklyn_3",
+   "name": "Rope Twist (Brooklyn)",
+   "slot": "chain",
+   "rarity": "common",
+   "brand": "STRATA",
+   "borough": "brooklyn",
+   "effects": {
+    "hype_decay_mult": -0.4
+   },
+   "price": 600,
+   "flavor": "Stoop-tested, grandma-approved."
+  },
+  {
+   "id": "chain_brooklyn_4",
+   "name": "Token Chain (Brooklyn)",
+   "slot": "chain",
+   "rarity": "rare",
+   "brand": "GHOST",
+   "borough": "brooklyn",
+   "effects": {
+    "tokens_mult": 0.1
+   },
+   "price": 1750,
+   "flavor": "Brownstone brown with a boardwalk soul."
+  },
+  {
+   "id": "chain_brooklyn_5",
+   "name": "Bodega Key (Brooklyn)",
+   "slot": "chain",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "brooklyn",
+   "effects": {
+    "qw_heal_add": 0.05
+   },
+   "price": 2000,
+   "flavor": "Stoop-tested, grandma-approved."
+  },
+  {
+   "id": "chain_brooklyn_6",
+   "name": "Whistle (Brooklyn)",
+   "slot": "chain",
+   "rarity": "rare",
+   "brand": "STRATA",
+   "borough": "brooklyn",
+   "effects": {
+    "enemy_leash_mult": -0.3
+   },
+   "price": 1400,
+   "flavor": "Stoop-tested, grandma-approved."
+  },
+  {
+   "id": "chain_brooklyn_7",
+   "name": "Name Plate (Brooklyn)",
+   "slot": "chain",
+   "rarity": "rare",
+   "brand": "GHOST",
+   "borough": "brooklyn",
+   "effects": {
+    "damage_mult": 0.05
+   },
+   "price": 1400,
+   "flavor": "Stoop-tested, grandma-approved."
+  },
+  {
+   "id": "chain_brooklyn_8",
+   "name": "Tennis Chain (Brooklyn)",
+   "slot": "chain",
+   "rarity": "epic",
+   "brand": "GHOST",
+   "borough": "brooklyn",
+   "effects": {
+    "rep_mult": 0.08,
+    "tokens_mult": 0.05
+   },
+   "price": 4200,
+   "flavor": "Stoop-tested, grandma-approved."
+  },
+  {
+   "id": "chain_brooklyn_9",
+   "name": "Cross Chain (Brooklyn)",
+   "slot": "chain",
+   "rarity": "epic",
+   "brand": "GHOST",
+   "borough": "brooklyn",
+   "effects": {
+    "heart_mult": 0.06,
+    "dr_add": 0.02
+   },
+   "price": 4900,
+   "flavor": "Brownstone brown with a boardwalk soul."
+  },
+  {
+   "id": "chain_brooklyn_10",
+   "name": "Rosary Beads (Brooklyn)",
+   "slot": "chain",
+   "rarity": "epic",
+   "brand": "STRATA",
+   "borough": "brooklyn",
+   "effects": {
+    "status_resist_add": 0.15
+   },
+   "price": 3050,
+   "flavor": "Survived a summer on the Coney sand."
+  },
+  {
+   "id": "chain_brooklyn_11",
+   "name": "Herringbone (Brooklyn)",
+   "slot": "chain",
+   "rarity": "epic",
+   "brand": "STRATA",
+   "borough": "brooklyn",
+   "effects": {
+    "crit_add": 0.05
+   },
+   "price": 4000,
+   "flavor": "Survived a summer on the Coney sand."
+  },
+  {
+   "id": "chain_queens_0",
+   "name": "Gold Rope (Queens)",
+   "slot": "chain",
+   "rarity": "common",
+   "brand": "GHOST",
+   "borough": "queens",
+   "effects": {
+    "rep_mult": 0.1
+   },
+   "price": 400,
+   "flavor": "Seven train certified."
+  },
+  {
+   "id": "chain_queens_1",
+   "name": "Cuban Link (Queens)",
+   "slot": "chain",
+   "rarity": "common",
+   "brand": "GHOST",
+   "borough": "queens",
+   "effects": {
+    "heart_mult": 0.08
+   },
+   "price": 750,
+   "flavor": "Seven train certified."
+  },
+  {
+   "id": "chain_queens_2",
+   "name": "Dog Tags (Queens)",
+   "slot": "chain",
+   "rarity": "common",
+   "brand": "STRATA",
+   "borough": "queens",
+   "effects": {
+    "poise_add": 15
+   },
+   "price": 500,
+   "flavor": "Night market haggle price, worth every token."
+  },
+  {
+   "id": "chain_queens_3",
+   "name": "Rope Twist (Queens)",
+   "slot": "chain",
+   "rarity": "common",
+   "brand": "GHOST",
+   "borough": "queens",
+   "effects": {
+    "hype_decay_mult": -0.4
+   },
+   "price": 500,
+   "flavor": "Night market haggle price, worth every token."
+  },
+  {
+   "id": "chain_queens_4",
+   "name": "Token Chain (Queens)",
+   "slot": "chain",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "queens",
+   "effects": {
+    "tokens_mult": 0.1
+   },
+   "price": 1700,
+   "flavor": "Night market haggle price, worth every token."
+  },
+  {
+   "id": "chain_queens_5",
+   "name": "Bodega Key (Queens)",
+   "slot": "chain",
+   "rarity": "rare",
+   "brand": "GHOST",
+   "borough": "queens",
+   "effects": {
+    "qw_heal_add": 0.05
+   },
+   "price": 1400,
+   "flavor": "Night market haggle price, worth every token."
+  },
+  {
+   "id": "chain_queens_6",
+   "name": "Whistle (Queens)",
+   "slot": "chain",
+   "rarity": "rare",
+   "brand": "GHOST",
+   "borough": "queens",
+   "effects": {
+    "enemy_leash_mult": -0.3
+   },
+   "price": 1900,
+   "flavor": "Ran the fountain loop at the old fairground."
+  },
+  {
+   "id": "chain_queens_7",
+   "name": "Name Plate (Queens)",
+   "slot": "chain",
+   "rarity": "rare",
+   "brand": "STRATA",
+   "borough": "queens",
+   "effects": {
+    "damage_mult": 0.05
+   },
+   "price": 1600,
+   "flavor": "Seven train certified."
+  },
+  {
+   "id": "chain_queens_8",
+   "name": "Tennis Chain (Queens)",
+   "slot": "chain",
+   "rarity": "epic",
+   "brand": "GHOST",
+   "borough": "queens",
+   "effects": {
+    "rep_mult": 0.08,
+    "tokens_mult": 0.05
+   },
+   "price": 3550,
+   "flavor": "Night market haggle price, worth every token."
+  },
+  {
+   "id": "chain_queens_9",
+   "name": "Cross Chain (Queens)",
+   "slot": "chain",
+   "rarity": "epic",
+   "brand": "GHOST",
+   "borough": "queens",
+   "effects": {
+    "heart_mult": 0.06,
+    "dr_add": 0.02
+   },
+   "price": 4700,
+   "flavor": "Seven train certified."
+  },
+  {
+   "id": "chain_queens_10",
+   "name": "Rosary Beads (Queens)",
+   "slot": "chain",
+   "rarity": "epic",
+   "brand": "GHOST",
+   "borough": "queens",
+   "effects": {
+    "status_resist_add": 0.15
+   },
+   "price": 4350,
+   "flavor": "Seven train certified."
+  },
+  {
+   "id": "chain_queens_11",
+   "name": "Herringbone (Queens)",
+   "slot": "chain",
+   "rarity": "epic",
+   "brand": "GHOST",
+   "borough": "queens",
+   "effects": {
+    "crit_add": 0.05
+   },
+   "price": 4200,
+   "flavor": "Seven train certified."
+  },
+  {
+   "id": "chain_staten_island_0",
+   "name": "Gold Rope (Staten Island)",
+   "slot": "chain",
+   "rarity": "common",
+   "brand": "STRATA",
+   "borough": "staten_island",
+   "effects": {
+    "rep_mult": 0.1
+   },
+   "price": 450,
+   "flavor": "Smells faintly of ferry diesel."
+  },
+  {
+   "id": "chain_staten_island_1",
+   "name": "Cuban Link (Staten Island)",
+   "slot": "chain",
+   "rarity": "common",
+   "brand": "GHOST",
+   "borough": "staten_island",
+   "effects": {
+    "heart_mult": 0.08
+   },
+   "price": 500,
+   "flavor": "Smells faintly of ferry diesel."
+  },
+  {
+   "id": "chain_staten_island_2",
+   "name": "Dog Tags (Staten Island)",
+   "slot": "chain",
+   "rarity": "common",
+   "brand": "KONG",
+   "borough": "staten_island",
+   "effects": {
+    "poise_add": 15
+   },
+   "price": 500,
+   "flavor": "The deer stare, but they don't judge."
+  },
+  {
+   "id": "chain_staten_island_3",
+   "name": "Rope Twist (Staten Island)",
+   "slot": "chain",
+   "rarity": "common",
+   "brand": "STRATA",
+   "borough": "staten_island",
+   "effects": {
+    "hype_decay_mult": -0.4
+   },
+   "price": 600,
+   "flavor": "The deer stare, but they don't judge."
+  },
+  {
+   "id": "chain_staten_island_4",
+   "name": "Token Chain (Staten Island)",
+   "slot": "chain",
+   "rarity": "rare",
+   "brand": "GHOST",
+   "borough": "staten_island",
+   "effects": {
+    "tokens_mult": 0.1
+   },
+   "price": 1550,
+   "flavor": "The deer stare, but they don't judge."
+  },
+  {
+   "id": "chain_staten_island_5",
+   "name": "Bodega Key (Staten Island)",
+   "slot": "chain",
+   "rarity": "rare",
+   "brand": "STRATA",
+   "borough": "staten_island",
+   "effects": {
+    "qw_heal_add": 0.05
+   },
+   "price": 1300,
+   "flavor": "The deer stare, but they don't judge."
+  },
+  {
+   "id": "chain_staten_island_6",
+   "name": "Whistle (Staten Island)",
+   "slot": "chain",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "staten_island",
+   "effects": {
+    "enemy_leash_mult": -0.3
+   },
+   "price": 1700,
+   "flavor": "The deer stare, but they don't judge."
+  },
+  {
+   "id": "chain_staten_island_7",
+   "name": "Name Plate (Staten Island)",
+   "slot": "chain",
+   "rarity": "rare",
+   "brand": "GHOST",
+   "borough": "staten_island",
+   "effects": {
+    "damage_mult": 0.05
+   },
+   "price": 1200,
+   "flavor": "The deer stare, but they don't judge."
+  },
+  {
+   "id": "chain_staten_island_8",
+   "name": "Tennis Chain (Staten Island)",
+   "slot": "chain",
+   "rarity": "epic",
+   "brand": "GHOST",
+   "borough": "staten_island",
+   "effects": {
+    "rep_mult": 0.08,
+    "tokens_mult": 0.05
+   },
+   "price": 4800,
+   "flavor": "The deer stare, but they don't judge."
+  },
+  {
+   "id": "chain_staten_island_9",
+   "name": "Cross Chain (Staten Island)",
+   "slot": "chain",
+   "rarity": "epic",
+   "brand": "KONG",
+   "borough": "staten_island",
+   "effects": {
+    "heart_mult": 0.06,
+    "dr_add": 0.02
+   },
+   "price": 3200,
+   "flavor": "Smells faintly of ferry diesel."
+  },
+  {
+   "id": "chain_staten_island_10",
+   "name": "Rosary Beads (Staten Island)",
+   "slot": "chain",
+   "rarity": "epic",
+   "brand": "GHOST",
+   "borough": "staten_island",
+   "effects": {
+    "status_resist_add": 0.15
+   },
+   "price": 4450,
+   "flavor": "The deer stare, but they don't judge."
+  },
+  {
+   "id": "chain_staten_island_11",
+   "name": "Herringbone (Staten Island)",
+   "slot": "chain",
+   "rarity": "epic",
+   "brand": "STRATA",
+   "borough": "staten_island",
+   "effects": {
+    "crit_add": 0.05
+   },
+   "price": 4500,
+   "flavor": "Smells faintly of ferry diesel."
+  },
+  {
+   "id": "chain_uptown_0",
+   "name": "Gold Rope (Uptown)",
+   "slot": "chain",
+   "rarity": "common",
+   "brand": "STRATA",
+   "borough": "uptown",
+   "effects": {
+    "rep_mult": 0.1
+   },
+   "price": 450,
+   "flavor": "Every legend's been through here. Now you."
+  },
+  {
+   "id": "chain_uptown_1",
+   "name": "Cuban Link (Uptown)",
+   "slot": "chain",
+   "rarity": "common",
+   "brand": "KONG",
+   "borough": "uptown",
+   "effects": {
+    "heart_mult": 0.08
+   },
+   "price": 750,
+   "flavor": "Pigeon-coop fresh."
+  },
+  {
+   "id": "chain_uptown_2",
+   "name": "Dog Tags (Uptown)",
+   "slot": "chain",
+   "rarity": "common",
+   "brand": "GHOST",
+   "borough": "uptown",
+   "effects": {
+    "poise_add": 15
+   },
+   "price": 500,
+   "flavor": "Pigeon-coop fresh."
+  },
+  {
+   "id": "chain_uptown_3",
+   "name": "Rope Twist (Uptown)",
+   "slot": "chain",
+   "rarity": "common",
+   "brand": "GHOST",
+   "borough": "uptown",
+   "effects": {
+    "hype_decay_mult": -0.4
+   },
+   "price": 800,
+   "flavor": "Walked the Mecca bleachers twice."
+  },
+  {
+   "id": "chain_uptown_4",
+   "name": "Token Chain (Uptown)",
+   "slot": "chain",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "uptown",
+   "effects": {
+    "tokens_mult": 0.1
+   },
+   "price": 1450,
+   "flavor": "Every legend's been through here. Now you."
+  },
+  {
+   "id": "chain_uptown_5",
+   "name": "Bodega Key (Uptown)",
+   "slot": "chain",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "uptown",
+   "effects": {
+    "qw_heal_add": 0.05
+   },
+   "price": 1250,
+   "flavor": "Every legend's been through here. Now you."
+  },
+  {
+   "id": "chain_uptown_6",
+   "name": "Whistle (Uptown)",
+   "slot": "chain",
+   "rarity": "rare",
+   "brand": "STRATA",
+   "borough": "uptown",
+   "effects": {
+    "enemy_leash_mult": -0.3
+   },
+   "price": 1950,
+   "flavor": "Pigeon-coop fresh."
+  },
+  {
+   "id": "chain_uptown_7",
+   "name": "Name Plate (Uptown)",
+   "slot": "chain",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "uptown",
+   "effects": {
+    "damage_mult": 0.05
+   },
+   "price": 1500,
+   "flavor": "Every legend's been through here. Now you."
+  },
+  {
+   "id": "chain_uptown_8",
+   "name": "Tennis Chain (Uptown)",
+   "slot": "chain",
+   "rarity": "epic",
+   "brand": "KONG",
+   "borough": "uptown",
+   "effects": {
+    "rep_mult": 0.08,
+    "tokens_mult": 0.05
+   },
+   "price": 3300,
+   "flavor": "Pigeon-coop fresh."
+  },
+  {
+   "id": "chain_uptown_9",
+   "name": "Cross Chain (Uptown)",
+   "slot": "chain",
+   "rarity": "epic",
+   "brand": "GHOST",
+   "borough": "uptown",
+   "effects": {
+    "heart_mult": 0.06,
+    "dr_add": 0.02
+   },
+   "price": 3300,
+   "flavor": "Walked the Mecca bleachers twice."
+  },
+  {
+   "id": "chain_uptown_10",
+   "name": "Rosary Beads (Uptown)",
+   "slot": "chain",
+   "rarity": "epic",
+   "brand": "STRATA",
+   "borough": "uptown",
+   "effects": {
+    "status_resist_add": 0.15
+   },
+   "price": 4000,
+   "flavor": "Every legend's been through here. Now you."
+  },
+  {
+   "id": "chain_uptown_11",
+   "name": "Herringbone (Uptown)",
+   "slot": "chain",
+   "rarity": "epic",
+   "brand": "KONG",
+   "borough": "uptown",
+   "effects": {
+    "crit_add": 0.05
+   },
+   "price": 4750,
+   "flavor": "Every legend's been through here. Now you."
+  },
+  {
+   "id": "chain_city_0",
+   "name": "Gold Rope (City)",
+   "slot": "chain",
+   "rarity": "common",
+   "brand": "STRATA",
+   "borough": "city",
+   "effects": {
+    "rep_mult": 0.1
+   },
+   "price": 650,
+   "flavor": "Priced in Midtown dollars."
+  },
+  {
+   "id": "chain_city_1",
+   "name": "Cuban Link (City)",
+   "slot": "chain",
+   "rarity": "common",
+   "brand": "GHOST",
+   "borough": "city",
+   "effects": {
+    "heart_mult": 0.08
+   },
+   "price": 800,
+   "flavor": "Priced in Midtown dollars."
+  },
+  {
+   "id": "chain_city_2",
+   "name": "Dog Tags (City)",
+   "slot": "chain",
+   "rarity": "common",
+   "brand": "KONG",
+   "borough": "city",
+   "effects": {
+    "poise_add": 15
+   },
+   "price": 600,
+   "flavor": "Priced in Midtown dollars."
+  },
+  {
+   "id": "chain_city_3",
+   "name": "Rope Twist (City)",
+   "slot": "chain",
+   "rarity": "common",
+   "brand": "STRATA",
+   "borough": "city",
+   "effects": {
+    "hype_decay_mult": -0.4
+   },
+   "price": 600,
+   "flavor": "Priced in Midtown dollars."
+  },
+  {
+   "id": "chain_city_4",
+   "name": "Token Chain (City)",
+   "slot": "chain",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "city",
+   "effects": {
+    "tokens_mult": 0.1
+   },
+   "price": 1750,
+   "flavor": "Seen on a hundred screens at once."
+  },
+  {
+   "id": "chain_city_5",
+   "name": "Bodega Key (City)",
+   "slot": "chain",
+   "rarity": "rare",
+   "brand": "KONG",
+   "borough": "city",
+   "effects": {
+    "qw_heal_add": 0.05
+   },
+   "price": 1950,
+   "flavor": "Seen on a hundred screens at once."
+  },
+  {
+   "id": "chain_city_6",
+   "name": "Whistle (City)",
+   "slot": "chain",
+   "rarity": "rare",
+   "brand": "GHOST",
+   "borough": "city",
+   "effects": {
+    "enemy_leash_mult": -0.3
+   },
+   "price": 1600,
+   "flavor": "Priced in Midtown dollars."
+  },
+  {
+   "id": "chain_city_7",
+   "name": "Name Plate (City)",
+   "slot": "chain",
+   "rarity": "rare",
+   "brand": "GHOST",
+   "borough": "city",
+   "effects": {
+    "damage_mult": 0.05
+   },
+   "price": 1350,
+   "flavor": "Priced in Midtown dollars."
+  },
+  {
+   "id": "chain_city_8",
+   "name": "Tennis Chain (City)",
+   "slot": "chain",
+   "rarity": "epic",
+   "brand": "STRATA",
+   "borough": "city",
+   "effects": {
+    "rep_mult": 0.08,
+    "tokens_mult": 0.05
+   },
+   "price": 3900,
+   "flavor": "Billboard bright, sidewalk tough."
+  },
+  {
+   "id": "chain_city_9",
+   "name": "Cross Chain (City)",
+   "slot": "chain",
+   "rarity": "epic",
+   "brand": "STRATA",
+   "borough": "city",
+   "effects": {
+    "heart_mult": 0.06,
+    "dr_add": 0.02
+   },
+   "price": 4950,
+   "flavor": "Billboard bright, sidewalk tough."
+  },
+  {
+   "id": "chain_city_10",
+   "name": "Rosary Beads (City)",
+   "slot": "chain",
+   "rarity": "epic",
+   "brand": "GHOST",
+   "borough": "city",
+   "effects": {
+    "status_resist_add": 0.15
+   },
+   "price": 3950,
+   "flavor": "Seen on a hundred screens at once."
+  },
+  {
+   "id": "chain_city_11",
+   "name": "Herringbone (City)",
+   "slot": "chain",
+   "rarity": "epic",
+   "brand": "KONG",
+   "borough": "city",
+   "effects": {
+    "crit_add": 0.05
+   },
+   "price": 3900,
+   "flavor": "Priced in Midtown dollars."
+  },
+  {
+   "id": "chain_pendant_five",
+   "name": "Pendant of the Five",
+   "slot": "chain",
+   "rarity": "legendary",
+   "brand": "GHOST",
+   "borough": "city",
+   "effects": {
+    "stat_all_add": 2
+   },
+   "price": 9650,
+   "flavor": "Five crowns, one pendant. Requires all five Crowns.",
+   "requires": "crown_pass",
+   "no_shop": true
+  }
+ ]
+}

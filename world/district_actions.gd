@@ -102,9 +102,7 @@ static func station(d: District, data: Dictionary) -> void:
 		if id != "_leave":
 			travel_to_station(id))
 	m.cancelled.connect(d.close_menu)
-	d.add_child(m)
-	d.menu = m
-	d.paused_sim = true
+	d.open_menu(m)
 
 
 static func travel_to_station(station_id: String) -> void:
@@ -146,7 +144,7 @@ static func open_box(d: District, id: String, data: Dictionary) -> void:
 
 
 static func _grant(d: District, loot: Dictionary) -> void:
-	var tokens: int = int(loot["tokens"])
+	var tokens: int = PlayerBuild.reward_tokens(int(loot["tokens"]))
 	if tokens > 0:
 		GameState.add_tokens(tokens)
 		EventBus.popup_text.emit("+%d TOKENS" % tokens, d.player.pos, "tokens")

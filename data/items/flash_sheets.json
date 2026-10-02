@@ -1,0 +1,234 @@
+{
+ "flash_sheets": [
+  {
+   "id": "flash_crown",
+   "name": "Crown Flash",
+   "slot": "flash",
+   "rarity": "epic",
+   "tattoo": "tattoo_crown",
+   "price": 0,
+   "flavor": "A flash sheet: +10% damage at full Heart. Take it to any Ink & Needle.",
+   "no_shop": true
+  },
+  {
+   "id": "flash_clock",
+   "name": "Clock Flash",
+   "slot": "flash",
+   "rarity": "epic",
+   "tattoo": "tattoo_clock",
+   "price": 0,
+   "flavor": "A flash sheet: Heart < 30%: shot windows +35%. Take it to any Ink & Needle.",
+   "no_shop": true
+  },
+  {
+   "id": "flash_wings",
+   "name": "Wings Flash",
+   "slot": "flash",
+   "rarity": "epic",
+   "tattoo": "tattoo_wings",
+   "price": 0,
+   "flavor": "A flash sheet: +20% jump height, +10% dunk range. Take it to any Ink & Needle.",
+   "no_shop": true
+  },
+  {
+   "id": "flash_rose",
+   "name": "Rose Flash",
+   "slot": "flash",
+   "rarity": "epic",
+   "tattoo": "tattoo_rose",
+   "price": 0,
+   "flavor": "A flash sheet: Once per rest, survive a lethal hit at 1 HP. Take it to any Ink & Needle.",
+   "no_shop": true
+  },
+  {
+   "id": "flash_boombox",
+   "name": "Boombox Flash",
+   "slot": "flash",
+   "rarity": "epic",
+   "tattoo": "tattoo_boombox",
+   "price": 0,
+   "flavor": "A flash sheet: Taunts give +50% Hype. Take it to any Ink & Needle.",
+   "no_shop": true
+  },
+  {
+   "id": "flash_claw",
+   "name": "Claw Flash",
+   "slot": "flash",
+   "rarity": "epic",
+   "tattoo": "tattoo_claw",
+   "price": 0,
+   "flavor": "A flash sheet: Strips also deal 40 dmg (scaled). Take it to any Ink & Needle.",
+   "no_shop": true
+  },
+  {
+   "id": "flash_ticket",
+   "name": "Ticket Flash",
+   "slot": "flash",
+   "rarity": "epic",
+   "tattoo": "tattoo_ticket",
+   "price": 0,
+   "flavor": "A flash sheet: +15% tokens. Take it to any Ink & Needle.",
+   "no_shop": true
+  },
+  {
+   "id": "flash_anchor",
+   "name": "Anchor Flash",
+   "slot": "flash",
+   "rarity": "epic",
+   "tattoo": "tattoo_anchor",
+   "price": 0,
+   "flavor": "A flash sheet: +30% guard stability, 50% resist to pushes. Take it to any Ink & Needle.",
+   "no_shop": true
+  },
+  {
+   "id": "flash_globe",
+   "name": "Globe Flash",
+   "slot": "flash",
+   "rarity": "epic",
+   "tattoo": "tattoo_globe",
+   "price": 0,
+   "flavor": "A flash sheet: Passes curve toward the locked target. Take it to any Ink & Needle.",
+   "no_shop": true
+  },
+  {
+   "id": "flash_star",
+   "name": "Star Flash",
+   "slot": "flash",
+   "rarity": "epic",
+   "tattoo": "tattoo_star",
+   "price": 0,
+   "flavor": "A flash sheet: +20% composure dmg on dunks/posters. Take it to any Ink & Needle.",
+   "no_shop": true
+  },
+  {
+   "id": "flash_express",
+   "name": "Express Flash",
+   "slot": "flash",
+   "rarity": "epic",
+   "tattoo": "tattoo_express",
+   "price": 0,
+   "flavor": "A flash sheet: +8% move speed; sprint is free out of combat. Take it to any Ink & Needle.",
+   "no_shop": true
+  },
+  {
+   "id": "flash_flame",
+   "name": "Flame Flash",
+   "slot": "flash",
+   "rarity": "epic",
+   "tattoo": "tattoo_flame",
+   "price": 0,
+   "flavor": "A flash sheet: Takeover +4 s. Take it to any Ink & Needle.",
+   "no_shop": true
+  },
+  {
+   "id": "flash_dice",
+   "name": "Dice Flash",
+   "slot": "flash",
+   "rarity": "epic",
+   "tattoo": "tattoo_dice",
+   "price": 0,
+   "flavor": "A flash sheet: 10%: a make deals double bucket damage. Take it to any Ink & Needle.",
+   "no_shop": true
+  },
+  {
+   "id": "flash_brick",
+   "name": "Brick Flash",
+   "slot": "flash",
+   "rarity": "epic",
+   "tattoo": "tattoo_brick",
+   "price": 0,
+   "flavor": "A flash sheet: Your misses deal 30 dmg near the rim. Take it to any Ink & Needle.",
+   "no_shop": true
+  },
+  {
+   "id": "flash_hustle",
+   "name": "Hustle Flash",
+   "slot": "flash",
+   "rarity": "epic",
+   "tattoo": "tattoo_hustle",
+   "price": 0,
+   "flavor": "A flash sheet: Loose-ball pickups: +5 Hype, +10% speed 3 s. Take it to any Ink & Needle.",
+   "no_shop": true
+  },
+  {
+   "id": "flash_chain_link",
+   "name": "Chain Link Flash",
+   "slot": "flash",
+   "rarity": "epic",
+   "tattoo": "tattoo_chain_link",
+   "price": 0,
+   "flavor": "A flash sheet: +15% DR, -5% speed. Take it to any Ink & Needle.",
+   "no_shop": true
+  },
+  {
+   "id": "flash_bridge",
+   "name": "Bridge Flash",
+   "slot": "flash",
+   "rarity": "epic",
+   "tattoo": "tattoo_bridge",
+   "price": 0,
+   "flavor": "A flash sheet: Chest Pass +40% range, one extra ricochet. Take it to any Ink & Needle.",
+   "no_shop": true
+  },
+  {
+   "id": "flash_mic",
+   "name": "Mic Flash",
+   "slot": "flash",
+   "rarity": "epic",
+   "tattoo": "tattoo_mic",
+   "price": 0,
+   "flavor": "A flash sheet: Ankle-breakers give double Hype. Take it to any Ink & Needle.",
+   "no_shop": true
+  },
+  {
+   "id": "flash_scale",
+   "name": "Scale Flash",
+   "slot": "flash",
+   "rarity": "epic",
+   "tattoo": "tattoo_scale",
+   "price": 0,
+   "flavor": "A flash sheet: +25% status resist. Take it to any Ink & Needle.",
+   "no_shop": true
+  },
+  {
+   "id": "flash_skyline",
+   "name": "Skyline Flash",
+   "slot": "flash",
+   "rarity": "epic",
+   "tattoo": "tattoo_skyline",
+   "price": 0,
+   "flavor": "A flash sheet: +3 all stats. Take it to any Ink & Needle.",
+   "no_shop": true
+  },
+  {
+   "id": "flash_nine_lives",
+   "name": "Nine Lives Flash",
+   "slot": "flash",
+   "rarity": "epic",
+   "tattoo": "tattoo_nine_lives",
+   "price": 0,
+   "flavor": "A flash sheet: Your dropped chain survives one extra death. Take it to any Ink & Needle.",
+   "no_shop": true
+  },
+  {
+   "id": "flash_slice",
+   "name": "Slice Flash",
+   "slot": "flash",
+   "rarity": "epic",
+   "tattoo": "tattoo_slice",
+   "price": 0,
+   "flavor": "A flash sheet: Quarter Waters also give +20 Hype. Take it to any Ink & Needle.",
+   "no_shop": true
+  },
+  {
+   "id": "flash_midnight",
+   "name": "Midnight Flash",
+   "slot": "flash",
+   "rarity": "epic",
+   "tattoo": "tattoo_midnight",
+   "price": 0,
+   "flavor": "A flash sheet: Takeover usable at 75 Hype. Take it to any Ink & Needle.",
+   "no_shop": true
+  }
+ ]
+}
