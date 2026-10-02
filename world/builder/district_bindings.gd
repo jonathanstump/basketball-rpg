@@ -165,6 +165,8 @@ static func _quest_extras(m: MapData, lay: Dictionary) -> void:
 	if not JU.a(lay, "stations").is_empty():
 		anchor = (JU.a(lay, "stations")[0] as Dictionary)["pos"]
 	var n: int = Questlines.next_deuce()
+	if n == 3 and m.id != "city_midtown":
+		n = 0   # the third duel happens in the Garden tunnel only
 	if n > 0:
 		var deuce: Dictionary = Questlines.deuce_npc(n)
 		deuce["pos"] = anchor + Vector3(-2.5, 0, 1.5)
@@ -183,3 +185,6 @@ static func _quest_extras(m: MapData, lay: Dictionary) -> void:
 		var tile: Array = JU.a(sd, "tile")
 		(lay["specials"] as Array).append({"kind": JU.s(sd, "kind"), "name": JU.s(sd, "name"), "boss": JU.s(sd, "boss"),
 			"pos": m.world_pos(Vector2i(int(tile[0]), int(tile[1])), BoroughBuilder.CURB_H)})
+	if GameState.has_flag("pops_one_more_run") and not GameState.defeated_bosses.has("opt_pops") and m.id == FrontEndFlow.start_district(GameState.start_borough):
+		## Pops waits on your home court after five Crowns (spec §9.3 opt_pops).
+		(lay["specials"] as Array).append({"kind": "boss_tunnel", "boss": "opt_pops", "name": "Pops is waiting: one more run", "pos": anchor + Vector3(2.5, 0, -1.5)})

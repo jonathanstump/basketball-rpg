@@ -41,3 +41,5 @@ static func attach(brain: BossBrain) -> void:
 			brain.gimmick = GatorGimmick.new(brain)
 		"wind":
 			brain.gimmick = GargoyleGimmick.new(brain)
+		"midnight":
+			brain.gimmick = MidnightGimmick.new(brain)

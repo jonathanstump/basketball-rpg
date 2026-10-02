@@ -227,7 +227,7 @@ func _force_ball_move() -> bool:
 
 
 func run_event_move(id: String) -> void:
-	var m: Dictionary = DataDB.move(JU.s(boss, "id"), id)
+	var m: Dictionary = BossGating.move_ref(JU.s(boss, "id"), id)
 	if not m.is_empty():
 		runner.interrupt()
 		last_move = m

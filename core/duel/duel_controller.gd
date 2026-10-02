@@ -270,6 +270,10 @@ func _drain() -> void:
 				(boss.controller as BossBrain).recover_s = maxf((boss.controller as BossBrain).recover_s, float(ev["seconds"]))
 			"phase_changed":
 				(boss.controller as BossBrain).set_phase(int(ev["phase"]))
+				var pd: Array[Dictionary] = BossGating.phases(boss_data, boss.tier)
+				if int(ev["phase"]) - 1 < pd.size() and JU.b(pd[int(ev["phase"]) - 1], "refill"):
+					## Separate Heart bar per phase (Midnight).
+					boss.hp = boss.hp_max
 				combat.clear_owner(boss.id)
 				world.emit("boss_phase_changed", {"boss": boss.id, "phase": ev["phase"]})
 			"game_point":

@@ -131,8 +131,29 @@ func _victory(ev: Dictionary) -> void:
 	EventBus.boss_defeated.emit(boss_id)
 	ArenaBuilder.open_gate(sim)
 	SaveSystem.request_autosave()
-	if not return_to.is_empty():
+	if JU.s(boss_data, "kind") == "final":
+		get_tree().create_timer(3.0).timeout.connect(open_ending_choice)
+	elif not return_to.is_empty():
 		get_tree().create_timer(4.0).timeout.connect(_leave)
+
+
+func open_ending_choice() -> void:
+	## The scoreboard reads 11:59:59 (spec §3.7).
+	var opts: Array[Dictionary] = [
+		{"id": "run", "label": "Let it run", "detail": "The clock hits 12:00. The sun comes up."},
+		{"id": "stop", "label": "Stop the clock", "detail": "Take his crown. The night goes on... and so do you (New Game+)."}]
+	var m: ListMenu = MenuKit.show(self, "11:59:59", opts, choose_ending, "One second left. Your call.")
+	m.cancelled.disconnect(close_menu)
+
+
+func choose_ending(id: String) -> void:
+	close_menu()
+	if id == "run":
+		Endings.daybreak()
+	else:
+		Endings.overtime()
+	SaveSystem.request_autosave()
+	SceneRouter.goto("res://ui/credits/credits.tscn", {"ending": "daybreak" if id == "run" else "overtime"})
 
 
 static func grant_rewards(id: String, r: Dictionary) -> String:

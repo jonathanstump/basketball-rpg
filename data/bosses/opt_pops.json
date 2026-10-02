@@ -1,0 +1,278 @@
+{
+ "id": "opt_pops",
+ "name": "POPS",
+ "title": "In His Prime",
+ "borough": "city",
+ "district": "",
+ "kind": "superboss",
+ "arena": {
+  "theme": "home_court",
+  "size_m": [
+   16,
+   14
+  ],
+  "indoor": false,
+  "floor": "#2C4D7F",
+  "key": "#C8102E",
+  "props": [
+   {
+    "shape": "box",
+    "size": [
+     3.0,
+     0.5,
+     0.8
+    ],
+    "pos": [
+     -9.0,
+     0.25,
+     4.0
+    ],
+    "color": "#5A4A3A"
+   },
+   {
+    "pos": [
+     0,
+     8.0,
+     2.0
+    ],
+    "light": {
+     "color": "#FFE6B0",
+     "energy": 2.2,
+     "range": 16.0
+    }
+   }
+  ]
+ },
+ "base": {
+  "hp": 2600,
+  "composure": 260,
+  "contest_radius": 2.6,
+  "height_m": 1.8,
+  "radius_m": 0.5,
+  "speed": 6.0,
+  "poise": 9999
+ },
+ "phases": [
+  {
+   "id": 1,
+   "rules": {},
+   "moves": [
+    "pops_crossover",
+    "pops_strip",
+    "bank_shot",
+    "box_out",
+    "old_head_dunk",
+    "jab_step",
+    "pump_fake"
+   ]
+  },
+  {
+   "id": 2,
+   "at_hp_pct": 0.5,
+   "transition": "second_wind",
+   "rules": {
+    "speed_mult": 1.15
+   },
+   "moves": [
+    "pops_crossover",
+    "pops_strip",
+    "bank_shot",
+    "box_out",
+    "old_head_dunk",
+    "jab_step",
+    "pump_fake"
+   ]
+  }
+ ],
+ "drops": [
+  "ball_old_head",
+  "flash_clock"
+ ],
+ "mic_check": "Your old coach... in his PRIME. Show him what he taught you.",
+ "look": {
+  "colors": {
+   "jersey": "#C8102E",
+   "skin": "#5C3A21",
+   "sock": "#F2F2F2",
+   "shoe": "#1A1A24",
+   "band": "#F2F2F2"
+  },
+  "joints": {
+   "hips": [
+    0,
+    0.85,
+    0
+   ],
+   "torso": [
+    0,
+    0.9,
+    0
+   ],
+   "head": [
+    0,
+    1.55,
+    0
+   ],
+   "arm_l": [
+    -0.28,
+    1.45,
+    0
+   ],
+   "arm_r": [
+    0.28,
+    1.45,
+    0
+   ],
+   "leg_l": [
+    -0.12,
+    0.85,
+    0
+   ],
+   "leg_r": [
+    0.12,
+    0.85,
+    0
+   ]
+  },
+  "parts": [
+   {
+    "joint": "leg_l",
+    "shape": "capsule",
+    "size": [
+     0.08,
+     0.85
+    ],
+    "pos": [
+     0,
+     -0.42,
+     0
+    ],
+    "color": "skin"
+   },
+   {
+    "joint": "leg_r",
+    "shape": "capsule",
+    "size": [
+     0.08,
+     0.85
+    ],
+    "pos": [
+     0,
+     -0.42,
+     0
+    ],
+    "color": "skin"
+   },
+   {
+    "joint": "leg_l",
+    "shape": "cylinder",
+    "size": [
+     0.085,
+     0.3
+    ],
+    "pos": [
+     0,
+     -0.6,
+     0
+    ],
+    "color": "sock"
+   },
+   {
+    "joint": "leg_r",
+    "shape": "cylinder",
+    "size": [
+     0.085,
+     0.3
+    ],
+    "pos": [
+     0,
+     -0.6,
+     0
+    ],
+    "color": "sock"
+   },
+   {
+    "joint": "torso",
+    "shape": "box",
+    "size": [
+     0.5,
+     0.65,
+     0.3
+    ],
+    "pos": [
+     0,
+     0.33,
+     0
+    ],
+    "color": "jersey"
+   },
+   {
+    "joint": "head",
+    "shape": "sphere",
+    "size": [
+     0.19
+    ],
+    "pos": [
+     0,
+     0.15,
+     0
+    ],
+    "color": "skin"
+   },
+   {
+    "joint": "head",
+    "shape": "torus",
+    "size": [
+     0.18,
+     0.21
+    ],
+    "pos": [
+     0,
+     0.22,
+     0
+    ],
+    "color": "band",
+    "rot": [
+     -8,
+     0,
+     0
+    ]
+   },
+   {
+    "joint": "arm_l",
+    "shape": "capsule",
+    "size": [
+     0.06,
+     0.6
+    ],
+    "pos": [
+     0,
+     -0.28,
+     0
+    ],
+    "color": "skin"
+   },
+   {
+    "joint": "arm_r",
+    "shape": "capsule",
+    "size": [
+     0.06,
+     0.6
+    ],
+    "pos": [
+     0,
+     -0.28,
+     0
+    ],
+    "color": "skin"
+   }
+  ]
+ },
+ "rewards": {
+  "rep": 8000,
+  "tokens": 4000
+ },
+ "tier_regions": [
+  "city"
+ ]
+}

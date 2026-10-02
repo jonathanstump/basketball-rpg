@@ -26,12 +26,21 @@ static func moves_for_phase(boss: Dictionary, phase_index: int, tier: int) -> Ar
 		return out
 	var owner: String = JU.s(boss, "id")
 	for id: String in JU.strs(ps[phase_index - 1], "moves"):
-		var m: Dictionary = DataDB.move(owner, id)
+		var m: Dictionary = move_ref(owner, id)
 		if m.is_empty():
 			m = DataDB.move(JU.s(boss, "borrow_from", owner), id)
 		if not m.is_empty() and JU.i(m, "min_tier", 1) <= tier:
 			out.append(m)
 	return out
+
+
+static func move_ref(owner: String, ref: String) -> Dictionary:
+	## "move_id" (the boss's own) or "other_boss:move_id" (borrowed, e.g.
+	## Midnight's Prime phase using every King's signature move).
+	if ref.contains(":"):
+		var parts: PackedStringArray = ref.split(":")
+		return DataDB.move(parts[0], parts[1])
+	return DataDB.move(owner, ref)
 
 
 static func phase_threshold(boss: Dictionary, phase_index: int, tier: int) -> float:

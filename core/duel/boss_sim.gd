@@ -32,8 +32,15 @@ static func run(boss_id: String, tier: int, opts: Dictionary = {}) -> Dictionary
 		bot.aggressive = false
 	var max_frames: int = int(float(opts.get("max_s", 300.0)) * 60.0)
 	ctl.start()
+	if int(opts.get("start_phase", 1)) > 1:
+		## Per-phase sims (Midnight): jump straight to a later phase.
+		var sp: int = int(opts["start_phase"])
+		ctl.duel.phase = sp
+		(boss.controller as BossBrain).set_phase(sp)
+		boss.hp = boss.hp_max * float(opts.get("boss_hp_pct", 1.0))
+		sim.world.emit("duel_phase_changed", {"phase": sp})
 	var frames: int = 0
-	var phases_seen: Dictionary = {1: true}
+	var phases_seen: Dictionary = {int(opts.get("start_phase", 1)): true}
 	while frames < max_frames and not ctl.duel.is_over():
 		sim.run(1)
 		ctl.step()

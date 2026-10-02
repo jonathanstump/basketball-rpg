@@ -38,15 +38,17 @@ func _init() -> void:
 
 func setup_world(region_id: String) -> void:
 	region = region_id
+	## After the Daybreak ending the overworld stays at sunrise.
+	var env_id: String = "dawn" if GameState.has_flag("dawn") and region_id != "interior" and region_id != "garden" else region_id
 	level_root = Node3D.new()
 	level_root.name = "Level"
 	add_child(level_root)
 	env_node = WorldEnvironment.new()
 	env_node.name = "WorldEnvironment"
-	env_node.environment = EnvPresets.build(region)
+	env_node.environment = EnvPresets.build(env_id)
 	add_child(env_node)
-	add_child(EnvPresets.moon_light(region))
-	RenderingServer.global_shader_parameter_set("cc_rim_tint", EnvPresets.rim_tint(region))
+	add_child(EnvPresets.moon_light(env_id))
+	RenderingServer.global_shader_parameter_set("cc_rim_tint", EnvPresets.rim_tint(env_id))
 	camera_rig = CameraRig.new()
 	camera_rig.name = "CameraRig"
 	add_child(camera_rig)

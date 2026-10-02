@@ -168,6 +168,8 @@ func _on_sim_event(ev: Dictionary) -> void:
 
 
 func setup_render_smoke(entry: Dictionary) -> void:
+	if JU.b(entry, "dawn"):
+		GameState.set_flag("dawn")
 	if JU.s(entry, "district") != "":
 		district_id = JU.s(entry, "district")
 	if JU.s(entry, "mode") == "map":

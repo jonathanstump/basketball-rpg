@@ -78,7 +78,9 @@ func test_city_districts() -> void:
 		assert_eq(m.borough(), "city")
 		for b: Variant in JU.a(m.side, "bodegas"):
 			cats.append(JU.s(b as Dictionary, "cat"))
-		landmarks.append_array(JU.strs(JU.dict(m.side, "fights"), "X"))
+		for x: String in JU.strs(JU.dict(m.side, "fights"), "X"):
+			if JU.s(DataDB.boss(x), "kind") == "landmark":
+				landmarks.append(x)
 		for e: Variant in JU.strs(JU.dict(m.side, "spawns"), "e"):
 			assert_true(str(e) in ["suit", "big_head_mascot", "tourist"], "City crews: %s" % e)
 	cats.sort()

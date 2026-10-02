@@ -142,3 +142,17 @@ Spec §11.3 lists L60 = 46,626 but `floor(100 × 60^1.5 + 150)` = 46,625 (every 
 - **The Gargoyle:** 3 s gusts every 10 s (6 s in Phase 2) push you and shift the shot window center by 0.12. Lightning in Phase 2. Gusts stop at CHECK and GAME POINT.
 - **Bot/duel fixes:** the boss possession clock now counts while the boss is mid-move. The bot aims at the live window center (gusts move it mid-gather) and breaks out of corners after 1.5 s pinned. Coop King's Split Flock and zones were slowed and the Rat King's slice heal reduced, after a full regression sweep.
 - **QA fights** use the boss's real tier and the validated sim seed.
+
+## M12 — The Garden & endings
+- **The Garden** is a court in Midtown that stays locked until you hold all five Garden Ticket stubs. Tier 7.
+- **Midnight** has three phases, each with its own Heart bar (phase `refill` with `at_hp_pct: 0.002`), and GAME POINT only comes in Phase 3.
+  - **Warm-Up:** dodging (crossover, stepback or slide) into his Midnight Crossover within 3.5 m sends the player to the `player_shook` reaction.
+  - **Prime:** borrows the listed signature moves through `owner:move` refs. Orbit Spin needs Atlas's ring gimmick, so it's swapped for Meridian; Cage Shrink is likewise a Chain Link gimmick, so it's swapped for Fence Slam.
+  - **Overtime:** a 60 s countdown, then the full-arena unblockable MIDNIGHT. If the hit resolves as an ankle-breaker or a dodge/read (a perfect crossover through it), his Heart drops, he goes SHOOK and you reach GAME POINT. A miss costs 90% max Heart and resets the clock to 30 s.
+- **Deuce duel 3** appears in Midtown (the Garden tunnel) once duel 2 is won and the five stubs are held. It's Tier 6 and first to 11.
+- **Pops in his prime** (`opt_pops`, Tier 6) waits as a special on your start district after the fifth Pops lesson.
+- **Endings:** after Midnight a choice menu appears at 11:59:59.
+  - **Daybreak:** the `ending_daybreak` and `dawn` flags are set. Credits roll over a sunrise, and the overworld uses the dawn environment preset from then on.
+  - **Overtime:** `ending_overtime` is set, Midnight's Crown (key item) is given, NG+ starts, and the credits roll.
+  - NG+ after Daybreak clears `dawn`.
+- **Credits** list the open-license fonts and tools. In headless runs they skip straight to the end.

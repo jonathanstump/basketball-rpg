@@ -89,6 +89,15 @@
    "price": 0,
    "no_shop": true,
    "flavor": "One of five. The Garden is waiting."
+  },
+  {
+   "id": "crown_midnight",
+   "name": "Midnight's Crown",
+   "slot": "key",
+   "rarity": "grail",
+   "price": 0,
+   "no_shop": true,
+   "flavor": "You stopped the clock. The night is yours now. Wear it well."
   }
  ]
 }

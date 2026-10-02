@@ -105,23 +105,28 @@ static func deuce_ready(n: int) -> bool:
 			return false
 		2:
 			return GameState.has_flag("beat_challenger_deuce_1") and GameState.crowns.size() >= 3
+		3:
+			## In the Garden tunnel before Midnight (optional).
+			return GameState.has_flag("beat_challenger_deuce_2") and GameState.garden_tickets.size() >= 5
 	return false
 
 
 static func next_deuce() -> int:
-	for n: int in [1, 2]:
+	for n: int in [1, 2, 3]:
 		if deuce_ready(n):
 			return n
 	return 0
 
 
 static func deuce_challenger(n: int) -> Dictionary:
-	return {"id": "deuce_%d" % n, "skill": 0.7 + 0.1 * float(n), "tier_bonus": n, "points": 7 + 2 * (n - 1),
-		"drop": DEUCE_TAPE if n == 1 else DEUCE_BAND, "deuce": n}
+	return {"id": "deuce_%d" % n, "skill": minf(0.95, 0.7 + 0.1 * float(n)), "tier_bonus": n if n < 3 else 0, "points": 7 + 2 * (n - 1),
+		"drop": [DEUCE_TAPE, DEUCE_BAND, ""][n - 1], "deuce": n}
 
 
 static func deuce_npc(n: int) -> Dictionary:
-	var lines: PackedStringArray = ["Heard you beat somebody. Lucky.", "Run it. Me and you. First to seven."] if n == 1 else \
-		["Three Crowns? Okay. OKAY. Now you gotta beat ME.", "First to nine. No excuses this time."]
+	var all_lines: Array = [["Heard you beat somebody. Lucky.", "Run it. Me and you. First to seven."],
+		["Three Crowns? Okay. OKAY. Now you gotta beat ME.", "First to nine. No excuses this time."],
+		["The Garden. You actually made it.", "One more. For real this time. Then go get him - I will be in the stands."]]
+	var lines: PackedStringArray = PackedStringArray(all_lines[clampi(n, 1, 3) - 1])
 	return {"id": "npc_deuce_%d" % n, "name": "Deuce", "lines": lines, "challenger": deuce_challenger(n),
 		"look": {"skin": "#8D5524", "top_color": "#141418", "shorts_color": "#C8102E", "hair_style": "high_top", "headband": "#D8263A"}}

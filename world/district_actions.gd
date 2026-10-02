@@ -67,6 +67,9 @@ static func trigger(d: District, it: Dictionary) -> void:
 		"station":
 			station(d, data)
 		"court":
+			if JU.s(DataDB.boss(JU.s(data, "boss")), "kind") == "final" and not Endings.garden_open():
+				EventBus.popup_text.emit("THE GARDEN: %d / 5 TICKET STUBS" % GameState.garden_tickets.size(), d.player.pos, "bad")
+				return
 			GameState.set_flag("seen_court_" + JU.s(data, "boss"))
 			if bool(data["open"]):
 				EventBus.popup_text.emit("OPEN COURT", d.player.pos, "good")

@@ -302,6 +302,32 @@
       "scene": "res://world/district.tscn",
       "frames": 60,
       "district": "city_midtown"
+    },
+    {
+      "name": "boss_fin_midnight",
+      "scene": "res://world/arenas/boss_arena.tscn",
+      "frames": 180,
+      "boss": "fin_midnight",
+      "tier": 7
+    },
+    {
+      "name": "boss_opt_pops",
+      "scene": "res://world/arenas/boss_arena.tscn",
+      "frames": 180,
+      "boss": "opt_pops",
+      "tier": 6
+    },
+    {
+      "name": "credits",
+      "scene": "res://ui/credits/credits.tscn",
+      "frames": 30
+    },
+    {
+      "name": "district_dawn_bedstuy",
+      "scene": "res://world/district.tscn",
+      "frames": 60,
+      "district": "bk_bedstuy",
+      "dawn": true
     }
   ]
 }

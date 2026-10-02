@@ -120,6 +120,11 @@ static func custom_checks(db: DataStore) -> PackedStringArray:
 		var boss: Dictionary = db.boss(str(boss_id))
 		for p: Variant in JU.a(boss, "phases"):
 			for mid: Variant in JU.a(p as Dictionary, "moves"):
+				var ref: PackedStringArray = str(mid).split(":")
+				if ref.size() == 2:
+					if not db.moves_for(ref[0]).has(ref[1]):
+						errs.append("boss %s borrowed move %s not found" % [boss_id, mid])
+					continue
 				if not db.moves_for(str(boss_id)).has(str(mid)) and not db.moves_for(JU.s(boss, "borrow_from", "")).has(str(mid)):
 					errs.append("boss %s phase move %s not found" % [boss_id, mid])
 		var ev: Dictionary = JU.dict(boss, "t5_event")
