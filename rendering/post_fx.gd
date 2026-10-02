@@ -6,8 +6,12 @@ extends CanvasLayer
 const TILT: Shader = preload("res://rendering/shaders/tilt_shift.gdshader")
 const HALFTONE: Shader = preload("res://rendering/shaders/halftone_post.gdshader")
 
+const FLASH: Dictionary = {"tourist": [0.85, 0.12], "lightning": [0.7, 0.12], "poster": [0.6, 0.0], "hit": [0.25, 0.0]}
+
 var tilt_rect: ColorRect
 var halftone_rect: ColorRect
+var flash_rect: ColorRect
+var _flash: float = 0.0
 var _halftone_t: float = 0.0
 var _halftone_len: float = 0.0
 
@@ -17,6 +21,12 @@ func _ready() -> void:
 	tilt_rect = _make_rect(TILT, "TiltShift")
 	halftone_rect = _make_rect(HALFTONE, "Halftone")
 	halftone_rect.visible = false
+	flash_rect = ColorRect.new()
+	flash_rect.name = "Flash"
+	flash_rect.color = Color(1, 1, 1, 0)
+	flash_rect.set_anchors_preset(Control.PRESET_FULL_RECT)
+	flash_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(flash_rect)
 	apply_settings()
 	EventBus.settings_changed.connect(apply_settings)
 	EventBus.flash_requested.connect(_on_flash)
@@ -45,12 +55,28 @@ func play_halftone(duration_s: float = 0.6) -> void:
 	halftone_rect.visible = true
 
 
+static func flash_strength(kind: String, reduce: bool) -> float:
+	## Peak white-flash alpha; "Reduce flashes" (spec §14) cuts tourist
+	## flashes, lightning and the POSTER flash down to a faint pulse or none.
+	var pair: Array = FLASH.get(kind, [0.0, 0.0])
+	return float(pair[1]) if reduce else float(pair[0])
+
+
+static func halftone_length(reduce: bool) -> float:
+	return 0.35 if reduce else 0.7
+
+
 func _on_flash(kind: String) -> void:
+	var reduce: bool = Settings.get_bool("reduce_flashes")
 	if kind == "poster":
-		play_halftone(0.7 if not Settings.get_bool("reduce_flashes") else 0.35)
+		play_halftone(halftone_length(reduce))
+	_flash = maxf(_flash, flash_strength(kind, reduce))
 
 
 func _process(delta: float) -> void:
+	if _flash > 0.0:
+		_flash = maxf(0.0, _flash - delta * 3.0)
+		flash_rect.color = Color(1, 1, 1, _flash)
 	if _halftone_t <= 0.0:
 		return
 	_halftone_t -= delta

@@ -1,0 +1,312 @@
+{
+ "sfx": [
+  {
+   "id": "chain_ching",
+   "wave": "square",
+   "f0": 1800,
+   "f1": 2400,
+   "len": 0.35,
+   "attack": 0.002,
+   "decay": 0.25,
+   "noise": 0.25,
+   "tremolo": 30,
+   "vol": 0.4
+  },
+  {
+   "id": "swish",
+   "wave": "noise",
+   "f0": 800,
+   "len": 0.25,
+   "attack": 0.03,
+   "decay": 0.2,
+   "vol": 0.35
+  },
+  {
+   "id": "rim_clank",
+   "wave": "square",
+   "f0": 420,
+   "f1": 300,
+   "len": 0.25,
+   "attack": 0.001,
+   "decay": 0.12,
+   "noise": 0.3,
+   "vol": 0.45
+  },
+  {
+   "id": "bounce_asphalt",
+   "wave": "sine",
+   "f0": 140,
+   "f1": 70,
+   "len": 0.12,
+   "attack": 0.001,
+   "decay": 0.06,
+   "noise": 0.2,
+   "vol": 0.6
+  },
+  {
+   "id": "bounce_wood",
+   "wave": "sine",
+   "f0": 220,
+   "f1": 120,
+   "len": 0.14,
+   "attack": 0.001,
+   "decay": 0.08,
+   "noise": 0.1,
+   "vol": 0.6
+  },
+  {
+   "id": "bounce_metal",
+   "wave": "square",
+   "f0": 600,
+   "f1": 500,
+   "len": 0.2,
+   "attack": 0.001,
+   "decay": 0.1,
+   "noise": 0.1,
+   "vol": 0.4
+  },
+  {
+   "id": "bounce_wet",
+   "wave": "noise",
+   "f0": 200,
+   "len": 0.15,
+   "attack": 0.002,
+   "decay": 0.08,
+   "vol": 0.5
+  },
+  {
+   "id": "squeak",
+   "wave": "sine",
+   "f0": 2200,
+   "f1": 2900,
+   "len": 0.09,
+   "attack": 0.005,
+   "decay": 0.06,
+   "vol": 0.3
+  },
+  {
+   "id": "crowd_ooh",
+   "wave": "saw",
+   "f0": 260,
+   "f1": 200,
+   "len": 0.9,
+   "attack": 0.15,
+   "decay": 0.6,
+   "noise": 0.5,
+   "tremolo": 6,
+   "vol": 0.35
+  },
+  {
+   "id": "door_bell",
+   "wave": "sine",
+   "f0": 1320,
+   "f1": 1320,
+   "len": 0.6,
+   "attack": 0.002,
+   "decay": 0.5,
+   "vol": 0.4
+  },
+  {
+   "id": "cat_purr",
+   "wave": "saw",
+   "f0": 28,
+   "len": 1.2,
+   "attack": 0.1,
+   "decay": 1.0,
+   "noise": 0.4,
+   "tremolo": 22,
+   "vol": 0.4
+  },
+  {
+   "id": "hit_light",
+   "wave": "noise",
+   "f0": 300,
+   "len": 0.08,
+   "attack": 0.001,
+   "decay": 0.05,
+   "vol": 0.5
+  },
+  {
+   "id": "hit_heavy",
+   "wave": "sine",
+   "f0": 120,
+   "f1": 50,
+   "len": 0.25,
+   "attack": 0.001,
+   "decay": 0.15,
+   "noise": 0.45,
+   "vol": 0.7
+  },
+  {
+   "id": "whoosh",
+   "wave": "noise",
+   "f0": 400,
+   "len": 0.25,
+   "attack": 0.08,
+   "decay": 0.15,
+   "vol": 0.35
+  },
+  {
+   "id": "ankles",
+   "wave": "saw",
+   "f0": 900,
+   "f1": 200,
+   "len": 0.5,
+   "attack": 0.005,
+   "decay": 0.4,
+   "noise": 0.2,
+   "vol": 0.5
+  },
+  {
+   "id": "poster_horn",
+   "wave": "square",
+   "f0": 220,
+   "f1": 330,
+   "len": 0.9,
+   "attack": 0.02,
+   "decay": 0.8,
+   "tremolo": 8,
+   "vol": 0.45
+  },
+  {
+   "id": "cooked",
+   "wave": "saw",
+   "f0": 300,
+   "f1": 60,
+   "len": 1.2,
+   "attack": 0.01,
+   "decay": 1.0,
+   "vol": 0.5
+  },
+  {
+   "id": "parry",
+   "wave": "square",
+   "f0": 1400,
+   "f1": 1900,
+   "len": 0.15,
+   "attack": 0.001,
+   "decay": 0.1,
+   "vol": 0.4
+  },
+  {
+   "id": "strip",
+   "wave": "sine",
+   "f0": 900,
+   "f1": 1500,
+   "len": 0.18,
+   "attack": 0.001,
+   "decay": 0.12,
+   "noise": 0.2,
+   "vol": 0.45
+  },
+  {
+   "id": "shot_release",
+   "wave": "sine",
+   "f0": 500,
+   "f1": 800,
+   "len": 0.08,
+   "attack": 0.002,
+   "decay": 0.05,
+   "vol": 0.35
+  },
+  {
+   "id": "perfect",
+   "wave": "sine",
+   "f0": 1046,
+   "f1": 1568,
+   "len": 0.35,
+   "attack": 0.002,
+   "decay": 0.3,
+   "vol": 0.45
+  },
+  {
+   "id": "tokens",
+   "wave": "square",
+   "f0": 1200,
+   "f1": 1600,
+   "len": 0.12,
+   "attack": 0.001,
+   "decay": 0.08,
+   "vol": 0.3
+  },
+  {
+   "id": "telegraph",
+   "wave": "square",
+   "f0": 880,
+   "f1": 660,
+   "len": 0.25,
+   "attack": 0.002,
+   "decay": 0.2,
+   "vol": 0.35
+  },
+  {
+   "id": "chime",
+   "wave": "sine",
+   "f0": 988,
+   "f1": 784,
+   "len": 0.6,
+   "attack": 0.003,
+   "decay": 0.5,
+   "vol": 0.4
+  },
+  {
+   "id": "megaphone_blip",
+   "wave": "square",
+   "f0": 330,
+   "len": 0.06,
+   "attack": 0.002,
+   "decay": 0.04,
+   "vol": 0.3
+  },
+  {
+   "id": "voice_blip",
+   "wave": "sine",
+   "f0": 330,
+   "len": 0.06,
+   "attack": 0.004,
+   "decay": 0.04,
+   "vol": 0.25
+  },
+  {
+   "id": "amb_street",
+   "wave": "noise",
+   "f0": 100,
+   "len": 3.0,
+   "attack": 0.5,
+   "decay": 30.0,
+   "vol": 0.08
+  },
+  {
+   "id": "amb_siren",
+   "wave": "sine",
+   "f0": 700,
+   "f1": 950,
+   "len": 3.0,
+   "attack": 0.5,
+   "decay": 30.0,
+   "tremolo": 1.2,
+   "vol": 0.05
+  },
+  {
+   "id": "amb_court",
+   "wave": "saw",
+   "f0": 180,
+   "len": 3.0,
+   "attack": 0.5,
+   "decay": 30.0,
+   "noise": 0.7,
+   "tremolo": 2.0,
+   "vol": 0.07
+  },
+  {
+   "id": "amb_hum",
+   "wave": "sine",
+   "f0": 60,
+   "len": 3.0,
+   "attack": 0.5,
+   "decay": 30.0,
+   "noise": 0.1,
+   "vol": 0.07
+  }
+ ]
+}

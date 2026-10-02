@@ -40,6 +40,8 @@ const CATALOGS: Dictionary = {
 	"mixtapes": {"id": "string", "name": "string", "rarity": RARITIES, "teaches": "ref:bag_moves", "flavor": "string"},
 	"tattoos": {"id": "string", "name": "string", "effects": "dict", "flash": "ref:flash_sheets",
 		"source": "string", "description": "string"},
+	"patterns": {"id": "string", "bpm": "number", "root": "int", "steps": "int", "tracks": "dict", "mood": "string"},
+	"sfx": {"id": "string", "wave": "enum:sine|square|saw|noise", "f0": "number", "len": "number"},
 	"boroughs": {"id": "enum:bronx|brooklyn|queens|staten_island|uptown", "name": "string", "start_district": "string", "home_court": "string", "blurb": "string"},
 	"consumables": {"id": "string", "name": "string", "effects": "dict", "price": "int", "max_carry": "int", "flavor": "string"},
 }

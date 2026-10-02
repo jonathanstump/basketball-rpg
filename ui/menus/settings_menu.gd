@@ -28,10 +28,14 @@ static func open(w: Node, back: Callable) -> void:
 		var en: Array = e
 		opts.append({"id": str(en[0]), "label": "%s:  %s" % [TranslationServer.translate(str(en[1])), _fmt(Settings.get_value(str(en[0])))],
 			"detail": "Rookie Mode: +2 Quarter Waters, wider shot and parry windows, enemies hit 25% softer. Achievements still unlock." if str(en[0]) == "rookie_mode" else ""})
+	opts.append({"id": "_controls", "label": "Controls (remap)", "detail": "Rebind every action for keyboard and controller."})
 	opts.append({"id": "_back", "label": "Back"})
 	var m: ListMenu = MenuKit.show(w, "SETTINGS", opts, func(id: String) -> void:
 		if id == "_back":
 			back.call()
+			return
+		if id == "_controls":
+			RemapMenu.open(w, func() -> void: open(w, back))
 			return
 		cycle(id)
 		open(w, back), "Accept cycles a setting. Back returns.")

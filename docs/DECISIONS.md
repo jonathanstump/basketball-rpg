@@ -156,3 +156,15 @@ Spec §11.3 lists L60 = 46,626 but `floor(100 × 60^1.5 + 150)` = 46,625 (every 
   - **Overtime:** `ending_overtime` is set, Midnight's Crown (key item) is given, NG+ starts, and the credits roll.
   - NG+ after Daybreak clears `dawn`.
 - **Credits** list the open-license fonts and tools. In headless runs they skip straight to the end.
+
+## M13 — Audio, juice & accessibility
+- **Music** is placeholder procedural audio. `BeatSequencer` synthesizes kick, snare, hat, bass, lead and pad from 16-step region patterns (`data/audio/patterns.json`, one per borough plus city, garden, title and interior, each matching the spec's mood notes) into an `AudioStreamGenerator` at 22.05 kHz. Step k always starts at `round(k·step_len)`, so there is no accumulated drift: the measured worst case is 0.02 ms over 5 minutes against BeatClock. Layers: explore (drums + bass), combat (+ lead, when a crew is within 14 m), boss (+ pad); gains crossfade at 1.5/s. No samples of real songs. Replace with commissioned music before launch.
+- **SFX** come from `SfxSynth`: sfxr-style recipes in `data/audio/sfx.json` rendered once to `AudioStreamWAV` at boot. That covers ball bounces per surface, chain ching, swish, rim clank, squeaks, crowd ooh, door bell, cat purr, hits, parry, strip, ankles, poster horn, telegraph and chimes. Ambience loops are rendered the same way per region.
+- **Voices** are syllable blips while dialogue types (pitch per speaker). Mic Check routes through a `Megaphone` bus (band-pass + distortion). Buses: Music, SFX, Voice (follow the volume settings).
+- **Headless runs** keep the sequencer clock (dry advance) but skip synthesis and playback.
+- **Juice:** impact particles (CPUParticles3D bursts: stone chips on bosses, sparks on crews, feathers on birds), sprint speed lines in the HUD, and a white-flash pass for tourist cameras and lightning.
+- **Accessibility:**
+  - "Reduce flashes" drops tourist and lightning flashes to 0.12 alpha, removes the POSTER white flash and halves the halftone (`PostFX.flash_strength`).
+  - Toggle-guard mode when "Hold to guard" is off.
+  - Invert-Y drives a new vertical look offset (mouse and `cam_up`/`cam_down`).
+  - Full remapping UI (Settings → Controls), stored in `remaps` in the input_map.json spec format. Keyboard and pad bindings are separate, and prompt glyphs follow the last-used device.

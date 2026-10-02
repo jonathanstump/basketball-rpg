@@ -11,6 +11,7 @@ var lock_target: SimActor = null
 var hoop_pos: Vector3 = Vector3.INF
 var yaw: float = 0.0
 var pitch_deg: float = 50.0
+var pitch_offset: float = 0.0        # player look up/down (respects invert Y)
 var distance: float = 12.0
 var focus: Vector3 = Vector3.ZERO
 var shake: float = 0.0
@@ -53,12 +54,15 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		var mm: InputEventMouseMotion = event
 		yaw -= mm.relative.x * JU.f(cfg, "mouse_sensitivity", 0.005) * Settings.get_float("camera_sensitivity")
+		_add_pitch(mm.relative.y * 0.08)
 
 
 func _process(delta: float) -> void:
 	if input_enabled and lock_target == null:
 		var stick: float = Input.get_axis("cam_left", "cam_right")
 		yaw -= stick * JU.f(cfg, "yaw_speed_rad_s", 2.6) * Settings.get_float("camera_sensitivity") * delta
+		if InputMap.has_action("cam_up") and InputMap.has_action("cam_down"):
+			_add_pitch(Input.get_axis("cam_up", "cam_down") * 40.0 * delta)
 	_apply(clampf(delta * JU.f(cfg, "follow_lerp", 10.0), 0.0, 1.0))
 	shake = lerpf(shake, 0.0, clampf(delta * JU.f(cfg, "shake_decay", 6.0), 0.0, 1.0))
 	punch = lerpf(punch, 0.0, clampf(delta * 6.0, 0.0, 1.0))
@@ -69,7 +73,7 @@ func _apply(k: float) -> void:
 		return
 	var player_pos: Vector3 = follow.pos
 	var target_focus: Vector3 = player_pos + Vector3.UP * JU.f(cfg, "focus_height_m", 0.9)
-	var want_pitch: float = JU.f(JU.dict(cfg, "explore"), "pitch_deg", 50.0)
+	var want_pitch: float = JU.f(JU.dict(cfg, "explore"), "pitch_deg", 50.0) + pitch_offset
 	var want_dist: float = JU.f(JU.dict(cfg, "explore"), "distance_m", 12.0)
 	if lock_target != null and lock_target.alive:
 		var fr: Dictionary = CameraMath.lockon_framing(player_pos, lock_target.pos, hoop_pos, hoop_pos != Vector3.INF, cfg, 16.0 / 9.0, lock_target.height)
@@ -118,3 +122,9 @@ func forward_flat() -> Vector3:
 
 func right_flat() -> Vector3:
 	return Vector3(cos(yaw), 0.0, -sin(yaw))
+
+
+func _add_pitch(amount: float) -> void:
+	## Vertical look; "Invert camera Y" flips it (spec §14).
+	var sgn: float = -1.0 if Settings.get_bool("camera_invert_y") else 1.0
+	pitch_offset = clampf(pitch_offset + amount * sgn * Settings.get_float("camera_sensitivity"), -15.0, 20.0)

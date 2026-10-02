@@ -53,6 +53,7 @@ func on_event(ev: Dictionary) -> void:
 	var actor: SimActor = game.sim.actor_by_id(int(ev.get("actor", 0)))
 	var at: Vector3 = actor.pos if actor != null else Vector3.ZERO
 	var is_player: bool = actor != null and actor == game.player
+	PresenterFx.on_event(game, ev)
 	match t:
 		"shot_released":
 			EventBus.shot_released.emit(int(ev["actor"]), str(ev["grade"]))

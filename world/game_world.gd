@@ -82,6 +82,7 @@ func setup_world(region_id: String) -> void:
 	add_child(lifecycle)
 	sim.sim_event.connect(_on_sim_event)
 	AudioDirector.set_region(region)
+	AudioDirector.set_layer("explore")
 
 
 func spawn_player(pos: Vector3, profile: Dictionary = {}, stats: Dictionary = {}) -> SimActor:
@@ -171,6 +172,9 @@ func _physics_process(_delta: float) -> void:
 	lifecycle.physics_check()
 	if player != null:
 		GameState.quarter_waters = int(player.flags.get("qw", 0))
+		if sim.frame % 30 == 0 and AudioDirector.music_layer != "boss" and AudioDirector.music_layer != "title":
+			## Music layer follows the street: combat stem when a crew is close.
+			AudioDirector.set_layer("combat" if sim.nearest_hostile(player, 14.0) != null else "explore")
 	for v: Variant in views.values():
 		if v is ActorView:
 			(v as ActorView).physics_synced()

@@ -28,6 +28,7 @@ func _ready() -> void:
 	dialogue = DialogueBox.new()
 	add_child(dialogue)
 	_interactables()
+	AudioDirector.play_sfx("door_bell")
 	if kind != "bodega":
 		ShopService.on_enter(self)
 	elif bool(GameState.flags.get("wake_up_pending", false)):

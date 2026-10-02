@@ -8,6 +8,7 @@ const ACTIONS: PackedStringArray = ["light", "heavy", "dodge", "jump", "shoot", 
 
 var camera: CameraRig = null
 var enabled: bool = true
+var guard_latched: bool = false
 
 
 func fill(input: ActorInput, _actor: SimActor, _world: SimWorld) -> void:
@@ -22,6 +23,16 @@ func fill(input: ActorInput, _actor: SimActor, _world: SimWorld) -> void:
 	var world_dir: Vector3 = rgt * v.x - fwd * v.y
 	input.move = Vector2(world_dir.x, world_dir.z).limit_length(1.0)
 	for a: String in ACTIONS:
+		if a == "hands_up" and not Settings.get_bool("hold_to_guard"):
+			## Toggle guard (spec §14 hold/toggle): tap = parry + latch the guard.
+			if Input.is_action_just_pressed(a):
+				input.press(a)
+				guard_latched = not guard_latched
+			if guard_latched:
+				input.held[a] = true
+			elif input.held.has(a) and not Input.is_action_pressed(a):
+				input.release(a)
+			continue
 		if Input.is_action_just_pressed(a):
 			input.press(a)
 		elif Input.is_action_pressed(a):

@@ -100,6 +100,15 @@ func _draw() -> void:
 			draw_line(c - Vector2(24, 24), c + Vector2(24, 24), Color("#FF3E3E"), 6.0)
 	if hype >= 0.999:
 		draw_arc(Vector2(1745, 990), 100.0, 0.0, TAU, 48, Color(1.0, 0.5, 0.1, 0.5 + 0.4 * sin(_t * 6.0)), 6.0)
+	# Speed lines while sprinting (spec §7.14).
+	if game.player_hooper != null and game.player_hooper.sprinting:
+		var vs: Vector2 = get_viewport_rect().size / scale
+		var c0: Vector2 = vs * 0.5
+		for i: int in 14:
+			var a: float = TAU * float(i) / 14.0 + _t * 0.7
+			var dir: Vector2 = Vector2(cos(a), sin(a))
+			var r0: float = vs.y * (0.42 + 0.06 * sin(_t * 9.0 + float(i)))
+			draw_line(c0 + dir * r0, c0 + dir * (r0 + vs.y * 0.18), Color(1, 1, 1, 0.18), 3.0)
 	# Tokens / Rep.
 	# Lock-on reticle.
 	var cam: Camera3D = get_viewport().get_camera_3d()

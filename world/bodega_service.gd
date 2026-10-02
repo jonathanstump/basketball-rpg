@@ -24,6 +24,7 @@ static func rest(bodega_id: String) -> void:
 		var mask: PackedByteArray = MapReveal.ensure(district, m.width, m.height)
 		var dp: Array = door
 		MapReveal.reveal(mask, m.width, m.height, Vector2i(int(dp[0]), int(dp[1])), MapReveal.radius_tiles(MapReveal.REST_RADIUS_M))
+	AudioDirector.play_sfx("cat_purr")
 	EventBus.rested.emit(bodega_id)
 	SaveSystem.request_autosave()
 

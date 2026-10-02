@@ -13,6 +13,7 @@ var _t: float = 0.0
 var _panel: ColorRect
 var _name: Label
 var _text: Label
+var _blips: int = -1
 var open: bool = false
 
 
@@ -71,6 +72,11 @@ func _process(delta: float) -> void:
 		return
 	_t += delta
 	_name.text = tr(speaker)
-	_text.text = tr(lines[index]).substr(0, int(_t * 50.0))
+	var shown: int = int(_t * 50.0)
+	var full: String = tr(lines[index])
+	_text.text = full.substr(0, shown)
+	if shown < full.length() and shown / 3 != _blips:
+		_blips = shown / 3
+		AudioDirector.voice_blip(speaker)
 	if Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("interact"):
 		advance()
