@@ -18,9 +18,11 @@ static func frame(r: MoveRunner) -> void:
 		r.dir = r.actor.forward()
 	match prim:
 		"melee_arc":
-			if first_active:
-				r.make_hitbox(_vol(m, {"shape": "arc", "radius": 1.8, "angle": 120.0}), r.active())
+			_multi(r, m, {"shape": "arc", "radius": 1.8, "angle": 120.0})
 		"lunge", "charge_lane":
+			if JU.b(m, "feint") and r.frame == s / 2:
+				r.actor.desired_vel = -r.dir * 6.0
+				r.world.emit("feint", {"actor": r.actor.id})
 			if r.in_active():
 				var dist: float = JU.f(m, "lunge_m", 4.0 if prim == "lunge" else 12.0)
 				r.actor.desired_vel = r.dir * dist / maxf(1.0, float(r.active())) * 60.0
@@ -28,6 +30,8 @@ static func frame(r: MoveRunner) -> void:
 			if first_active:
 				r.make_hitbox(_vol(m, {"shape": "arc" if prim == "lunge" else "box", "radius": 1.4, "angle": 140.0, "length": 1.6, "width": 2.2}), r.active())
 		"grab":
+			if r.in_active() and JU.f(m, "lunge_m") > 0.0:
+				r.actor.desired_vel = r.dir * JU.f(m, "lunge_m") / maxf(1.0, float(r.active())) * 60.0
 			if first_active:
 				var hb: Hitbox = r.make_hitbox(_vol(m, {"shape": "sphere", "radius": 1.3, "forward": 1.0}), r.active())
 				hb.grab = true
@@ -53,8 +57,7 @@ static func frame(r: MoveRunner) -> void:
 				hb2.grow_per_s = JU.f(m, "ring_speed", 9.0)
 				hb2.parryable = false
 		"slam_circle":
-			if first_active:
-				r.make_hitbox(_vol(m, {"shape": "circle", "radius": 3.0, "forward": 1.0, "height": 2.0}), r.active())
+			_multi(r, m, {"shape": "circle", "radius": 3.0, "forward": 1.0, "height": 2.0})
 		"line_sweep":
 			if first_active:
 				var hb3: Hitbox = r.make_hitbox(_vol(m, {"shape": "box", "length": 12.0, "width": 1.2, "height": 1.2}), r.active())
@@ -100,7 +103,19 @@ static func frame(r: MoveRunner) -> void:
 		"stance":
 			var on: bool = r.frame > s and r.frame <= s + r.active()
 			r.actor.flags[JU.s(m, "stance", "shell")] = on
+			r.actor.flags["guarding"] = on and JU.s(m, "stance", "shell") in ["hedge", "guard", "shell"]
 			r.actor.hyper_armor = on and JU.b(m, "hyper_armor", true)
+
+
+static func _multi(r: MoveRunner, m: Dictionary, defaults: Dictionary) -> void:
+	## One or more hits (hits / hit_gap); Tier 5+ commons add a combo hit.
+	var hits: int = maxi(1, JU.i(m, "hits", 1))
+	if JU.b(m, "combo") and r.actor.tier >= 5 and r.actor.kind == "enemy":
+		hits += 1
+	var gap: int = JU.i(m, "hit_gap", r.active())
+	for i: int in hits:
+		if r.frame == r.startup() + 1 + i * gap:
+			r.make_hitbox(_vol(m, defaults), gap if hits > 1 else r.active())
 
 
 static func _vol(m: Dictionary, defaults: Dictionary) -> Dictionary:

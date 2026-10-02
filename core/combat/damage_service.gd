@@ -64,6 +64,14 @@ func resolve(hb: Hitbox, t: SimActor) -> Dictionary:
 	if not hb.status.is_empty() and res["result"] == "hit":
 		StatusEffects.apply(t, hb.status, float(t.flags.get("status_resist", 0.0)))
 	res["knockdown"] = hb.knockdown or (hb.knockdown_commons and t.kind == "enemy")
+	if res["result"] == "hit" and att != null:
+		if bool(hb.tags.get("steal", false)) and t.has_ball and balls != null and not bool(t.flags.get("unstealable", false)) and not att.has_ball:
+			var sb: SimBall = balls.take_from(t)
+			if sb != null:
+				balls.give(sb, att)
+				world.emit("ball_stolen", {"actor": att.id, "target": t.id, "ball": sb.id, "home": sb.home_id})
+		if hb.tags.has("snatch_pct"):
+			world.emit("tokens_snatched", {"actor": att.id, "target": t.id, "pct": float(hb.tags["snatch_pct"])})
 	res["weight"] = hb.weight
 	return _finish(hb, att, t, res)
 
@@ -182,6 +190,8 @@ func apply_raw(t: SimActor, dmg: float) -> void:
 
 
 func _apply_damage(t: SimActor, dmg: float, res: Dictionary) -> void:
+	if t.flags.has("fixed_damage") and dmg > 0.0:
+		dmg = float(t.flags["fixed_damage"])
 	if t.team == 0 and t.kind == "hooper" and DebugConsole.god_mode:
 		dmg = 0.0
 	if t.team != 0 and DebugConsole.one_hit:
@@ -205,6 +215,9 @@ func _apply_damage(t: SimActor, dmg: float, res: Dictionary) -> void:
 
 func _finish(hb: Hitbox, att: SimActor, t: SimActor, res: Dictionary) -> Dictionary:
 	var r: String = str(res["result"])
+	t.flags["last_combat_frame"] = world.frame
+	if att != null:
+		att.flags["last_combat_frame"] = world.frame
 	if t.controller != null and t.controller.has_method("on_hit"):
 		t.controller.call("on_hit", res)
 	if att != null and (r == "strip" or r == "deflect" or r == "ankle_breaker" or r == "rejection") and att.controller != null and att.controller.has_method("on_parried"):

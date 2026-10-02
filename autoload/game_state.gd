@@ -114,7 +114,12 @@ func set_flag(flag: String, value: Variant = true) -> void:
 
 
 func has_flag(flag: String) -> bool:
-	return flags.has(flag) and flags[flag] != null and flags[flag] != false
+	if not flags.has(flag):
+		return false
+	var v: Variant = flags[flag]
+	if v is bool:
+		return v
+	return v != null
 
 
 func bump_counter(key: String, n: int = 1) -> int:

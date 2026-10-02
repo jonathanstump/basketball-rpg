@@ -16,6 +16,8 @@ var hitstop: int = 0               # frames the whole sim is frozen (§7.14)
 var events: Array[Dictionary] = [] # events emitted during the last step
 var systems: Array[RefCounted] = [] # extra per-frame systems (ball, hitboxes...), each has step(world)
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+var attack_tokens: AttackTokenManager = null
+var nav: RefCounted = null          # optional navigator with steer(from, to, dir) -> Vector3
 var _next_id: int = 1
 
 
@@ -50,11 +52,15 @@ func dispose() -> void:
 		a.controller = null
 		a.input_source = null
 	actors.clear()
+	nav = null
+	attack_tokens = null
 	for s: RefCounted in systems:
 		if s.has_method("dispose"):
 			s.call("dispose")
 	systems.clear()
 	events.clear()
+	for c: Dictionary in sim_event.get_connections():
+		sim_event.disconnect(c["callable"])
 
 
 func emit(type: String, data: Dictionary = {}) -> void:

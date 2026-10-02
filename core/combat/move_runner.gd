@@ -31,7 +31,8 @@ func start(m: Dictionary, tgt: SimActor = null) -> void:
 	running = true
 	state = {}
 	var rec: int = int(round(float(JU.i(m, "recovery")) * speed_mult))
-	total = JU.i(m, "startup") + JU.i(m, "active") + rec
+	var extra_hits: int = 1 if JU.b(m, "combo") and a_tier() >= 5 else 0
+	total = JU.i(m, "startup") + maxi(JU.i(m, "active"), JU.i(m, "hit_gap") * (JU.i(m, "hits", 1) + extra_hits)) + rec
 	dir = actor.forward()
 	if tgt != null:
 		var to: Vector3 = tgt.pos - actor.pos
@@ -42,6 +43,10 @@ func start(m: Dictionary, tgt: SimActor = null) -> void:
 	actor.flags["move"] = JU.s(m, "id")
 	actor.flags["unblockable_flash"] = JU.b(m, "unblockable")
 	world.emit("move_started", {"actor": actor.id, "move": JU.s(m, "id"), "unblockable": JU.b(m, "unblockable"), "primitive": JU.s(m, "primitive")})
+
+
+func a_tier() -> int:
+	return actor.tier if actor.kind == "enemy" else 1
 
 
 func interrupt() -> void:
@@ -118,6 +123,10 @@ func make_hitbox(volume_dict: Dictionary, frames: int) -> Hitbox:
 	hb.grab = JU.s(move, "primitive") == "grab"
 	hb.break_kind = "stagger"
 	hb.status = JU.dict(move, "status")
+	if JU.b(move, "steal"):
+		hb.tags["steal"] = true
+	if JU.b(move, "snatch"):
+		hb.tags["snatch_pct"] = float(actor.flags.get("snatch_pct", 0.05))
 	return combat.add(hb)
 
 

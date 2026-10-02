@@ -22,6 +22,7 @@ var hud_layer: CanvasLayer
 var shot_meter: ShotMeter
 var player_ball_module: HooperBall = null
 var combat: CombatSystem
+var spawner: EnemySpawner
 var lifecycle: PlayerLifecycle
 var time_fx: TimeFX
 var hud: HUD
@@ -31,6 +32,7 @@ func _init() -> void:
 	sim = SimWorld.new(1)
 	balls = BallSystem.new(sim)
 	combat = CombatSystem.new(sim, balls)
+	spawner = EnemySpawner.new(sim, combat, balls)
 
 
 func setup_world(region_id: String) -> void:
@@ -191,6 +193,24 @@ func _on_sim_event(ev: Dictionary) -> void:
 		"actor_killed":
 			if player != null and int(ev["actor"]) == player.id:
 				lifecycle.on_player_killed()
+		"enemy_spawned":
+			var ea: SimActor = sim.actor_by_id(int(ev["actor"]))
+			if ea != null and not views.has(ea.id):
+				var ev_view: ActorView = EnemyViewBuilder.create(ea)
+				add_child(ev_view)
+				views[ea.id] = ev_view
+		"enemy_defeated":
+			GameState.add_rep(int(ev["rep"]))
+			GameState.add_tokens(int(ev["tokens"]))
+			for drop: String in (ev["drops"] as PackedStringArray):
+				if not drop.begins_with("loot:"):
+					GameState.add_item(drop, 1)
+			if int(ev["rep"]) > 0:
+				EventBus.popup_text.emit("+%d REP" % int(ev["rep"]), ev["pos"], "tokens")
+		"summon_scattered", "pickpocket_escaped":
+			var gone: SimActor = sim.actor_by_id(int(ev["actor"]))
+			if gone != null and views.has(gone.id):
+				(views[gone.id] as Node3D).visible = false
 		"hitstop":
 			EventBus.hitstop_requested.emit(int(ev.get("frames", 3)))
 

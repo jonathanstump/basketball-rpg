@@ -1,0 +1,527 @@
+{
+ "enemies": [
+  {
+   "id": "ball_hog",
+   "name": "Ball Hog",
+   "kind": "common",
+   "hp": 120,
+   "damage": 25,
+   "composure": 40,
+   "speed": 4.5,
+   "rep": 50,
+   "tokens": 10,
+   "behavior": "brawler",
+   "moves": [
+    "hog_combo",
+    "hog_lunge_pound"
+   ],
+   "has_ball": true,
+   "look": {
+    "rig": "humanoid",
+    "top_color": "#D7263D",
+    "shorts_color": "#1B1B3A",
+    "skin": "#8D5524",
+    "hair_style": "buzz",
+    "height": 1.3
+   },
+   "captain_move": "hog_spin",
+   "radius": 0.45,
+   "height": 1.8,
+   "contest_radius": 1.6,
+   "poise": 20
+  },
+  {
+   "id": "showboat",
+   "name": "Showboat",
+   "kind": "common",
+   "hp": 90,
+   "damage": 20,
+   "composure": 30,
+   "speed": 6.0,
+   "rep": 55,
+   "tokens": 12,
+   "behavior": "showboat",
+   "moves": [
+    "show_swipe",
+    "show_fake_lunge",
+    "show_taunt"
+   ],
+   "has_ball": true,
+   "look": {
+    "rig": "humanoid",
+    "top_color": "#F4B400",
+    "shorts_color": "#7B2FF7",
+    "skin": "#8D5524",
+    "hair_style": "high_top",
+    "height": 1.25
+   },
+   "captain_move": "show_flurry",
+   "radius": 0.4,
+   "height": 1.75,
+   "contest_radius": 1.5
+  },
+  {
+   "id": "big_man",
+   "name": "Big Man",
+   "kind": "common",
+   "hp": 300,
+   "damage": 45,
+   "composure": 120,
+   "speed": 3.5,
+   "rep": 120,
+   "tokens": 20,
+   "behavior": "big_man",
+   "moves": [
+    "big_charge",
+    "big_slam",
+    "big_dunk_on_you"
+   ],
+   "has_ball": true,
+   "look": {
+    "rig": "humanoid",
+    "top_color": "#12C2B0",
+    "shorts_color": "#101018",
+    "skin": "#8D5524",
+    "hair_style": "bald",
+    "height": 1.62
+   },
+   "captain_move": "big_double_slam",
+   "radius": 0.62,
+   "height": 2.2,
+   "contest_radius": 2.2,
+   "poise": 60,
+   "mass": 4.0
+  },
+  {
+   "id": "sniper",
+   "name": "Sniper",
+   "kind": "common",
+   "hp": 80,
+   "damage": 30,
+   "composure": 30,
+   "speed": 4.0,
+   "rep": 60,
+   "tokens": 12,
+   "behavior": "sniper",
+   "moves": [
+    "snipe_mortar",
+    "snipe_bullet"
+   ],
+   "has_ball": true,
+   "look": {
+    "rig": "humanoid",
+    "top_color": "#2BB24C",
+    "shorts_color": "#1A1530",
+    "skin": "#8D5524",
+    "hair_style": "cornrows",
+    "height": 1.2
+   },
+   "captain_move": "snipe_triple",
+   "radius": 0.4,
+   "height": 1.7,
+   "perch": true
+  },
+  {
+   "id": "hype_man",
+   "name": "Hype Man",
+   "kind": "common",
+   "hp": 100,
+   "damage": 10,
+   "composure": 40,
+   "speed": 5.0,
+   "rep": 70,
+   "tokens": 15,
+   "behavior": "hype_man",
+   "moves": [
+    "hype_shove"
+   ],
+   "has_ball": false,
+   "look": {
+    "rig": "humanoid",
+    "top_color": "#FF3EA5",
+    "shorts_color": "#1B1B3A",
+    "skin": "#8D5524",
+    "hair_style": "afro",
+    "height": 1.22
+   },
+   "captain_move": "hype_shove",
+   "radius": 0.4,
+   "height": 1.7,
+   "aura_radius": 8.0,
+   "boombox": true
+  },
+  {
+   "id": "pickpocket",
+   "name": "Pickpocket",
+   "kind": "common",
+   "hp": 70,
+   "damage": 10,
+   "composure": 25,
+   "speed": 7.5,
+   "rep": 60,
+   "tokens": 40,
+   "behavior": "pickpocket",
+   "moves": [
+    "pick_grab"
+   ],
+   "has_ball": false,
+   "look": {
+    "rig": "humanoid",
+    "top_color": "#3A3A48",
+    "shorts_color": "#1A1A22",
+    "skin": "#8D5524",
+    "hair_style": "buzz",
+    "height": 1.15
+   },
+   "captain_move": "pick_grab",
+   "radius": 0.35,
+   "height": 1.6,
+   "tire_s": 6.0
+  },
+  {
+   "id": "pigeon",
+   "name": "Pigeon",
+   "kind": "critter",
+   "hp": 8,
+   "damage": 5,
+   "composure": 0,
+   "speed": 5.0,
+   "rep": 3,
+   "tokens": 0,
+   "behavior": "swarm",
+   "moves": [
+    "peck"
+   ],
+   "rig": "pigeon",
+   "radius": 0.2,
+   "height": 0.35,
+   "scatter": true
+  },
+  {
+   "id": "rat",
+   "name": "Rat",
+   "kind": "critter",
+   "hp": 15,
+   "damage": 6,
+   "composure": 0,
+   "speed": 6.5,
+   "rep": 6,
+   "tokens": 1,
+   "behavior": "brawler",
+   "moves": [
+    "rat_bite"
+   ],
+   "rig": "rat",
+   "radius": 0.22,
+   "height": 0.3
+  },
+  {
+   "id": "pizza_rat",
+   "name": "Pizza Rat",
+   "kind": "critter",
+   "hp": 40,
+   "damage": 0,
+   "composure": 0,
+   "speed": 7.0,
+   "rep": 20,
+   "tokens": 150,
+   "behavior": "flee",
+   "moves": [],
+   "rig": "pizza_rat",
+   "radius": 0.25,
+   "height": 0.35,
+   "harmless": true,
+   "rare": true
+  },
+  {
+   "id": "gull",
+   "name": "Gull",
+   "kind": "critter",
+   "hp": 20,
+   "damage": 4,
+   "composure": 0,
+   "speed": 7.0,
+   "rep": 8,
+   "tokens": 0,
+   "behavior": "gull",
+   "moves": [
+    "gull_dive"
+   ],
+   "rig": "gull",
+   "radius": 0.3,
+   "height": 0.5,
+   "snatch_pct": 0.05,
+   "flying": true
+  },
+  {
+   "id": "night_deer",
+   "name": "Night Deer",
+   "kind": "critter",
+   "hp": 200,
+   "damage": 35,
+   "composure": 60,
+   "speed": 6.0,
+   "rep": 90,
+   "tokens": 10,
+   "behavior": "charger",
+   "moves": [
+    "deer_charge"
+   ],
+   "rig": "deer",
+   "radius": 0.6,
+   "height": 1.7,
+   "mass": 3.0
+  },
+  {
+   "id": "breaker",
+   "name": "Breaker",
+   "kind": "unique",
+   "hp": 100,
+   "damage": 22,
+   "composure": 36,
+   "speed": 5.5,
+   "rep": 65,
+   "tokens": 14,
+   "behavior": "breaker",
+   "moves": [
+    "breaker_windmill",
+    "show_swipe"
+   ],
+   "has_ball": true,
+   "borough": "bronx",
+   "look": {
+    "rig": "humanoid",
+    "top_color": "#F4B400",
+    "shorts_color": "#D7263D",
+    "skin": "#8D5524",
+    "hair_style": "waves",
+    "height": 1.25,
+    "headband": "#F2F6FF"
+   },
+   "radius": 0.4,
+   "height": 1.75
+  },
+  {
+   "id": "fixie_rider",
+   "name": "Fixie Rider",
+   "kind": "unique",
+   "hp": 110,
+   "damage": 30,
+   "composure": 40,
+   "speed": 9.0,
+   "rep": 70,
+   "tokens": 16,
+   "behavior": "fixie",
+   "moves": [
+    "fixie_ride"
+   ],
+   "has_ball": true,
+   "borough": "brooklyn",
+   "look": {
+    "rig": "humanoid",
+    "top_color": "#12C2B0",
+    "shorts_color": "#7B2FF7",
+    "skin": "#8D5524",
+    "hair_style": "bun",
+    "height": 1.25
+   },
+   "radius": 0.5,
+   "height": 1.8,
+   "bike": true
+  },
+  {
+   "id": "juggler",
+   "name": "Juggler",
+   "kind": "unique",
+   "hp": 90,
+   "damage": 25,
+   "composure": 32,
+   "speed": 4.2,
+   "rep": 70,
+   "tokens": 15,
+   "behavior": "sniper",
+   "moves": [
+    "juggle_toss",
+    "snipe_bullet"
+   ],
+   "has_ball": true,
+   "borough": "queens",
+   "look": {
+    "rig": "humanoid",
+    "top_color": "#FF7A00",
+    "shorts_color": "#2BB24C",
+    "skin": "#8D5524",
+    "hair_style": "curls",
+    "height": 1.2
+   },
+   "radius": 0.4,
+   "height": 1.7
+  },
+  {
+   "id": "pigeon_keeper",
+   "name": "Pigeon Keeper",
+   "kind": "unique",
+   "hp": 105,
+   "damage": 12,
+   "composure": 40,
+   "speed": 4.6,
+   "rep": 75,
+   "tokens": 16,
+   "behavior": "keeper",
+   "moves": [
+    "keeper_whistle",
+    "hype_shove"
+   ],
+   "has_ball": false,
+   "borough": "uptown",
+   "look": {
+    "rig": "humanoid",
+    "top_color": "#2D7BFF",
+    "shorts_color": "#F2F6FF",
+    "skin": "#C68642",
+    "hair_style": "ponytail",
+    "height": 1.22
+   },
+   "radius": 0.4,
+   "height": 1.7
+  },
+  {
+   "id": "suit",
+   "name": "Suit",
+   "kind": "unique",
+   "hp": 95,
+   "damage": 26,
+   "composure": 34,
+   "speed": 6.5,
+   "rep": 80,
+   "tokens": 25,
+   "behavior": "suit",
+   "moves": [
+    "suit_jab",
+    "suit_hedge"
+   ],
+   "has_ball": true,
+   "borough": "city",
+   "look": {
+    "rig": "humanoid",
+    "top_color": "#20242C",
+    "shorts_color": "#20242C",
+    "skin": "#E0AC69",
+    "hair_style": "waves",
+    "height": 1.3
+   },
+   "radius": 0.4,
+   "height": 1.8
+  },
+  {
+   "id": "big_head_mascot",
+   "name": "Big Head Mascot",
+   "kind": "unique",
+   "hp": 330,
+   "damage": 40,
+   "composure": 130,
+   "speed": 3.2,
+   "rep": 120,
+   "tokens": 30,
+   "behavior": "big_man",
+   "moves": [
+    "mascot_bonk",
+    "mascot_belly"
+   ],
+   "has_ball": false,
+   "borough": "city",
+   "look": {
+    "rig": "humanoid",
+    "top_color": "#FFC93C",
+    "shorts_color": "#FF3EA5",
+    "skin": "#8D5524",
+    "hair_style": "afro",
+    "height": 1.6,
+    "big_head": true
+   },
+   "radius": 0.65,
+   "height": 2.3,
+   "mass": 4.0,
+   "poise": 60
+  },
+  {
+   "id": "tourist",
+   "name": "Tourist",
+   "kind": "unique",
+   "hp": 50,
+   "damage": 0,
+   "composure": 20,
+   "speed": 2.5,
+   "rep": 0,
+   "tokens": 0,
+   "behavior": "tourist",
+   "moves": [],
+   "has_ball": false,
+   "borough": "city",
+   "hostile": false,
+   "look": {
+    "rig": "humanoid",
+    "top_color": "#F2F6FF",
+    "shorts_color": "#2D7BFF",
+    "skin": "#F1C27D",
+    "hair_style": "bald",
+    "height": 1.28
+   },
+   "radius": 0.4,
+   "height": 1.8,
+   "flash_s": 1.0
+  },
+  {
+   "id": "bootleg",
+   "name": "Bootleg",
+   "kind": "elite",
+   "hp": 260,
+   "damage": 40,
+   "composure": 80,
+   "speed": 5.0,
+   "rep": 150,
+   "tokens": 60,
+   "behavior": "bootleg",
+   "moves": [
+    "bootleg_bite"
+   ],
+   "rig": "shoebox",
+   "radius": 0.55,
+   "height": 0.8,
+   "dormant": true,
+   "poise": 40
+  },
+  {
+   "id": "boombox",
+   "name": "Boombox",
+   "kind": "prop_target",
+   "hp": 2,
+   "damage": 0,
+   "composure": 0,
+   "speed": 0.0,
+   "rep": 0,
+   "tokens": 0,
+   "behavior": "static",
+   "moves": [],
+   "rig": "boombox",
+   "radius": 0.35,
+   "height": 0.6,
+   "fixed_damage": 1
+  },
+  {
+   "id": "training_dummy",
+   "name": "Training Dummy",
+   "kind": "common",
+   "hp": 600,
+   "damage": 0,
+   "composure": 120,
+   "speed": 0.0,
+   "rep": 0,
+   "tokens": 0,
+   "behavior": "static",
+   "moves": [],
+   "radius": 0.45,
+   "height": 1.9
+  }
+ ]
+}

@@ -7,6 +7,7 @@ extends RefCounted
 var world: SimWorld
 var balls: BallSystem
 var combat: CombatSystem
+var spawner: EnemySpawner
 var events: Array[Dictionary] = []
 
 
@@ -15,6 +16,7 @@ func _init(seed_value: int = 1) -> void:
 	world.collision.set_bounds(Vector2(-200, -200), Vector2(200, 200))
 	balls = BallSystem.new(world)
 	combat = CombatSystem.new(world, balls)
+	spawner = EnemySpawner.new(world, combat, balls)
 	world.sim_event.connect(func(ev: Dictionary) -> void: events.append(ev))
 
 
@@ -49,6 +51,14 @@ func hooper(pos: Vector3 = Vector3.ZERO, stats: Dictionary = {}, with_ball: bool
 
 func dummy(pos: Vector3, mode: String = "passive") -> TrainingDummy:
 	return TrainingDummy.spawn(world, combat, pos, mode)
+
+
+func enemy(id: String, pos: Vector3, tier: int = 1, opts: Dictionary = {}) -> SimActor:
+	return spawner.add(id, pos, tier, opts)
+
+
+func brain(a: SimActor) -> EnemyBrain:
+	return a.controller as EnemyBrain
 
 
 func run(frames: int) -> void:

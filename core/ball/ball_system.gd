@@ -301,7 +301,7 @@ func _try_pickup(b: SimBall) -> void:
 	var best_slack: float = 0.0
 	var base_r: float = JU.f(cfg, "pickup_radius", 0.75)
 	for a: SimActor in world.actors:
-		if not a.alive or a.has_ball or a.kind == "prop" or a.kind == "critter" or bool(a.flags.get("no_pickup", false)):
+		if not a.alive or a.has_ball or a.kind == "prop" or a.kind == "critter" or a.kind == "npc" or bool(a.flags.get("no_pickup", false)) or bool(a.flags.get("prop_target", false)):
 			continue
 		if b.pos.y - a.pos.y > JU.f(cfg, "pickup_max_height", 1.7) + float(a.flags.get("pickup_reach", 0.0)):
 			continue
@@ -332,6 +332,10 @@ func _check_lost(b: SimBall) -> void:
 	world.emit("ball_lost", {"ball": b.id, "reason": reason, "home": b.home_id})
 	if b.home_id != 0:
 		_pending_spares.append({"actor": b.home_id, "t": 0.0 if reason == "unreachable" else JU.f(cfg, "oob_respawn_s", 1.0)})
+
+
+func queue_spare(actor_id: int, delay_s: float) -> void:
+	_pending_spares.append({"actor": actor_id, "t": delay_s})
 
 
 func _step_spares() -> void:
