@@ -241,6 +241,12 @@ func _on_sim_event(ev: Dictionary) -> void:
 				(views[gone.id] as Node3D).visible = false
 		"hitstop":
 			EventBus.hitstop_requested.emit(int(ev.get("frames", 3)))
+		"tokens_snatched":
+			if player != null and int(ev["target"]) == player.id:
+				var lost: int = int(floor(float(GameState.tokens) * float(ev["pct"])))
+				if lost > 0:
+					GameState.add_tokens(-lost)
+					EventBus.popup_text.emit("-%d TOKENS" % lost, player.pos, "bad")
 
 
 func respawn_player(point: Vector3) -> void:

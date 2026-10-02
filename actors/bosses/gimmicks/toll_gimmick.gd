@@ -74,7 +74,7 @@ func _pay_up(target_id: int) -> void:
 	var amount: int = int(floor(float(GameState.tokens) * pct))
 	if world.actor_by_id(target_id) == null:
 		return
-	GameState.tokens -= amount
+	GameState.add_tokens(-amount)
 	booth += amount
 	glow_until = world.frame + int(GLOW_S * 60.0)
 	world.emit("toll_paid", {"actor": brain.actor.id, "target": target_id, "amount": amount, "booth": booth, "pos": brain.actor.pos})
@@ -84,7 +84,7 @@ func spill() -> void:
 	var amount: int = booth
 	booth = 0
 	glow_until = -1
-	GameState.tokens += amount
+	GameState.add_tokens(amount)
 	world.emit("toll_spilled", {"actor": brain.actor.id, "amount": amount, "pos": brain.actor.pos})
 
 

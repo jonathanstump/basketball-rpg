@@ -56,10 +56,13 @@ func actor_by_id(id: int) -> SimActor:
 
 func dispose() -> void:
 	## Breaks actor <-> controller reference cycles so RefCounted state frees.
-	for a: SimActor in actors:
+	for a: SimActor in actors + _pending_remove:
+		if a.controller != null and a.controller.has_method("dispose"):
+			a.controller.call("dispose")
 		a.controller = null
 		a.input_source = null
 	actors.clear()
+	_pending_remove.clear()
 	nav = null
 	attack_tokens = null
 	for s: RefCounted in systems:

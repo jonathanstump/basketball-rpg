@@ -40,6 +40,16 @@
       "frames": 360
     },
     {
+      "name": "boss_lab_toll",
+      "scene": "res://world/labs/boss_lab_toll.tscn",
+      "frames": 360
+    },
+    {
+      "name": "boss_lab_barker",
+      "scene": "res://world/labs/boss_lab_barker.tscn",
+      "frames": 360
+    },
+    {
       "name": "district_bedstuy",
       "scene": "res://world/district.tscn",
       "frames": 60

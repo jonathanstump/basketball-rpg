@@ -42,6 +42,11 @@ func _init(a: SimActor, w: SimWorld, c: CombatSystem, b: BallSystem, boss_data: 
 	set_phase(1)
 
 
+func dispose() -> void:
+	gimmick = null
+	runner = null
+
+
 func set_phase(p: int) -> void:
 	phase = p
 	moves = BossGating.moves_for_phase(boss, p, actor.tier)

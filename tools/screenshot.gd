@@ -14,8 +14,14 @@ func _run() -> void:
 	var out_dir: String = ProjectSettings.globalize_path("res://shots")
 	DirAccess.make_dir_recursive_absolute(out_dir)
 	var shot_count: int = 0
+	var only: PackedStringArray = PackedStringArray()
+	for arg: String in OS.get_cmdline_user_args():
+		if arg.begins_with("--only="):
+			only = arg.trim_prefix("--only=").split(",")
 	for e: Variant in entries:
 		var entry: Dictionary = e
+		if not only.is_empty() and not only.has(JU.s(entry, "name")):
+			continue
 		var path: String = JU.s(entry, "scene")
 		var ps: PackedScene = load(path)
 		if ps == null:

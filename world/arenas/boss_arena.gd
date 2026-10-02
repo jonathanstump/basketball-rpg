@@ -106,7 +106,9 @@ func _on_sim_event(ev: Dictionary) -> void:
 		"duel_won":
 			_victory(ev)
 		"t5_event":
-			boss_bar.show_banner("BLOCK PARTY!", 1.6)
+			boss_bar.show_banner(JU.s(DataDB.move(boss_id, str(ev["move"])), "name", "T5").to_upper() + "!", 1.6)
+		_:
+			ArenaFx.on_event(self, ev)
 
 
 func _victory(ev: Dictionary) -> void:

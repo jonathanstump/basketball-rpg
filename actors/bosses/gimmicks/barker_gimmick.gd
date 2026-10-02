@@ -104,6 +104,7 @@ func _remove(c: SimActor) -> void:
 	c.alive = false
 	c.hp = 0.0
 	clones.erase(c)
+	c.controller = null
 	world.remove_actor(c)
 
 

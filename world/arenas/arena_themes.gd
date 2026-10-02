@@ -23,6 +23,10 @@ static func dress(parent: Node3D, w: SimWorld, boss: Dictionary, lay: Dictionary
 	match JU.s(arena, "theme"):
 		"brownstone_block":
 			_brownstone_block(parent, w, hoop, lay, pal)
+		"funhouse":
+			ArenaThemesBK.funhouse(parent, hoop, half)
+		"bridge_arch":
+			ArenaThemesBK.bridge_arch(parent, hoop, half)
 		_:
 			_generic(parent, hoop, half, pal)
 
