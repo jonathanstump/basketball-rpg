@@ -1,0 +1,14 @@
+{
+ "boroughs": [
+  {"id": "bronx", "name": "The Bronx", "palette": "Crimson + gold", "start_district": "bx_mott_haven", "home_court": "Mott Haven courts under the El",
+   "blurb": "Birthplace of hip-hop. Elevated trains, murals, the art deco boulevard."},
+  {"id": "brooklyn", "name": "Brooklyn", "palette": "Violet + teal", "start_district": "bk_bedstuy", "home_court": "The Gates Ave park court",
+   "blurb": "Brownstones and stoops, the boardwalk and the coaster, cobblestones under the bridges."},
+  {"id": "queens", "name": "Queens", "palette": "Green + orange", "start_district": "qn_roosevelt", "home_court": "The court under the 7",
+   "blurb": "An elevated line over night markets, the waterfront, the giant steel globe."},
+  {"id": "staten_island", "name": "Staten Island", "palette": "Ferry orange + sea blue", "start_district": "si_st_george", "home_court": "The seawall court",
+   "blurb": "The ferry, the old fort, landfill hills under floodlights, deer in the woods."},
+  {"id": "uptown", "name": "Uptown", "palette": "Electric blue + white", "start_district": "up_harlem", "home_court": "The 125th St. playground",
+   "blurb": "The theater marquee, rooftops and pigeon coops, the most famous park court."}
+ ]
+}

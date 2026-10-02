@@ -2,10 +2,14 @@ class_name ListMenu
 extends CanvasLayer
 ## Sticker-style vertical menu (spec §14): title, options with optional
 ## detail text, pad/keyboard navigation (ui_up/ui_down/ui_accept/ui_cancel).
-## Options: [{id, label, detail, enabled}]. Emits chosen(id) or cancelled().
+## Options: [{id, label, detail, enabled}]. Emits chosen(id) or cancelled();
+## ui_left/ui_right emit adjusted(id, dir) (creator sliders). Long lists scroll.
 
 signal chosen(id: String)
 signal cancelled()
+signal adjusted(id: String, dir: int)
+
+const VISIBLE: int = 10
 
 var title: String = ""
 var options: Array[Dictionary] = []
@@ -16,6 +20,7 @@ var _title: Label
 var _detail: Label
 var _footer: Label
 var _bg: ColorRect
+var _top: int = 0
 
 
 func _ready() -> void:
@@ -52,6 +57,7 @@ func set_options(t: String, opts: Array[Dictionary], foot: String = "") -> void:
 	options = opts
 	footer = foot
 	index = 0
+	_top = 0
 	if is_inside_tree():
 		rebuild()
 
@@ -62,18 +68,25 @@ func rebuild() -> void:
 	_labels.clear()
 	_title.text = tr(title)
 	_footer.text = tr(footer)
-	for i: int in options.size():
+	for i: int in mini(options.size(), VISIBLE):
 		var l2: Label = _mk(UIFonts.title(), 34, Vector2(170, 250 + 62 * i), Color.WHITE)
 		_labels.append(l2)
 	_refresh()
 
 
 func _refresh() -> void:
-	for i: int in _labels.size():
+	if index < _top:
+		_top = index
+	elif index >= _top + VISIBLE:
+		_top = index - VISIBLE + 1
+	_top = clampi(_top, 0, maxi(0, options.size() - VISIBLE))
+	for li: int in _labels.size():
+		var i: int = _top + li
 		var o: Dictionary = options[i]
 		var on: bool = bool(o.get("enabled", true))
-		_labels[i].text = ("> " if i == index else "  ") + tr(str(o.get("label", "")))
-		_labels[i].add_theme_color_override("font_color", Color("#FFE060") if i == index else (Color.WHITE if on else Color("#6A6A7A")))
+		var more: String = ("  ^" if li == 0 and _top > 0 else "") + ("  v" if li == _labels.size() - 1 and i < options.size() - 1 else "")
+		_labels[li].text = ("> " if i == index else "  ") + tr(str(o.get("label", ""))) + more
+		_labels[li].add_theme_color_override("font_color", Color("#FFE060") if i == index else (Color.WHITE if on else Color("#6A6A7A")))
 	if index < options.size():
 		_detail.text = tr(str(options[index].get("detail", "")))
 
@@ -97,6 +110,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		move(-1)
 	elif event.is_action_pressed("ui_accept"):
 		accept()
+	elif event.is_action_pressed("ui_left") and index < options.size():
+		adjusted.emit(str(options[index]["id"]), -1)
+	elif event.is_action_pressed("ui_right") and index < options.size():
+		adjusted.emit(str(options[index]["id"]), 1)
 	elif event.is_action_pressed("ui_cancel") or event.is_action_pressed("menu"):
 		cancelled.emit()
 	else:

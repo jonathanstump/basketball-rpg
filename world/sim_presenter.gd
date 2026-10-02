@@ -60,6 +60,8 @@ func on_event(ev: Dictionary) -> void:
 			var g: String = str(ev["grade"])
 			if is_player:
 				_popup(GRADE_TEXT[g][0], at, GRADE_TEXT[g][1])
+				if str(ev.get("zone", "")) in ["three", "deep"]:
+					GameState.bump_counter("threes")
 			var hv: HoopView = hoop_views.get(str(ev["hoop"]), null)
 			if hv != null:
 				hv.on_make()
@@ -129,6 +131,8 @@ func on_event(ev: Dictionary) -> void:
 		"taunt_completed":
 			_popup("+HYPE", at, "hype")
 			EventBus.taunt_completed.emit(int(ev["actor"]))
+			if is_player:
+				GameState.bump_counter("taunts")
 		"hype_short":
 			if is_player:
 				_popup("NEED HYPE", at, "miss")

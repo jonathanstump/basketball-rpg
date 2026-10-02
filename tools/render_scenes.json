@@ -71,6 +71,27 @@
       "scene": "res://world/district.tscn",
       "frames": 60,
       "district": "bk_dumbo"
+    },
+    {
+      "name": "title",
+      "scene": "res://ui/title/title_screen.tscn",
+      "frames": 30
+    },
+    {
+      "name": "creator",
+      "scene": "res://ui/creator/creator.tscn",
+      "frames": 40
+    },
+    {
+      "name": "prologue",
+      "scene": "res://world/prologue/prologue.tscn",
+      "frames": 60
+    },
+    {
+      "name": "prologue_cameo",
+      "scene": "res://world/prologue/prologue.tscn",
+      "frames": 150,
+      "mode": "cameo"
     }
   ]
 }

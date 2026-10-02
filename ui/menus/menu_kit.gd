@@ -16,12 +16,13 @@ const EFFECT_NAMES: Dictionary = {
 }
 
 
-static func show(w: GameWorld, title: String, opts: Array[Dictionary], handler: Callable, footer: String = "") -> ListMenu:
+static func show(w: Node, title: String, opts: Array[Dictionary], handler: Callable, footer: String = "") -> ListMenu:
+	## Opens on any host with open_menu(m)/close_menu() (GameWorld, title, creator).
 	var m: ListMenu = ListMenu.new()
 	m.set_options(title, opts, footer if footer != "" else "Tokens: %d   Rep: %d" % [GameState.tokens, GameState.rep])
 	m.chosen.connect(handler)
-	m.cancelled.connect(w.close_menu)
-	w.open_menu(m)
+	m.cancelled.connect(Callable(w, "close_menu"))
+	w.call("open_menu", m)
 	return m
 
 

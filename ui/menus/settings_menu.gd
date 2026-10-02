@@ -22,19 +22,21 @@ const ENTRIES: Array = [
 ]
 
 
-static func open(w: GameWorld, back: Callable) -> void:
+static func open(w: Node, back: Callable) -> void:
 	var opts: Array[Dictionary] = []
 	for e: Variant in ENTRIES:
 		var en: Array = e
 		opts.append({"id": str(en[0]), "label": "%s:  %s" % [TranslationServer.translate(str(en[1])), _fmt(Settings.get_value(str(en[0])))],
 			"detail": "Rookie Mode: +2 Quarter Waters, wider shot and parry windows, enemies hit 25% softer. Achievements still unlock." if str(en[0]) == "rookie_mode" else ""})
 	opts.append({"id": "_back", "label": "Back"})
-	MenuKit.show(w, "SETTINGS", opts, func(id: String) -> void:
+	var m: ListMenu = MenuKit.show(w, "SETTINGS", opts, func(id: String) -> void:
 		if id == "_back":
 			back.call()
 			return
 		cycle(id)
-		open(w, back))
+		open(w, back), "Accept cycles a setting. Back returns.")
+	m.cancelled.disconnect(Callable(w, "close_menu"))
+	m.cancelled.connect(back)
 
 
 static func cycle(key: String) -> void:

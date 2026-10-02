@@ -40,6 +40,7 @@ const CATALOGS: Dictionary = {
 	"mixtapes": {"id": "string", "name": "string", "rarity": RARITIES, "teaches": "ref:bag_moves", "flavor": "string"},
 	"tattoos": {"id": "string", "name": "string", "effects": "dict", "flash": "ref:flash_sheets",
 		"source": "string", "description": "string"},
+	"boroughs": {"id": "enum:bronx|brooklyn|queens|staten_island|uptown", "name": "string", "start_district": "string", "home_court": "string", "blurb": "string"},
 	"consumables": {"id": "string", "name": "string", "effects": "dict", "price": "int", "max_carry": "int", "flavor": "string"},
 }
 
@@ -75,6 +76,10 @@ const FILES: Dictionary = {
 	"palettes": {"shared": "dict", "regions": "dict"},
 	"loot_tables": {"box_tiers": "dict", "brands": "dict", "shift_split": "dict"},
 	"poses/hooper": {"poses": "dict", "anims": "dict"},
+	"creator": {"skin": "array", "face_shapes": "array", "eye_shapes": "array", "eye_colors": "array", "brows": "array", "noses": "array",
+		"mouths": "array", "marks": "array", "facial_hair": "array", "hair_colors": "array", "voices": "array", "height": "dict",
+		"name_prefixes": "array", "name_bases": "array", "blocked_words": "array", "max_name_length": "int"},
+	"dialogue/prologue": {"steps": "array", "lines": "dict"},
 }
 
 const MOVE: Dictionary = {

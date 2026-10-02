@@ -44,7 +44,16 @@ func remove_actor(a: SimActor) -> void:
 	if _stepping:
 		_pending_remove.append(a)
 	else:
-		actors.erase(a)
+		_erase(a)
+
+
+func _erase(a: SimActor) -> void:
+	## Removed actors are never re-added: break controller <-> actor cycles.
+	actors.erase(a)
+	if a.controller != null and a.controller.has_method("dispose"):
+		a.controller.call("dispose")
+	a.controller = null
+	a.input_source = null
 
 
 func actor_by_id(id: int) -> SimActor:
@@ -87,7 +96,7 @@ func step() -> void:
 	_step_inner()
 	_stepping = false
 	for a: SimActor in _pending_remove:
-		actors.erase(a)
+		_erase(a)
 	_pending_remove.clear()
 
 

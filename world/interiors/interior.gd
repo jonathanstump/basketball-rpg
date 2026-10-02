@@ -30,6 +30,21 @@ func _ready() -> void:
 	_interactables()
 	if kind != "bodega":
 		ShopService.on_enter(self)
+	elif bool(GameState.flags.get("wake_up_pending", false)):
+		_wake_up()
+
+
+func _wake_up() -> void:
+	## After the Midnight cameo (spec §3.3): the cat on your chest, Pops.
+	GameState.flags.erase("wake_up_pending")
+	GameState.flags["hp_ratio"] = 1.0
+	player.hp = player.hp_max
+	GameState.respawn_bodega = place_id
+	var lines: Dictionary = JU.dict(DataDB.get_dict("dialogue/prologue"), "lines")
+	var all: PackedStringArray = JU.strs(lines, "wake_cat")
+	all.append_array(JU.strs(lines, "wake_pops"))
+	EventBus.dialogue_requested.emit("Pops", all)
+	SaveSystem.request_autosave()
 
 
 func _room() -> void:

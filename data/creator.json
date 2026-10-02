@@ -1,0 +1,29 @@
+{
+ "skin": ["#FFE0C4", "#F6D0B1", "#EDC1A0", "#E2AE89", "#D59B74", "#C68642", "#B97A47", "#A86B3C", "#9A5F36", "#8D5524", "#7A4A22", "#6A3E1E", "#5C3A21", "#4E301B", "#402616", "#311C10"],
+ "face_shapes": [
+  {"id": "round", "scale": [1.0, 1.0, 1.0]}, {"id": "oval", "scale": [0.94, 1.08, 0.96]}, {"id": "square", "scale": [1.06, 0.96, 1.0]},
+  {"id": "long", "scale": [0.92, 1.14, 0.95]}, {"id": "wide", "scale": [1.1, 0.94, 1.02]}
+ ],
+ "eye_shapes": [
+  {"id": "round", "scale": [1.0, 1.25, 0.6]}, {"id": "almond", "scale": [1.2, 0.9, 0.6]}, {"id": "hooded", "scale": [1.1, 0.75, 0.6]},
+  {"id": "wide", "scale": [1.3, 1.2, 0.6]}, {"id": "narrow", "scale": [1.15, 0.65, 0.6]}, {"id": "upturned", "scale": [1.1, 1.0, 0.6], "tilt": 10},
+  {"id": "downturned", "scale": [1.1, 1.0, 0.6], "tilt": -10}, {"id": "big", "scale": [1.35, 1.45, 0.65]}
+ ],
+ "eye_colors": ["#3B2414", "#5A3A1E", "#2A1A10", "#6B4A2A", "#3A5A2A", "#4A6A8A", "#2A4A6A", "#7A6A3A", "#555555", "#8A5A2A"],
+ "brows": [
+  {"id": "straight", "size": [0.1, 0.022], "tilt": 0}, {"id": "arched", "size": [0.1, 0.022], "tilt": -14}, {"id": "thick", "size": [0.11, 0.036], "tilt": -6},
+  {"id": "thin", "size": [0.09, 0.012], "tilt": -8}, {"id": "angry", "size": [0.1, 0.026], "tilt": 16}, {"id": "soft", "size": [0.09, 0.02], "tilt": -20}
+ ],
+ "noses": [{"id": "button", "r": 0.032}, {"id": "broad", "r": 0.042}, {"id": "small", "r": 0.024}, {"id": "long", "r": 0.03, "z": 0.012}, {"id": "round", "r": 0.04}],
+ "mouths": [{"id": "flat", "w": 0.09, "tilt": 4}, {"id": "smile", "w": 0.1, "tilt": 0, "curve": true}, {"id": "smirk", "w": 0.08, "tilt": 12},
+  {"id": "wide", "w": 0.13, "tilt": 0}, {"id": "small", "w": 0.06, "tilt": 0}],
+ "marks": ["none", "freckles", "beauty_mark", "cheek_scar", "brow_slit", "dimples"],
+ "facial_hair": ["none", "stubble", "mustache", "goatee", "chin_strap", "full_beard"],
+ "hair_colors": ["#1A1210", "#2E1E14", "#4A2E1A", "#6A4426", "#8A5A2E", "#C89048", "#E8C878", "#B03020", "#F2F2F2", "#7A7A80", "#2A6AE0", "#E04AA0"],
+ "voices": ["Grunt set A (high)", "Grunt set B (mid)", "Grunt set C (low)"],
+ "height": {"min": 0.95, "max": 1.05, "step": 0.025},
+ "name_prefixes": ["", "Lil'", "Young", "Big", "The", "Baby", "Sweet", "Old", "King", "Lady", "Static", "Smooth"],
+ "name_bases": ["Handles", "Glide", "Splash", "Static", "Knots", "Buckets", "Jelly", "Swish", "Dimes", "Rebound", "Hesi", "Crossover", "Breeze", "Smoke", "Spin", "Tank"],
+ "blocked_words": ["damn", "hell", "crap", "shit", "fuck", "bitch", "ass", "dick", "piss", "slut", "whore", "bastard", "cunt", "fag", "nigg", "retard"],
+ "max_name_length": 18
+}

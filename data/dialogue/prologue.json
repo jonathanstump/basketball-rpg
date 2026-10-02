@@ -1,0 +1,22 @@
+{
+ "id": "prologue",
+ "steps": [
+  {"id": "walk_up", "prompt": "Walk up to the court.", "done": "reach_court"},
+  {"id": "call_next", "prompt": "Interact: call \"I got next.\"", "done": "called_next"},
+  {"id": "move", "prompt": "Move with the left stick / WASD. Sprint by holding Dodge.", "done": "moved"},
+  {"id": "strike", "prompt": "Dribble strike: tap Light (X / left click) near a crew member.", "done": "strike"},
+  {"id": "crossover", "prompt": "Crossover: tap Dodge (B / Space) with the ball.", "done": "crossover"},
+  {"id": "ankle", "prompt": "Ankle-breaker: Dodge right as they wind up. Time it on the flash.", "done": "ankle_breaker"},
+  {"id": "shoot", "prompt": "Shoot at the crate hoop: hold Shoot, release at the top of the meter.", "done": "crate_make"},
+  {"id": "strip", "prompt": "Strip: when they swing, press Hands Up (LB / Q) on the cue.", "done": "strip"},
+  {"id": "quarter_water", "prompt": "Drink a Quarter Water (D-pad up / R) to heal.", "done": "qw_used"},
+  {"id": "cameo", "prompt": "...", "done": "cameo_done"}
+ ],
+ "lines": {
+  "crew_laugh": ["You got next? HA.", "Look at this one. Can't even see over the ball.", "Fine. Show us something, kid."],
+  "crew_beaten": ["Aight, aight. You can hoop a little.", "...Yo. Why'd the lights just go out?"],
+  "midnight": ["...", "Not yet, kid."],
+  "wake_cat": ["(Something warm and heavy is sitting on your chest. It's a cat.)", "(The cat blinks at you, slowly. Then goes back to sleep.)"],
+  "wake_pops": ["Pops: Easy. You took a hit from somebody who doesn't miss.", "Pops: Every clock in this city stopped at three. The sun ain't coming up.", "Pops: Pet the cat when you need a rest. Spend your Rep at the counter. Then go take this borough's Crown.", "Pops: Five Crowns gets you into the City. And whoever ended you tonight is waiting there."]
+ }
+}

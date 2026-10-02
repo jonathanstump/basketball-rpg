@@ -58,6 +58,8 @@ func _ready() -> void:
 	else:
 		var card: TitleCard = TitleCard.new()
 		card.mic_line = JU.s(boss_data, "mic_check")
+		if GameState.nickname != "":
+			card.mic_line += " And stepping up... %s!" % NicknameRules.display_name()
 		card.boss_name = JU.s(boss_data, "name")
 		card.boss_title = JU.s(boss_data, "title")
 		card.finished.connect(_begin)
@@ -125,6 +127,12 @@ func _victory(ev: Dictionary) -> void:
 		GameState.defeated_bosses.append(boss_id)
 	if str(r["crown"]) != "":
 		GameState.award_crown(str(r["crown"]))
+		var nick: String = NicknameRules.award_if_first_crown()
+		if nick != "":
+			get_tree().create_timer(2.0).timeout.connect(func() -> void:
+				EventBus.dialogue_requested.emit("Mic Check", PackedStringArray([
+					"LADIES AND GENTLEMEN, %s HAS A CROWN!" % JU.s(DataDB.item("boroughs", str(r["crown"])), "name", "THE BOROUGH").to_upper(),
+					"From now on, this city calls you... \"%s\"!" % nick])))
 	EventBus.boss_defeated.emit(boss_id)
 	ArenaBuilder.open_gate(sim)
 	SaveSystem.request_autosave()

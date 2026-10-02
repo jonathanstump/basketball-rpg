@@ -101,6 +101,7 @@ func begin(id: String, dir: Vector3 = Vector3.ZERO, owner: RefCounted = null, sp
 		action_total += int(actor.flags.get("recovery_frames_add", 0.0))
 	action_owner = owner
 	sprinting = false
+	world.emit("action_started", {"actor": actor.id, "move": id})
 	if owner != null and owner.has_method("on_begin"):
 		owner.call("on_begin", self)
 	_tick_action()
