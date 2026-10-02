@@ -3,7 +3,8 @@ extends RefCounted
 ## Shoebox loot (spec §10.3, §11.1): the box tier sets rarity odds; the
 ## borough tier shifts "loot_shift" points from Common upward; the brand
 ## picks the pool of items (by brand or by the brand's stats). Falls back to
-## tokens + Grip Tape when no catalog item matches.
+## tokens + Grip Tape when no catalog item matches. Pools may list "extra"
+## items that always drop (placed mixtapes, flash sheets, Punch Cards).
 
 const RARITIES: PackedStringArray = ["common", "rare", "epic", "legendary"]
 
@@ -89,4 +90,6 @@ static func roll(pool_id: String, tier: int, rng: RandomNumberGenerator) -> Dict
 			items.append(c[rng.randi_range(0, c.size() - 1)])
 		if RARITIES.find(rarity) > RARITIES.find(best):
 			best = rarity
+	for extra: String in JU.strs(p, "extra"):
+		items.append(extra)
 	return {"items": items, "tokens": tokens, "rarity": best}

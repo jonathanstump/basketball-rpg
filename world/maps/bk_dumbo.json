@@ -1,0 +1,165 @@
+{
+ "id": "bk_dumbo",
+ "borough": "brooklyn",
+ "palette": "brooklyn",
+ "seed": 1103,
+ "name": "DUMBO",
+ "heights": {
+  "B": [
+   4,
+   5
+  ],
+  "T": [
+   5,
+   6
+  ],
+  "H": [
+   12,
+   20
+  ],
+  "W": [
+   3,
+   5
+  ]
+ },
+ "spawns": {
+  "e": [
+   "ball_hog",
+   "big_man",
+   "fixie_rider",
+   "sniper",
+   "showboat",
+   "hype_man",
+   "fixie_rider",
+   "pickpocket"
+  ],
+  "E": [
+   "captain:big_man"
+  ],
+  "c": [
+   "pigeon",
+   "pigeon",
+   "rat"
+  ]
+ },
+ "bodegas": [
+  {
+   "id": "bk_bodega_4",
+   "cat": "Mrs. Whiskers",
+   "name": "Water St. Grocery"
+  }
+ ],
+ "stations": [
+  {
+   "id": "bk_st_dumbo",
+   "name": "DUMBO",
+   "line": "violet"
+  }
+ ],
+ "npcs": [
+  {
+   "id": "npc_old_fisher",
+   "name": "Old Fisher",
+   "lines": [
+    "That troll under the bridge? He charges everybody.",
+    "He grabs, he takes your tokens into that booth on his back.",
+    "Strip him while the booth's glowing and they'll rain back out."
+   ]
+  },
+  {
+   "id": "npc_mic_check_dumbo",
+   "name": "Mic Check",
+   "lines": [
+    "Look across the water. THE CITY. Locked tight till you hold five Crowns.",
+    "Beat The Toll and Brooklyn's Crown is yours. Then we talk nicknames."
+   ]
+  },
+  {
+   "id": "npc_knots",
+   "name": "Knots",
+   "challenger": {
+    "id": "knots",
+    "tier_bonus": 1,
+    "skill": 0.75,
+    "drop": "mixtape_iso",
+    "points": 7
+   },
+   "lines": [
+    "My handle got knots in it. You'll see.",
+    "First to seven. Winners walk."
+   ],
+   "look": {
+    "skin": "#5C3A21",
+    "top": "#F4B400",
+    "bottom": "#1A1A24",
+    "hair": "cornrows"
+   }
+  }
+ ],
+ "fights": {
+  "M": [],
+  "X": [
+   "bk_toll"
+  ]
+ },
+ "crossings": [
+  {
+   "to": "city_downtown",
+   "via": "old_bridge",
+   "name": "The Old Bridge into the City",
+   "locked": "crown_pass"
+  },
+  {
+   "to": "bk_bedstuy",
+   "via": "old_bridge_approach",
+   "name": "Bed-Stuy"
+  }
+ ],
+ "shortcuts": [
+  {
+   "id": "bk_dumbo_gate",
+   "open_from": "s",
+   "kind": "gate"
+  },
+  {
+   "id": "bk_dumbo_ladder",
+   "open_from": "n",
+   "kind": "ladder"
+  }
+ ],
+ "secrets": [
+  {
+   "id": "bk_dumbo_roof_a",
+   "kind": "rooftop"
+  },
+  {
+   "id": "bk_dumbo_roof_b",
+   "kind": "rooftop"
+  }
+ ],
+ "shops": {},
+ "loot": {
+  "$": [
+   "bk_flash_brick",
+   "bk_mixtape_glide",
+   "bk_retail",
+   "bk_grail",
+   "bk_sugar",
+   "bk_limited_locked"
+  ],
+  "%": "bootleg",
+  "w": "bk_wire"
+ },
+ "graffiti": [
+  "pay the toll? nah",
+  "strip the glowing booth",
+  "gate drops in 6",
+  "duck the headlights",
+  "the city is right there",
+  "five crowns open the bridge",
+  "cobbles trip you",
+  "look up at the girders",
+  "knots got handles",
+  "find the safe lane"
+ ]
+}

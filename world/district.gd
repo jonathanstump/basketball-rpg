@@ -168,6 +168,8 @@ func _on_sim_event(ev: Dictionary) -> void:
 
 
 func setup_render_smoke(entry: Dictionary) -> void:
+	if JU.s(entry, "district") != "":
+		district_id = JU.s(entry, "district")
 	if JU.s(entry, "mode") == "map":
 		ready.connect(func() -> void:
 			MapReveal.reveal(MapReveal.ensure(district_id, map.width, map.height), map.width, map.height, map.cell_of(player.pos), 20.0)

@@ -18,7 +18,7 @@ static func collect(bb: BoroughBuilder) -> void:
 	k = 0
 	for c3: Vector2i in m.cells_of("n"):
 		var npc: Dictionary = _dict(m.bound("n", k))
-		(lay["npcs"] as Array).append({"id": JU.s(npc, "id", "%s_npc_%d" % [m.id, k]), "name": JU.s(npc, "name", "Neighbor"), "lines": JU.strs(npc, "lines"), "pos": m.world_pos(c3, BoroughBuilder.CURB_H), "look": JU.dict(npc, "look")})
+		(lay["npcs"] as Array).append({"id": JU.s(npc, "id", "%s_npc_%d" % [m.id, k]), "name": JU.s(npc, "name", "Neighbor"), "lines": JU.strs(npc, "lines"), "pos": m.world_pos(c3, BoroughBuilder.CURB_H), "look": JU.dict(npc, "look"), "challenger": JU.dict(npc, "challenger")})
 		k += 1
 	k = 0
 	for c4: Vector2i in m.cells_of(">"):

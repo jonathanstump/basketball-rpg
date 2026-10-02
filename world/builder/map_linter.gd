@@ -3,7 +3,7 @@ extends RefCounted
 ## Map lint (spec §15.10): rectangular, legal chars, every bodega/station
 ## reachable from `@` or a crossing on the nav grid, binding counts match the
 ## sidecar, each court entrance touches a court, secrets come in pairs,
-## shortcuts declare a side they open from.
+## shortcuts declare a side they open from, spawns/loot are not walled in.
 
 
 static func lint(m: MapData) -> PackedStringArray:
@@ -40,6 +40,14 @@ static func lint(m: MapData) -> PackedStringArray:
 					touches = true
 			if not touches:
 				errs.append("%s: court entrance %s at %s does not touch a court" % [m.id, court_letter, c])
+	for mk: String in ["e", "E", "c", "n", "$", "%", "@", "h", "w"]:
+		for c3: Vector2i in m.cells_of(mk):
+			var open: bool = false
+			for d2: Vector2i in [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1)]:
+				if ".,PCtR".contains(m.at(c3 + d2)):
+					open = true
+			if not open:
+				errs.append("%s: '%s' at %s is walled in" % [m.id, mk, c3])
 	var starts: Array[Vector2i] = m.cells_of("@")
 	starts.append_array(m.cells_of(">"))
 	if starts.is_empty():

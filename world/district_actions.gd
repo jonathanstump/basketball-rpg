@@ -33,7 +33,8 @@ static func register(d: District) -> void:
 		d.interact.add(JU.s(td, "id"), "tag", td["pos"], "Read tag", td, 2.0)
 	for n: Variant in JU.a(lay, "npcs"):
 		var nd: Dictionary = n
-		d.interact.add(JU.s(nd, "id"), "npc", nd["pos"], "Talk to %s" % JU.s(nd, "name"), nd, 2.2)
+		var run_it: bool = not JU.dict(nd, "challenger").is_empty()
+		d.interact.add(JU.s(nd, "id"), "npc", nd["pos"], ("Run it with %s" if run_it else "Talk to %s") % JU.s(nd, "name"), nd, 2.2)
 	for sc: Variant in JU.a(lay, "shortcuts"):
 		var scd: Dictionary = sc
 		if not bool(scd["open"]):
@@ -67,7 +68,10 @@ static func trigger(d: District, it: Dictionary) -> void:
 			EventBus.dialogue_requested.emit("Graffiti", PackedStringArray([JU.s(data, "text")]))
 			GameState.bump_counter("tags_read")
 		"npc":
-			EventBus.dialogue_requested.emit(JU.s(data, "name"), JU.strs(data, "lines"))
+			if not JU.dict(data, "challenger").is_empty():
+				challenge(d, data)
+			else:
+				EventBus.dialogue_requested.emit(JU.s(data, "name"), JU.strs(data, "lines"))
 		"shortcut":
 			shortcut(d, str(it["id"]), data)
 		"secret":
@@ -83,6 +87,24 @@ static func trigger(d: District, it: Dictionary) -> void:
 			d.interact.remove(str(it["id"]))
 			if data.has("node"):
 				(data["node"] as Node).queue_free()
+
+
+static func challenge(d: District, data: Dictionary) -> void:
+	## Pickup Challenger (spec §8.4): their line, then run it or walk away.
+	var ch: Dictionary = JU.dict(data, "challenger")
+	var beaten: bool = GameState.has_flag("beat_challenger_" + JU.s(ch, "id"))
+	var lines: PackedStringArray = JU.strs(data, "lines")
+	var opts: Array[Dictionary] = [
+		{"id": "run", "label": "Run it (first to %d)" % JU.i(ch, "points", 7), "detail": ("Beat them before. Rematch for Rep." if beaten else "Win and they hand over something good.")},
+		{"id": "_leave", "label": "Not now"}]
+	var m: ListMenu = ListMenu.new()
+	m.set_options(JU.s(data, "name").to_upper(), opts, lines[0] if lines.size() > 0 else "")
+	m.chosen.connect(func(id: String) -> void:
+		d.close_menu()
+		if id == "run":
+			SceneRouter.goto_challenger(data, {"district": d.district_id, "arrive": {"kind": "pos", "pos": [d.player.pos.x, d.player.pos.y, d.player.pos.z]}}))
+	m.cancelled.connect(d.close_menu)
+	d.open_menu(m)
 
 
 static func station(d: District, data: Dictionary) -> void:

@@ -1,0 +1,184 @@
+{
+ "id": "bk_coney",
+ "borough": "brooklyn",
+ "palette": "brooklyn",
+ "seed": 1102,
+ "name": "Coney Island",
+ "heights": {
+  "B": [
+   3,
+   4
+  ],
+  "T": [
+   4,
+   5
+  ],
+  "H": [
+   10,
+   16
+  ],
+  "W": [
+   3,
+   5
+  ]
+ },
+ "spawns": {
+  "e": [
+   "ball_hog",
+   "fixie_rider",
+   "showboat",
+   "sniper",
+   "hype_man",
+   "fixie_rider",
+   "pickpocket",
+   "ball_hog"
+  ],
+  "E": [
+   "captain:showboat"
+  ],
+  "c": [
+   "pigeon",
+   "rat",
+   "pigeon"
+  ]
+ },
+ "bodegas": [
+  {
+   "id": "bk_bodega_3",
+   "cat": "Brownie",
+   "name": "Surf Ave Deli"
+  }
+ ],
+ "stations": [
+  {
+   "id": "bk_st_coney",
+   "name": "Coney Island",
+   "line": "violet"
+  }
+ ],
+ "npcs": [
+  {
+   "id": "npc_wheels",
+   "name": "Wheels",
+   "challenger": {
+    "id": "wheels",
+    "tier_bonus": 1,
+    "skill": 0.7,
+    "drop": "mixtape_spin_cycle",
+    "points": 7
+   },
+   "lines": [
+    "They call me Wheels 'cause I never stop.",
+    "Run it? First to seven, make it take it."
+   ],
+   "look": {
+    "skin": "#C68642",
+    "top": "#FF3EA5",
+    "bottom": "#2E2E3A",
+    "hair": "locs"
+   }
+  },
+  {
+   "id": "npc_ticket_kid",
+   "name": "Ticket Kid",
+   "lines": [
+    "The Funhouse man has a face like a mirror.",
+    "Only the real one casts a shadow. The copies don't.",
+    "Hit a copy and you'll be seeing stars."
+   ]
+  },
+  {
+   "id": "npc_sweet_pea",
+   "name": "Sweet Pea",
+   "challenger": {
+    "id": "sweet_pea",
+    "tier_bonus": 0,
+    "skill": 0.55,
+    "drop": "kicks_brooklyn_4",
+    "points": 7
+   },
+   "lines": [
+    "You any good? Ball's in, first to seven.",
+    "Don't let the smile fool you."
+   ],
+   "look": {
+    "skin": "#8D5524",
+    "top": "#00C2B8",
+    "bottom": "#1A1A24",
+    "hair": "high_top"
+   }
+  },
+  {
+   "id": "npc_mic_check_coney",
+   "name": "Mic Check",
+   "lines": [
+    "COOOONEY ISLAAAND! The boardwalk never closes when the sun never comes up!",
+    "Rumor's free tonight: the floor in there TILTS. Watch the ball roll."
+   ]
+  }
+ ],
+ "fights": {
+  "M": [
+   "bk_barker"
+  ],
+  "X": []
+ },
+ "crossings": [
+  {
+   "to": "bk_bedstuy",
+   "via": "ocean_parkway",
+   "name": "Bed-Stuy"
+  },
+  {
+   "to": "si_narrows",
+   "via": "narrows_bridge",
+   "name": "Narrows Bridge to Staten Island"
+  }
+ ],
+ "shortcuts": [
+  {
+   "id": "bk_coney_ladder",
+   "open_from": "s",
+   "kind": "ladder"
+  },
+  {
+   "id": "bk_coney_gate",
+   "open_from": "n",
+   "kind": "gate"
+  }
+ ],
+ "secrets": [
+  {
+   "id": "bk_coney_roof_a",
+   "kind": "rooftop"
+  },
+  {
+   "id": "bk_coney_roof_b",
+   "kind": "rooftop"
+  }
+ ],
+ "shops": {},
+ "loot": {
+  "$": [
+   "bk_retail_locked",
+   "bk_retail",
+   "bk_flash_bridge",
+   "bk_mixtape_oop",
+   "bk_punch"
+  ],
+  "%": "bootleg",
+  "w": "bk_wire"
+ },
+ "graffiti": [
+  "follow the shadow",
+  "the floor tilts",
+  "jump the coaster cars",
+  "ring toss = sidestep",
+  "cats love the boardwalk",
+  "strip the showboat",
+  "bridge to the island",
+  "first to seven",
+  "look under the boardwalk",
+  "the funhouse lies"
+ ]
+}

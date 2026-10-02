@@ -59,6 +59,18 @@
       "scene": "res://world/district.tscn",
       "frames": 30,
       "mode": "map"
+    },
+    {
+      "name": "district_coney",
+      "scene": "res://world/district.tscn",
+      "frames": 60,
+      "district": "bk_coney"
+    },
+    {
+      "name": "district_dumbo",
+      "scene": "res://world/district.tscn",
+      "frames": 60,
+      "district": "bk_dumbo"
     }
   ]
 }

@@ -23,6 +23,12 @@
     { "id": "bk_limited_locked", "tier": "limited", "brands": ["KONG", "AIRWAVE"], "tokens": [100, 200] },
     { "id": "bk_secret", "tier": "limited", "brands": ["GHOST"], "tokens": [150, 250] },
     { "id": "bk_wire", "tier": "wire", "brands": ["AIRWAVE", "VELOCI"], "slots": ["kicks"], "tokens": [0, 0] },
-    { "id": "bk_grail", "tier": "grail", "fixed": "kicks_stoop_legends", "tokens": [0, 0] }
+    { "id": "bk_grail", "tier": "grail", "fixed": "kicks_stoop_legends", "tokens": [0, 0] },
+    { "id": "bk_mixtape_oop", "tier": "retail", "brands": ["KONG"], "tokens": [40, 80], "extra": ["mixtape_self_oop"] },
+    { "id": "bk_mixtape_glide", "tier": "retail", "brands": ["AIRWAVE"], "tokens": [40, 80], "extra": ["mixtape_euro_glide"] },
+    { "id": "bk_punch", "tier": "retail", "brands": ["STRATA"], "tokens": [60, 100], "extra": ["punch_card"] },
+    { "id": "bk_sugar", "tier": "retail", "brands": ["VELOCI"], "tokens": [60, 100], "extra": ["sugar_rush"] },
+    { "id": "bk_flash_bridge", "tier": "limited", "brands": ["KONG"], "tokens": [80, 140], "extra": ["flash_bridge"] },
+    { "id": "bk_flash_brick", "tier": "limited", "brands": ["LOCKDOWN"], "tokens": [80, 140], "extra": ["flash_brick"] }
   ]
 }

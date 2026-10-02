@@ -8,6 +8,7 @@ signal scene_changed(path: String)
 const DISTRICT: String = "res://world/district.tscn"
 const INTERIOR: String = "res://world/interiors/interior.tscn"
 const ARENA: String = "res://world/arenas/boss_arena.tscn"
+const CHALLENGER: String = "res://world/arenas/challenger_court.tscn"
 const RIDE: String = "res://world/interiors/subway_ride.tscn"
 
 var current_path: String = ""
@@ -44,6 +45,10 @@ func goto_interior(kind: String, id: String, return_to: Dictionary) -> void:
 
 func goto_arena(boss_id: String, return_to: Dictionary) -> void:
 	goto(ARENA, {"boss_id": boss_id, "return_to": return_to})
+
+
+func goto_challenger(npc: Dictionary, return_to: Dictionary) -> void:
+	goto(CHALLENGER, {"challenger": npc.get("challenger", {}), "name": str(npc.get("name", "Challenger")), "look": npc.get("look", {}), "return_to": return_to})
 
 
 func finish_ride() -> void:
