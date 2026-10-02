@@ -26,6 +26,7 @@ const CATALOGS: Dictionary = {
 	"bosses": {"id": "string", "name": "string", "title": "string", "borough": "string",
 		"kind": "enum:mini|king|landmark|final|superboss|rival", "arena": "dict", "phases": "array",
 		"drops": "array", "rewards": "dict?", "mic_check": "string", "look": "dict"},
+	"pools": {"id": "string", "tier": "enum:retail|limited|wire|grail", "tokens": "array"},
 	"bag_moves": {
 		"id": "string", "name": "string", "hype": "number", "effect": "string",
 		"impl": "string", "source": "string",
@@ -58,6 +59,7 @@ const FILES: Dictionary = {
 	"tuning/ball": {"radius": "number", "bounce": "number", "chest_pass": "dict", "baseball_pass": "dict",
 		"lob": "dict", "shot": "dict", "rim": "dict", "lost_ball_s": "number", "spare_ball": "ref:balls"},
 	"palettes": {"shared": "dict", "regions": "dict"},
+	"loot_tables": {"box_tiers": "dict", "brands": "dict", "shift_split": "dict"},
 	"poses/hooper": {"poses": "dict", "anims": "dict"},
 }
 

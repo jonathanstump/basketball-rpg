@@ -1,0 +1,155 @@
+{
+ "id": "bk_bedstuy",
+ "borough": "brooklyn",
+ "palette": "brooklyn",
+ "seed": 1101,
+ "name": "Bed-Stuy",
+ "heights": {
+  "B": [
+   3,
+   4
+  ],
+  "T": [
+   5,
+   6
+  ],
+  "H": [
+   10,
+   18
+  ],
+  "W": [
+   2,
+   3
+  ]
+ },
+ "spawns": {
+  "e": [
+   "ball_hog",
+   "showboat",
+   "sniper",
+   "ball_hog",
+   "hype_man",
+   "showboat",
+   "pickpocket",
+   "fixie_rider"
+  ],
+  "E": [
+   "captain:big_man"
+  ],
+  "c": [
+   "rat",
+   "pigeon",
+   "rat"
+  ]
+ },
+ "bodegas": [
+  {
+   "id": "bk_bodega_1",
+   "cat": "Tony",
+   "name": "Bed-Stuy Deli"
+  },
+  {
+   "id": "bk_bodega_2",
+   "cat": "Bagel",
+   "name": "Gates Ave Grocery"
+  }
+ ],
+ "stations": [
+  {
+   "id": "bk_st_bedstuy",
+   "name": "Bed-Stuy",
+   "line": "violet"
+  }
+ ],
+ "npcs": [
+  {
+   "id": "npc_stoop_neighbor",
+   "name": "Ms. Davis",
+   "lines": [
+    "Baby, don't go near that stoop.",
+    "She's been sitting there since the clocks stopped. Ain't nobody got the ball back from her.",
+    "If you're going anyway... she throws that ball high. Jump and swat it."
+   ]
+  }
+ ],
+ "fights": {
+  "M": [
+   "bk_stoop"
+  ],
+  "X": []
+ },
+ "crossings": [
+  {
+   "to": "bk_dumbo",
+   "via": "old_bridge_approach",
+   "name": "DUMBO"
+  },
+  {
+   "to": "qn_roosevelt",
+   "via": "cemetery_belt",
+   "name": "Cemetery Belt to Queens"
+  },
+  {
+   "to": "bk_coney",
+   "via": "ocean_parkway",
+   "name": "Coney Island"
+  }
+ ],
+ "shortcuts": [
+  {
+   "id": "bk_bedstuy_ladder",
+   "open_from": "s",
+   "kind": "ladder"
+  },
+  {
+   "id": "bk_bedstuy_gate",
+   "open_from": "n",
+   "kind": "gate"
+  }
+ ],
+ "secrets": [
+  {
+   "id": "bk_bedstuy_roof_a",
+   "kind": "rooftop"
+  },
+  {
+   "id": "bk_bedstuy_roof_b",
+   "kind": "rooftop"
+  }
+ ],
+ "shops": {
+  "K": [
+   "bk_plug"
+  ],
+  "G": [
+   "bk_pump_grip"
+  ],
+  "I": [
+   "bk_ink"
+  ]
+ },
+ "loot": {
+  "$": [
+   "bk_retail",
+   "bk_retail_locked",
+   "bk_retail",
+   "bk_limited_locked",
+   "bk_retail",
+   "bk_secret"
+  ],
+  "%": "bootleg",
+  "w": "bk_wire"
+ },
+ "graffiti": [
+  "try crossing over",
+  "she sees everything",
+  "cat's friendly",
+  "look up",
+  "big man ahead",
+  "jump the lob, swat it",
+  "clear it past the arc",
+  "stoop's the paint",
+  "make it, take it",
+  "the ladder only drops from below"
+ ]
+}

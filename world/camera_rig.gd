@@ -88,6 +88,29 @@ func _apply(k: float) -> void:
 	RenderingServer.global_shader_parameter_set("cc_focus_pos", player_pos + Vector3.UP * 0.8)
 
 
+func auto_yaw(col: WorldCollision) -> void:
+	## Picks the exploration yaw whose camera line to the player crosses the
+	## fewest walls (looking down a street instead of into a building).
+	if follow == null:
+		return
+	var best: float = yaw
+	var best_score: int = 999
+	var dist: float = JU.f(JU.dict(cfg, "explore"), "distance_m", 12.0)
+	for i: int in 8:
+		var y: float = float(i) * TAU / 8.0
+		var cam: Vector3 = CameraMath.orbit_transform(follow.pos + Vector3.UP, y, JU.f(JU.dict(cfg, "explore"), "pitch_deg", 50.0), dist).origin
+		var score: int = 0
+		for k: int in range(1, 6):
+			var p: Vector3 = follow.pos.lerp(Vector3(cam.x, follow.pos.y, cam.z), float(k) / 5.0)
+			if col.blocked(p + Vector3(0, 0.5, 0), 0.6):
+				score += 6 - k
+		if score < best_score:
+			best_score = score
+			best = y
+	yaw = best
+	snap()
+
+
 func forward_flat() -> Vector3:
 	## Camera forward on the ground plane, for camera-relative movement.
 	return Vector3(-sin(yaw), 0.0, -cos(yaw))

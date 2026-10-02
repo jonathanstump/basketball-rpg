@@ -4,7 +4,13 @@ extends RefCounted
 ## fronts with awnings, neon signs and roll-down gates, ground tiles.
 
 
+static var batcher: MeshBatcher = null   # when set, meshes are batched instead of instanced
+
+
 static func _mesh(parent: Node3D, mesh: Mesh, mat: Material, pos: Vector3, rot_deg: Vector3 = Vector3.ZERO) -> MeshInstance3D:
+	if batcher != null:
+		batcher.add_at(mesh, mat, pos, rot_deg)
+		return null
 	var mi: MeshInstance3D = MeshInstance3D.new()
 	mi.mesh = mesh
 	mi.material_override = mat
@@ -23,8 +29,8 @@ static func streetlight(parent: Node3D, col: WorldCollision, pos: Vector3, arm_d
 	_mesh(parent, MeshLib.box(Vector3(0.28, 0.04, 0.55)), ToonMaterials.neon(light_color, 4.0), pos + Vector3(0, 5.76, 0) + arm_dir * 1.6, Vector3(0, yaw, 0))
 	var light: OmniLight3D = OmniLight3D.new()
 	light.light_color = light_color
-	light.light_energy = 2.2
-	light.omni_range = 11.0
+	light.light_energy = 3.2
+	light.omni_range = 14.0
 	light.omni_attenuation = 0.9
 	light.position = pos + Vector3(0, 5.5, 0) + arm_dir * 1.6
 	light.add_to_group("cc_lights")

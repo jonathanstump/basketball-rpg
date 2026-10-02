@@ -49,6 +49,31 @@ static func create(a: SimActor) -> ActorView:
 	return v2
 
 
+static func create_cat(a: SimActor, cat_name: String) -> ActorView:
+	## Bodega cats (spec §3.4): never enemies, ever. Coat color from the name.
+	var v: ActorView = ActorView.new()
+	v.actor = a
+	v.name = "Cat_" + cat_name
+	v.body = Node3D.new()
+	v.add_child(v.body)
+	v.rig = PuppetRig.new()
+	v.rig.add_joint("hips", "", Vector3.ZERO)
+	v.body.add_child(v.rig)
+	v.animator = PuppetAnimator.new("hooper")
+	var coats: Array[Color] = [Color("#F4A040"), Color("#2A2A30"), Color("#E8E2D8"), Color("#8A8A94"), Color("#C86A30")]
+	var coat: Color = coats[absi(cat_name.hash()) % coats.size()]
+	_part(v.rig, MeshLib.capsule(0.13, 0.42), coat, Vector3(0, 0.14, 0), Vector3(90, 0, 0))
+	_part(v.rig, MeshLib.sphere(0.12), coat, Vector3(0, 0.26, -0.22))
+	for sx: float in [-0.06, 0.06]:
+		_part(v.rig, MeshLib.cylinder(0.04, 0.09, 0.0), coat, Vector3(sx, 0.38, -0.22))
+		_part(v.rig, MeshLib.sphere(0.022), Color("#7CFF9A"), Vector3(sx * 0.8, 0.28, -0.33), Vector3.ZERO, Vector3.ONE, 1.5)
+	_part(v.rig, MeshLib.capsule(0.03, 0.4), coat, Vector3(0, 0.25, 0.3), Vector3(-40, 0, 0))
+	v.position = a.pos
+	v.physics_synced()
+	v.physics_synced()
+	return v
+
+
 static func _part(rig: PuppetRig, mesh: Mesh, col: Color, pos: Vector3, rot: Vector3 = Vector3.ZERO, sc: Vector3 = Vector3.ONE, emit: float = 0.0) -> MeshInstance3D:
 	return rig.add_part("hips", mesh, ToonMaterials.toon(col, true, false, col if emit > 0.0 else Color.BLACK, emit), pos, rot, sc)
 

@@ -1,0 +1,28 @@
+{
+  "box_tiers": {
+    "retail": { "common": 70, "rare": 25, "epic": 5, "legendary": 0 },
+    "limited": { "common": 0, "rare": 60, "epic": 35, "legendary": 5 },
+    "wire": { "common": 20, "rare": 55, "epic": 20, "legendary": 5 },
+    "grail": { "fixed": true }
+  },
+  "shift_split": { "rare": 0.6, "epic": 0.3, "legendary": 0.1 },
+  "brands": {
+    "AIRWAVE": { "mark": "wing", "stats": ["bounce"], "color": "#3EF0FF" },
+    "KONG": { "mark": "fist", "stats": ["heart", "body"], "color": "#D7263D" },
+    "STRATA": { "mark": "three_bars", "stats": ["jumper"], "color": "#F4B400" },
+    "VELOCI": { "mark": "arrow", "stats": ["handles", "wind"], "color": "#2BB24C" },
+    "LOCKDOWN": { "mark": "padlock", "stats": ["hands"], "color": "#7B2FF7" },
+    "GHOST": { "mark": "plain_black", "stats": [], "color": "#101014" }
+  },
+  "pools": [
+    { "id": "retail", "tier": "retail", "brands": ["AIRWAVE", "KONG", "STRATA", "VELOCI", "LOCKDOWN"], "tokens": [40, 120] },
+    { "id": "wire", "tier": "wire", "brands": ["AIRWAVE", "VELOCI"], "slots": ["kicks"], "tokens": [0, 0] },
+    { "id": "bootleg", "tier": "retail", "brands": ["KONG", "STRATA", "GHOST"], "tokens": [60, 60] },
+    { "id": "bk_retail", "tier": "retail", "brands": ["KONG", "STRATA", "LOCKDOWN", "AIRWAVE"], "tokens": [40, 120] },
+    { "id": "bk_retail_locked", "tier": "retail", "brands": ["KONG", "VELOCI"], "tokens": [80, 160], "bonus_rolls": 1 },
+    { "id": "bk_limited_locked", "tier": "limited", "brands": ["KONG", "AIRWAVE"], "tokens": [100, 200] },
+    { "id": "bk_secret", "tier": "limited", "brands": ["GHOST"], "tokens": [150, 250] },
+    { "id": "bk_wire", "tier": "wire", "brands": ["AIRWAVE", "VELOCI"], "slots": ["kicks"], "tokens": [0, 0] },
+    { "id": "bk_grail", "tier": "grail", "fixed": "kicks_stoop_legends", "tokens": [0, 0] }
+  ]
+}

@@ -38,6 +38,17 @@
       "name": "boss_lab_stoop",
       "scene": "res://world/labs/boss_lab_stoop.tscn",
       "frames": 360
+    },
+    {
+      "name": "district_bedstuy",
+      "scene": "res://world/district.tscn",
+      "frames": 60
+    },
+    {
+      "name": "district_bedstuy_map",
+      "scene": "res://world/district.tscn",
+      "frames": 30,
+      "mode": "map"
     }
   ]
 }

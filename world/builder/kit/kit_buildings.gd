@@ -8,7 +8,13 @@ extends RefCounted
 const FLOOR_H: float = 3.0
 
 
+static var batcher: MeshBatcher = null   # when set, meshes are batched instead of instanced
+
+
 static func _mesh(parent: Node3D, mesh: Mesh, mat: Material, pos: Vector3, rot_deg: Vector3 = Vector3.ZERO) -> MeshInstance3D:
+	if batcher != null:
+		batcher.add_at(mesh, mat, pos, rot_deg)
+		return null
 	var mi: MeshInstance3D = MeshInstance3D.new()
 	mi.mesh = mesh
 	mi.material_override = mat
@@ -24,8 +30,12 @@ static func _yaw_for(front: Vector3) -> float:
 
 static func building(parent: Node3D, col: WorldCollision, center: Vector3, size: Vector3, wall: Color, seed_value: float, lit: float = 0.4) -> MeshInstance3D:
 	## Generic massing box with the window-light facade shader.
-	var mi: MeshInstance3D = _mesh(parent, MeshLib.box(size), ToonMaterials.facade(wall, seed_value, lit), center + Vector3(0, size.y * 0.5, 0))
-	mi.name = "Building"
+	var mi: MeshInstance3D = null
+	if batcher != null:
+		batcher.add_at(MeshLib.box(Vector3.ONE), ToonMaterials.facade(wall, seed_value, lit), center + Vector3(0, size.y * 0.5, 0), Vector3.ZERO, size)
+	else:
+		mi = _mesh(parent, MeshLib.box(size), ToonMaterials.facade(wall, seed_value, lit), center + Vector3(0, size.y * 0.5, 0))
+		mi.name = "Building"
 	col.add_box(center + Vector3(0, size.y * 0.5, 0), size, "building")
 	return mi
 

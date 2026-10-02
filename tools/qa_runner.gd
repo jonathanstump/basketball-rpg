@@ -14,7 +14,11 @@ func _ready() -> void:
 		_finish(false, "no QA script at " + path)
 		return
 	var scr: GDScript = load(path)
-	var qa: QAScript = scr.new()
+	var inst: Object = scr.new()
+	if not (inst is QAScript):
+		_finish(false, path + " is not a QAScript")
+		return
+	var qa: QAScript = inst as QAScript
 	qa.name = "QA_" + script_id
 	add_child(qa)
 	var timer: SceneTreeTimer = get_tree().create_timer(timeout_s, true, false, true)

@@ -15,9 +15,15 @@ var layout: Dictionary = {}
 var boss_bar: BossBar
 var court: MeshInstance3D = null
 var finished: bool = false
+var return_to: Dictionary = {}
 
 
 func _ready() -> void:
+	var params: Dictionary = SceneRouter.take_params()
+	if params.has("boss_id"):
+		boss_id = str(params["boss_id"])
+		tier = 0
+	return_to = params.get("return_to", {})
 	boss_data = DataDB.boss(boss_id)
 	var region: String = JU.s(boss_data, "borough", "city")
 	setup_world(region if DataDB.has_item("environments", region) else "city")
@@ -120,11 +126,32 @@ func _victory(ev: Dictionary) -> void:
 	EventBus.boss_defeated.emit(boss_id)
 	ArenaBuilder.open_gate(sim)
 	SaveSystem.request_autosave()
+	if not return_to.is_empty():
+		get_tree().create_timer(4.0).timeout.connect(_leave)
+
+
+func _leave() -> void:
+	GameState.flags["hp_ratio"] = player.hp / maxf(1.0, player.hp_max) if player != null else 1.0
+	SceneRouter.goto_district(str(return_to.get("district", GameState.current_district)), return_to.get("arrive", {}), false)
+
+
+func respawn_player(point: Vector3) -> void:
+	if return_to.is_empty():
+		super.respawn_player(point)
+		return
+	## Cooked in the arena: back to your last bodega; the gate reopens on approach.
+	GameState.flags["hp_ratio"] = 1.0
+	var bid: String = GameState.respawn_bodega
+	var info: Dictionary = WorldIndex.bodega(bid)
+	if bid != "" and not info.is_empty():
+		SceneRouter.goto_district(JU.s(info, "district"), {"kind": "bodega", "id": bid}, false)
+	else:
+		SceneRouter.goto_district(str(return_to.get("district", GameState.current_district)), {}, false)
 
 
 func _on_respawn() -> void:
 	## Lab/retry flow: reset the boss and run it back from CHECK.
-	if finished:
+	if finished or not return_to.is_empty():
 		return
 	boss.hp = boss.hp_max
 	boss.alive = true
