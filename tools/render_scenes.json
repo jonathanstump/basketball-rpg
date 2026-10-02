@@ -16,6 +16,12 @@
       "scene": "res://world/labs/movement_lab.tscn",
       "frames": 60,
       "mode": "cutaway"
+    },
+    {
+      "name": "ball_lab",
+      "scene": "res://world/labs/ball_lab.tscn",
+      "frames": 24,
+      "mode": "shoot"
     }
   ]
 }

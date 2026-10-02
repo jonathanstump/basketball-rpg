@@ -16,10 +16,16 @@ var player_hooper: Hooper = null
 var human_input: HumanInput = null
 var paused_sim: bool = false
 var level_root: Node3D
+var balls: BallSystem
+var presenter: SimPresenter
+var hud_layer: CanvasLayer
+var shot_meter: ShotMeter
+var player_ball_module: HooperBall = null
 
 
 func _init() -> void:
 	sim = SimWorld.new(1)
+	balls = BallSystem.new(sim)
 
 
 func setup_world(region_id: String) -> void:
@@ -43,6 +49,18 @@ func setup_world(region_id: String) -> void:
 	var lb: LightBudget = LightBudget.new()
 	lb.name = "LightBudget"
 	add_child(lb)
+	presenter = SimPresenter.new(self)
+	add_child(presenter)
+	hud_layer = CanvasLayer.new()
+	hud_layer.name = "HUD"
+	hud_layer.layer = 10
+	add_child(hud_layer)
+	var popups: PopupLayer = PopupLayer.new()
+	popups.name = "Popups"
+	add_child(popups)
+	shot_meter = ShotMeter.new()
+	shot_meter.name = "ShotMeter"
+	hud_layer.add_child(shot_meter)
 	sim.sim_event.connect(_on_sim_event)
 	AudioDirector.set_region(region)
 
@@ -63,7 +81,17 @@ func spawn_player(pos: Vector3, profile: Dictionary = {}, stats: Dictionary = {}
 	human_input.camera = camera_rig
 	a.input_source = human_input
 	player = a
+	player_ball_module = HooperBall.new(balls)
+	player_hooper.add_module(player_ball_module)
+	var item: String = str(GameState.equipment.get("ball_1", "ball_rec"))
+	if not DataDB.has_item("balls", item):
+		item = "ball_rec"
+	balls.give(balls.spawn_ball(item, pos, a), a)
+	BallProps.apply(a, item)
 	add_actor_view(a, profile if not profile.is_empty() else GameState.profile)
+	shot_meter.module = player_ball_module
+	shot_meter.actor = a
+	shot_meter.camera = camera_rig.camera
 	camera_rig.follow = a
 	camera_rig.snap()
 	return a
@@ -93,6 +121,7 @@ func _physics_process(_delta: float) -> void:
 		return
 	_player_lock_on()
 	sim.step()
+	presenter.sync_balls()
 	for v: Variant in views.values():
 		if v is ActorView:
 			(v as ActorView).physics_synced()
@@ -138,6 +167,7 @@ func set_lock(target: SimActor) -> void:
 
 func _on_sim_event(ev: Dictionary) -> void:
 	## Hook for subclasses; also forwards presentation events.
+	presenter.on_event(ev)
 	match str(ev.get("type", "")):
 		"hitstop":
 			EventBus.hitstop_requested.emit(int(ev.get("frames", 3)))

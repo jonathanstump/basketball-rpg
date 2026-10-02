@@ -4,8 +4,8 @@ shader_type canvas_item;
 
 uniform sampler2D screen_tex : hint_screen_texture, filter_linear_mipmap;
 uniform float focus_center = 0.55;
-uniform float focus_width = 0.35;
-uniform float max_lod = 2.2;
+uniform float focus_width = 0.55;
+uniform float max_lod = 1.3;
 uniform float amount : hint_range(0.0, 1.0) = 1.0;
 
 void fragment() {

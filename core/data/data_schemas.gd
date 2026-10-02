@@ -49,6 +49,8 @@ const FILES: Dictionary = {
 	"input_map": {"actions": "dict"},
 	"tuning/camera": {"explore": "dict", "lockon": "dict", "yaw_speed_rad_s": "number"},
 	"tuning/quality": {"presets": "dict"},
+	"tuning/ball": {"radius": "number", "bounce": "number", "chest_pass": "dict", "baseball_pass": "dict",
+		"lob": "dict", "shot": "dict", "rim": "dict", "lost_ball_s": "number", "spare_ball": "ref:balls"},
 	"palettes": {"shared": "dict", "regions": "dict"},
 	"poses/hooper": {"poses": "dict", "anims": "dict"},
 }
