@@ -26,6 +26,10 @@ func _init(seed_value: int = 1) -> void:
 	gravity = JU.f(DataDB.tuning("player"), "gravity", 24.0) if DataDB != null else 24.0
 
 
+var _stepping: bool = false
+var _pending_remove: Array[SimActor] = []
+
+
 func add_actor(a: SimActor) -> SimActor:
 	a.id = _next_id
 	_next_id += 1
@@ -36,7 +40,11 @@ func add_actor(a: SimActor) -> SimActor:
 
 
 func remove_actor(a: SimActor) -> void:
-	actors.erase(a)
+	## Deferred while stepping so controller/system loops never skip actors.
+	if _stepping:
+		_pending_remove.append(a)
+	else:
+		actors.erase(a)
 
 
 func actor_by_id(id: int) -> SimActor:
@@ -72,6 +80,15 @@ func emit(type: String, data: Dictionary = {}) -> void:
 
 
 func step() -> void:
+	_stepping = true
+	_step_inner()
+	_stepping = false
+	for a: SimActor in _pending_remove:
+		actors.erase(a)
+	_pending_remove.clear()
+
+
+func _step_inner() -> void:
 	events.clear()
 	if hitstop > 0:
 		hitstop -= 1

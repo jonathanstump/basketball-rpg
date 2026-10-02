@@ -145,6 +145,8 @@ func _ctx(h: Hooper, contest_v: float) -> ShotContext:
 	ctx.wind_drift = float(a.flags.get("wind_drift", 0.0))
 	var item: Dictionary = DataDB.ball(str(a.flags.get("ball_item", "ball_rec")))
 	ctx.window_mult = float(a.flags.get("shot_window_mult", 1.0)) * JU.f(JU.dict(item, "props"), "shot_window_mult", 1.0)
+	if StatusEffects.has(a, "glare"):
+		ctx.window_mult *= 0.6
 	ctx.perfect_bonus = float(a.flags.get("perfect_bonus", 0.0))
 	if a.hp < a.hp_max * 0.3:
 		ctx.window_mult *= float(a.flags.get("low_heart_window_mult", 1.0))

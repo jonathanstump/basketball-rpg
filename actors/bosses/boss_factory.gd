@@ -39,6 +39,7 @@ static func spawn(w: SimWorld, c: CombatSystem, b: BallSystem, boss_id: String, 
 	w.add_actor(a)
 	var brain: BossBrain = BossBrain.new(a, w, c, b, boss, hoop)
 	a.controller = brain
+	BossGimmicks.attach(brain)
 	return a
 
 

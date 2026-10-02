@@ -126,10 +126,10 @@ func make_hitbox(volume_dict: Dictionary, frames: int) -> Hitbox:
 	hb.status = JU.dict(move, "status")
 	if JU.b(move, "steal"):
 		hb.tags["steal"] = true
-	if JU.f(move, "knockback_m") > 0.0:
+	if JU.f(move, "knockback_m") != 0.0:
 		hb.tags["knockback_m"] = JU.f(move, "knockback_m")
 	if JU.b(move, "snatch"):
-		hb.tags["snatch_pct"] = float(actor.flags.get("snatch_pct", 0.05))
+		hb.tags["snatch_pct"] = JU.f(move, "snatch_pct", float(actor.flags.get("snatch_pct", 0.05)))
 	return combat.add(hb)
 
 

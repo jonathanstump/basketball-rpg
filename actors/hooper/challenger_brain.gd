@@ -88,6 +88,8 @@ func _threat_frame(opp: SimActor) -> int:
 
 
 func _react_to_threat(input: ActorInput, a: SimActor, opp: SimActor, w: SimWorld) -> bool:
+	if opp.controller is BossBrain and _reject_statement(input, a, opp, w):
+		return true
 	var tf: int = _threat_frame(opp)
 	if tf < 0 or opp.dist_to(a) > 4.5:
 		return false
@@ -105,6 +107,25 @@ func _react_to_threat(input: ActorInput, a: SimActor, opp: SimActor, w: SimWorld
 			input.press("hands_up")
 		return true
 	return false
+
+
+func _reject_statement(input: ActorInput, a: SimActor, opp: SimActor, w: SimWorld) -> bool:
+	## Statement Dunk cue: Jump + Hands Up so the Rejection is live as it lands.
+	var br: MoveRunner = (opp.controller as BossBrain).runner
+	if not br.running or JU.s(br.move, "primitive") != "statement_dunk" or opp.dist_to(a) > 5.0:
+		return false
+	if br.frame < br.startup() - 7:
+		_move(input, a, opp.pos)
+		return true
+	if br.frame != br.startup() - 7:
+		return false
+	var key: int = w.frame + 100000
+	if _reacted_to == key or rng.randf() > skill:
+		return false
+	_reacted_to = key
+	input.press("jump")
+	input.press("hands_up")
+	return true
 
 
 func _duel_rules(input: ActorInput, a: SimActor, h: Hooper) -> bool:

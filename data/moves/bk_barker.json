@@ -1,0 +1,292 @@
+{
+ "moves": [
+  {
+   "id": "step_right_up",
+   "name": "Step Right Up",
+   "primitive": "mirror",
+   "clones": 3,
+   "startup": 30,
+   "active": 2,
+   "recovery": 30,
+   "damage": 0,
+   "weight": 3,
+   "cooldown_s": 14,
+   "telegraph": {
+    "anim": "windup_throw",
+    "frames": 30,
+    "vfx": "sparkle",
+    "sfx": "barker_call"
+   },
+   "min_tier": 1,
+   "range_m": [
+    0,
+    30
+   ],
+   "possession": "any"
+  },
+  {
+   "id": "ring_toss",
+   "name": "Ring Toss",
+   "primitive": "projectile",
+   "startup": 22,
+   "active": 40,
+   "recovery": 22,
+   "damage": 25,
+   "parry": "deflect",
+   "status": {
+    "rooted": 1.0
+   },
+   "projectile": {
+    "speed": 16,
+    "range": 18,
+    "homing": 0.15
+   },
+   "hit_weight": "light",
+   "weight": 4,
+   "cooldown_s": 3,
+   "range_m": [
+    3,
+    18
+   ],
+   "min_tier": 1,
+   "possession": "any"
+  },
+  {
+   "id": "cane_hook",
+   "name": "Cane Hook",
+   "primitive": "lunge",
+   "body_attack": true,
+   "startup": 20,
+   "active": 8,
+   "recovery": 26,
+   "damage": 35,
+   "parry": "deflect",
+   "lunge_m": 2.0,
+   "knockback_m": -3.0,
+   "hitbox": {
+    "shape": "arc",
+    "radius": 3.6,
+    "angle": 70,
+    "height": 2.2
+   },
+   "hit_weight": "medium",
+   "weight": 4,
+   "cooldown_s": 3,
+   "range_m": [
+    1.5,
+    5
+   ],
+   "min_tier": 1,
+   "possession": "any"
+  },
+  {
+   "id": "whack_a_mole",
+   "name": "Whack-a-Mole",
+   "primitive": "arena_event",
+   "event": "whack_a_mole",
+   "body_attack": true,
+   "startup": 24,
+   "active": 2,
+   "recovery": 30,
+   "damage": 40,
+   "parry": "none",
+   "pattern": {
+    "kind": "lane",
+    "count": 6,
+    "spread_m": 7.0,
+    "delay_s": 0.9,
+    "stagger_s": 0.22
+   },
+   "hitbox": {
+    "shape": "circle",
+    "radius": 1.3,
+    "height": 2.0
+   },
+   "hit_weight": "medium",
+   "weight": 3,
+   "cooldown_s": 8,
+   "min_tier": 1,
+   "range_m": [
+    0,
+    30
+   ],
+   "possession": "any"
+  },
+  {
+   "id": "shell_game",
+   "name": "Shell Game",
+   "primitive": "mirror",
+   "shuffle": true,
+   "clones": 3,
+   "startup": 26,
+   "active": 2,
+   "recovery": 24,
+   "damage": 0,
+   "min_tier": 2,
+   "weight": 2,
+   "cooldown_s": 12,
+   "range_m": [
+    0,
+    30
+   ],
+   "possession": "any"
+  },
+  {
+   "id": "ticket_lob",
+   "name": "Prize Lob",
+   "primitive": "lob",
+   "uses_ball": true,
+   "rejectable": true,
+   "startup": 28,
+   "active": 2,
+   "recovery": 32,
+   "damage": 40,
+   "parry": "none",
+   "flight_s": 1.1,
+   "hitbox": {
+    "shape": "circle",
+    "radius": 2.0,
+    "height": 2.5
+   },
+   "hit_weight": "medium",
+   "weight": 4,
+   "cooldown_s": 2,
+   "range_m": [
+    2,
+    22
+   ],
+   "possession": "with_ball",
+   "min_tier": 1
+  },
+  {
+   "id": "big_top_slam",
+   "name": "Big Top Slam",
+   "primitive": "statement_dunk",
+   "body_attack": true,
+   "startup": 40,
+   "active": 10,
+   "recovery": 30,
+   "damage": 85,
+   "parry": "none",
+   "hitbox": {
+    "shape": "circle",
+    "radius": 2.6,
+    "height": 4.5
+   },
+   "hit_weight": "heavy",
+   "weight": 3,
+   "cooldown_s": 10,
+   "possession": "with_ball",
+   "needs_paint": true,
+   "min_tier": 1,
+   "range_m": [
+    0,
+    30
+   ]
+  },
+  {
+   "id": "tip_the_hat",
+   "name": "Tip the Hat",
+   "primitive": "showboat",
+   "startup": 6,
+   "active": 80,
+   "recovery": 6,
+   "damage": 0,
+   "weight": 1,
+   "cooldown_s": 16,
+   "possession": "with_ball",
+   "min_tier": 1,
+   "range_m": [
+    0,
+    30
+   ]
+  },
+  {
+   "id": "clone_swipe",
+   "name": "Mirror Swipe",
+   "primitive": "melee_arc",
+   "body_attack": true,
+   "startup": 26,
+   "active": 6,
+   "recovery": 30,
+   "damage": 20,
+   "parry": "deflect",
+   "hitbox": {
+    "shape": "arc",
+    "radius": 2.4,
+    "angle": 120,
+    "height": 2.0
+   },
+   "hit_weight": "light",
+   "weight": 0,
+   "cooldown_s": 2,
+   "range_m": [
+    0,
+    2.6
+   ],
+   "min_tier": 1,
+   "possession": "any"
+  },
+  {
+   "id": "coaster_cars",
+   "name": "Coaster Cars",
+   "primitive": "arena_event",
+   "event": "coaster_cars",
+   "body_attack": true,
+   "unblockable": true,
+   "startup": 40,
+   "active": 2,
+   "recovery": 30,
+   "damage": 70,
+   "parry": "none",
+   "pattern": {
+    "kind": "lane",
+    "count": 8,
+    "spread_m": 9.0,
+    "delay_s": 1.4,
+    "stagger_s": 0.08
+   },
+   "hitbox": {
+    "shape": "circle",
+    "radius": 1.4,
+    "height": 2.2
+   },
+   "knockdown": true,
+   "hit_weight": "heavy",
+   "min_tier": 3,
+   "weight": 2,
+   "cooldown_s": 10,
+   "range_m": [
+    0,
+    30
+   ],
+   "possession": "any"
+  },
+  {
+   "id": "hall_of_mirrors",
+   "name": "Hall of Mirrors",
+   "primitive": "projectile",
+   "startup": 36,
+   "active": 50,
+   "recovery": 30,
+   "damage": 35,
+   "parry": "deflect",
+   "spread": 6,
+   "spread_deg": 28,
+   "projectile": {
+    "speed": 14,
+    "range": 24,
+    "homing": 0.0
+   },
+   "hit_weight": "medium",
+   "min_tier": 5,
+   "weight": 0,
+   "cooldown_s": 999,
+   "range_m": [
+    0,
+    30
+   ],
+   "possession": "any"
+  }
+ ]
+}

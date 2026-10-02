@@ -149,6 +149,9 @@ func _tick_action() -> void:
 
 func _free_state() -> void:
 	var inp: ActorInput = actor.input
+	if StatusEffects.has(actor, "rooted") or StatusEffects.has(actor, "frozen"):
+		actor.desired_vel = Vector3.ZERO
+		return
 	for m: RefCounted in modules:
 		if m.call("try_start", self):
 			return
@@ -196,6 +199,8 @@ func _locomotion() -> void:
 		else:
 			speed = JU.f(tuning, "walk_speed", 3.5)
 	speed *= speed_mult * float(actor.flags.get("buff_speed_mult", 1.0))
+	if StatusEffects.has(actor, "slow"):
+		speed *= 0.6
 	if world.frame < int(actor.flags.get("hustle_until", -1)):
 		speed *= 1.1
 	var target_vel: Vector3 = dir.normalized() * speed if mag > 0.1 else Vector3.ZERO

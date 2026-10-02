@@ -175,6 +175,9 @@ static func _pattern(r: MoveRunner, m: Dictionary) -> void:
 	var kind: String = JU.s(pat, "kind", "random")
 	var n: int = JU.i(pat, "count", 6)
 	var spread: float = JU.f(pat, "spread_m", 6.0)
+	if kind == "safe_lane":
+		_safe_lane(r, m, pat, center, spread)
+		return
 	for i: int in n:
 		var p: Vector3 = center
 		match kind:
@@ -186,6 +189,20 @@ static func _pattern(r: MoveRunner, m: Dictionary) -> void:
 			_:
 				p = center + Vector3(r.world.rng.randf_range(-spread, spread), 0, r.world.rng.randf_range(-spread, spread))
 		_delayed_circle(r, m, p, JU.f(pat, "delay_s", 1.0) + JU.f(pat, "stagger_s", 0.15) * float(i), false)
+
+
+static func _safe_lane(r: MoveRunner, m: Dictionary, pat: Dictionary, center: Vector3, spread: float) -> void:
+	## Full-area hazard grid with one open column (e.g. Bridge Collapse).
+	var step_m: float = JU.f(pat, "step_m", 3.0)
+	var cols: int = int(spread * 2.0 / step_m) + 1
+	var safe: int = r.world.rng.randi() % cols
+	r.world.emit("safe_lane", {"actor": r.actor.id, "x": center.x - spread + float(safe) * step_m, "width": step_m})
+	for cx: int in cols:
+		if cx == safe:
+			continue
+		for rz: int in cols:
+			var p: Vector3 = center + Vector3(-spread + float(cx) * step_m, 0, -spread + float(rz) * step_m)
+			_delayed_circle(r, m, p, JU.f(pat, "delay_s", 1.5) + JU.f(pat, "stagger_s", 0.1) * float(rz), false)
 
 
 static func _reposition(r: MoveRunner, m: Dictionary) -> void:
