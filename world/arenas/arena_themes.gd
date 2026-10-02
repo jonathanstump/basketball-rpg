@@ -29,6 +29,38 @@ static func dress(parent: Node3D, w: SimWorld, boss: Dictionary, lay: Dictionary
 			ArenaThemesBK.bridge_arch(parent, hoop, half)
 		_:
 			_generic(parent, hoop, half, pal)
+	props(parent, JU.a(arena, "props"))
+
+
+static func props(parent: Node3D, list: Array) -> void:
+	## Data-driven set dressing (boss file "arena.props"): primitive shapes,
+	## optional neon/emission, repeats along a step, and point lights.
+	for p: Variant in list:
+		var d: Dictionary = p
+		var rep: Dictionary = JU.dict(d, "repeat")
+		var n: int = maxi(1, JU.i(rep, "count", 1))
+		var step: Vector3 = JU.vec3(rep.get("step"))
+		for i: int in n:
+			var pos: Vector3 = JU.vec3(d.get("pos")) + step * float(i)
+			if d.has("shape"):
+				var col: Color = JU.color(d.get("color"), Color.MAGENTA)
+				var mat: Material = ToonMaterials.neon(col, JU.f(d, "emit", 2.0)) if JU.b(d, "neon") else ToonMaterials.toon(col, JU.b(d, "outline", true), false, col if JU.f(d, "emit") > 0.0 else Color.BLACK, JU.f(d, "emit"))
+				var mi: MeshInstance3D = MeshInstance3D.new()
+				mi.mesh = MeshLib.from_recipe(JU.s(d, "shape"), JU.a(d, "size"))
+				mi.material_override = mat
+				mi.position = pos
+				mi.rotation_degrees = JU.vec3(d.get("rot"))
+				if JU.b(d, "no_shadow"):
+					mi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+				parent.add_child(mi)
+			if d.has("light"):
+				var ld: Dictionary = JU.dict(d, "light")
+				var l: OmniLight3D = OmniLight3D.new()
+				l.light_color = JU.color(ld.get("color"), Color.WHITE)
+				l.light_energy = JU.f(ld, "energy", 1.0)
+				l.omni_range = JU.f(ld, "range", 6.0)
+				l.position = pos + JU.vec3(ld.get("offset"))
+				parent.add_child(l)
 
 
 static func fence(parent: Node3D, half: Vector2, indoor: bool) -> void:

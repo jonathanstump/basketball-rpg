@@ -1,0 +1,620 @@
+{
+ "id": "bx_boom",
+ "name": "GRANDMASTER BOOM",
+ "title": "Father of the Block Party",
+ "borough": "bronx",
+ "district": "bx_highbridge",
+ "kind": "king",
+ "arena": {
+  "theme": "block_party",
+  "size_m": [
+   22,
+   18
+  ],
+  "indoor": false,
+  "floor": "#3A2A2A",
+  "key": "#F4B400",
+  "props": [
+   {
+    "shape": "box",
+    "size": [
+     2.2,
+     5.0,
+     1.8
+    ],
+    "pos": [
+     -4.5,
+     2.5,
+     -10.6
+    ],
+    "color": "#141418",
+    "repeat": {
+     "count": 2,
+     "step": [
+      9.0,
+      0,
+      0
+     ]
+    }
+   },
+   {
+    "shape": "cylinder",
+    "size": [
+     0.7,
+     0.2
+    ],
+    "pos": [
+     -4.5,
+     3.6,
+     -9.6
+    ],
+    "color": "#3A3A44",
+    "rot": [
+     90,
+     0,
+     0
+    ],
+    "repeat": {
+     "count": 2,
+     "step": [
+      9.0,
+      0,
+      0
+     ]
+    }
+   },
+   {
+    "shape": "cylinder",
+    "size": [
+     0.5,
+     0.2
+    ],
+    "pos": [
+     -4.5,
+     1.6,
+     -9.6
+    ],
+    "color": "#3A3A44",
+    "rot": [
+     90,
+     0,
+     0
+    ],
+    "repeat": {
+     "count": 2,
+     "step": [
+      9.0,
+      0,
+      0
+     ]
+    }
+   },
+   {
+    "shape": "box",
+    "size": [
+     4.0,
+     1.2,
+     1.6
+    ],
+    "pos": [
+     0,
+     0.6,
+     -12.0
+    ],
+    "color": "#C8102E"
+   },
+   {
+    "shape": "box",
+    "size": [
+     4.2,
+     0.2,
+     0.2
+    ],
+    "pos": [
+     0,
+     1.3,
+     -11.2
+    ],
+    "color": "#F4B400",
+    "neon": true
+   },
+   {
+    "shape": "box",
+    "size": [
+     40.0,
+     1.0,
+     3.0
+    ],
+    "pos": [
+     0,
+     9.0,
+     -2.0
+    ],
+    "color": "#3A3A44",
+    "no_shadow": true
+   },
+   {
+    "shape": "cylinder",
+    "size": [
+     0.4,
+     9.0
+    ],
+    "pos": [
+     -14.0,
+     4.5,
+     -2.0
+    ],
+    "color": "#3A3A44"
+   },
+   {
+    "shape": "cylinder",
+    "size": [
+     0.4,
+     9.0
+    ],
+    "pos": [
+     14.0,
+     4.5,
+     -2.0
+    ],
+    "color": "#3A3A44"
+   },
+   {
+    "shape": "sphere",
+    "size": [
+     0.12
+    ],
+    "pos": [
+     -12.0,
+     6.0,
+     8.5
+    ],
+    "color": "#FFD08A",
+    "neon": true,
+    "repeat": {
+     "count": 12,
+     "step": [
+      2.2,
+      0,
+      0
+     ]
+    }
+   },
+   {
+    "pos": [
+     -6.0,
+     6.0,
+     6.0
+    ],
+    "light": {
+     "color": "#FF9EC8",
+     "energy": 1.6,
+     "range": 12.0
+    }
+   },
+   {
+    "pos": [
+     6.0,
+     6.0,
+     6.0
+    ],
+    "light": {
+     "color": "#FFD08A",
+     "energy": 1.6,
+     "range": 12.0
+    }
+   },
+   {
+    "pos": [
+     0,
+     5.0,
+     -8.0
+    ],
+    "light": {
+     "color": "#C8102E",
+     "energy": 2.0,
+     "range": 10.0
+    }
+   }
+  ]
+ },
+ "base": {
+  "hp": 3200,
+  "composure": 300,
+  "contest_radius": 3.5,
+  "height_m": 6.0,
+  "radius_m": 1.6,
+  "speed": 3.8,
+  "poise": 9999
+ },
+ "phases": [
+  {
+   "id": 1,
+   "rules": {},
+   "moves": [
+    "bass_drop",
+    "scratch",
+    "mic_toss",
+    "speaker_stack",
+    "sample",
+    "boom_statement",
+    "boom_show"
+   ]
+  },
+  {
+   "id": 2,
+   "min_tier": 3,
+   "at_hp_pct": 0.5,
+   "transition": "remix",
+   "rules": {},
+   "moves": [
+    "bass_drop",
+    "scratch",
+    "mic_toss",
+    "speaker_stack",
+    "sample",
+    "rewind",
+    "boom_statement",
+    "boom_show"
+   ]
+  }
+ ],
+ "t5_event": {
+  "at_hp_pct": 0.25,
+  "move": "breakbeat"
+ },
+ "drops": [
+  "crown_bronx",
+  "ball_bass",
+  "flash_boombox"
+ ],
+ "mic_check": "THE BRONX! Where all of this STARTED! Hands up for the GRANDMASTER!",
+ "look": {
+  "colors": {
+   "box": "#2A2A30",
+   "grill": "#141418",
+   "reel": "#F2F2F2",
+   "reel_c": "#C8102E",
+   "gold": "#F4B400",
+   "suit": "#C8102E",
+   "stripe": "#F2F2F2",
+   "skin": "#5C3A21"
+  },
+  "joints": {
+   "hips": [
+    0,
+    2.4,
+    0
+   ],
+   "torso": [
+    0,
+    2.5,
+    0
+   ],
+   "head": [
+    0,
+    4.6,
+    0
+   ],
+   "arm_l": [
+    -1.2,
+    4.2,
+    0
+   ],
+   "arm_r": [
+    1.2,
+    4.2,
+    0
+   ],
+   "leg_l": [
+    -0.5,
+    2.4,
+    0
+   ],
+   "leg_r": [
+    0.5,
+    2.4,
+    0
+   ]
+  },
+  "parts": [
+   {
+    "joint": "leg_l",
+    "shape": "capsule",
+    "size": [
+     0.38,
+     2.4
+    ],
+    "pos": [
+     0,
+     -1.2,
+     0
+    ],
+    "color": "suit"
+   },
+   {
+    "joint": "leg_r",
+    "shape": "capsule",
+    "size": [
+     0.38,
+     2.4
+    ],
+    "pos": [
+     0,
+     -1.2,
+     0
+    ],
+    "color": "suit"
+   },
+   {
+    "joint": "torso",
+    "shape": "capsule",
+    "size": [
+     0.9,
+     2.4
+    ],
+    "pos": [
+     0,
+     0.9,
+     0
+    ],
+    "color": "suit",
+    "scale": [
+     1.15,
+     1,
+     0.85
+    ]
+   },
+   {
+    "joint": "torso",
+    "shape": "box",
+    "size": [
+     0.12,
+     2.0,
+     1.6
+    ],
+    "pos": [
+     -0.85,
+     0.9,
+     0
+    ],
+    "color": "stripe"
+   },
+   {
+    "joint": "torso",
+    "shape": "box",
+    "size": [
+     0.12,
+     2.0,
+     1.6
+    ],
+    "pos": [
+     0.85,
+     0.9,
+     0
+    ],
+    "color": "stripe"
+   },
+   {
+    "joint": "torso",
+    "shape": "torus",
+    "size": [
+     0.75,
+     0.85
+    ],
+    "pos": [
+     0,
+     1.6,
+     -0.2
+    ],
+    "color": "gold",
+    "rot": [
+     70,
+     0,
+     0
+    ],
+    "emit": 0.4
+   },
+   {
+    "joint": "torso",
+    "shape": "torus",
+    "size": [
+     0.6,
+     0.7
+    ],
+    "pos": [
+     0,
+     1.3,
+     -0.35
+    ],
+    "color": "gold",
+    "rot": [
+     70,
+     0,
+     0
+    ],
+    "emit": 0.4
+   },
+   {
+    "joint": "head",
+    "shape": "box",
+    "size": [
+     2.6,
+     1.6,
+     1.0
+    ],
+    "pos": [
+     0,
+     0.6,
+     0
+    ],
+    "color": "box"
+   },
+   {
+    "joint": "head",
+    "shape": "cylinder",
+    "size": [
+     0.06,
+     1.8
+    ],
+    "pos": [
+     0,
+     1.7,
+     0
+    ],
+    "color": "gold",
+    "rot": [
+     0,
+     0,
+     90
+    ]
+   },
+   {
+    "joint": "head",
+    "shape": "cylinder",
+    "size": [
+     0.42,
+     0.12
+    ],
+    "pos": [
+     -0.7,
+     0.75,
+     -0.52
+    ],
+    "color": "reel",
+    "rot": [
+     90,
+     0,
+     0
+    ]
+   },
+   {
+    "joint": "head",
+    "shape": "cylinder",
+    "size": [
+     0.42,
+     0.12
+    ],
+    "pos": [
+     0.7,
+     0.75,
+     -0.52
+    ],
+    "color": "reel",
+    "rot": [
+     90,
+     0,
+     0
+    ]
+   },
+   {
+    "joint": "head",
+    "shape": "sphere",
+    "size": [
+     0.12
+    ],
+    "pos": [
+     -0.7,
+     0.75,
+     -0.6
+    ],
+    "color": "reel_c",
+    "emit": 1.5
+   },
+   {
+    "joint": "head",
+    "shape": "sphere",
+    "size": [
+     0.12
+    ],
+    "pos": [
+     0.7,
+     0.75,
+     -0.6
+    ],
+    "color": "reel_c",
+    "emit": 1.5
+   },
+   {
+    "joint": "head",
+    "shape": "cylinder",
+    "size": [
+     0.35,
+     0.1
+    ],
+    "pos": [
+     0,
+     0.2,
+     -0.52
+    ],
+    "color": "grill",
+    "rot": [
+     90,
+     0,
+     0
+    ]
+   },
+   {
+    "joint": "arm_l",
+    "shape": "capsule",
+    "size": [
+     0.3,
+     2.0
+    ],
+    "pos": [
+     0,
+     -0.9,
+     0
+    ],
+    "color": "suit"
+   },
+   {
+    "joint": "arm_r",
+    "shape": "capsule",
+    "size": [
+     0.3,
+     2.0
+    ],
+    "pos": [
+     0,
+     -0.9,
+     0
+    ],
+    "color": "suit"
+   },
+   {
+    "joint": "arm_l",
+    "shape": "sphere",
+    "size": [
+     0.32
+    ],
+    "pos": [
+     0,
+     -1.95,
+     0
+    ],
+    "color": "skin"
+   },
+   {
+    "joint": "arm_r",
+    "shape": "sphere",
+    "size": [
+     0.32
+    ],
+    "pos": [
+     0,
+     -1.95,
+     0
+    ],
+    "color": "skin"
+   }
+  ]
+ },
+ "rewards": {
+  "rep": 5000,
+  "tokens": 1500
+ },
+ "gimmick": "rhythm",
+ "bpm": 92,
+ "bpm_phase_2": 100
+}

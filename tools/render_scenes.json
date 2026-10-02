@@ -92,6 +92,45 @@
       "scene": "res://world/prologue/prologue.tscn",
       "frames": 150,
       "mode": "cameo"
+    },
+    {
+      "name": "boss_bx_crab",
+      "scene": "res://world/arenas/boss_arena.tscn",
+      "frames": 180,
+      "boss": "bx_crab",
+      "tier": 1
+    },
+    {
+      "name": "boss_bx_silverback",
+      "scene": "res://world/arenas/boss_arena.tscn",
+      "frames": 180,
+      "boss": "bx_silverback",
+      "tier": 1
+    },
+    {
+      "name": "boss_bx_boom",
+      "scene": "res://world/arenas/boss_arena.tscn",
+      "frames": 180,
+      "boss": "bx_boom",
+      "tier": 1
+    },
+    {
+      "name": "district_bx_mott_haven",
+      "scene": "res://world/district.tscn",
+      "frames": 60,
+      "district": "bx_mott_haven"
+    },
+    {
+      "name": "district_bx_west_farms",
+      "scene": "res://world/district.tscn",
+      "frames": 60,
+      "district": "bx_west_farms"
+    },
+    {
+      "name": "district_bx_highbridge",
+      "scene": "res://world/district.tscn",
+      "frames": 60,
+      "district": "bx_highbridge"
     }
   ]
 }

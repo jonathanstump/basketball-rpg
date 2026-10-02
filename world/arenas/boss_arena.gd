@@ -189,3 +189,11 @@ func _on_respawn() -> void:
 	boss_bar.duel = duel_ctl.duel
 	player.pos = layout["player_start"]
 	duel_ctl.start()
+
+
+func setup_render_smoke(entry: Dictionary) -> void:
+	## Render smoke: any boss by id ("boss"), at a tier (default 5).
+	if JU.s(entry, "boss") != "":
+		boss_id = JU.s(entry, "boss")
+		tier = JU.i(entry, "tier", 5)
+	skip_intro = true

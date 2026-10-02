@@ -1,0 +1,559 @@
+{
+ "id": "bx_silverback",
+ "name": "SILVERBACK",
+ "title": "The Zoo Breaker",
+ "borough": "bronx",
+ "district": "bx_west_farms",
+ "kind": "mini",
+ "arena": {
+  "theme": "zoo_fence",
+  "size_m": [
+   18,
+   16
+  ],
+  "indoor": false,
+  "floor": "#2E4A2E",
+  "key": "#C8102E",
+  "props": [
+   {
+    "shape": "box",
+    "size": [
+     26.0,
+     6.0,
+     0.15
+    ],
+    "pos": [
+     0,
+     3.0,
+     -11.2
+    ],
+    "color": "#5A6A5A",
+    "rot": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "shape": "box",
+    "size": [
+     3.0,
+     4.0,
+     0.2
+    ],
+    "pos": [
+     6.0,
+     2.2,
+     -11.0
+    ],
+    "color": "#2A3A2A",
+    "rot": [
+     0,
+     0,
+     18
+    ]
+   },
+   {
+    "shape": "sphere",
+    "size": [
+     2.2
+    ],
+    "pos": [
+     -11.0,
+     1.6,
+     -9.0
+    ],
+    "color": "#2E6B2E",
+    "repeat": {
+     "count": 4,
+     "step": [
+      0,
+      0,
+      5.0
+     ]
+    }
+   },
+   {
+    "shape": "sphere",
+    "size": [
+     2.4
+    ],
+    "pos": [
+     11.0,
+     1.8,
+     -9.0
+    ],
+    "color": "#2E6B2E",
+    "repeat": {
+     "count": 4,
+     "step": [
+      0,
+      0,
+      5.0
+     ]
+    }
+   },
+   {
+    "shape": "cylinder",
+    "size": [
+     0.06,
+     3.2
+    ],
+    "pos": [
+     -1.2,
+     2.0,
+     -8.6
+    ],
+    "color": "#3E8B3E",
+    "rot": [
+     0,
+     0,
+     25
+    ]
+   },
+   {
+    "shape": "cylinder",
+    "size": [
+     0.06,
+     3.0
+    ],
+    "pos": [
+     1.0,
+     2.2,
+     -8.6
+    ],
+    "color": "#3E8B3E",
+    "rot": [
+     0,
+     0,
+     -30
+    ]
+   },
+   {
+    "shape": "box",
+    "size": [
+     3.0,
+     0.8,
+     0.1
+    ],
+    "pos": [
+     0,
+     6.6,
+     -11.0
+    ],
+    "color": "#F4B400",
+    "neon": true
+   },
+   {
+    "pos": [
+     -5.0,
+     7.0,
+     2.0
+    ],
+    "light": {
+     "color": "#C8FFC0",
+     "energy": 1.4,
+     "range": 12.0
+    }
+   },
+   {
+    "pos": [
+     5.0,
+     7.0,
+     2.0
+    ],
+    "light": {
+     "color": "#FFE0A0",
+     "energy": 1.4,
+     "range": 12.0
+    }
+   }
+  ]
+ },
+ "base": {
+  "hp": 1800,
+  "composure": 200,
+  "contest_radius": 3.2,
+  "height_m": 4.0,
+  "radius_m": 1.4,
+  "speed": 4.6,
+  "poise": 9999
+ },
+ "phases": [
+  {
+   "id": 1,
+   "rules": {},
+   "moves": [
+    "knuckle_rush",
+    "ground_slam",
+    "overhand_hurl",
+    "chest_pound",
+    "grab_and_shake",
+    "fence_climb",
+    "silverback_statement",
+    "silverback_show"
+   ]
+  },
+  {
+   "id": 2,
+   "min_tier": 3,
+   "at_hp_pct": 0.5,
+   "transition": "enraged",
+   "rules": {
+    "statement_cd_mult": 0.5,
+    "speed_mult": 1.1
+   },
+   "moves": [
+    "knuckle_rush",
+    "ground_slam",
+    "overhand_hurl",
+    "chest_pound",
+    "grab_and_shake",
+    "fence_climb",
+    "rim_swing",
+    "silverback_statement",
+    "silverback_show"
+   ]
+  }
+ ],
+ "t5_event": {
+  "at_hp_pct": 0.25,
+  "move": "stampede"
+ },
+ "drops": [
+  "ball_primal",
+  "mixtape_chest_pound"
+ ],
+ "mic_check": "Somebody left the gate open. Somebody is about to regret it.",
+ "look": {
+  "colors": {
+   "fur": "#3A3A40",
+   "fur_lt": "#6A6A72",
+   "skin": "#2A2420",
+   "jersey": "#C8102E",
+   "num": "#F4B400",
+   "band": "#F2F2F2",
+   "tape": "#E8E8E8"
+  },
+  "joints": {
+   "hips": [
+    0,
+    1.3,
+    0
+   ],
+   "torso": [
+    0,
+    1.4,
+    0
+   ],
+   "head": [
+    0,
+    3.3,
+    -0.5
+   ],
+   "arm_l": [
+    -1.3,
+    2.9,
+    -0.2
+   ],
+   "arm_r": [
+    1.3,
+    2.9,
+    -0.2
+   ],
+   "leg_l": [
+    -0.5,
+    1.3,
+    0
+   ],
+   "leg_r": [
+    0.5,
+    1.3,
+    0
+   ]
+  },
+  "parts": [
+   {
+    "joint": "torso",
+    "shape": "capsule",
+    "size": [
+     1.0,
+     2.4
+    ],
+    "pos": [
+     0,
+     0.9,
+     0
+    ],
+    "color": "fur",
+    "scale": [
+     1.25,
+     1,
+     0.9
+    ],
+    "rot": [
+     -15,
+     0,
+     0
+    ]
+   },
+   {
+    "joint": "torso",
+    "shape": "box",
+    "size": [
+     1.9,
+     1.5,
+     1.3
+    ],
+    "pos": [
+     0,
+     1.0,
+     -0.15
+    ],
+    "color": "jersey",
+    "rot": [
+     -15,
+     0,
+     0
+    ]
+   },
+   {
+    "joint": "torso",
+    "shape": "box",
+    "size": [
+     0.5,
+     0.6,
+     0.05
+    ],
+    "pos": [
+     -0.25,
+     1.2,
+     -0.85
+    ],
+    "color": "num",
+    "rot": [
+     -15,
+     0,
+     0
+    ]
+   },
+   {
+    "joint": "torso",
+    "shape": "box",
+    "size": [
+     0.5,
+     0.6,
+     0.05
+    ],
+    "pos": [
+     0.35,
+     1.2,
+     -0.85
+    ],
+    "color": "num",
+    "rot": [
+     -15,
+     0,
+     0
+    ]
+   },
+   {
+    "joint": "head",
+    "shape": "sphere",
+    "size": [
+     0.7
+    ],
+    "pos": [
+     0,
+     0.3,
+     0
+    ],
+    "color": "fur"
+   },
+   {
+    "joint": "head",
+    "shape": "sphere",
+    "size": [
+     0.5
+    ],
+    "pos": [
+     0,
+     0.15,
+     -0.45
+    ],
+    "color": "skin",
+    "scale": [
+     1.1,
+     0.8,
+     0.7
+    ]
+   },
+   {
+    "joint": "head",
+    "shape": "torus",
+    "size": [
+     0.62,
+     0.74
+    ],
+    "pos": [
+     0,
+     0.55,
+     0
+    ],
+    "color": "band",
+    "rot": [
+     -10,
+     0,
+     0
+    ],
+    "scale": [
+     1,
+     0.5,
+     1
+    ]
+   },
+   {
+    "joint": "head",
+    "shape": "sphere",
+    "size": [
+     0.1
+    ],
+    "pos": [
+     -0.22,
+     0.4,
+     -0.6
+    ],
+    "color": "band",
+    "emit": 0.6
+   },
+   {
+    "joint": "head",
+    "shape": "sphere",
+    "size": [
+     0.1
+    ],
+    "pos": [
+     0.22,
+     0.4,
+     -0.6
+    ],
+    "color": "band",
+    "emit": 0.6
+   },
+   {
+    "joint": "arm_l",
+    "shape": "capsule",
+    "size": [
+     0.4,
+     2.4
+    ],
+    "pos": [
+     0,
+     -1.1,
+     0
+    ],
+    "color": "fur"
+   },
+   {
+    "joint": "arm_r",
+    "shape": "capsule",
+    "size": [
+     0.4,
+     2.4
+    ],
+    "pos": [
+     0,
+     -1.1,
+     0
+    ],
+    "color": "fur"
+   },
+   {
+    "joint": "arm_l",
+    "shape": "cylinder",
+    "size": [
+     0.42,
+     0.4
+    ],
+    "pos": [
+     0,
+     -1.9,
+     0
+    ],
+    "color": "tape"
+   },
+   {
+    "joint": "arm_r",
+    "shape": "cylinder",
+    "size": [
+     0.42,
+     0.4
+    ],
+    "pos": [
+     0,
+     -1.9,
+     0
+    ],
+    "color": "tape"
+   },
+   {
+    "joint": "arm_l",
+    "shape": "sphere",
+    "size": [
+     0.5
+    ],
+    "pos": [
+     0,
+     -2.4,
+     0
+    ],
+    "color": "skin"
+   },
+   {
+    "joint": "arm_r",
+    "shape": "sphere",
+    "size": [
+     0.5
+    ],
+    "pos": [
+     0,
+     -2.4,
+     0
+    ],
+    "color": "skin"
+   },
+   {
+    "joint": "leg_l",
+    "shape": "capsule",
+    "size": [
+     0.4,
+     1.3
+    ],
+    "pos": [
+     0,
+     -0.6,
+     0
+    ],
+    "color": "fur_lt"
+   },
+   {
+    "joint": "leg_r",
+    "shape": "capsule",
+    "size": [
+     0.4,
+     1.3
+    ],
+    "pos": [
+     0,
+     -0.6,
+     0
+    ],
+    "color": "fur_lt"
+   }
+  ]
+ },
+ "rewards": {
+  "rep": 2500,
+  "tokens": 800
+ }
+}

@@ -69,7 +69,8 @@ func turn_toward(dir: Vector3, max_rad: float) -> void:
 		return
 	var target: float = yaw_of(dir)
 	var diff: float = wrapf(target - facing, -PI, PI)
-	facing = wrapf(facing + clampf(diff, -max_rad, max_rad), -PI, PI)
+	var lim: float = max_rad * float(flags.get("turn_mult", 1.0))
+	facing = wrapf(facing + clampf(diff, -lim, lim), -PI, PI)
 
 
 func is_broken() -> bool:

@@ -26,6 +26,10 @@ var aggro_until: int = -1
 var target: SimActor = null
 var paint_pos: Vector3 = Vector3.ZERO
 var t5_done: bool = false
+var statement_cd_mult: float = 1.0
+var repeats_left: int = 0
+var last_move: Dictionary = {}
+var history: Array[String] = []    # every move started (gimmicks replay these)
 var gimmick: RefCounted = null    # optional per-boss script (on_step/on_event hooks)
 
 
@@ -53,6 +57,12 @@ func set_phase(p: int) -> void:
 	var ps: Array[Dictionary] = BossGating.phases(boss, actor.tier)
 	var rules: Dictionary = JU.dict(ps[p - 1], "rules") if p - 1 < ps.size() else {}
 	stationary = JU.b(rules, "stationary")
+	if not actor.flags.has("base_speed"):
+		actor.flags["base_speed"] = float(actor.flags.get("speed", 4.0))
+	actor.flags["speed"] = float(actor.flags["base_speed"]) * JU.f(rules, "speed_mult", 1.0)
+	actor.flags["damage_taken_mult"] = JU.f(rules, "damage_taken_mult", 1.0)
+	actor.flags["phase_damage_mult"] = JU.f(rules, "damage_mult", 1.0)
+	statement_cd_mult = JU.f(rules, "statement_cd_mult", 1.0)
 	if rules.has("scale"):
 		actor.flags["scale"] = JU.f(rules, "scale", 1.0)
 		actor.height = JU.f(BossGating.base_stats(boss), "height_m", 4.0) * JU.f(rules, "scale", 1.0)
@@ -89,6 +99,11 @@ func step() -> void:
 		return
 	if runner.running:
 		runner.step()
+		if not runner.running and repeats_left > 0 and target != null:
+			repeats_left -= 1
+			runner.start(last_move, target)
+			if repeats_left == 0 and JU.b(last_move, "curve_last"):
+				runner.state["curve"] = true
 		return
 	if st == PossessionDuel.CHECK or st == PossessionDuel.DEFEAT:
 		if not stationary:
@@ -171,8 +186,13 @@ func start_move(m: Dictionary) -> void:
 	recent.append(id)
 	if recent.size() > 3:
 		recent.pop_front()
-	cooldowns[id] = JU.f(m, "cooldown_s", 3.0) * TierMath.multiplier(DataDB.tiers(), "ai_cooldown", actor.tier)
+	cooldowns[id] = JU.f(m, "cooldown_s", 3.0) * TierMath.multiplier(DataDB.tiers(), "ai_cooldown", actor.tier) * (statement_cd_mult if JU.s(m, "primitive") == "statement_dunk" else 1.0)
 	recover_s = 0.35 * TierMath.multiplier(DataDB.tiers(), "ai_cooldown", actor.tier)
+	last_move = m
+	repeats_left = maxi(0, JU.i(m, "repeat", 1) - 1)
+	history.append(id)
+	if history.size() > 8:
+		history.pop_front()
 	runner.start(m, target)
 
 
@@ -180,6 +200,9 @@ func run_event_move(id: String) -> void:
 	var m: Dictionary = DataDB.move(JU.s(boss, "id"), id)
 	if not m.is_empty():
 		runner.interrupt()
+		last_move = m
+		repeats_left = maxi(0, JU.i(m, "repeat", 1) - 1)
+		history.append(id)
 		runner.start(m, target)
 
 

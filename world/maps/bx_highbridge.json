@@ -1,0 +1,164 @@
+{
+ "id": "bx_highbridge",
+ "borough": "bronx",
+ "palette": "bronx",
+ "seed": 1203,
+ "name": "Highbridge",
+ "heights": {
+  "B": [
+   3,
+   4
+  ],
+  "T": [
+   5,
+   6
+  ],
+  "H": [
+   12,
+   22
+  ],
+  "W": [
+   2,
+   3
+  ]
+ },
+ "shops": {},
+ "graffiti": [
+  "dodge on the beat",
+  "speakers on 2 and 4",
+  "smash the stacks",
+  "the train sparks",
+  "the concourse never sleeps",
+  "the music can cut out",
+  "he samples you",
+  "rewind = reverse",
+  "92 then 100",
+  "the crown is here"
+ ],
+ "spawns": {
+  "e": [
+   "breaker",
+   "hype_man",
+   "ball_hog",
+   "breaker",
+   "showboat",
+   "sniper",
+   "big_man",
+   "pickpocket"
+  ],
+  "E": [
+   "captain:hype_man"
+  ],
+  "c": [
+   "pigeon",
+   "rat",
+   "pigeon"
+  ]
+ },
+ "loot": {
+  "%": "bootleg",
+  "w": "bx_wire",
+  "$": [
+   "bx_retail",
+   "bx_retail_locked",
+   "bx_secret",
+   "bx_flash_1",
+   "bx_retail"
+  ]
+ },
+ "bodegas": [
+  {
+   "id": "bx_bodega_4",
+   "cat": "Mami",
+   "name": "Sedgwick Ave Deli"
+  }
+ ],
+ "stations": [
+  {
+   "id": "bx_st_highbridge",
+   "name": "167th St",
+   "line": "crimson"
+  }
+ ],
+ "npcs": [
+  {
+   "id": "npc_mr_fundamental",
+   "name": "Mr. Fundamental",
+   "challenger": {
+    "id": "mr_fundamental",
+    "tier_bonus": 1,
+    "skill": 0.7,
+    "drop": "kicks_bronx_5",
+    "points": 7
+   },
+   "lines": [
+    "Bank shots. Box outs. Bounce passes.",
+    "Kids don't respect fundamentals. First to seven."
+   ],
+   "look": {
+    "skin": "#5C3A21",
+    "top_color": "#F2F2F2",
+    "shorts_color": "#C8102E",
+    "hair_style": "buzz",
+    "hair_color": "#C8C8C8"
+   }
+  },
+  {
+   "id": "npc_mic_check_hb",
+   "name": "Mic Check",
+   "lines": [
+    "Sedgwick Avenue. The block party never stopped.",
+    "Beat the Grandmaster and the Bronx Crown is YOURS."
+   ]
+  },
+  {
+   "id": "npc_block_dj",
+   "name": "Block DJ",
+   "lines": [
+    "Ninety-two beats a minute. He swings on the one.",
+    "Dodge on the beat, you'll feel it - the crowd'll feel it too.",
+    "When the music cuts out? He's off the beat. Stay sharp."
+   ]
+  }
+ ],
+ "crossings": [
+  {
+   "to": "bx_west_farms",
+   "via": "cross_bronx",
+   "name": "West Farms"
+  },
+  {
+   "to": "bx_mott_haven",
+   "via": "concourse",
+   "name": "Mott Haven"
+  }
+ ],
+ "shortcuts": [
+  {
+   "id": "bx_highbridge_gate_0",
+   "open_from": "e",
+   "kind": "gate"
+  },
+  {
+   "id": "bx_highbridge_ladder_0",
+   "open_from": "n",
+   "kind": "ladder"
+  }
+ ],
+ "secrets": [
+  {
+   "id": "bx_highbridge_roof_0_out",
+   "kind": "rooftop"
+  },
+  {
+   "id": "bx_highbridge_roof_0_in",
+   "kind": "rooftop"
+  }
+ ],
+ "fights": {
+  "M": [],
+  "X": [
+   "bx_boom"
+  ]
+ }
+}

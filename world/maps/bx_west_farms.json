@@ -1,0 +1,142 @@
+{
+ "id": "bx_west_farms",
+ "borough": "bronx",
+ "palette": "bronx",
+ "seed": 1202,
+ "name": "West Farms",
+ "heights": {
+  "B": [
+   3,
+   4
+  ],
+  "T": [
+   5,
+   6
+  ],
+  "H": [
+   10,
+   18
+  ],
+  "W": [
+   2,
+   3
+  ]
+ },
+ "shops": {},
+ "graffiti": [
+  "chest pound = steal",
+  "jump the rings",
+  "the fence has a gap",
+  "river's cold",
+  "sound bridge east",
+  "he climbs the fence",
+  "two charges, then breathe",
+  "boulder? swat it",
+  "cats sleep by the zoo",
+  "crimson line north"
+ ],
+ "spawns": {
+  "e": [
+   "ball_hog",
+   "big_man",
+   "breaker",
+   "showboat",
+   "sniper",
+   "breaker",
+   "pickpocket",
+   "hype_man"
+  ],
+  "E": [
+   "captain:big_man"
+  ],
+  "c": [
+   "pigeon",
+   "rat",
+   "pigeon"
+  ]
+ },
+ "loot": {
+  "%": "bootleg",
+  "w": "bx_wire",
+  "$": [
+   "bx_retail",
+   "bx_limited_locked",
+   "bx_sugar",
+   "bx_flash_0",
+   "bx_grail"
+  ]
+ },
+ "bodegas": [
+  {
+   "id": "bx_bodega_3",
+   "cat": "Biscuit",
+   "name": "Boston Rd. Deli"
+  }
+ ],
+ "stations": [
+  {
+   "id": "bx_st_west_farms",
+   "name": "West Farms Sq",
+   "line": "crimson"
+  }
+ ],
+ "npcs": [
+  {
+   "id": "npc_zookeeper",
+   "name": "Night Zookeeper",
+   "lines": [
+    "He tore the fence right off its posts.",
+    "When he pounds his chest, that's two whole seconds. Take the ball.",
+    "Jump the rings when he slams. Don't run - jump."
+   ]
+  },
+  {
+   "id": "npc_mic_check_wf",
+   "name": "Mic Check",
+   "lines": [
+    "West Farms! Somebody left the GATE open!",
+    "That bridge east goes to Queens. Sound Bridge. Long walk, good view."
+   ]
+  }
+ ],
+ "crossings": [
+  {
+   "to": "bx_highbridge",
+   "via": "cross_bronx",
+   "name": "Highbridge"
+  },
+  {
+   "to": "bx_mott_haven",
+   "via": "bruckner",
+   "name": "Mott Haven"
+  },
+  {
+   "to": "qn_flushing",
+   "via": "sound_bridge",
+   "name": "The Sound Bridge to Queens"
+  }
+ ],
+ "shortcuts": [
+  {
+   "id": "bx_west_farms_ladder_0",
+   "open_from": "s",
+   "kind": "ladder"
+  }
+ ],
+ "secrets": [
+  {
+   "id": "bx_west_farms_roof_0_out",
+   "kind": "rooftop"
+  },
+  {
+   "id": "bx_west_farms_roof_0_in",
+   "kind": "rooftop"
+  }
+ ],
+ "fights": {
+  "M": [
+   "bx_silverback"
+  ],
+  "X": []
+ }
+}

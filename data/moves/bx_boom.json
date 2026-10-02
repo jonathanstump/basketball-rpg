@@ -1,0 +1,289 @@
+{
+ "moves": [
+  {
+   "id": "bass_drop",
+   "name": "Bass Drop",
+   "primitive": "ring_wave",
+   "body_attack": true,
+   "startup": 24,
+   "active": 2,
+   "recovery": 26,
+   "damage": 55,
+   "parry": "none",
+   "ring_speed": 10.0,
+   "ring_max_m": 12.0,
+   "hit_weight": "medium",
+   "weight": 4,
+   "cooldown_s": 3,
+   "range_m": [
+    0,
+    12
+   ],
+   "min_tier": 1,
+   "possession": "any"
+  },
+  {
+   "id": "scratch",
+   "name": "Scratch",
+   "primitive": "line_sweep",
+   "body_attack": true,
+   "startup": 22,
+   "active": 26,
+   "recovery": 24,
+   "damage": 50,
+   "parry": "deflect",
+   "sweep_deg": 150,
+   "hits": 2,
+   "hit_gap": 13,
+   "hitbox": {
+    "shape": "box",
+    "length": 12.0,
+    "width": 1.2,
+    "height": 1.3
+   },
+   "hit_weight": "medium",
+   "weight": 4,
+   "cooldown_s": 4,
+   "range_m": [
+    0,
+    11
+   ],
+   "min_tier": 1,
+   "possession": "any"
+  },
+  {
+   "id": "mic_toss",
+   "name": "Mic Toss",
+   "primitive": "lob",
+   "uses_ball": true,
+   "rejectable": true,
+   "startup": 26,
+   "active": 2,
+   "recovery": 30,
+   "damage": 60,
+   "parry": "none",
+   "flight_s": 1.0,
+   "hitbox": {
+    "shape": "circle",
+    "radius": 2.6,
+    "height": 2.5
+   },
+   "hit_weight": "heavy",
+   "weight": 5,
+   "cooldown_s": 2,
+   "range_m": [
+    2,
+    24
+   ],
+   "possession": "with_ball",
+   "min_tier": 1
+  },
+  {
+   "id": "speaker_stack",
+   "name": "Speaker Stack",
+   "primitive": "arena_event",
+   "event": "speaker_stack",
+   "startup": 30,
+   "active": 2,
+   "recovery": 30,
+   "damage": 0,
+   "weight": 2,
+   "cooldown_s": 18,
+   "min_tier": 1,
+   "range_m": [
+    0,
+    30
+   ],
+   "possession": "any"
+  },
+  {
+   "id": "speaker_pulse",
+   "name": "Speaker Pulse",
+   "primitive": "ring_wave",
+   "body_attack": true,
+   "startup": 10,
+   "active": 2,
+   "recovery": 6,
+   "damage": 35,
+   "parry": "none",
+   "ring_speed": 8.0,
+   "ring_max_m": 7.0,
+   "tower_hp": 160,
+   "hit_weight": "light",
+   "weight": 0,
+   "cooldown_s": 0,
+   "min_tier": 1,
+   "range_m": [
+    0,
+    30
+   ],
+   "possession": "any"
+  },
+  {
+   "id": "train_pass",
+   "name": "Train Pass",
+   "primitive": "arena_event",
+   "event": "train_pass",
+   "body_attack": true,
+   "startup": 30,
+   "active": 2,
+   "recovery": 20,
+   "damage": 55,
+   "parry": "none",
+   "pattern": {
+    "kind": "random",
+    "count": 7,
+    "spread_m": 8.0,
+    "delay_s": 1.4,
+    "stagger_s": 0.15
+   },
+   "hitbox": {
+    "shape": "circle",
+    "radius": 1.5,
+    "height": 3.0
+   },
+   "hit_weight": "medium",
+   "weight": 0,
+   "cooldown_s": 0,
+   "min_tier": 1,
+   "range_m": [
+    0,
+    30
+   ],
+   "possession": "any"
+  },
+  {
+   "id": "sample",
+   "name": "Sample",
+   "primitive": "lunge",
+   "body_attack": true,
+   "startup": 18,
+   "active": 10,
+   "recovery": 26,
+   "damage": 50,
+   "parry": "deflect",
+   "lunge_m": 4.0,
+   "hitbox": {
+    "shape": "arc",
+    "radius": 2.6,
+    "angle": 120,
+    "height": 2.4
+   },
+   "hit_weight": "medium",
+   "min_tier": 2,
+   "weight": 2,
+   "cooldown_s": 6,
+   "range_m": [
+    0,
+    6
+   ],
+   "possession": "any"
+  },
+  {
+   "id": "rewind",
+   "name": "Rewind",
+   "primitive": "mirror",
+   "startup": 20,
+   "active": 2,
+   "recovery": 10,
+   "damage": 0,
+   "min_tier": 3,
+   "weight": 2,
+   "cooldown_s": 15,
+   "range_m": [
+    0,
+    30
+   ],
+   "possession": "any"
+  },
+  {
+   "id": "breakbeat",
+   "name": "Breakbeat",
+   "primitive": "arena_event",
+   "event": "breakbeat",
+   "duration_s": 10,
+   "startup": 20,
+   "active": 2,
+   "recovery": 10,
+   "damage": 0,
+   "min_tier": 5,
+   "weight": 0,
+   "cooldown_s": 999,
+   "range_m": [
+    0,
+    30
+   ],
+   "possession": "any"
+  },
+  {
+   "id": "boom_lob",
+   "name": "Cassette Lob",
+   "primitive": "lob",
+   "uses_ball": true,
+   "rejectable": true,
+   "startup": 30,
+   "active": 2,
+   "recovery": 32,
+   "damage": 55,
+   "parry": "none",
+   "flight_s": 1.2,
+   "hitbox": {
+    "shape": "circle",
+    "radius": 2.2,
+    "height": 2.5
+   },
+   "hit_weight": "medium",
+   "weight": 4,
+   "cooldown_s": 2,
+   "range_m": [
+    2,
+    24
+   ],
+   "possession": "with_ball",
+   "min_tier": 1
+  },
+  {
+   "id": "boom_statement",
+   "name": "Drop the Needle",
+   "primitive": "statement_dunk",
+   "body_attack": true,
+   "startup": 42,
+   "active": 10,
+   "recovery": 30,
+   "damage": 110,
+   "parry": "none",
+   "hitbox": {
+    "shape": "circle",
+    "radius": 2.8,
+    "height": 5.0
+   },
+   "hit_weight": "heavy",
+   "weight": 3,
+   "cooldown_s": 10,
+   "possession": "with_ball",
+   "needs_paint": true,
+   "min_tier": 1,
+   "range_m": [
+    0,
+    30
+   ]
+  },
+  {
+   "id": "boom_show",
+   "name": "Wind It Up",
+   "primitive": "showboat",
+   "startup": 6,
+   "active": 84,
+   "recovery": 6,
+   "damage": 0,
+   "weight": 1,
+   "cooldown_s": 16,
+   "possession": "with_ball",
+   "min_tier": 1,
+   "range_m": [
+    0,
+    30
+   ]
+  }
+ ]
+}

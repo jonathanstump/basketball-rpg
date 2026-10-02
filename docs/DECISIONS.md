@@ -79,3 +79,15 @@ Spec §11.3 lists L60 = 46,626 but `floor(100 × 60^1.5 + 150)` = 46,625 (every 
 - **Bot defense.** The QA bot now goes for Rejections on Statement Dunks (Jump + Hands Up 7 frames before the dunk lands). Without it, the Kings out-healed the bot.
 - **Placed loot.** Loot pools can list `extra` items that always drop. This is how the authored mixtapes, Punch Card, Sugar Rush and flash sheets sit in specific shoeboxes.
 - **Profanity filter.** A short blocked-word list in data/creator.json. Words of 3 letters or fewer only match whole words, to avoid false positives like "Cassidy".
+
+## M9a — The Bronx
+- **BeatClock** (`core/audio/beat_clock.gd`) is a minimal 60 fps metronome built ahead of M13. Grandmaster Boom's gimmick owns his move picks: it picks a move, then starts it so the first active frame lands on the next beat (Breakbeat moves this to the off-beat). M13's audio will follow this clock.
+- **ON BEAT** means a crossover, stepback, slide or dribble strike within ±6 frames of a beat, for +5 Hype.
+- **Scratch** is one 150° line sweep with 2 hits instead of two separate back-and-forth sweeps. **Sample** is a generic lunge, not a literal copy of your last attack. TODO(spec §9.3): replay the player's last move data.
+- **Speaker Stacks** are two destructible props (160 HP × tier) that pulse a ring timed to land on beats 2 and 4.
+- **Shell Up** is a `shell` stance with `full_block`: frontal hits deal 0, guard never breaks, and turning drops to 25% so you can reach his flank. **Molt** uses generic phase rules (`speed_mult`, `damage_taken_mult`).
+- **Generic boss hooks added:** phase rules `speed_mult`/`damage_taken_mult`/`damage_mult`/`statement_cd_mult`, move `repeat` and `curve_last` (Knuckle Rush, Stampede), `lateral` charges (Sidewinder), showboat `buff_mult` (Chest Pound +20% for 10 s), and reposition landing hitboxes (Fence Climb).
+- **Arena dressing is data** (`arena.props` in the boss file: shapes, neon, repeats, lights). Market Hall, Zoo Fence and Block Party use it.
+- **Duel safety.** DuelController clamps both actors inside the fence. A charge could push the player through the thin fence, and the bot then stalled at GAME POINT.
+- **QA bot** now changes its shooting spot and attacks off the dribble when a defender keeps contesting it. Before this, Kings who guard the paint walled it forever.
+- **The Sound Bridge** lands in Flushing Meadows (qn_flushing). It's the closest Queens district to the Bronx side.

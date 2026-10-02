@@ -1,0 +1,295 @@
+{
+ "moves": [
+  {
+   "id": "sidewinder",
+   "name": "Sidewinder",
+   "primitive": "charge_lane",
+   "lateral": true,
+   "body_attack": true,
+   "startup": 26,
+   "active": 24,
+   "recovery": 30,
+   "damage": 55,
+   "parry": "none",
+   "lunge_m": 10.0,
+   "hitbox": {
+    "shape": "box",
+    "length": 2.4,
+    "width": 3.4,
+    "height": 2.0
+   },
+   "hit_weight": "medium",
+   "weight": 4,
+   "cooldown_s": 4,
+   "range_m": [
+    2,
+    12
+   ],
+   "min_tier": 1,
+   "possession": "any"
+  },
+  {
+   "id": "claw_pinch",
+   "name": "Claw Pinch",
+   "primitive": "grab",
+   "body_attack": true,
+   "startup": 24,
+   "active": 8,
+   "recovery": 34,
+   "damage": 90,
+   "parry": "deflect",
+   "lunge_m": 2.5,
+   "hitbox": {
+    "shape": "sphere",
+    "radius": 1.6,
+    "forward": 1.6,
+    "height": 2.4
+   },
+   "hit_weight": "heavy",
+   "weight": 3,
+   "cooldown_s": 5,
+   "range_m": [
+    0,
+    4.5
+   ],
+   "min_tier": 1,
+   "possession": "any"
+  },
+  {
+   "id": "double_dribble_claws",
+   "name": "Double Dribble Claws",
+   "primitive": "melee_arc",
+   "body_attack": true,
+   "startup": 18,
+   "active": 36,
+   "recovery": 26,
+   "damage": 30,
+   "parry": "strip",
+   "hits": 3,
+   "hit_gap": 12,
+   "hitbox": {
+    "shape": "arc",
+    "radius": 3.0,
+    "angle": 110,
+    "height": 2.0
+   },
+   "hit_weight": "light",
+   "weight": 4,
+   "cooldown_s": 3,
+   "range_m": [
+    0,
+    3.6
+   ],
+   "possession": "with_ball",
+   "min_tier": 1
+  },
+  {
+   "id": "shell_up",
+   "name": "Shell Up",
+   "primitive": "stance",
+   "stance": "shell",
+   "full_block": true,
+   "turn_mult": 0.25,
+   "startup": 10,
+   "active": 240,
+   "recovery": 14,
+   "damage": 0,
+   "weight": 2,
+   "cooldown_s": 12,
+   "min_tier": 1,
+   "range_m": [
+    0,
+    30
+   ],
+   "possession": "any"
+  },
+  {
+   "id": "bubble_spray",
+   "name": "Bubble Spray",
+   "primitive": "projectile",
+   "startup": 24,
+   "active": 30,
+   "recovery": 24,
+   "damage": 20,
+   "parry": "deflect",
+   "spread": 4,
+   "spread_deg": 12,
+   "status": {
+    "slow": 3.0
+   },
+   "projectile": {
+    "speed": 13,
+    "range": 12,
+    "homing": 0.0
+   },
+   "hit_weight": "light",
+   "weight": 3,
+   "cooldown_s": 5,
+   "range_m": [
+    2,
+    12
+   ],
+   "min_tier": 1,
+   "possession": "any"
+  },
+  {
+   "id": "ice_slide",
+   "name": "Ice Slide",
+   "primitive": "lunge",
+   "body_attack": true,
+   "startup": 28,
+   "active": 20,
+   "recovery": 34,
+   "damage": 60,
+   "parry": "deflect",
+   "lunge_m": 9.0,
+   "hitbox": {
+    "shape": "arc",
+    "radius": 2.2,
+    "angle": 120,
+    "height": 1.8
+   },
+   "hit_weight": "medium",
+   "min_tier": 2,
+   "weight": 2,
+   "cooldown_s": 7,
+   "range_m": [
+    4,
+    12
+   ],
+   "possession": "any"
+  },
+  {
+   "id": "snap_snap",
+   "name": "Snap-Snap",
+   "primitive": "melee_arc",
+   "body_attack": true,
+   "startup": 12,
+   "active": 20,
+   "recovery": 24,
+   "damage": 40,
+   "parry": "deflect",
+   "hits": 2,
+   "hit_gap": 10,
+   "hitbox": {
+    "shape": "arc",
+    "radius": 2.8,
+    "angle": 90,
+    "height": 2.0
+   },
+   "hit_weight": "medium",
+   "min_tier": 3,
+   "weight": 4,
+   "cooldown_s": 3,
+   "range_m": [
+    0,
+    3.4
+   ],
+   "possession": "any"
+  },
+  {
+   "id": "crate_avalanche",
+   "name": "Crate Avalanche",
+   "primitive": "arena_event",
+   "event": "crate_avalanche",
+   "body_attack": true,
+   "startup": 40,
+   "active": 2,
+   "recovery": 30,
+   "damage": 70,
+   "parry": "none",
+   "pattern": {
+    "kind": "grid",
+    "count": 16,
+    "spread_m": 7.0,
+    "delay_s": 1.3,
+    "stagger_s": 0.06
+   },
+   "hitbox": {
+    "shape": "circle",
+    "radius": 1.4,
+    "height": 3.0
+   },
+   "knockdown": true,
+   "hit_weight": "heavy",
+   "min_tier": 5,
+   "weight": 0,
+   "cooldown_s": 999,
+   "range_m": [
+    0,
+    30
+   ],
+   "possession": "any"
+  },
+  {
+   "id": "crab_lob",
+   "name": "Claw Lob",
+   "primitive": "lob",
+   "uses_ball": true,
+   "rejectable": true,
+   "startup": 30,
+   "active": 2,
+   "recovery": 32,
+   "damage": 45,
+   "parry": "none",
+   "flight_s": 1.2,
+   "hitbox": {
+    "shape": "circle",
+    "radius": 2.2,
+    "height": 2.5
+   },
+   "hit_weight": "medium",
+   "weight": 4,
+   "cooldown_s": 2,
+   "range_m": [
+    2,
+    24
+   ],
+   "possession": "with_ball",
+   "min_tier": 1
+  },
+  {
+   "id": "crab_statement",
+   "name": "Pinch Slam",
+   "primitive": "statement_dunk",
+   "body_attack": true,
+   "startup": 42,
+   "active": 10,
+   "recovery": 30,
+   "damage": 90,
+   "parry": "none",
+   "hitbox": {
+    "shape": "circle",
+    "radius": 2.8,
+    "height": 5.0
+   },
+   "hit_weight": "heavy",
+   "weight": 3,
+   "cooldown_s": 10,
+   "possession": "with_ball",
+   "needs_paint": true,
+   "min_tier": 1,
+   "range_m": [
+    0,
+    30
+   ]
+  },
+  {
+   "id": "crab_show",
+   "name": "Claw Clack",
+   "primitive": "showboat",
+   "startup": 6,
+   "active": 84,
+   "recovery": 6,
+   "damage": 0,
+   "weight": 1,
+   "cooldown_s": 16,
+   "possession": "with_ball",
+   "min_tier": 1,
+   "range_m": [
+    0,
+    30
+   ]
+  }
+ ]
+}

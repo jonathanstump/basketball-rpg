@@ -49,7 +49,7 @@ func resolve(hb: Hitbox, t: SimActor) -> Dictionary:
 	if guarded:
 		var stab: float = float(t.flags.get("guard_stability", 1.0))
 		t.wind.drain(dmg * JU.f(JU.dict(cfg, "guard"), "wind_per_damage", 0.8) / stab)
-		dmg *= JU.f(JU.dict(cfg, "guard"), "chip", 0.25)
+		dmg *= float(t.flags.get("guard_chip", JU.f(JU.dict(cfg, "guard"), "chip", 0.25)))
 		res["result"] = "guard_break" if t.wind.value <= 0.0 else "guarded"
 	else:
 		res["result"] = "hit"

@@ -16,6 +16,17 @@ static func frame(r: MoveRunner) -> void:
 	if r.frame <= s and r.target != null and JU.b(m, "track", true):
 		r.actor.turn_toward(r.target.pos - r.actor.pos, 0.12)
 		r.dir = r.actor.forward()
+		if JU.b(m, "lateral"):
+			## Sidewinder: rush sideways across the target's line.
+			var side: Vector3 = r.actor.forward().cross(Vector3.UP).normalized()
+			r.dir = side * (1.0 if side.dot(r.target.pos - r.actor.pos) >= 0.0 else -1.0)
+	if r.in_active() and r.target != null and (JU.f(m, "curve_deg") > 0.0 or bool(r.state.get("curve", false))):
+		## Curving charge: bend toward the target a little each frame.
+		var want: Vector3 = (r.target.pos - r.actor.pos)
+		want.y = 0.0
+		if want.length() > 0.1:
+			var ang: float = r.dir.signed_angle_to(want.normalized(), Vector3.UP)
+			r.dir = r.dir.rotated(Vector3.UP, clampf(ang, -deg_to_rad(maxf(1.5, JU.f(m, "curve_deg"))), deg_to_rad(maxf(1.5, JU.f(m, "curve_deg")))))
 	match prim:
 		"melee_arc":
 			_multi(r, m, {"shape": "arc", "radius": 1.8, "angle": 120.0})
@@ -91,6 +102,10 @@ static func frame(r: MoveRunner) -> void:
 			r.actor.flags["showboat"] = r.in_active() or r.frame <= r.startup()
 			if r.frame == r.total - 1:
 				r.actor.flags["showboat"] = false
+				if JU.f(m, "buff_mult") > 0.0:
+					## e.g. Chest Pound: a finished showboat buffs damage for a while.
+					r.actor.flags["buff_mult"] = JU.f(m, "buff_mult")
+					r.actor.flags["buff_until"] = r.world.frame + int(JU.f(m, "buff_s", 10.0) * 60.0)
 				r.world.emit("showboat_completed", {"actor": r.actor.id, "move": JU.s(m, "id")})
 		"statement_dunk":
 			if r.frame == 1:
@@ -109,6 +124,8 @@ static func frame(r: MoveRunner) -> void:
 			r.actor.invulnerable = r.in_active()
 			if r.frame == s + r.active():
 				_reposition(r, m)
+				if m.has("hitbox"):
+					r.make_hitbox(_vol(m, {"shape": "circle", "radius": 2.5, "height": 2.0}), 6)
 		"mirror":
 			if first_active:
 				r.world.emit("mirror_requested", {"actor": r.actor.id, "move": JU.s(m, "id")})
@@ -117,6 +134,11 @@ static func frame(r: MoveRunner) -> void:
 			r.actor.flags[JU.s(m, "stance", "shell")] = on
 			r.actor.flags["guarding"] = on and JU.s(m, "stance", "shell") in ["hedge", "guard", "shell"]
 			r.actor.hyper_armor = on and JU.b(m, "hyper_armor", true)
+			if JU.s(m, "stance", "shell") == "shell" and JU.b(m, "full_block"):
+				## Shell Up: frontal hits do nothing, guard never breaks, slow turning.
+				r.actor.flags["guard_chip"] = 0.0 if on else 0.25
+				r.actor.flags["guard_stability"] = 999.0 if on else 1.0
+				r.actor.flags["turn_mult"] = JU.f(m, "turn_mult", 0.3) if on else 1.0
 
 
 static func _multi(r: MoveRunner, m: Dictionary, defaults: Dictionary) -> void:

@@ -1,0 +1,185 @@
+{
+ "id": "bx_mott_haven",
+ "borough": "bronx",
+ "palette": "bronx",
+ "seed": 1201,
+ "name": "Mott Haven",
+ "heights": {
+  "B": [
+   3,
+   4
+  ],
+  "T": [
+   5,
+   6
+  ],
+  "H": [
+   10,
+   16
+  ],
+  "W": [
+   2,
+   3
+  ]
+ },
+ "shops": {
+  "K": [
+   "bx_plug"
+  ],
+  "G": [
+   "bx_pump_grip"
+  ],
+  "I": [
+   "bx_ink"
+  ]
+ },
+ "graffiti": [
+  "get to his flank",
+  "no sideways vs the crab",
+  "the El is loud",
+  "cats love the market",
+  "murals don't lie",
+  "breakers freeze - punish",
+  "bridge to uptown",
+  "lefty goes left",
+  "look behind the warehouses",
+  "the beat is 92"
+ ],
+ "spawns": {
+  "e": [
+   "ball_hog",
+   "breaker",
+   "showboat",
+   "breaker",
+   "sniper",
+   "hype_man",
+   "pickpocket",
+   "ball_hog"
+  ],
+  "E": [
+   "captain:breaker"
+  ],
+  "c": [
+   "rat",
+   "pigeon",
+   "rat"
+  ]
+ },
+ "loot": {
+  "%": "bootleg",
+  "w": "bx_wire",
+  "$": [
+   "bx_retail",
+   "bx_retail_locked",
+   "bx_punch",
+   "bx_retail",
+   "bx_mixtape_0",
+   "bx_secret"
+  ]
+ },
+ "bodegas": [
+  {
+   "id": "bx_bodega_1",
+   "cat": "Papi",
+   "name": "Willis Ave Deli"
+  },
+  {
+   "id": "bx_bodega_2",
+   "cat": "Chulo",
+   "name": "138th St. Grocery"
+  }
+ ],
+ "stations": [
+  {
+   "id": "bx_st_mott_haven",
+   "name": "3rd Ave-138th",
+   "line": "crimson"
+  }
+ ],
+ "npcs": [
+  {
+   "id": "npc_lefty_lou",
+   "name": "Lefty Lou",
+   "challenger": {
+    "id": "lefty_lou",
+    "tier_bonus": 0,
+    "skill": 0.55,
+    "drop": "kicks_bronx_4",
+    "points": 7
+   },
+   "lines": [
+    "Everybody goes right on me. Everybody's wrong.",
+    "First to seven. Lefty rules."
+   ],
+   "look": {
+    "skin": "#8D5524",
+    "top_color": "#C8102E",
+    "shorts_color": "#1A1A24",
+    "hair_style": "waves",
+    "hair_color": "#1A1210"
+   }
+  },
+  {
+   "id": "npc_mic_check_mh",
+   "name": "Mic Check",
+   "lines": [
+    "THE BRONX! Where it ALL started!",
+    "Rumor's free tonight: the Grandmaster only hits on the beat. Learn the beat."
+   ]
+  },
+  {
+   "id": "npc_fish_monger",
+   "name": "Fishmonger Rosa",
+   "lines": [
+    "The Market Hall's his now. The King Crab.",
+    "He blocks everything from the front when he shells up. Get around him.",
+    "And never dodge sideways when he scuttles. Forward or back."
+   ]
+  }
+ ],
+ "crossings": [
+  {
+   "to": "bx_highbridge",
+   "via": "concourse",
+   "name": "Highbridge"
+  },
+  {
+   "to": "up_harlem",
+   "via": "harlem_river_bridge",
+   "name": "Harlem River Bridge to Uptown"
+  },
+  {
+   "to": "bx_west_farms",
+   "via": "bruckner",
+   "name": "West Farms"
+  }
+ ],
+ "shortcuts": [
+  {
+   "id": "bx_mott_haven_ladder_0",
+   "open_from": "s",
+   "kind": "ladder"
+  },
+  {
+   "id": "bx_mott_haven_gate_0",
+   "open_from": "n",
+   "kind": "gate"
+  }
+ ],
+ "secrets": [
+  {
+   "id": "bx_mott_haven_roof_0_out",
+   "kind": "rooftop"
+  },
+  {
+   "id": "bx_mott_haven_roof_0_in",
+   "kind": "rooftop"
+  }
+ ],
+ "fights": {
+  "M": [
+   "bx_crab"
+  ],
+  "X": []
+ }
+}

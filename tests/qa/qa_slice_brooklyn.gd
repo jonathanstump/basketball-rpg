@@ -53,47 +53,18 @@ func run() -> bool:
 	if not check(get_tree().current_scene is Interior, "did not wake up in a bodega"):
 		return false
 	print("QA slice: prologue done, woke up in %s" % GameState.respawn_bodega)
-	# ---- Every POI.
+	# ---- Every POI, bodega, shop and fight (shared borough run helpers).
+	var runner: QABoroughRun = QABoroughRun.new()
+	add_child(runner)
 	GameState.add_item("box_key", 20)
-	var visited: int = 0
 	for id: String in DISTRICTS:
-		var n: int = await _sweep_district(id)
-		if n < 0:
-			return false
-		visited += n
-	print("QA slice: %d POIs triggered" % visited)
-	for id2: String in DISTRICTS:
-		for b: Variant in JU.a(WorldIndex.districts[id2] as Dictionary, "bodegas"):
-			SceneRouter.goto_interior("bodega", JU.s(b as Dictionary, "id"), {"district": id2})
-			await frames(6)
-			if not check(get_tree().current_scene is Interior, "bodega %s did not open" % JU.s(b as Dictionary, "id")):
-				return false
-	for kind: String in ["plug", "pump_grip", "ink_needle"]:
-		SceneRouter.goto_interior(kind, "bk_" + kind, {"district": "bk_bedstuy"})
-		await frames(6)
-		if not check(get_tree().current_scene is Interior, "%s did not open" % kind):
-			return false
-	# ---- Every fight: the court loads from the district, then the god-mode bot plays it out.
+		if await runner.sweep_district(id) < 0:
+			return fail(runner.failure)
+	if not await runner.visit_interiors(DISTRICTS):
+		return fail(runner.failure)
 	for boss_id: String in BOSSES:
-		var district: String = JU.s(DataDB.boss(boss_id), "district")
-		SceneRouter.goto_district(district, {"kind": "court", "id": boss_id}, false)
-		await frames(10)
-		var d: District = get_tree().current_scene as District
-		var court: Dictionary = {}
-		for it: Dictionary in d.interact.items:
-			if str(it["kind"]) == "court" and JU.s(it["data"] as Dictionary, "boss") == boss_id:
-				court = it
-		if not check(not court.is_empty(), "no court for %s in %s" % [boss_id, district]):
-			return false
-		DistrictActions.trigger(d, court)
-		await frames(10)
-		if not check(get_tree().current_scene is BossArena, "%s arena did not load" % boss_id):
-			return false
-		var r: Dictionary = BossSim.run(boss_id, 1, {"god": true, "max_s": 600, "seed": 31})
-		print("QA slice: %s T1 %s in %.0fs (makes %d)" % [boss_id, r["result"], float(r["time_s"]), int((r["stats"] as Dictionary)["makes"])])
-		if not check(str(r["result"]) == "victory", "%s not beaten: %s" % [boss_id, r["result"]]):
-			return false
-		BossArena.grant_rewards(boss_id, BossFactory.rewards(DataDB.boss(boss_id), 1))
+		if not await runner.fight(boss_id):
+			return fail(runner.failure)
 	# ---- Pickup Challengers.
 	for id3: String in DISTRICTS:
 		for npc: Variant in JU.a(WorldIndex.districts[id3] as Dictionary, "npcs"):
@@ -118,45 +89,3 @@ func run() -> bool:
 	print("QA slice: Crown earned, nickname \"%s\", level %d, %d tokens, %d Rep" % [GameState.nickname, GameState.level, GameState.tokens, GameState.rep])
 	return true
 
-
-func _sweep_district(id: String) -> int:
-	SceneRouter.goto_district(id, {}, false)
-	await frames(10)
-	if not check(get_tree().current_scene is District, "%s did not load" % id):
-		return -1
-	var d: District = get_tree().current_scene as District
-	var n: int = 0
-	for it: Dictionary in d.interact.items.duplicate():
-		var kind: String = str(it["kind"])
-		var data: Dictionary = it["data"]
-		match kind:
-			"tag", "box", "secret":
-				d.player.pos = it["pos"]
-				DistrictActions.trigger(d, it)
-				n += 1
-			"npc":
-				if JU.dict(data, "challenger").is_empty():
-					DistrictActions.trigger(d, it)
-				n += 1
-			"shortcut":
-				var off: Vector3 = {"s": Vector3(0, 0, 2.5), "n": Vector3(0, 0, -2.5), "e": Vector3(2.5, 0, 0), "w": Vector3(-2.5, 0, 0)}[JU.s(data, "open_from", "s")]
-				d.player.pos = (data["pos"] as Vector3) + off
-				DistrictActions.trigger(d, it)
-				if not check(GameState.has_flag("shortcut_" + str(it["id"])), "shortcut %s did not open from its side" % it["id"]):
-					return -1
-				n += 1
-			"station":
-				DistrictActions.trigger(d, it)
-				n += 1
-			"crossing":
-				if not check(JU.s(data, "locked") != "" or WorldIndex.has_district(JU.s(data, "to")) or not JU.s(data, "to").begins_with("bk_"), "crossing to %s is broken" % JU.s(data, "to")):
-					return -1
-				n += 1
-			"bodega", "shop", "court":
-				n += 1
-		d.close_menu()
-		await frames(1)
-	for b: Dictionary in JU.a(d.layout, "boxes"):
-		if not check(GameState.opened_boxes.has(JU.s(b, "id")), "box %s still closed" % JU.s(b, "id")):
-			return -1
-	return n

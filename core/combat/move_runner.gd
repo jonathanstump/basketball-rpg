@@ -137,7 +137,9 @@ func damage() -> float:
 	var base: float = JU.f(move, "damage")
 	if base <= 0.0:
 		base = float(actor.flags.get("base_damage", 20.0)) * JU.f(move, "dmg_mult", 1.0)
-	var mult: float = float(actor.flags.get("damage_mult", 1.0))
+	var mult: float = float(actor.flags.get("damage_mult", 1.0)) * float(actor.flags.get("phase_damage_mult", 1.0))
+	if world.frame < int(actor.flags.get("buff_until", -1)):
+		mult *= float(actor.flags.get("buff_mult", 1.0))
 	if world.frame < int(actor.flags.get("aura_until", -1)):
 		mult *= 1.25
 	return DamageMath.enemy_damage(base, actor.tier, GameState.ng_cycle, mult)

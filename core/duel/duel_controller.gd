@@ -58,6 +58,8 @@ func step() -> void:
 		_drain()
 		return
 	stats["frames"] = int(stats["frames"]) + 1
+	_keep_inside(player)
+	_keep_inside(boss)
 	duel.tick(DT)
 	boss.flags["contest_mult"] = duel.contest_mult()
 	if duel.state == PossessionDuel.PLAYER_OFFENSE and not duel.player_cleared and player.has_ball and hoop.flat_distance(player.pos) > JU.f(duel.cfg, "arc_m", 6.75):
@@ -172,6 +174,18 @@ func _dunk_attempt() -> void:
 			balls.give(b, boss)
 		_punish(1.0)
 		duel.feed("player_rejected")
+
+
+func _keep_inside(a: SimActor) -> void:
+	## Knockbacks and body pushes must never put anyone through the fence.
+	if not layout.has("half"):
+		return
+	var lim: Vector2 = (layout["half"] as Vector2) + Vector2(ArenaBuilder.APRON_M, ArenaBuilder.APRON_M) - Vector2(a.radius, a.radius)
+	var c: Vector3 = a.pos
+	c.x = clampf(c.x, -lim.x, lim.x)
+	c.z = clampf(c.z, -lim.y, lim.y)
+	if c != a.pos:
+		a.pos = c
 
 
 func _check_rebound() -> void:

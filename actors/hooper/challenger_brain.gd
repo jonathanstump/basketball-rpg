@@ -14,6 +14,8 @@ var _release_at: float = -1.0
 var _cooldown: int = 0
 var _reacted_to: int = -1
 var aggressive: bool = true
+var _spot: Vector3 = Vector3.ZERO
+var _stuck: int = 0
 var passive_frames: int = 0       # holds fire for a while (QA warm-up)
 var duel: PossessionDuel = null   # court rules awareness (boss duels, challengers)
 
@@ -159,9 +161,22 @@ func _offense(input: ActorInput, a: SimActor, opp: SimActor, h: Hooper, w: SimWo
 			_release_at = _pick_release(mod)
 			_cooldown = 60
 			return
-		var dest: Vector3 = hoop.floor_point() + hoop.facing * 5.0
+		if _spot == Vector3.ZERO:
+			_spot = hoop.floor_point() + hoop.facing * 5.0
+		var dest: Vector3 = _spot
 		if opp.is_shook() or opp.flags.get("downed", false):
 			dest = hoop.floor_point() + hoop.facing * 2.5
+		if a.pos.distance_to(dest) < 1.2:
+			_stuck += 1
+		if _stuck > 50:
+			## Contested at the spot: try another angle around the arc.
+			_stuck = 0
+			_spot = hoop.floor_point() + hoop.facing.rotated(Vector3.UP, deg_to_rad(rng.randf_range(-75.0, 75.0))) * rng.randf_range(4.0, 7.2)
+		if to_opp.length() < 2.4 and _cooldown <= 0 and aggressive and rng.randf() < 0.5:
+			## Attack off the dribble to break ankles / stagger the defender.
+			input.press("light" if rng.randf() < 0.7 else "dodge")
+			_cooldown = int(lerpf(40.0, 18.0, skill))
+			return
 		_move(input, a, dest)
 		return
 	if to_opp.length() > 1.6:

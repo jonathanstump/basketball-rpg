@@ -11,3 +11,5 @@ static func attach(brain: BossBrain) -> void:
 			brain.gimmick = BarkerGimmick.new(brain)
 		"toll":
 			brain.gimmick = TollGimmick.new(brain)
+		"rhythm":
+			brain.gimmick = BoomGimmick.new(brain)
