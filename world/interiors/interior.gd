@@ -142,7 +142,7 @@ func _physics_process(delta: float) -> void:
 		return
 	super._physics_process(delta)
 	var near: Dictionary = interact.nearest(player.pos)
-	hud.prompt = ("[%s] %s" % [InputRouter.glyph("interact"), tr(str(near.get("prompt", "")))]) if not near.is_empty() else ""
+	hud.prompt = ("[%s] %s" % [InputPrompts.key("interact"), tr(str(near.get("prompt", "")))]) if not near.is_empty() else ""
 	if not near.is_empty() and player.input.peek("interact") and player_hooper.action == "":
 		player.input.pressed("interact")
 		trigger(str(near["kind"]))

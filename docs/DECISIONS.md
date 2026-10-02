@@ -190,3 +190,8 @@ Spec §11.3 lists L60 = 46,626 but `floor(100 × 60^1.5 + 150)` = 46,625 (every 
   - `tools/proc_guard.ps1` puts every Godot that verify.ps1 or export.ps1 starts into a kill-on-close Job Object owned by the script, so the OS kills the whole tree when the script exits for any reason. Timeouts use `taskkill /T`. Both paths are tested: 0 Godot processes remain.
   - verify.sh tracks the current child and kills it from an EXIT/INT/TERM trap.
   - Verify only ever runs one Godot process at a time.
+
+## Post-RC — tutorial controls
+- **Prompt text is data with binding tokens.** `data/dialogue/prologue.json` prompts use `{action}` tokens (InputMap action names), plus `{move}` (WASD or Left Stick) and `{camera}`. `InputPrompts.format` resolves them to `[key]` for the last-used device. If the device has no binding, it falls back to the other device, then to "unbound"; tests require every tutorial token to be bound on both devices. Prompts are run through `tr()` first, so translations keep the tokens.
+- **InputRouter.glyph(action, device)** takes an optional device and returns "" when the action is unbound. It used to return the raw action name. Mouse buttons read "Left Click" and "Right Click". `bindings_changed` fires after every InputMap rebuild, so on-screen prompts update immediately after a remap.
+- **Controls menu** reuses RemapMenu with a new label, "Controls". Each row reads `Name   Keyboard | Controller`, and the detail panel gives the full name, what the action does, and both bindings. The cursor stays on the row you were editing.

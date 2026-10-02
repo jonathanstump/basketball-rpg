@@ -3,9 +3,12 @@ extends Node
 ## InputMap from data/input_map.json (+ Settings remaps) so remapping is data.
 
 signal device_changed(device: String)
+signal bindings_changed()   # after the InputMap is rebuilt (remap / reset)
 
 const BUFFERED: PackedStringArray = ["light", "heavy", "dodge", "jump", "shoot", "hands_up",
 	"bag_move", "interact", "taunt", "quarter_water"]
+
+const MOUSE_NAMES: PackedStringArray = ["Mouse", "Left Click", "Right Click", "Middle Click", "Wheel Up", "Wheel Down"]
 
 var last_device: String = "keyboard"
 var buffer: InputBuffer = InputBuffer.new(8)
@@ -35,6 +38,7 @@ func apply_input_map() -> void:
 			InputMap.add_action(action, deadzone)
 		for ev: InputEvent in InputSpec.events_from_spec(spec):
 			InputMap.action_add_event(action, ev)
+	bindings_changed.emit()
 
 
 func _input(event: InputEvent) -> void:
@@ -61,17 +65,19 @@ func consume(action: String) -> bool:
 	return buffer.consume(action, frame)
 
 
-func glyph(action: String) -> String:
-	## Text glyph for prompts; swaps with the last-used device.
+func glyph(action: String, device: String = "") -> String:
+	## Text glyph for prompts; follows the last-used device unless one is
+	## given ("keyboard" / "pad"). Empty when the action has no binding there.
+	var dev: String = device if device != "" else last_device
 	var events: Array[InputEvent] = InputMap.action_get_events(action) if InputMap.has_action(action) else []
 	for ev: InputEvent in events:
-		if last_device == "pad" and (ev is InputEventJoypadButton or ev is InputEventJoypadMotion):
+		if dev == "pad" and (ev is InputEventJoypadButton or ev is InputEventJoypadMotion):
 			return _pad_name(ev)
-		if last_device == "keyboard" and ev is InputEventKey:
+		if dev == "keyboard" and ev is InputEventKey:
 			return OS.get_keycode_string((ev as InputEventKey).physical_keycode)
-		if last_device == "keyboard" and ev is InputEventMouseButton:
-			return ["", "LMB", "RMB", "MMB", "Wheel Up", "Wheel Down"][clampi(int((ev as InputEventMouseButton).button_index), 0, 5)]
-	return action
+		if dev == "keyboard" and ev is InputEventMouseButton:
+			return MOUSE_NAMES[clampi(int((ev as InputEventMouseButton).button_index), 0, MOUSE_NAMES.size() - 1)]
+	return ""
 
 
 func _pad_name(ev: InputEvent) -> String:

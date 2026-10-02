@@ -78,6 +78,12 @@
       "frames": 30
     },
     {
+      "name": "title_controls",
+      "scene": "res://ui/title/title_screen.tscn",
+      "frames": 30,
+      "mode": "controls"
+    },
+    {
       "name": "creator",
       "scene": "res://ui/creator/creator.tscn",
       "frames": 40

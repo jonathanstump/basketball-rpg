@@ -16,6 +16,7 @@ var lay: Dictionary = {}
 var crew: Array[SimActor] = []
 var midnight: SimActor = null
 var prompt: Label
+var controls_hint: Label         # "[Esc] Pause · Settings → Controls..." under the prompt
 var start_pos: Vector3
 var phase: String = "walk_up"    # walk_up, call, tutorial, cameo, out
 var _cameo_t: float = 0.0
@@ -47,6 +48,19 @@ func _ready() -> void:
 	prompt.position = Vector2(160, 150)
 	prompt.size = Vector2(1600, 50)
 	hud_layer.add_child(prompt)
+	controls_hint = Label.new()
+	controls_hint.add_theme_font_override("font", UIFonts.body())
+	controls_hint.add_theme_font_size_override("font_size", 20)
+	controls_hint.add_theme_color_override("font_color", Color("#F4B400"))
+	controls_hint.add_theme_color_override("font_outline_color", Color("#0B0B10"))
+	controls_hint.add_theme_constant_override("outline_size", 6)
+	controls_hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	controls_hint.position = Vector2(160, 200)
+	controls_hint.size = Vector2(1600, 30)
+	hud_layer.add_child(controls_hint)
+	# Prompts show the player's own bindings: refresh on device swap or remap.
+	InputRouter.device_changed.connect(_on_device_changed)
+	InputRouter.bindings_changed.connect(_update_prompt)
 	_update_prompt()
 	AudioDirector.set_layer("explore")
 
@@ -113,9 +127,16 @@ func _respawn_crew_member(ev: Dictionary) -> void:
 			crew.append(a)
 
 
+func _on_device_changed(_device: String) -> void:
+	_update_prompt()
+
+
 func _update_prompt() -> void:
-	var cur: Dictionary = tracker.current()
-	prompt.text = JU.s(cur, "prompt") if phase != "cameo" else ""
+	if prompt == null or tracker == null:
+		return
+	var teaching: bool = phase != "cameo" and phase != "out"
+	prompt.text = InputPrompts.format(tr(JU.s(tracker.current(), "prompt"))) if teaching else ""
+	controls_hint.text = InputPrompts.format(tr(JU.s(DataDB.get_dict("dialogue/prologue"), "controls_hint"))) if teaching else ""
 
 
 func skip_tutorial() -> void:
@@ -131,7 +152,7 @@ func start_cameo() -> void:
 		return
 	phase = "cameo"
 	_cameo_t = 0.0
-	prompt.text = ""
+	_update_prompt()
 	EventBus.dialogue_requested.emit("Crew", JU.strs(JU.dict(DataDB.get_dict("dialogue/prologue"), "lines"), "crew_beaten"))
 	for c: SimActor in crew:
 		if c.alive:
@@ -187,11 +208,14 @@ func _tick_cameo(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("menu") and menu == null and phase in ["walk_up", "call", "tutorial"]:
-		MenuKit.show(self, "PAUSED", [{"id": "resume", "label": "Resume"}, {"id": "skip", "label": "Skip the tutorial"},
+		MenuKit.show(self, "PAUSED", [{"id": "resume", "label": "Resume"}, {"id": "controls", "label": "Controls",
+			"detail": "See every key and button, and change them."}, {"id": "skip", "label": "Skip the tutorial"},
 			{"id": "settings", "label": "Settings"}] as Array[Dictionary], func(id: String) -> void:
 				close_menu()
 				if id == "skip":
 					skip_tutorial()
+				elif id == "controls":
+					RemapMenu.open(self, close_menu)
 				elif id == "settings":
 					SettingsMenu.open(self, close_menu), "")
 		get_viewport().set_input_as_handled()

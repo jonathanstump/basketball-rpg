@@ -127,7 +127,7 @@ func _physics_process(delta: float) -> void:
 	if _reveal_t % 15 == 0:
 		_reveal(MapReveal.WALK_RADIUS_M)
 	var near: Dictionary = interact.nearest(player.pos)
-	hud.prompt = ("[%s] %s" % [InputRouter.glyph("interact"), tr(str(near.get("prompt", "")))]) if not near.is_empty() else ""
+	hud.prompt = ("[%s] %s" % [InputPrompts.key("interact"), tr(str(near.get("prompt", "")))]) if not near.is_empty() else ""
 	if not near.is_empty() and player.input.peek("interact") and player_hooper.action == "":
 		player.input.pressed("interact")
 		DistrictActions.trigger(self, near)

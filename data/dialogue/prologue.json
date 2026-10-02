@@ -1,15 +1,16 @@
 {
  "id": "prologue",
+ "controls_hint": "{menu} Pause  ·  Settings → Controls to view or change keys  ·  Skip the tutorial from the pause menu",
  "steps": [
-  {"id": "walk_up", "prompt": "Walk up to the court.", "done": "reach_court"},
-  {"id": "call_next", "prompt": "Interact: call \"I got next.\"", "done": "called_next"},
-  {"id": "move", "prompt": "Move with the left stick / WASD. Sprint by holding Dodge.", "done": "moved"},
-  {"id": "strike", "prompt": "Dribble strike: tap Light (X / left click) near a crew member.", "done": "strike"},
-  {"id": "crossover", "prompt": "Crossover: tap Dodge (B / Space) with the ball.", "done": "crossover"},
-  {"id": "ankle", "prompt": "Ankle-breaker: Dodge right as they wind up. Time it on the flash.", "done": "ankle_breaker"},
-  {"id": "shoot", "prompt": "Shoot at the crate hoop: hold Shoot, release at the top of the meter.", "done": "crate_make"},
-  {"id": "strip", "prompt": "Strip: when they swing, press Hands Up (LB / Q) on the cue.", "done": "strip"},
-  {"id": "quarter_water", "prompt": "Drink a Quarter Water (D-pad up / R) to heal.", "done": "qw_used"},
+  {"id": "walk_up", "prompt": "Walk up to the court: move with {move}.", "done": "reach_court"},
+  {"id": "call_next", "prompt": "Press {interact} to call \"I got next.\"", "done": "called_next"},
+  {"id": "move", "prompt": "Move with {move}. Hold {dodge} while moving to sprint.", "done": "moved"},
+  {"id": "strike", "prompt": "Dribble strike: walk up to a crew member and press {light}.", "done": "strike"},
+  {"id": "crossover", "prompt": "Crossover: while holding the ball, move and tap {dodge}.", "done": "crossover"},
+  {"id": "ankle", "prompt": "Ankle-breaker: tap {dodge} right as a defender winds up. Time it on the flash.", "done": "ankle_breaker"},
+  {"id": "shoot", "prompt": "Shoot at the crate hoop: hold {shoot}, release at the top of the meter.", "done": "crate_make"},
+  {"id": "strip", "prompt": "Strip: when they swing at you, press {hands_up} on the cue.", "done": "strip"},
+  {"id": "quarter_water", "prompt": "Heal: press {quarter_water} to drink a Quarter Water.", "done": "qw_used"},
   {"id": "cameo", "prompt": "...", "done": "cameo_done"}
  ],
  "lines": {

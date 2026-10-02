@@ -124,3 +124,11 @@ func _on_main(id: String, slot: int) -> void:
 			SettingsMenu.open(self, open_main)
 		"quit":
 			get_tree().quit()
+
+
+func setup_render_smoke(entry: Dictionary) -> void:
+	## Render smoke: "controls" opens Settings -> Controls over the title.
+	if JU.s(entry, "mode") == "controls":
+		ready.connect(func() -> void:
+			SettingsMenu.open(self, open_main)
+			RemapMenu.open(self, open_main, 4), CONNECT_DEFERRED)

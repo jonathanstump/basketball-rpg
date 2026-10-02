@@ -16,7 +16,8 @@ func _ready() -> void:
 	bg.size = Vector2(800, 200)
 	add_child(bg)
 	var l: Label = Label.new()
-	l.text = "PRESS A KEY OR BUTTON FOR\n%s\n(Esc to cancel)" % action.replace("_", " ").to_upper()
+	l.text = "PRESS A KEY OR BUTTON FOR\n%s\nnow: %s | %s   (Esc to cancel)" % [InputPrompts.display_name(action).to_upper(),
+		_or_dash(InputRouter.glyph(action, "keyboard")), _or_dash(InputRouter.glyph(action, "pad"))]
 	l.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	l.add_theme_font_override("font", UIFonts.title())
 	l.add_theme_font_size_override("font_size", 30)
@@ -35,3 +36,7 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventKey or event is InputEventJoypadButton or event is InputEventMouseButton:
 		get_viewport().set_input_as_handled()
 		done.emit(event)
+
+
+static func _or_dash(s: String) -> String:
+	return s if s != "" else "-"

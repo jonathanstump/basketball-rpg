@@ -91,6 +91,15 @@ func _refresh() -> void:
 		_detail.text = tr(str(options[index].get("detail", "")))
 
 
+func select(i: int) -> void:
+	## Put the cursor on option i (e.g. back where it was after a sub-menu).
+	if options.is_empty():
+		return
+	index = clampi(i, 0, options.size() - 1)
+	if is_inside_tree():
+		_refresh()
+
+
 func move(delta_i: int) -> void:
 	if options.is_empty():
 		return
