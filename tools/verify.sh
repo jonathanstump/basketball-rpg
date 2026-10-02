@@ -12,11 +12,21 @@ GODOT="${GODOT:-godot}"
 PROBLEMS=0
 ERR_RE='^[[:space:]]*(SCRIPT ERROR|USER ERROR|ERROR|SHADER ERROR):'
 TMP_OUT="$(mktemp)"
+CUR_PID=""
+# Never leave Godot running: on exit or interrupt, stop the current child
+# (timeout forwards TERM to Godot; on Windows the console wrapper takes the
+# real Godot down with it).
+cleanup() { [ -n "$CUR_PID" ] && kill "$CUR_PID" 2>/dev/null; rm -f "$TMP_OUT"; }
+trap cleanup EXIT
+trap 'cleanup; exit 130' INT TERM HUP
 
 run_godot() { # timeout_s args...
 	local t="$1"; shift
-	timeout "$t" "$GODOT" "$@" > "$TMP_OUT" 2>&1
+	timeout "$t" "$GODOT" "$@" > "$TMP_OUT" 2>&1 &
+	CUR_PID=$!
+	wait "$CUR_PID"
 	local code=$?
+	CUR_PID=""
 	sed -i 's/\x1b\[[0-9;]*m//g' "$TMP_OUT"
 	return $code
 }

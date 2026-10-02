@@ -44,6 +44,7 @@ func run(m: MapData, w: SimWorld, b: BallSystem, root: Node3D) -> Dictionary:
 	KitProps.batcher = null
 	if parent != null:
 		layout["draw_groups"] = batcher.flush(parent)
+	layout["view_groups"] = batcher.max_view_groups()
 	layout["hash"] = geometry_hash()
 	layout["batched"] = batcher.count
 	return layout

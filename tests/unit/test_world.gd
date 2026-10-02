@@ -11,7 +11,7 @@ func test_lint_all_maps() -> void:
 	var ids: PackedStringArray = MapParser.list_maps()
 	assert_gt(ids.size(), 0)
 	for id: String in ids:
-		var errs: PackedStringArray = MapLinter.lint(MapParser.load_map(id))
+		var errs: PackedStringArray = MapLinter.lint(MapParser.load_map(str(id)))
 		assert_eq(errs.size(), 0, "%s: %s" % [id, errs])
 
 
@@ -71,7 +71,7 @@ func test_builder_layout_contents() -> void:
 	assert_eq((lay["shortcuts"] as Array).size(), 2)
 	assert_eq((lay["secrets"] as Array).size(), 1)
 	assert_gt((lay["spawns"] as Array).size(), 8)
-	assert_lt(int(lay["draw_groups"]), 1200, "draw-call budget (x2 for outlines < 2,500)")
+	assert_lt(int(lay["view_groups"]), 1200, "draw-call budget per camera view (x2 for outlines < 2,500)")
 
 
 func test_build_time_budget() -> void:
@@ -187,3 +187,14 @@ func test_bodega_rest_and_punch_card() -> void:
 	assert_true(BodegaService.punch_card_trade())
 	assert_eq(GameState.quarter_water_max, before + 1)
 	assert_false(BodegaService.punch_card_trade(), "no cards left")
+
+
+func test_every_district_build_and_draw_budget() -> void:
+	## §15.17 across the whole city: build < 3 s, busiest camera window fits.
+	for id: Variant in WorldIndex.all().keys():
+		var t0: int = Time.get_ticks_msec()
+		var lay: Dictionary = _build(MapParser.load_map(str(id)))
+		var ms: int = Time.get_ticks_msec() - t0
+		gut.p("BUDGET %s build_ms=%d view_groups=%d" % [id, ms, int(lay["view_groups"])])
+		assert_lt(ms, 3000, "%s builds in < 3 s" % id)
+		assert_lt(int(lay["view_groups"]), 1200, "%s draw budget" % id)

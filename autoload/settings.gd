@@ -32,7 +32,15 @@ var persist: bool = true
 
 func _ready() -> void:
 	values = DEFAULTS.duplicate(true)
+	var first_boot: bool = not FileAccess.file_exists(PATH)
 	load_settings()
+	if first_boot and is_steam_deck():
+		## Deck preset auto-selected on Steam Deck (spec §16 M14, §15.17).
+		values["quality"] = "deck"
+
+
+static func is_steam_deck() -> bool:
+	return OS.get_environment("SteamDeck") == "1"
 
 
 func get_value(key: String) -> Variant:

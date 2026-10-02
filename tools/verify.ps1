@@ -11,6 +11,8 @@ $Godot = $env:GODOT
 if (-not $Godot -and (Test-Path "$Root/tools/.godot_path")) { $Godot = (Get-Content "$Root/tools/.godot_path" -Raw).Trim() }
 if (-not $Godot) { $Godot = 'godot' }
 
+. "$PSScriptRoot/proc_guard.ps1"   # Godot children die with this script (no orphans)
+
 $script:Problems = 0
 $Ansi = [regex]'\x1b\[[0-9;]*m'
 $ErrLine = [regex]'(?m)^\s*(SCRIPT ERROR|USER ERROR|ERROR|SHADER ERROR):'
@@ -20,9 +22,9 @@ function Invoke-Godot([string[]]$GArgs, [int]$TimeoutSec = 900) {
     $err = [IO.Path]::GetTempFileName()
     $p = Start-Process -FilePath $Godot -ArgumentList $GArgs -NoNewWindow -PassThru `
         -RedirectStandardOutput $out -RedirectStandardError $err
-    $null = $p.Handle
+    Add-GuardedProcess $p
     $timedOut = $false
-    if (-not $p.WaitForExit($TimeoutSec * 1000)) { $p.Kill(); $timedOut = $true }
+    if (-not $p.WaitForExit($TimeoutSec * 1000)) { Stop-ProcessTree $p; $timedOut = $true }
     $p.WaitForExit()
     $text = (Get-Content $out -Raw) + "`n" + (Get-Content $err -Raw)
     Remove-Item $out, $err -ErrorAction SilentlyContinue
@@ -101,8 +103,10 @@ if ($Full) {
     $verShort = ($ver.Out.Trim() -split '\.')[0..3] -join '.'
     $tplDir = Join-Path $env:APPDATA "Godot/export_templates/$verShort"
     if ((Test-Path "$tplDir/windows_release_x86_64.exe") -and (Test-Path "$tplDir/linux_release.x86_64")) {
-        & powershell -ExecutionPolicy Bypass -File "$Root/tools/export.ps1" -DryRun
-        if ($LASTEXITCODE -ne 0) { Fail "export dry run" } else { Write-Host "  ok  export dry run" }
+        $ex = Start-Process powershell -ArgumentList @('-ExecutionPolicy', 'Bypass', '-File', "`"$Root/tools/export.ps1`"", '-DryRun') -NoNewWindow -PassThru
+        Add-GuardedProcess $ex
+        $ex.WaitForExit()
+        if ($ex.ExitCode -ne 0) { Fail "export dry run" } else { Write-Host "  ok  export dry run" }
     }
     else { Write-Host "  WARNING: export templates not installed at $tplDir; export dry run skipped" }
 }

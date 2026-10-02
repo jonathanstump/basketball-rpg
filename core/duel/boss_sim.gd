@@ -53,8 +53,27 @@ static func run(boss_id: String, tier: int, opts: Dictionary = {}) -> Dictionary
 		"phases_seen": phases_seen.keys(), "state": ctl.duel.state, "stats": ctl.stats.duplicate(),
 		"events": _counts(sim.events),
 	}
+	var hits: Array[float] = _hits_on(sim.events, p.actor.id, p.actor.hp_max)
+	out["player_hits"] = hits.size()
+	out["hits_to_kill"] = (float(hits.size()) / maxf(0.0001, _sum(hits))) if not hits.is_empty() else 0.0
 	sim.dispose()
 	return out
+
+
+static func _hits_on(events: Array[Dictionary], target_id: int, hp_max: float) -> Array[float]:
+	## Damage (as a fraction of max HP) of each clean hit the player took.
+	var out: Array[float] = []
+	for e: Dictionary in events:
+		if str(e["type"]) == "hit_resolved" and int(e.get("target", -1)) == target_id and str(e.get("result", "")) == "hit" and float(e.get("damage", 0.0)) > 0.0:
+			out.append(float(e["damage"]) / maxf(1.0, hp_max))
+	return out
+
+
+static func _sum(xs: Array[float]) -> float:
+	var t: float = 0.0
+	for x: float in xs:
+		t += x
+	return t
 
 
 static func _counts(events: Array[Dictionary]) -> Dictionary:

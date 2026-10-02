@@ -88,5 +88,8 @@ static func moon_light(id: String) -> DirectionalLight3D:
 	l.light_color = JU.color(p.get("moon_light"))
 	l.light_energy = JU.f(p, "moon_energy", 0.25)
 	l.shadow_enabled = l.light_energy > 0.2
+	## Top-down camera: only nearby casters matter (draw-call budget, §15.17).
+	l.directional_shadow_max_distance = 45.0
+	l.directional_shadow_mode = DirectionalLight3D.SHADOW_PARALLEL_2_SPLITS
 	l.rotation_degrees = Vector3(-72, 30, 0)
 	return l

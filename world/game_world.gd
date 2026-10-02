@@ -234,6 +234,8 @@ func _on_sim_event(ev: Dictionary) -> void:
 				add_child(ev_view)
 				views[ea.id] = ev_view
 		"enemy_defeated":
+			if str(ev.get("enemy", "")) == "bootleg":
+				GameState.bump_counter("bootlegs")
 			GameState.add_rep(PlayerBuild.reward_rep(int(ev["rep"])))
 			GameState.add_tokens(PlayerBuild.reward_tokens(int(ev["tokens"])))
 			for drop: String in (ev["drops"] as PackedStringArray):

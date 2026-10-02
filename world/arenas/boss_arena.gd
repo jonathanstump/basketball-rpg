@@ -15,6 +15,7 @@ var layout: Dictionary = {}
 var boss_bar: BossBar
 var court: MeshInstance3D = null
 var finished: bool = false
+var qw_used: bool = false
 var return_to: Dictionary = {}
 
 
@@ -109,7 +110,15 @@ func _on_sim_event(ev: Dictionary) -> void:
 			camera_rig.punch_in()
 			GameState.bump_counter("posters")
 		"duel_won":
+			var st: Dictionary = ev.get("stats", {})
+			if int(st.get("best_streak", 0)) > GameState.counter("best_streak"):
+				GameState.counters["best_streak"] = int(st["best_streak"])
+			if JU.s(boss_data, "kind") == "king" and not qw_used:
+				GameState.set_flag("dry_king")
 			_victory(ev)
+		"qw_used":
+			if player != null and int(ev.get("actor", 0)) == player.id:
+				qw_used = true
 		"t5_event":
 			boss_bar.show_banner(JU.s(DataDB.move(boss_id, str(ev["move"])), "name", "T5").to_upper() + "!", 1.6)
 		_:

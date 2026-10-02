@@ -32,7 +32,9 @@ static func building(parent: Node3D, col: WorldCollision, center: Vector3, size:
 	## Generic massing box with the window-light facade shader.
 	var mi: MeshInstance3D = null
 	if batcher != null:
-		batcher.add_at(MeshLib.box(Vector3.ONE), ToonMaterials.facade(wall, seed_value, lit), center + Vector3(0, size.y * 0.5, 0), Vector3.ZERO, size)
+		# Window cells already hash on world position, so batched lots share a
+		# few seed buckets (fewer MultiMesh groups / shadow draws, §15.17).
+		batcher.add_at(MeshLib.box(Vector3.ONE), ToonMaterials.facade(wall, float(int(absf(seed_value)) % 3), snappedf(lit, 0.1)), center + Vector3(0, size.y * 0.5, 0), Vector3.ZERO, size)
 	else:
 		mi = _mesh(parent, MeshLib.box(size), ToonMaterials.facade(wall, seed_value, lit), center + Vector3(0, size.y * 0.5, 0))
 		mi.name = "Building"

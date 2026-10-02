@@ -63,6 +63,8 @@ func on_event(ev: Dictionary) -> void:
 				_popup(GRADE_TEXT[g][0], at, GRADE_TEXT[g][1])
 				if str(ev.get("zone", "")) in ["three", "deep"]:
 					GameState.bump_counter("threes")
+				if g == "PERFECT":
+					GameState.bump_counter("perfects")
 			var hv: HoopView = hoop_views.get(str(ev["hoop"]), null)
 			if hv != null:
 				hv.on_make()

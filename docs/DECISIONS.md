@@ -168,3 +168,25 @@ Spec §11.3 lists L60 = 46,626 but `floor(100 × 60^1.5 + 150)` = 46,625 (every 
   - Toggle-guard mode when "Hold to guard" is off.
   - Invert-Y drives a new vertical look offset (mouse and `cam_up`/`cam_down`).
   - Full remapping UI (Settings → Controls), stored in `remaps` in the input_map.json spec format. Keyboard and pad bindings are separate, and prompt glyphs follow the last-used device.
+
+## M14 — Steam & release candidate
+- **GodotSteam is not vendored.** The GDExtension is a binary download that needs network access and a Steam app ID, so it isn't in the repo. `SteamService` checks `Engine.has_singleton("Steam")`; when the singleton is missing, every call becomes a no-op. Unlocks are mirrored to `user://achievements.json` (skipped under GUT), and rich presence is kept in memory. Tests cover the fallback. Shipping on Steam means dropping GodotSteam into `addons/` and setting the app ID. `# TODO(spec §15.18)`.
+- **Achievements** live in `AchievementRules`, a child of SteamService. Counter and state achievements come from the pure `evaluate()` over GameState; it is re-checked on crown, chain, box, rest, bucket, district and boss events. `ACH_TIER5_FIRST` is set when a run's first King kill happens in a Tier ≥ 5 borough. Added counters: `perfects`, `best_streak`, `bootlegs`, `takeovers`.
+- **Steam Deck detection:** the `SteamDeck=1` environment variable (set by SteamOS). On first boot only, before any saved quality setting exists, the Deck preset is chosen.
+- **Export templates are not installed on this machine** (`%APPDATA%/Godot/export_templates/4.7.2.stable` is missing), so the export dry run is a logged manual step. verify prints a WARNING and skips it. `export_presets.cfg` (Windows Desktop and Linux) and `tools/export.ps1`/`.sh` are in place, and README explains how to install the templates.
+- **Draw-call budget (§15.17).**
+  - `MeshBatcher` groups by (mesh, material, 32 m chunk) instead of (mesh, material). District-wide MultiMeshes had defeated culling: each of the 4 shadowed omnis re-drew every group, giving about 5,100 draw calls in Bed-Stuy.
+  - Omni shadows use dual-paraboloid mode (2 passes instead of 6).
+  - Ground planes and clutter under 1.2 m don't cast shadows.
+  - Batched facades share 3 seed buckets, since window cells already hash on world position.
+  - Result: districts measure 241–709 draw calls and arenas 336–687, with ≤ 23 visible lights.
+  - The test_world budget assertion now measures groups in the busiest 3×3-chunk camera window (`view_groups`), not the district total. The threshold (1,200 × 2 outline passes < 2,500) is unchanged.
+- **LightBudget** scans OmniLights under its parent node rather than `current_scene`, which is null in tools. It rescans every 16 refreshes and caps visible lights at the quality preset's `max_lights` (low 16, deck 24, high/ultra 31; plus the moon gives ≤ 32). Moon shadow distance is 45 m with 2 splits.
+- **Balancing pass:** `tests/qa/qa_balance.gd` runs every boss through the boss sim (QA bot, seed 2, god mode) at Tiers 1/3/5 for borough bosses, 6 for landmarks and 7 for the finals. It writes `docs/BALANCE.md`. Results 0.5×–1.5× outside the §11.6 windows are flagged `REVIEW` and not auto-tuned, because the bot is not a human player. The QA script fails if fewer than half are in range or any sim is lost.
+- **Pre-baked districts** (optional in the spec) are deferred. Every district builds in under 3 s, which is tested for Bed-Stuy.
+- **GPU frame rate** (60 fps on GTX 1060 / RX 580, 40–60 fps on Deck) can't be measured headless or on this machine's GPU class. It is a manual step on target hardware.
+- **Tool scripts never orphan Godot.**
+  - The Windows console binary is a wrapper that spawns the real `Godot_*.exe` as a child. `Start-Process` children are not tied to their parent, so when verify was killed mid-run (by an out-of-memory reaper), the wrapper and the real Godot kept running as orphans (reproduced).
+  - `tools/proc_guard.ps1` puts every Godot that verify.ps1 or export.ps1 starts into a kill-on-close Job Object owned by the script, so the OS kills the whole tree when the script exits for any reason. Timeouts use `taskkill /T`. Both paths are tested: 0 Godot processes remain.
+  - verify.sh tracks the current child and kills it from an EXIT/INT/TERM trap.
+  - Verify only ever runs one Godot process at a time.

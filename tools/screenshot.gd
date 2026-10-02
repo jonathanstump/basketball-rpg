@@ -38,6 +38,24 @@ func _run() -> void:
 		var file: String = out_dir.path_join(JU.s(entry, "name", "shot") + ".png")
 		img.save_png(file)
 		print("RENDER SHOT %s (%dx%d)" % [file, img.get_width(), img.get_height()])
+		if OS.get_environment("CC_SHADOW_DEBUG") == "1":
+			var tally: Dictionary = {}
+			for g: Node in inst.find_children("*", "GeometryInstance3D", true, false):
+				var gi: GeometryInstance3D = g
+				if gi.is_visible_in_tree() and gi.cast_shadow != GeometryInstance3D.SHADOW_CASTING_SETTING_OFF:
+					var k: String = "%s %s" % [gi.get_class(), str(gi.get_parent().name)]
+					tally[k] = int(tally.get(k, 0)) + 1
+			for k: Variant in tally.keys():
+				if int(tally[k]) >= 5:
+					print("CASTERS %s %d" % [k, int(tally[k])])
+		var lights: int = 0
+		for n: Node in inst.find_children("*", "Light3D", true, false):
+			if (n as Light3D).visible:
+				lights += 1
+		print("RENDER STATS %s draw_calls=%d objects=%d lights=%d vram_mb=%.0f static_mb=%.0f fps_frame_ms=%.2f" % [JU.s(entry, "name"),
+			int(Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME)), int(Performance.get_monitor(Performance.RENDER_TOTAL_OBJECTS_IN_FRAME)),
+			lights, Performance.get_monitor(Performance.RENDER_VIDEO_MEM_USED) / 1048576.0, Performance.get_monitor(Performance.MEMORY_STATIC) / 1048576.0,
+			Performance.get_monitor(Performance.TIME_PROCESS) * 1000.0])
 		shot_count += 1
 		inst.queue_free()
 		await process_frame
