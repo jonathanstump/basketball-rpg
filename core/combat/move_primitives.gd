@@ -112,6 +112,10 @@ static func frame(r: MoveRunner) -> void:
 			r.actor.flags["showboat"] = r.in_active() or r.frame <= r.startup()
 			if r.frame == r.total - 1:
 				r.actor.flags["showboat"] = false
+				if JU.f(m, "heal_pct") > 0.0:
+					## e.g. the Rat King eating a slice (strip the showboat to deny it).
+					r.actor.hp = minf(r.actor.hp_max, r.actor.hp + r.actor.hp_max * JU.f(m, "heal_pct"))
+					r.world.emit("boss_healed", {"actor": r.actor.id, "pct": JU.f(m, "heal_pct")})
 				if JU.f(m, "buff_mult") > 0.0:
 					## e.g. Chest Pound: a finished showboat buffs damage for a while.
 					r.actor.flags["buff_mult"] = JU.f(m, "buff_mult")

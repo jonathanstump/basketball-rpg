@@ -248,6 +248,13 @@
       "scene": "res://world/district.tscn",
       "frames": 60,
       "district": "up_mecca"
+    },
+    {
+      "name": "boss_opt_ratking",
+      "scene": "res://world/arenas/boss_arena.tscn",
+      "frames": 180,
+      "boss": "opt_ratking",
+      "tier": 1
     }
   ]
 }

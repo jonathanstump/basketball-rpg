@@ -39,6 +39,18 @@ static func register(d: District) -> void:
 		var scd: Dictionary = sc
 		if not bool(scd["open"]):
 			d.interact.add(JU.s(scd, "id"), "shortcut", scd["pos"], "Kick down the ladder" if JU.s(scd, "kind") == "ladder" else "Unlatch the gate", scd, 3.2)
+	if lay.has("lost_cat"):
+		var lc: Dictionary = lay["lost_cat"]
+		d.interact.add("lost_cat", "lost_cat", lc["pos"], "Pick up %s" % JU.s(lc, "cat"), lc, 2.0)
+		var cat: MeshInstance3D = MeshInstance3D.new()
+		cat.name = "LostCat"
+		cat.mesh = MeshLib.sphere(0.25)
+		cat.material_override = ToonMaterials.toon(Color("#E8913A"))
+		cat.position = (lc["pos"] as Vector3) + Vector3(0, 0.25, 0)
+		d.level_root.add_child(cat)
+	for sp: Variant in JU.a(lay, "specials"):
+		var spd: Dictionary = sp
+		d.interact.add("special_" + JU.s(spd, "kind"), "special", spd["pos"], JU.s(spd, "name", "Look closer"), spd, 2.4)
 	for se: Variant in JU.a(lay, "secrets"):
 		var sed: Dictionary = se
 		d.interact.add(JU.s(sed, "id") + "_a", "secret", sed["a"], "Climb", {"to": sed["b"]}, 1.6)
@@ -74,6 +86,19 @@ static func trigger(d: District, it: Dictionary) -> void:
 				EventBus.dialogue_requested.emit(JU.s(data, "name"), JU.strs(data, "lines"))
 		"shortcut":
 			shortcut(d, str(it["id"]), data)
+		"lost_cat":
+			if Questlines.find_lost_cat():
+				EventBus.dialogue_requested.emit(JU.s(data, "cat"), PackedStringArray(["(The cat purrs and climbs onto your shoulder. Time to go home.)", "(Back at the bodega, the owner presses something into your hand: a Nine Lives flash sheet.)"]))
+				EventBus.popup_text.emit("NINE LIVES FLASH", d.player.pos, "style")
+				d.interact.remove("lost_cat")
+				var cm: Node = d.level_root.get_node_or_null("LostCat")
+				if cm != null:
+					cm.queue_free()
+				SaveSystem.request_autosave()
+		"special":
+			match JU.s(data, "kind"):
+				"boss_tunnel":
+					SceneRouter.goto_arena(JU.s(data, "boss"), {"district": d.district_id, "arrive": {"kind": "pos", "pos": [d.player.pos.x, d.player.pos.y, d.player.pos.z]}})
 		"secret":
 			d.player.pos = JU.vec3(data["to"]) + Vector3(0.8, 0.2, 0)
 			d.camera_rig.snap()

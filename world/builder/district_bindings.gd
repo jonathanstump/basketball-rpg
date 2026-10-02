@@ -24,6 +24,7 @@ static func collect(bb: BoroughBuilder) -> void:
 		var npc: Dictionary = _dict(m.bound("n", k))
 		(lay["npcs"] as Array).append({"id": JU.s(npc, "id", "%s_npc_%d" % [m.id, k]), "name": JU.s(npc, "name", "Neighbor"), "lines": JU.strs(npc, "lines"), "pos": m.world_pos(c3, BoroughBuilder.CURB_H), "look": JU.dict(npc, "look"), "challenger": JU.dict(npc, "challenger")})
 		k += 1
+	_quest_extras(m, lay)
 	k = 0
 	for c4: Vector2i in m.cells_of(">"):
 		var cr: Dictionary = _dict(m.bound(">", k))
@@ -155,3 +156,30 @@ static func _graffiti(bb: BoroughBuilder) -> void:
 		var wall: Vector3 = cd["wall"]
 		var pos: Vector3 = m.world_pos(cd["tile"], BoroughBuilder.CURB_H) + wall * (MapData.TILE * 0.5 - 0.05)
 		(bb.layout["tags"] as Array).append({"id": "%s_tag_%d" % [m.id, i], "text": texts[i], "pos": pos, "wall": wall})
+
+
+static func _quest_extras(m: MapData, lay: Dictionary) -> void:
+	## Questline actors placed at load (spec §3.5): Deuce by the station when a
+	## duel is due; the lost cat in an alley; authored "specials" (tunnels).
+	var anchor: Vector3 = lay["start"]
+	if not JU.a(lay, "stations").is_empty():
+		anchor = (JU.a(lay, "stations")[0] as Dictionary)["pos"]
+	var n: int = Questlines.next_deuce()
+	if n > 0:
+		var deuce: Dictionary = Questlines.deuce_npc(n)
+		deuce["pos"] = anchor + Vector3(-2.5, 0, 1.5)
+		(lay["npcs"] as Array).append(deuce)
+	var lc: Dictionary = Questlines.lost_cat()
+	if not lc.is_empty() and not bool(lc.get("found", false)) and JU.s(lc, "district") == m.id:
+		var spot: Vector3 = anchor + Vector3(2.5, 0, 2.5)
+		var alleys: Array[Vector2i] = m.cells_of("L")
+		alleys.append_array(m.cells_of("g"))
+		if not alleys.is_empty():
+			spot = m.world_pos(alleys[0] + Vector2i(0, 2), BoroughBuilder.CURB_H)
+		lay["lost_cat"] = {"pos": spot, "cat": JU.s(lc, "cat")}
+	lay["specials"] = []
+	for sp: Variant in JU.a(m.side, "specials"):
+		var sd: Dictionary = sp
+		var tile: Array = JU.a(sd, "tile")
+		(lay["specials"] as Array).append({"kind": JU.s(sd, "kind"), "name": JU.s(sd, "name"), "boss": JU.s(sd, "boss"),
+			"pos": m.world_pos(Vector2i(int(tile[0]), int(tile[1])), BoroughBuilder.CURB_H)})

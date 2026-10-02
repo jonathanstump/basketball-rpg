@@ -181,6 +181,8 @@ func counter_menu() -> void:
 	]
 	if GameState.has_flag("lost_and_found"):
 		opts.append({"id": "lost", "label": "Lost & Found", "detail": "The cat was sitting on your ball the whole time."})
+	if Questlines.pops_lesson_ready():
+		opts.append({"id": "pops", "label": "Pops: Old Head Lesson", "detail": "Pops has a move to show you. One per Crown."})
 	opts.append({"id": "leave", "label": "Done"})
 	_open_menu(ListMenu.new(), "COUNTER", opts, _on_counter)
 
@@ -194,6 +196,14 @@ func _open_menu(m: ListMenu, title: String, opts: Array[Dictionary], handler: Ca
 
 func _on_counter(id: String) -> void:
 	match id:
+		"pops":
+			var mv: String = Questlines.take_pops_lesson()
+			if mv != "":
+				var name: String = JU.s(DataDB.item("bag_moves", mv), "name", mv)
+				EventBus.dialogue_requested.emit("Pops", PackedStringArray(["Watch close. I only show this once.", "That's %s. Equip it at any counter." % name] + (["...Five Crowns. Meet me at your home court. One more run, for old times' sake."] if GameState.has_flag("pops_one_more_run") else [])))
+				EventBus.popup_text.emit("LEARNED " + name.to_upper(), player.pos, "style")
+				SaveSystem.request_autosave()
+			close_menu()
 		"train":
 			TrainMenu.open(self)
 		"travel":

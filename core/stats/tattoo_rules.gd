@@ -6,7 +6,9 @@ extends RefCounted
 
 
 static func slots() -> int:
-	return mini(7, 2 + GameState.crowns.size())
+	## 2 + one per Crown, max 7. In NG+ Crowns reset but ink stays, so the
+	## slots you already filled stay open.
+	return mini(7, maxi(2 + GameState.crowns.size(), GameState.tattoos.size()))
 
 
 static func free_slots() -> int:

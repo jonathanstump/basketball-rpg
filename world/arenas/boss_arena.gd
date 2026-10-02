@@ -29,6 +29,9 @@ func _ready() -> void:
 	setup_world(region if DataDB.has_item("environments", region) else "city")
 	if tier <= 0:
 		tier = TierManager.tier_of(region)
+		## Optional bosses between boroughs use the higher tier (spec §9.3 opt_ratking).
+		for r: String in JU.strs(boss_data, "tier_regions"):
+			tier = maxi(tier, TierManager.tier_of(r))
 	layout = ArenaBuilder.build(sim, balls, boss_data, level_root)
 	var hoop: SimHoop = layout["hoop"]
 	presenter.add_hoop_view(hoop)

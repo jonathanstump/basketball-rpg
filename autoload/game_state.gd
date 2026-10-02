@@ -83,6 +83,24 @@ func new_run(arch_id: String, start: String, prof: Dictionary = {}) -> void:
 	state_reset.emit()
 
 
+func start_ng_plus() -> void:
+	## "Run It Back+" (spec §5.8): keep gear, stats, tattoos, levels, Bag
+	## Moves and quest rewards; Crowns, Garden stubs, bosses and the world
+	## reset; every tier +2 (cap 7) and ×1.3 multipliers per cycle.
+	ng_cycle += 1
+	crowns = PackedStringArray()
+	garden_tickets = PackedStringArray()
+	defeated_bosses = PackedStringArray()
+	opened_boxes = PackedStringArray()
+	chains = []
+	for k: Variant in flags.keys():
+		var key: String = str(k)
+		if key.begins_with("killed_") or key.begins_with("shortcut_") or key.begins_with("seen_court_") or key == "lost_and_found":
+			flags.erase(k)
+	quarter_waters = quarter_water_max
+	EventBus.quest_flag_set.emit("ng_plus_%d" % ng_cycle)
+
+
 func stat(name: String) -> int:
 	return int(stats.get(name, 10))
 

@@ -23,7 +23,10 @@ static func open(it: Interior) -> void:
 	var opts: Array[Dictionary] = []
 	match it.kind:
 		"plug":
-			opts = [{"id": "buy", "label": "Buy"}, {"id": "sell", "label": "Sell"}]
+			opts = [{"id": "buy", "label": "Buy"}, {"id": "sell", "label": "Sell"},
+				{"id": "grail", "label": "Grail Hunt (%d/%d)" % [mini(Questlines.grails_found(), Questlines.GRAILS_NEEDED), Questlines.GRAILS_NEEDED],
+					"detail": "Bring me proof you opened all five Grail boxes and I'll hook you up with something nobody has." if not GameState.has_flag("grail_hunt_done") else "You already got the Golden Hours. Wear 'em proud.",
+					"enabled": Questlines.grail_reward_ready()}]
 		"pump_grip":
 			opts = [{"id": "buy", "label": "Buy"}, {"id": "upgrade", "label": "Upgrade a ball"}, {"id": "sell", "label": "Sell"}]
 		"ink_needle":
@@ -34,6 +37,12 @@ static func open(it: Interior) -> void:
 
 static func _on_main(it: Interior, id: String) -> void:
 	match id:
+		"grail":
+			if Questlines.claim_grail_reward():
+				EventBus.popup_text.emit("GOLDEN HOUR!", it.player.pos, "big")
+				EventBus.dialogue_requested.emit("The Plug", PackedStringArray(["Five Grails. FIVE. You're a legend, kid.", "Golden Hours. One pair in the whole city. They're yours."]))
+				SaveSystem.request_autosave()
+			it.close_menu()
 		"buy":
 			_buy(it, ShopLogic.plug_stock(region()) if it.kind == "plug" else ShopLogic.pump_stock())
 		"sell":

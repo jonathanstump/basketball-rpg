@@ -6,6 +6,9 @@ extends RefCounted
 
 
 static func rest(bodega_id: String) -> void:
+	if Questlines.maybe_start_lost_cat(bodega_id):
+		var lc: Dictionary = Questlines.lost_cat()
+		EventBus.dialogue_requested.emit("Bodega owner", PackedStringArray(["Have you seen %s? Gone since last night." % JU.s(lc, "cat"), "Somebody said they heard meowing over in %s. In an alley." % WorldIndex.district_name(JU.s(lc, "district"))]))
 	GameState.quarter_waters = GameState.quarter_water_max
 	GameState.flags["hp_ratio"] = 1.0
 	GameState.respawn_bodega = bodega_id

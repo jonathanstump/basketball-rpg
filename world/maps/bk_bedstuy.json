@@ -140,6 +140,17 @@
   "%": "bootleg",
   "w": "bk_wire"
  },
+ "specials": [
+  {
+   "kind": "boss_tunnel",
+   "boss": "opt_ratking",
+   "tile": [
+    60,
+    32
+   ],
+   "name": "A sewer grate... something smells like pizza"
+  }
+ ],
  "graffiti": [
   "try crossing over",
   "she sees everything",

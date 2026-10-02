@@ -1,0 +1,253 @@
+{
+ "moves": [
+  {
+   "id": "rat_swarm",
+   "name": "Rat Swarm",
+   "primitive": "summon",
+   "summon": "rat",
+   "count": 5,
+   "duration_s": 15,
+   "startup": 30,
+   "active": 2,
+   "recovery": 24,
+   "damage": 0,
+   "weight": 2,
+   "cooldown_s": 14,
+   "min_tier": 1,
+   "range_m": [
+    0,
+    30
+   ],
+   "possession": "any"
+  },
+  {
+   "id": "tail_whip",
+   "name": "Tail Whip",
+   "primitive": "melee_arc",
+   "body_attack": true,
+   "startup": 18,
+   "active": 10,
+   "recovery": 24,
+   "damage": 45,
+   "parry": "deflect",
+   "hitbox": {
+    "shape": "arc",
+    "radius": 4.0,
+    "angle": 200,
+    "height": 1.6
+   },
+   "hit_weight": "medium",
+   "weight": 4,
+   "cooldown_s": 3,
+   "range_m": [
+    0,
+    4.5
+   ],
+   "min_tier": 1,
+   "possession": "any"
+  },
+  {
+   "id": "pile_crush",
+   "name": "Pile Crush",
+   "primitive": "slam_circle",
+   "body_attack": true,
+   "startup": 34,
+   "active": 6,
+   "recovery": 34,
+   "damage": 90,
+   "parry": "none",
+   "knockdown": true,
+   "hitbox": {
+    "shape": "circle",
+    "radius": 3.6,
+    "forward": 1.2,
+    "height": 2.5
+   },
+   "hit_weight": "heavy",
+   "weight": 3,
+   "cooldown_s": 5,
+   "range_m": [
+    0,
+    5
+   ],
+   "min_tier": 1,
+   "possession": "any"
+  },
+  {
+   "id": "cheese_throw",
+   "name": "Crust Throw",
+   "primitive": "projectile",
+   "startup": 24,
+   "active": 40,
+   "recovery": 24,
+   "damage": 35,
+   "parry": "deflect",
+   "spread": 2,
+   "spread_deg": 14,
+   "projectile": {
+    "speed": 16,
+    "range": 18,
+    "homing": 0.05
+   },
+   "hit_weight": "light",
+   "weight": 3,
+   "cooldown_s": 4,
+   "range_m": [
+    3,
+    18
+   ],
+   "min_tier": 1,
+   "possession": "any"
+  },
+  {
+   "id": "eat_slice",
+   "name": "Eat a Slice",
+   "primitive": "showboat",
+   "heal_pct": 0.06,
+   "startup": 8,
+   "active": 110,
+   "recovery": 8,
+   "damage": 0,
+   "weight": 2,
+   "cooldown_s": 14,
+   "possession": "any",
+   "min_tier": 1,
+   "range_m": [
+    0,
+    30
+   ]
+  },
+  {
+   "id": "gnaw_rush",
+   "name": "Gnaw Rush",
+   "primitive": "charge_lane",
+   "body_attack": true,
+   "startup": 22,
+   "active": 24,
+   "recovery": 24,
+   "damage": 55,
+   "parry": "none",
+   "lunge_m": 10.0,
+   "hitbox": {
+    "shape": "box",
+    "length": 2.2,
+    "width": 2.6,
+    "height": 1.8
+   },
+   "hit_weight": "medium",
+   "min_tier": 2,
+   "weight": 3,
+   "cooldown_s": 6,
+   "range_m": [
+    3,
+    13
+   ],
+   "possession": "any"
+  },
+  {
+   "id": "whole_pie",
+   "name": "The Whole Pie",
+   "primitive": "arena_event",
+   "event": "whole_pie",
+   "body_attack": true,
+   "unblockable": true,
+   "startup": 40,
+   "active": 2,
+   "recovery": 30,
+   "damage": 70,
+   "parry": "none",
+   "pattern": {
+    "kind": "grid",
+    "count": 16,
+    "spread_m": 7.0,
+    "delay_s": 1.4,
+    "stagger_s": 0.05
+   },
+   "hitbox": {
+    "shape": "circle",
+    "radius": 1.3,
+    "height": 2.0
+   },
+   "knockdown": true,
+   "hit_weight": "heavy",
+   "min_tier": 5,
+   "weight": 0,
+   "cooldown_s": 999,
+   "range_m": [
+    0,
+    30
+   ],
+   "possession": "any"
+  },
+  {
+   "id": "ratking_lob",
+   "name": "Slice Toss",
+   "primitive": "lob",
+   "uses_ball": true,
+   "rejectable": true,
+   "startup": 30,
+   "active": 2,
+   "recovery": 32,
+   "damage": 45,
+   "parry": "none",
+   "flight_s": 1.2,
+   "hitbox": {
+    "shape": "circle",
+    "radius": 2.2,
+    "height": 2.5
+   },
+   "hit_weight": "medium",
+   "weight": 4,
+   "cooldown_s": 2,
+   "range_m": [
+    2,
+    24
+   ],
+   "possession": "with_ball",
+   "min_tier": 1
+  },
+  {
+   "id": "ratking_statement",
+   "name": "Pie in the Face",
+   "primitive": "statement_dunk",
+   "body_attack": true,
+   "startup": 42,
+   "active": 10,
+   "recovery": 30,
+   "damage": 90,
+   "parry": "none",
+   "hitbox": {
+    "shape": "circle",
+    "radius": 2.8,
+    "height": 5.0
+   },
+   "hit_weight": "heavy",
+   "weight": 3,
+   "cooldown_s": 10,
+   "possession": "with_ball",
+   "needs_paint": true,
+   "min_tier": 1,
+   "range_m": [
+    0,
+    30
+   ]
+  },
+  {
+   "id": "ratking_show",
+   "name": "Crown Adjust",
+   "primitive": "showboat",
+   "startup": 6,
+   "active": 84,
+   "recovery": 6,
+   "damage": 0,
+   "weight": 1,
+   "cooldown_s": 16,
+   "possession": "with_ball",
+   "min_tier": 1,
+   "range_m": [
+    0,
+    30
+   ]
+  }
+ ]
+}

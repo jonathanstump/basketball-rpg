@@ -27,6 +27,12 @@ static func _ensure() -> void:
 			bodegas[JU.s(bd, "id")] = {"district": id, "cat": JU.s(bd, "cat"), "name": JU.s(bd, "name", "Bodega")}
 
 
+static func all() -> Dictionary:
+	## district id -> sidecar, built on first use.
+	_ensure()
+	return districts
+
+
 static func reset() -> void:
 	_built = false
 	stations.clear()

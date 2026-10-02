@@ -23,7 +23,7 @@ func run_borough(borough: String, districts: PackedStringArray, bosses: PackedSt
 		if not await fight(boss_id):
 			return false
 	for id3: String in districts:
-		for npc: Variant in JU.a(WorldIndex.districts[id3] as Dictionary, "npcs"):
+		for npc: Variant in JU.a(WorldIndex.all()[id3] as Dictionary, "npcs"):
 			var ch: Dictionary = JU.dict(npc as Dictionary, "challenger")
 			if ch.is_empty():
 				continue
@@ -41,12 +41,12 @@ func run_borough(borough: String, districts: PackedStringArray, bosses: PackedSt
 
 func visit_interiors(districts: PackedStringArray) -> bool:
 	for id2: String in districts:
-		for b: Variant in JU.a(WorldIndex.districts[id2] as Dictionary, "bodegas"):
+		for b: Variant in JU.a(WorldIndex.all()[id2] as Dictionary, "bodegas"):
 			SceneRouter.goto_interior("bodega", JU.s(b as Dictionary, "id"), {"district": id2})
 			await frames(6)
 			if not check(get_tree().current_scene is Interior, "bodega %s did not open" % JU.s(b as Dictionary, "id")):
 				return false
-		var shops: Dictionary = JU.dict(WorldIndex.districts[id2] as Dictionary, "shops")
+		var shops: Dictionary = JU.dict(WorldIndex.all()[id2] as Dictionary, "shops")
 		for letter: String in ["K", "G", "I"]:
 			if shops.has(letter):
 				SceneRouter.goto_interior({"K": "plug", "G": "pump_grip", "I": "ink_needle"}[letter], str((shops[letter] as Array)[0]), {"district": id2})

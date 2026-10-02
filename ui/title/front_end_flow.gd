@@ -41,7 +41,7 @@ static func start_district(borough: String) -> String:
 
 
 static func first_bodega(district: String) -> String:
-	var side: Dictionary = WorldIndex.districts.get(district, {}) if WorldIndex.has_district(district) else {}
+	var side: Dictionary = WorldIndex.all().get(district, {}) if WorldIndex.has_district(district) else {}
 	var b: Array = JU.a(side, "bodegas")
 	return JU.s(b[0] as Dictionary, "id") if not b.is_empty() else ""
 

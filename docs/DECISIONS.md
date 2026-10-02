@@ -120,3 +120,14 @@ Spec §11.3 lists L60 = 46,626 but `floor(100 × 60^1.5 + 150)` = 46,625 (every 
 - **Default district start** is the `@` tile, falling back to the station. It used to be the map center, which can be inside a building.
 - **High Rise is still the hardest bot matchup.** Some seeds time out at T3/T5. The test sim uses seed 2, which wins at every tier.
 - **The General's Volley** is now weight 2 with a 14 s cooldown (was 8 s). Volley spam was crowding out the bot's shots at T5.
+
+## M10 — The connected city
+- **Questlines** live in `core/stats/questlines.gd` as pure rules over GameState.
+  - **Pops** gives one lesson per Crown, in spec order (Self Oop, Euro Glide, Rainbow Lob, Bass Drop, Tunnel), from any bodega counter. After the fifth, he sets `pops_one_more_run` for the M12 superboss.
+  - **Grail Hunt**: open 5 Grail boxes (the `grails` counter), then The Plug hands over Golden Hour once.
+  - **Lost Cat** starts at the first rest after your first Crown. That bodega's cat hides in another district of the same borough, near its first one-way alley (or the station). Finding it gives the Nine Lives flash.
+  - **Deuce** duel 1 unlocks after any mini-boss and duel 2 after three Crowns. Both use Pickup Challenger rules: first to 7, then first to 9; skill 0.8/0.9; +1/+2 tier. He appears by the station of whatever district you load. Duel 1 drops the Iso mixtape and duel 2 drops Deuce's Band. Losing keeps him around.
+- **Pizza Rat King** (`opt_ratking`) sits behind a sewer grate in Bed-Stuy near the Cemetery Belt; that's the hidden tunnel between Brooklyn and Queens. A new `tier_regions` boss field sets his tier to the higher of the two. Eating a slice is a showboat that heals 6% if he finishes it, so strip it to deny the heal. Rat Swarm summons last 15 s.
+- **Districts can declare "specials"** in the sidecar (authored interactables such as boss tunnels).
+- **NG+** (`GameState.start_ng_plus`) keeps stats, levels, gear, tattoos, Bag Moves and quest rewards, and resets Crowns, Garden stubs, bosses, boxes, kills, shortcuts and chains. Tiers +2 (cap 7) and ×1.3 per cycle come from `tiers.json`. Tattoo slots never drop below the ink you already have.
+- **City stations** will use the `city_` id prefix, which fast travel gates behind the Crown Pass.

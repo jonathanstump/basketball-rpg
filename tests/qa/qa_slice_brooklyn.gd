@@ -67,7 +67,7 @@ func run() -> bool:
 			return fail(runner.failure)
 	# ---- Pickup Challengers.
 	for id3: String in DISTRICTS:
-		for npc: Variant in JU.a(WorldIndex.districts[id3] as Dictionary, "npcs"):
+		for npc: Variant in JU.a(WorldIndex.all()[id3] as Dictionary, "npcs"):
 			var ch: Dictionary = JU.dict(npc as Dictionary, "challenger")
 			if ch.is_empty():
 				continue
