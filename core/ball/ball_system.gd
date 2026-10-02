@@ -165,6 +165,25 @@ func shoot(a: SimActor, hoop: SimHoop, grade: String, zone: String, blocker: Sim
 	return b
 
 
+func dunk(a: SimActor, hoop: SimHoop) -> SimBall:
+	## Scripted dunk finish: straight into the net, scored as a make.
+	var b: SimBall = ball_of(a)
+	if b == null:
+		return null
+	a.has_ball = false
+	b.set_state(SimBall.State.IN_NET)
+	b.pos = hoop.rim
+	b.vel = Vector3(0, -3.0, 0)
+	b.shot_grade = "DUNK"
+	b.shot_zone = "dunk"
+	b.shot_hoop = hoop.id
+	b.shooter_id = a.id
+	b.last_touch_id = a.id
+	world.emit("shot_released", {"ball": b.id, "actor": a.id, "grade": "DUNK", "zone": "dunk", "hoop": hoop.id})
+	_on_make(b, hoop, a)
+	return b
+
+
 # ------------------------------------------------------------ stepping
 
 func step(_w: SimWorld) -> void:
@@ -279,18 +298,21 @@ func _try_pickup(b: SimBall) -> void:
 	if b.state_time < 0.12:
 		return
 	var best: SimActor = null
-	var bd: float = JU.f(cfg, "pickup_radius", 0.75)
+	var best_slack: float = 0.0
+	var base_r: float = JU.f(cfg, "pickup_radius", 0.75)
 	for a: SimActor in world.actors:
 		if not a.alive or a.has_ball or a.kind == "prop" or a.kind == "critter" or bool(a.flags.get("no_pickup", false)):
 			continue
-		if b.pos.y - a.pos.y > JU.f(cfg, "pickup_max_height", 1.7):
+		if b.pos.y - a.pos.y > JU.f(cfg, "pickup_max_height", 1.7) + float(a.flags.get("pickup_reach", 0.0)):
 			continue
 		var d: float = Vector2(a.pos.x - b.pos.x, a.pos.z - b.pos.z).length()
-		if d < bd:
-			bd = d
+		var slack: float = base_r + float(a.flags.get("pickup_bonus", 0.0)) - d
+		if slack > best_slack:
+			best_slack = slack
 			best = a
 	if best != null:
 		give(b, best)
+		best.flags["disarmed"] = false
 		world.emit("ball_picked", {"ball": b.id, "actor": best.id})
 
 

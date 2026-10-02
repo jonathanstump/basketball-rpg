@@ -80,6 +80,7 @@ func step() -> void:
 			a.controller.call("step")
 	for a: SimActor in actors:
 		integrate(a)
+	separate_bodies()
 	for s: RefCounted in systems:
 		s.call("step", self)
 	frame += 1
@@ -118,6 +119,42 @@ func integrate(a: SimActor) -> void:
 		a.frames_since_ground += 1
 	a.ground_y = ground
 	a.pos = next
+
+
+func separate_bodies() -> void:
+	## Pushes overlapping bodies apart (spec: commons and bosses are solid).
+	## Heavier bodies move less; props and ghosts (flag "ghost") are ignored.
+	var n: int = actors.size()
+	for i: int in n:
+		var a: SimActor = actors[i]
+		if not a.alive or a.kind == "prop" or bool(a.flags.get("ghost", false)):
+			continue
+		for j: int in range(i + 1, n):
+			var b: SimActor = actors[j]
+			if not b.alive or b.kind == "prop" or bool(b.flags.get("ghost", false)):
+				continue
+			if absf(a.pos.y - b.pos.y) > maxf(a.height, b.height):
+				continue
+			var d: Vector2 = Vector2(b.pos.x - a.pos.x, b.pos.z - a.pos.z)
+			var min_d: float = a.radius + b.radius
+			var dist: float = d.length()
+			if dist >= min_d:
+				continue
+			var nrm: Vector2 = d / dist if dist > 0.0001 else Vector2(1, 0)
+			var ma: float = _mass(a)
+			var mb: float = _mass(b)
+			var push: float = min_d - dist
+			var fa: float = mb / (ma + mb)
+			a.pos -= Vector3(nrm.x, 0, nrm.y) * push * fa
+			b.pos += Vector3(nrm.x, 0, nrm.y) * push * (1.0 - fa)
+			a.pos = collision.resolve(a.pos, a.radius)
+			b.pos = collision.resolve(b.pos, b.radius)
+
+
+static func _mass(a: SimActor) -> float:
+	if a.kind == "boss":
+		return 1000.0
+	return float(a.flags.get("mass", 1.0 + a.radius))
 
 
 func hostiles_of(a: SimActor) -> Array[SimActor]:

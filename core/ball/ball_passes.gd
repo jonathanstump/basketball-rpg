@@ -101,7 +101,7 @@ func _first_actor_hit(b: SimBall, a: Vector3, nxt: Vector3, passer: SimActor) ->
 	var best_d: float = 1e9
 	var r_ball: float = JU.f(sys.cfg, "radius", 0.12)
 	for o: SimActor in sys.world.actors:
-		if not o.alive or o.kind == "prop" or b.hit_ids.has(o.id):
+		if not o.alive or o.kind == "prop" or b.hit_ids.has(o.id) or o.invulnerable:
 			continue
 		if passer != null and (o.id == passer.id or o.team == passer.team):
 			continue

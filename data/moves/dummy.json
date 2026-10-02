@@ -1,0 +1,60 @@
+{
+ "moves": [
+  {
+   "id": "dummy_swipe",
+   "name": "Dribble Swipe",
+   "primitive": "melee_arc",
+   "startup": 30,
+   "active": 6,
+   "recovery": 36,
+   "damage": 25,
+   "composure_dmg": 0,
+   "parry": "strip",
+   "body_attack": false,
+   "hitbox": {
+    "shape": "arc",
+    "radius": 2.0,
+    "angle": 120
+   },
+   "min_tier": 1,
+   "hit_weight": "light",
+   "weight": 3
+  },
+  {
+   "id": "dummy_shove",
+   "name": "Shoulder Check",
+   "primitive": "lunge",
+   "startup": 26,
+   "active": 8,
+   "recovery": 34,
+   "damage": 30,
+   "composure_dmg": 0,
+   "parry": "deflect",
+   "body_attack": true,
+   "lunge_m": 2.0,
+   "min_tier": 1,
+   "hit_weight": "medium"
+  },
+  {
+   "id": "dummy_heavy",
+   "name": "Red Slam",
+   "primitive": "slam_circle",
+   "startup": 44,
+   "active": 6,
+   "recovery": 40,
+   "damage": 45,
+   "composure_dmg": 0,
+   "parry": "none",
+   "unblockable": true,
+   "body_attack": true,
+   "hitbox": {
+    "shape": "circle",
+    "radius": 2.4,
+    "forward": 0.8
+   },
+   "knockdown": true,
+   "min_tier": 1,
+   "hit_weight": "heavy"
+  }
+ ]
+}

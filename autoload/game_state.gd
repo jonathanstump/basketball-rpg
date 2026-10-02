@@ -25,7 +25,7 @@ var known_bag_moves: PackedStringArray = PackedStringArray()
 var quarter_water_max: int = 3
 var quarter_waters: int = 3
 var sugar_rush: int = 0
-var chain: Dictionary = {}            # {district, pos:[x,y,z], rep}
+var chains: Array = []               # ChainRules entries {district, pos, rep, lives}
 var respawn_bodega: String = ""
 var current_district: String = ""
 var profile: Dictionary = {}          # character creator profile
@@ -71,7 +71,7 @@ func new_run(arch_id: String, start: String, prof: Dictionary = {}) -> void:
 		quarter_water_max += JU.i(JU.dict(DataDB.tuning("player"), "rookie"), "extra_waters", 2)
 	quarter_waters = quarter_water_max
 	sugar_rush = 0
-	chain = {}
+	chains = []
 	respawn_bodega = ""
 	current_district = ""
 	profile = prof.duplicate(true)
@@ -152,7 +152,7 @@ func to_dict() -> Dictionary:
 		"inventory": inventory, "equipment": equipment, "ball_upgrades": ball_upgrades,
 		"tattoos": Array(tattoos), "flash_sheets": Array(flash_sheets),
 		"known_bag_moves": Array(known_bag_moves), "quarter_water_max": quarter_water_max,
-		"quarter_waters": quarter_waters, "sugar_rush": sugar_rush, "chain": chain,
+		"quarter_waters": quarter_waters, "sugar_rush": sugar_rush, "chains": chains,
 		"respawn_bodega": respawn_bodega, "current_district": current_district,
 		"profile": profile, "counters": counters, "nickname": nickname,
 		"defeated_bosses": Array(defeated_bosses), "opened_boxes": Array(opened_boxes),
@@ -185,7 +185,7 @@ func from_dict(d: Dictionary) -> void:
 	quarter_water_max = JU.i(d, "quarter_water_max", 3)
 	quarter_waters = JU.i(d, "quarter_waters", quarter_water_max)
 	sugar_rush = JU.i(d, "sugar_rush")
-	chain = JU.dict(d, "chain").duplicate(true)
+	chains = JU.a(d, "chains").duplicate(true)
 	respawn_bodega = JU.s(d, "respawn_bodega")
 	current_district = JU.s(d, "current_district")
 	profile = JU.dict(d, "profile").duplicate(true)

@@ -7,6 +7,8 @@ extends RefCounted
 ## first frame of an action, total = startup + active + recovery.
 
 const DT: float = 1.0 / 60.0
+const FRAME_FLAGS: PackedStringArray = ["ankle_window", "read_window", "parry_window", "guarding", "rejecting"]
+const REACTIONS: PackedStringArray = ["hitstun", "hitstun_heavy", "knockdown", "guard_break", "off_balance", "player_shook", "death"]
 
 var actor: SimActor
 var world: SimWorld
@@ -58,7 +60,13 @@ func step() -> void:
 		actor.desired_vel = Vector3.ZERO
 		return
 	actor.invulnerable = false
+	for f: String in FRAME_FLAGS:
+		actor.flags[f] = false
+	guarding = false
 	stepback_timer_s = maxf(0.0, stepback_timer_s - DT)
+	for m: RefCounted in modules:
+		if m.has_method("tick"):
+			m.call("tick", self)
 	if action != "":
 		_tick_action()
 	if action == "":
@@ -123,8 +131,12 @@ func _tick_action() -> void:
 		action_owner.call("on_frame", self)
 	elif prim == "dodge":
 		_dodge_frame()
-	elif prim == "recovery":
+	elif prim == "recovery" or prim == "reaction":
 		actor.desired_vel = Vector3.ZERO
+		if action == "knockdown":
+			actor.flags["downed"] = action_frame < action_total - 20
+		if action == "death":
+			action_frame = mini(action_frame, 2)
 	if action != "" and action_frame >= action_total:
 		end_action()
 
@@ -208,9 +220,23 @@ func iframe_window() -> Vector2i:
 	return Vector2i(s + 1, s + JU.i(action_move, "active"))
 
 
+func ankle_window() -> Vector2i:
+	## Crossover frames 3-12 + Handles bonus (+0.2f/pt above 10, max +6).
+	var start: int = JU.i(action_move, "startup") + 1
+	var end: int = 12 + int(StatFormulas.ankle_bonus_frames(actor.stat("handles")) + float(actor.flags.get("ankle_bonus", 0)))
+	var mult: float = float(actor.flags.get("ankle_window_mult", 1.0))
+	end = start + int(round(float(end - start) * mult))
+	return Vector2i(start, end)
+
+
 func _dodge_frame() -> void:
 	var w: Vector2i = iframe_window()
 	actor.invulnerable = action_frame >= w.x and action_frame <= w.y
+	if actor.has_ball and (action == "crossover" or action == "stepback"):
+		var aw: Vector2i = ankle_window()
+		actor.flags["ankle_window"] = action_frame >= aw.x and action_frame <= aw.y
+	elif action == "defensive_slide":
+		actor.flags["read_window"] = actor.invulnerable
 	if action_frame <= w.y:
 		var speed: float = JU.f(action_move, "distance_m") / (float(w.y) * DT)
 		actor.desired_vel = action_dir * speed
@@ -222,6 +248,48 @@ func _dodge_frame() -> void:
 			actor.turn_toward(lock_target.pos - actor.pos, 1.0)
 	elif lock_target == null:
 		actor.turn_toward(action_dir, 0.5)
+
+
+# ------------------------------------------------------------ reactions
+
+func on_hit(res: Dictionary) -> void:
+	var r: String = str(res.get("result", ""))
+	if bool(res.get("killed", false)) or not actor.alive:
+		_react("death")
+		return
+	match r:
+		"strip", "deflect":
+			if action == "hands_up":
+				end_action()   # successful parry cancels whiff recovery
+		"guard_break":
+			_react("guard_break")
+		"hit":
+			if actor.hyper_armor:
+				return
+			if bool(res.get("knockdown", false)):
+				_react("knockdown")
+			elif float(res.get("damage", 0.0)) >= actor.poise or str(res.get("weight", "")) == "heavy":
+				_react("hitstun_heavy" if str(res.get("weight", "")) == "heavy" else "hitstun")
+
+
+func on_parried(_res: Dictionary) -> void:
+	if action != "" and not REACTIONS.has(action):
+		_react("off_balance")
+
+
+func _react(id: String) -> void:
+	if action == "death":
+		return
+	if action != "":
+		end_action()
+	sprinting = false
+	begin(id, -actor.forward(), null, false)
+	if id == "death":
+		actor.anim_state = "death"
+
+
+func is_reacting() -> bool:
+	return REACTIONS.has(action)
 
 
 # ------------------------------------------------------------ helpers

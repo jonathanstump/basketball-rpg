@@ -31,9 +31,8 @@ var stats: Dictionary = {}
 var hp: float = 300.0
 var hp_max: float = 300.0
 var wind: WindPool = WindPool.new()
-var hype: float = 0.0
-var composure: float = 0.0
-var composure_max: float = 100.0
+var hype: HypeMeter = HypeMeter.new()
+var composure: Composure = null   # enemies/bosses only (spec §7.3)
 var poise: float = 0.0
 var alive: bool = true
 var invulnerable: bool = false    # i-frames active this frame
@@ -71,6 +70,18 @@ func turn_toward(dir: Vector3, max_rad: float) -> void:
 	var target: float = yaw_of(dir)
 	var diff: float = wrapf(target - facing, -PI, PI)
 	facing = wrapf(facing + clampf(diff, -max_rad, max_rad), -PI, PI)
+
+
+func is_broken() -> bool:
+	return composure != null and composure.broken != ""
+
+
+func is_shook() -> bool:
+	return composure != null and composure.broken == "shook"
+
+
+func set_composure(max_v: float, tier_v: int) -> void:
+	composure = Composure.new(max_v, tier_v)
 
 
 func stat(name: String) -> int:
