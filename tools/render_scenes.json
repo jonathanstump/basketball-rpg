@@ -1,5 +1,21 @@
 {
   "scenes": [
-    { "name": "boot", "scene": "res://ui/title/boot.tscn", "frames": 20 }
+    {
+      "name": "boot",
+      "scene": "res://ui/title/boot.tscn",
+      "frames": 20
+    },
+    {
+      "name": "movement_lab",
+      "scene": "res://world/labs/movement_lab.tscn",
+      "frames": 90,
+      "mode": "walk"
+    },
+    {
+      "name": "movement_lab_cutaway",
+      "scene": "res://world/labs/movement_lab.tscn",
+      "frames": 60,
+      "mode": "cutaway"
+    }
   ]
 }

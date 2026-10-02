@@ -17,6 +17,9 @@ const CATALOGS: Dictionary = {
 		"id": "string", "name": "string", "rarity": RARITIES, "attack": "number",
 		"scaling": "dict", "gather_s": "number", "props": "dict", "source": "string", "flavor": "string",
 	},
+	"hair_styles": {"id": "string", "name": "string", "parts": "array"},
+	"environments": {"id": "string", "sky_top": "string", "sky_horizon": "string", "ambient": "string",
+		"ambient_energy": "number", "fog_density": "number", "rim": "string", "moon_energy": "number"},
 	"bag_moves": {
 		"id": "string", "name": "string", "hype": "number", "effect": "string",
 		"impl": "string", "source": "string",
@@ -44,6 +47,10 @@ const FILES: Dictionary = {
 	"tuning/bosses": {"mini": "dict", "king": "dict", "duel": "dict"},
 	"tuning/ai": {"alert_radius_m": "number", "leash_m": "number", "max_attackers": "int"},
 	"input_map": {"actions": "dict"},
+	"tuning/camera": {"explore": "dict", "lockon": "dict", "yaw_speed_rad_s": "number"},
+	"tuning/quality": {"presets": "dict"},
+	"palettes": {"shared": "dict", "regions": "dict"},
+	"poses/hooper": {"poses": "dict", "anims": "dict"},
 }
 
 const MOVE: Dictionary = {

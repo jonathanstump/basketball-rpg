@@ -1,0 +1,12 @@
+{
+  "explore": { "pitch_deg": 50, "distance_m": 12, "fov_deg": 45 },
+  "lockon": { "pitch_deg": 38, "distance_min_m": 9, "distance_max_m": 14, "sep_to_distance": 0.45, "hoop_weight": 0.35, "lock_range_m": 20 },
+  "yaw_speed_rad_s": 2.6,
+  "mouse_sensitivity": 0.005,
+  "follow_lerp": 10.0,
+  "rotate_lerp": 8.0,
+  "focus_height_m": 0.9,
+  "cutaway_radius_m": 2.6,
+  "shake_decay": 6.0,
+  "punch_in_m": 2.0
+}

@@ -29,3 +29,12 @@ func build(id: String) -> Node3D:
 	var n: Node3D = Node3D.new()
 	n.name = "Missing_" + id
 	return n
+
+
+func _exit_tree() -> void:
+	## Static caches hold shared resources; release them before engine
+	## shutdown so exit is clean (no "resources still in use").
+	ToonMaterials.clear_cache()
+	MeshLib.clear_cache()
+	PoseLibrary.clear_cache()
+	_builders.clear()

@@ -1,0 +1,12 @@
+{
+  "shared": { "sodium": "#FFB347", "asphalt": "#1E1E24", "outline": "#0B0B10", "sidewalk": "#4A4A55", "curb": "#6C6C78", "grass": "#1F4A2C", "brick": "#7A3B2E", "brownstone": "#6B4A3A", "walkup": "#8A5A44", "highrise": "#3A4250", "warehouse": "#5A5048", "water": "#0C1E33", "court": "#2C5D8F", "court_line": "#F2F6FF" },
+  "regions": {
+    "bronx": { "primary": "#D7263D", "secondary": "#F4B400", "base": "#1B1B3A" },
+    "brooklyn": { "primary": "#7B2FF7", "secondary": "#12C2B0", "base": "#1A1530" },
+    "queens": { "primary": "#2BB24C", "secondary": "#FF7A00", "base": "#10221A" },
+    "staten_island": { "primary": "#FF6B1A", "secondary": "#1E6FD9", "base": "#0E1A2B" },
+    "uptown": { "primary": "#2D7BFF", "secondary": "#F2F6FF", "base": "#0B1426" },
+    "city": { "primary": "#FFC93C", "secondary": "#FFFFFF", "base": "#0A0A14", "accent": "#FF3EA5" },
+    "garden": { "primary": "#FFC93C", "secondary": "#FFFFFF", "base": "#05050A", "accent": "#FF3EA5" }
+  }
+}

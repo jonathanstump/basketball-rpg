@@ -1,0 +1,9 @@
+{
+  "presets": {
+    "low": { "ssr": false, "volumetric_fog": false, "glow": true, "glow_half_res": true, "shadow_atlas": 1024, "dir_shadow": 1024, "msaa": 0, "scale_3d": 0.75, "tilt_shift": false, "max_shadow_lights": 2, "light_fade_m": 40 },
+    "deck": { "ssr": false, "volumetric_fog": false, "glow": true, "glow_half_res": true, "shadow_atlas": 2048, "dir_shadow": 1024, "msaa": 0, "scale_3d": 1.0, "tilt_shift": true, "max_shadow_lights": 4, "light_fade_m": 50 },
+    "high": { "ssr": true, "volumetric_fog": true, "glow": true, "glow_half_res": false, "shadow_atlas": 4096, "dir_shadow": 2048, "msaa": 1, "scale_3d": 1.0, "tilt_shift": true, "max_shadow_lights": 4, "light_fade_m": 60 },
+    "ultra": { "ssr": true, "volumetric_fog": true, "glow": true, "glow_half_res": false, "shadow_atlas": 8192, "dir_shadow": 4096, "msaa": 2, "scale_3d": 1.0, "tilt_shift": true, "max_shadow_lights": 4, "light_fade_m": 80 }
+  },
+  "max_visible_lights": 32
+}

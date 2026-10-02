@@ -73,6 +73,8 @@ static func load_json(path: String) -> Variant:
 
 
 static func vec3(v: Variant, def: Vector3 = Vector3.ZERO) -> Vector3:
+	if v is Vector3:
+		return v
 	if v is Array and (v as Array).size() >= 3:
 		var arr: Array = v
 		return Vector3(float(arr[0]), float(arr[1]), float(arr[2]))

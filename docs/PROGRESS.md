@@ -3,7 +3,7 @@
 | Milestone | Status | Date | What shipped | Known issues | Deferred |
 | --- | --- | --- | --- | --- | --- |
 | M0 — Scaffold & harness | DONE | 2026-10-01 | project.godot (Forward+, Jolt, 60 Hz, custom user dir, strict typing, full input map), folder layout, 12 typed autoload stubs, DataDB + DataValidator/DataSchemas, tiers/tuning/archetypes/balls/bag_moves data, GUT 9.7.1, verify.ps1/verify.sh (+ `--full` QA, render smoke, export check), QA runner, boot smoke, save system with atomic write + migration | — | Export dry run (templates not installed); fonts fetched with HUD work |
-| M1 — Look & move | TODO | | | | |
+| M1 — Look & move | DONE | 2026-10-01 | Toon/outline/facade/wet-asphalt/neon/halftone/tilt-shift/night-sky shaders + occlusion cutaway; 9 environment presets (5 boroughs, City, Garden, dawn, interior); quality presets; CameraRig (explore + lock-on fit solver + shake/punch-in); puppet rig, CharacterBuilder (16 hair recipes), PoseLibrary (13 anims), PuppetAnimator (bob, lean, squash, look-at); SimWorld/Hooper locomotion (walk/run/sprint, Wind, dodge i-frames, jump, coyote, 8f buffer); movement_lab greybox street; light budget; PostFX | Lighting is dark/moody and needs a look pass once districts exist | Remapping UI (M13), controller glyph art (M13) |
 | M2 — Ball & shooting | TODO | | | | |
 | M3 — Combat core | TODO | | | | |
 | M4 — Enemies | TODO | | | | |
