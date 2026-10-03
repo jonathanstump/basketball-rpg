@@ -151,3 +151,19 @@ func test_reading_pops_lines_never_triggers_the_room() -> void:
 	Input.action_release("interact")
 	await wait_physics_frames(3)
 	assert_eq(fired.size(), 1, "after the conversation, Interact works again")
+
+
+func test_map_screen_shows_the_objective() -> void:
+	GameState.set_flag("prologue_done")
+	SceneRouter.pending = {"district": "bk_bedstuy", "arrive": {}}
+	var d: District = (load("res://world/district.tscn") as PackedScene).instantiate() as District
+	add_child_autofree(d)
+	await wait_physics_frames(3)
+	assert_true(d.objective_panel.has_target, "the HUD marker has a target")
+	d.open_map()
+	var ms: MapScreen = d.menu as MapScreen
+	assert_not_null(ms, "map opened")
+	assert_eq(ms.objective_title, "Take the Brooklyn Crown")
+	assert_true(ms.has_objective_target, "the map marks the objective")
+	assert_eq(ms.objective_label, JU.s(DataDB.boss("bk_stoop"), "name"), "the Stoop Queen's court, here in Bed-Stuy")
+	assert_eq(ms.objective_target, d.objective_panel.target)

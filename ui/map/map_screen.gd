@@ -11,6 +11,10 @@ var map: MapData
 var layout: Dictionary = {}
 var player_pos: Vector3 = Vector3.ZERO
 var cursor: Vector2i = Vector2i.ZERO
+var objective_title: String = ""   # set by the district from its ObjectivePanel
+var objective_target: Vector3 = Vector3.ZERO
+var objective_label: String = ""
+var has_objective_target: bool = false
 var _canvas: Control
 
 
@@ -123,6 +127,7 @@ func _draw_map() -> void:
 	for pin: Variant in pins():
 		var pa: Array = pin
 		_canvas.draw_circle(origin + (Vector2(int(pa[0]), int(pa[1])) + Vector2(0.5, 0.5)) * cell, cell * 0.5, Color("#FF3EA5"))
+	_draw_objective(origin, cell)
 	var pc: Vector2i = map.cell_of(player_pos)
 	_canvas.draw_circle(origin + (Vector2(pc) + Vector2(0.5, 0.5)) * cell, cell * 0.8, Color("#101014"))
 	_canvas.draw_circle(origin + (Vector2(pc) + Vector2(0.5, 0.5)) * cell, cell * 0.5, Color("#3EF0FF"))
@@ -144,3 +149,22 @@ func _marker(origin: Vector2, cell: float, wp: Vector3, col: Color, shape: Strin
 			_canvas.draw_circle(p + Vector2(cell * 0.3, -cell * 0.1), cell * 0.2, Color.BLACK)
 		_:
 			_canvas.draw_rect(Rect2(p - Vector2(cell, cell) * 0.8, Vector2(cell, cell) * 1.6), col)
+
+
+func _draw_objective(origin: Vector2, cell: float) -> void:
+	## Gold ring on the objective (court, or the crossing toward it) and a
+	## legend line under the map.
+	var font: Font = UIFonts.title()
+	var legend_y: float = origin.y + cell * float(map.height) + 44.0
+	if objective_title != "":
+		var line: String = tr("OBJECTIVE") + ": " + tr(objective_title) + ("  >  " + tr(objective_label) if has_objective_target else "")
+		_canvas.draw_string_outline(font, Vector2(origin.x, legend_y), line, HORIZONTAL_ALIGNMENT_LEFT, -1, 22, 6, Color("#0B0B10"))
+		_canvas.draw_string(font, Vector2(origin.x, legend_y), line, HORIZONTAL_ALIGNMENT_LEFT, -1, 22, Color("#FFE060"))
+	if not has_objective_target:
+		return
+	var c: Vector2i = map.cell_of(objective_target)
+	var p: Vector2 = origin + (Vector2(c) + Vector2(0.5, 0.5)) * cell
+	_canvas.draw_arc(p, cell * 2.2, 0.0, TAU, 32, Color("#0B0B10"), cell * 0.9)
+	_canvas.draw_arc(p, cell * 2.2, 0.0, TAU, 32, Color("#FFC830"), cell * 0.5)
+	_canvas.draw_string_outline(font, p + Vector2(-150, -cell * 3.0), tr(objective_label), HORIZONTAL_ALIGNMENT_CENTER, 300, 18, 6, Color("#0B0B10"))
+	_canvas.draw_string(font, p + Vector2(-150, -cell * 3.0), tr(objective_label), HORIZONTAL_ALIGNMENT_CENTER, 300, 18, Color("#FFE060"))

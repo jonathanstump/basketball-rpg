@@ -60,12 +60,11 @@ class TutorialBot:
 					_go(input, a, c2.pos)
 				else:
 					input.move = Vector2.ZERO
-				var tf: int = -1
+				# Follow the red glow like a player: act on the pulse.
+				var cue: bool = false
 				for c3: SimActor in pro.crew:
-					var t3: int = _threat(c3) if c3.alive and a.dist_to(c3) < 4.0 else -1
-					if t3 >= 0 and (tf < 0 or t3 < tf):
-						tf = t3
-				if tf >= 0 and tf <= 5 and _cool == 0:
+					cue = cue or (c3.alive and a.dist_to(c3) < 7.0 and bool(Telegraph.read(c3).get("now", false)))
+				if cue and _cool == 0:
 					input.press("dodge" if step == "ankle" else "hands_up")
 					_cool = 24
 			"shoot":
@@ -107,13 +106,6 @@ class TutorialBot:
 		if best != null:
 			_go(input, a, best.pos)
 
-	func _threat(opp: SimActor) -> int:
-		if opp.controller is EnemyBrain:
-			var r: MoveRunner = (opp.controller as EnemyBrain).runner
-			if r.running and r.frame <= r.startup():
-				return r.startup() - r.frame
-		return -1
-
 	func _ball_mod() -> HooperBall:
 		for m: RefCounted in pro.player_hooper.modules:
 			if m is HooperBall:
@@ -143,8 +135,11 @@ func test_whole_tutorial_with_real_input() -> void:
 			var carriers: int = 0
 			for c: SimActor in pro.crew:
 				carriers += 1 if c.alive and c.has_ball else 0
+			var alive: int = 0
+			for c2: SimActor in pro.crew:
+				alive += 1 if c2.alive else 0
 			if cur == "strip":
-				one_ball_ok = one_ball_ok and carriers <= 1 and not pro.player.has_ball
+				one_ball_ok = one_ball_ok and carriers >= alive - 1 and not pro.player.has_ball
 			else:
 				one_ball_ok = one_ball_ok and carriers == 0
 		if cur != step:
@@ -161,7 +156,62 @@ func test_whole_tutorial_with_real_input() -> void:
 					if JU.s(s as Dictionary, "id") == cur:
 						raw = JU.s(s as Dictionary, "prompt")
 				assert_eq(pro.prompt.text, InputPrompts.format(raw), "%s: the prompt on screen is this step's" % cur)
-	gut.p("seconds per step: %s" % str(times))
+	gut.p("frames per step: %s" % str(times))
 	assert_true(pro.tracker.tutorial_complete(), "every step completable with real input; stuck on %s (%s)" % [pro.tracker.current_id(), pro.phase])
 	assert_eq(pro.phase, "cameo", "the tutorial hands off to the cameo")
-	assert_true(one_ball_ok, "one ball: defenders have no ball on offense; only the handler has yours on defense")
+	assert_true(one_ball_ok, "on offense the crew have no balls; on defense they all do and you don't")
+
+
+class StandStillDefender:
+	extends InputSource
+	## A player who stays put and only presses Hands Up when a crew member
+	## near them glows red (the cue frames): the real-player strip drill.
+	var pro: Prologue
+	var _cool: int = 0
+
+	func fill(input: ActorInput, a: SimActor, _w: SimWorld) -> void:
+		input.move = Vector2.ZERO
+		if input.is_held("hands_up"):
+			input.release("hands_up")
+		_cool = maxi(0, _cool - 1)
+		for c: SimActor in pro.crew:
+			if c.alive and a.dist_to(c) < 7.0 and bool(Telegraph.read(c).get("now", false)) and _cool == 0:
+				input.press("hands_up")
+				_cool = 20
+
+
+func test_strip_drill_works_for_a_player_who_waits_for_the_cue() -> void:
+	## Regression: the crew used to circle forever on defense (a ball-less
+	## crew member sat on the only attack token).
+	GameState.new_run("nobody", "brooklyn")
+	var pro: Prologue = (load("res://world/prologue/prologue.tscn") as PackedScene).instantiate() as Prologue
+	pro.auto_wake = false
+	add_child_autofree(pro)
+	await wait_physics_frames(3)
+	pro.player.pos = pro.lay["top_of_key"]
+	pro.tracker.mark("reach_court")
+	pro.call_next()
+	for k: String in ["moved", "strike", "crossover", "ankle_breaker", "crate_make"]:
+		pro.tracker.mark(k)
+	await wait_physics_frames(3)
+	assert_eq(pro.tracker.current_id(), "strip")
+	var armed: int = 0
+	for c: SimActor in pro.crew:
+		armed += 1 if c.alive and c.has_ball else 0
+	assert_eq(armed, pro.crew.size(), "every crew member has a ball on defense")
+	assert_false(pro.player.has_ball, "your ball sits out")
+	var d: StandStillDefender = StandStillDefender.new()
+	d.pro = pro
+	pro.use_scripted_input(d)
+	var frames: int = 0
+	while pro.tracker.current_id() == "strip" and frames < 60 * 30:
+		await wait_physics_frames(1)
+		frames += 1
+	gut.p("strip took %.1f s standing still" % (float(frames) / 60.0))
+	assert_ne(pro.tracker.current_id(), "strip", "the crew attack and a cue-timed Hands Up strips one")
+	await wait_physics_frames(2)
+	assert_true(pro.player.has_ball, "back on offense with your ball")
+	var left: int = 0
+	for c3: SimActor in pro.crew:
+		left += 1 if c3.has_ball else 0
+	assert_eq(left, 0, "the crew's balls go away")

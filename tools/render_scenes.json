@@ -67,6 +67,12 @@
       "mode": "objective"
     },
     {
+      "name": "district_objective_map",
+      "scene": "res://world/district.tscn",
+      "frames": 30,
+      "mode": "objective_map"
+    },
+    {
       "name": "district_bedstuy_map",
       "scene": "res://world/district.tscn",
       "frames": 30,

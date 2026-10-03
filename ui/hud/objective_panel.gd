@@ -57,6 +57,7 @@ func set_objective(obj: Dictionary) -> void:
 
 func _process(delta: float) -> void:
 	_t += delta
+	visible = game == null or game.menu == null   # the map / menus have the screen
 	_changed_t = maxf(0.0, _changed_t - delta)
 	if _changed_t <= 0.0 and _head.text == tr("NEW OBJECTIVE"):
 		_head.text = tr("OBJECTIVE")

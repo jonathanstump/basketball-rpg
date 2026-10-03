@@ -9,7 +9,7 @@
   {"id": "crossover", "prompt": "Crossover: while holding the ball, move and tap {dodge}.", "done": "crossover"},
   {"id": "ankle", "prompt": "Ankle-breaker: with the ball, tap {dodge} right as a defender winds up. Watch for the red glow over their head.", "done": "ankle_breaker"},
   {"id": "shoot", "prompt": "Shoot at the crate hoop: hold {shoot}, release at the top of the meter.", "done": "crate_make"},
-  {"id": "strip", "prompt": "Defense: they've got the ball now. When the ball handler glows red, press {hands_up} to strip it.", "done": "strip"},
+  {"id": "strip", "prompt": "Defense: they've all got a ball now. When one glows red, press {hands_up} to strip it and you're back on offense.", "done": "strip"},
   {"id": "quarter_water", "prompt": "Heal: press {quarter_water} to drink a Quarter Water.", "done": "qw_used"},
   {"id": "cameo", "prompt": "...", "done": "cameo_done"}
  ],

@@ -158,6 +158,11 @@ func open_map() -> void:
 	ms.map = map
 	ms.layout = layout
 	ms.player_pos = player.pos
+	if objective_panel != null:
+		ms.objective_title = JU.s(objective_panel.objective, "title")
+		ms.has_objective_target = objective_panel.has_target
+		ms.objective_target = objective_panel.target
+		ms.objective_label = objective_panel.target_label
 	open_menu(ms)
 
 
@@ -184,9 +189,9 @@ func setup_render_smoke(entry: Dictionary) -> void:
 		GameState.set_flag("dawn")
 	if JU.s(entry, "district") != "":
 		district_id = JU.s(entry, "district")
-	if JU.s(entry, "mode") == "objective":
+	if JU.s(entry, "mode") in ["objective", "objective_map"]:
 		GameState.set_flag("prologue_done")
-	if JU.s(entry, "mode") == "map":
+	if JU.s(entry, "mode") in ["map", "objective_map"]:
 		ready.connect(func() -> void:
 			MapReveal.reveal(MapReveal.ensure(district_id, map.width, map.height), map.width, map.height, map.cell_of(player.pos), 20.0)
 			open_map())
