@@ -7,6 +7,8 @@ extends GameWorld
 @export var kind: String = "bodega"
 @export var place_id: String = "bk_bodega_1"
 
+signal interacted(kind: String)   # an interaction fired (QA/tests)
+
 var return_to: Dictionary = {}
 var interact: Interactables = Interactables.new()
 var dialogue: DialogueBox
@@ -21,13 +23,21 @@ func _ready() -> void:
 	info = WorldIndex.bodega(place_id) if kind == "bodega" else {}
 	setup_world("interior")
 	_room()
-	spawn_player(Vector3(0, 0, 2.6))
+	# Waking up: on the floor by the cat and Pops, not at the door.
+	spawn_player(Vector3(-0.6, 0, 0.2) if bool(GameState.flags.get("wake_up_pending", false)) else Vector3(0, 0, 2.6))
 	camera_rig.yaw = 0.0
 	camera_rig.snap()
 	player.hp = player.hp_max * float(GameState.flags.get("hp_ratio", 1.0))
 	dialogue = DialogueBox.new()
 	add_child(dialogue)
 	_interactables()
+	var panel: ObjectivePanel = ObjectivePanel.new()
+	panel.game = self
+	hud.add_child(panel)
+	panel.set_objective(ObjectiveRules.current(JU.s(info, "district", str(return_to.get("district", "")))))
+	panel.has_target = not panel.objective.is_empty()
+	panel.target = Vector3(0, 0, 3.6)
+	panel.target_label = "Leave"
 	AudioDirector.play_sfx("door_bell")
 	if kind != "bodega":
 		ShopService.on_enter(self)
@@ -36,16 +46,30 @@ func _ready() -> void:
 
 
 func _wake_up() -> void:
-	## After the Midnight cameo (spec §3.3): the cat on your chest, Pops.
+	## After the Midnight cameo (spec §3.3): a location card, the cat on your
+	## chest, then Pops lays out the night and names your first fight.
 	GameState.flags.erase("wake_up_pending")
 	GameState.flags["hp_ratio"] = 1.0
+	GameState.flags["pops_bodega"] = place_id
 	player.hp = player.hp_max
 	GameState.respawn_bodega = place_id
+	var d: String = JU.s(info, "district")
+	LocationCard.show_card(self, ("%s, %s" % [WorldIndex.district_name(d), JU.s(DataDB.item("boroughs", WorldIndex.district_borough(d)), "name")]).to_upper(), "3:00 AM", 2.6)
 	var lines: Dictionary = JU.dict(DataDB.get_dict("dialogue/prologue"), "lines")
 	var all: PackedStringArray = JU.strs(lines, "wake_cat")
-	all.append_array(JU.strs(lines, "wake_pops"))
-	EventBus.dialogue_requested.emit("Pops", all)
+	all.append_array(ObjectiveRules.fill(JU.strs(lines, "wake_pops"), GameState.start_borough))
+	EventBus.dialogue_requested.emit("", all)
 	SaveSystem.request_autosave()
+
+
+func pops_here() -> bool:
+	## Pops waits in the bodega you woke up in until your home borough's Crown.
+	return kind == "bodega" and str(GameState.flags.get("pops_bodega", "")) == place_id and not GameState.has_crown(GameState.start_borough)
+
+
+func talk_to_pops() -> void:
+	var lines: Dictionary = JU.dict(DataDB.get_dict("dialogue/prologue"), "lines")
+	EventBus.dialogue_requested.emit("Pops", ObjectiveRules.fill(JU.strs(lines, "pops_talk"), GameState.start_borough))
 
 
 func _room() -> void:
@@ -122,6 +146,16 @@ func _room() -> void:
 	owner.flags["ghost"] = true
 	sim.add_actor(owner)
 	add_actor_view(owner, {"top_color": "#F2F6FF", "shorts_color": "#3A3048", "skin": "#C68642", "hair_style": "bald", "facial_hair": "beard", "height": 1.3})
+	if pops_here() or bool(GameState.flags.get("wake_up_pending", false)):
+		var pops: SimActor = SimActor.new()
+		pops.kind = "npc"
+		pops.team = 0
+		pops.pos = Vector3(1.8, 0, -1.4)
+		pops.facing = PI * 0.75
+		pops.flags["ghost"] = true
+		sim.add_actor(pops)
+		add_actor_view(pops, {"top_color": "#7A5230", "shorts_color": "#2A2A34", "skin": "#5A3825", "hair_style": "fade", "hair_color": "#D8D8D8",
+			"facial_hair": "mustache", "shoe_color": "#E8E4D0", "height": 1.45})
 
 
 func _shop_name() -> String:
@@ -132,6 +166,8 @@ func _interactables() -> void:
 	if kind == "bodega":
 		interact.add("cat", "cat", Vector3(-2.6, 0, -1.6), "Pet %s (Rest)" % JU.s(info, "cat", "the cat"), {}, 1.8)
 		interact.add("counter", "counter", Vector3(-0.6, 0, -1.6), "Counter", {}, 1.8)
+		if pops_here() or bool(GameState.flags.get("wake_up_pending", false)):
+			interact.add("pops", "pops", Vector3(1.8, 0, -0.6), "Talk to Pops", {}, 1.8)
 	else:
 		interact.add("counter", "shop_counter", Vector3(-0.6, 0, -1.6), "Talk to %s" % ShopService.keeper(kind), {}, 1.8)
 	interact.add("door", "door", Vector3(0, 0, 3.4), "Leave", {}, 1.5)
@@ -141,10 +177,16 @@ func _physics_process(delta: float) -> void:
 	if menu != null:
 		return
 	super._physics_process(delta)
+	if dialogue != null and dialogue.blocking():
+		hud.prompt = ""   # Interact advances the dialogue; it must not also leave/trigger
+		if player.input.peek("interact"):
+			player.input.pressed("interact")   # eat the buffered press so closing the box doesn't fire it
+		return
 	var near: Dictionary = interact.nearest(player.pos)
 	hud.prompt = ("[%s] %s" % [InputPrompts.key("interact"), tr(str(near.get("prompt", "")))]) if not near.is_empty() else ""
 	if not near.is_empty() and player.input.peek("interact") and player_hooper.action == "":
 		player.input.pressed("interact")
+		interacted.emit(str(near["kind"]))
 		trigger(str(near["kind"]))
 
 
@@ -161,6 +203,8 @@ func trigger(k: String) -> void:
 			counter_menu()
 		"shop_counter":
 			ShopService.open(self)
+		"pops":
+			talk_to_pops()
 		"door":
 			leave()
 
@@ -246,3 +290,12 @@ func _on_counter(id: String) -> void:
 			counter_menu()
 		_:
 			close_menu()
+
+
+func setup_render_smoke(entry: Dictionary) -> void:
+	## "wake_up": the bodega right after the prologue (card, cat, Pops).
+	if JU.s(entry, "mode") == "wake_up":
+		GameState.new_run("nobody", "brooklyn")
+		GameState.set_flag("prologue_done")
+		GameState.flags["wake_up_pending"] = true
+		SceneRouter.pending = {"kind": "bodega", "id": FrontEndFlow.first_bodega("bk_bedstuy"), "return_to": {"district": "bk_bedstuy"}}

@@ -10,6 +10,7 @@ var body: Node3D
 var _prev_pos: Vector3
 var _curr_pos: Vector3
 var _flash_t: float = 0.0
+var aura: TelegraphAura   # red "about to attack" glow above hostile heads
 
 
 static func create(a: SimActor, profile: Dictionary = {}) -> ActorView:
@@ -28,6 +29,8 @@ static func create(a: SimActor, profile: Dictionary = {}) -> ActorView:
 	v._curr_pos = a.pos
 	v.position = a.pos
 	v.add_child(_blob_shadow())
+	v.aura = TelegraphAura.create(a)
+	v.add_child(v.aura)
 	return v
 
 
@@ -65,6 +68,8 @@ func _process(delta: float) -> void:
 	var blob: Node3D = get_node_or_null("Blob")
 	if blob != null:
 		blob.global_position.y = actor.ground_y + 0.02
+	if aura != null:
+		aura.update_aura(delta, actor.height)
 	if _flash_t > 0.0:
 		_flash_t -= delta
 		rig.set_tint(Color(2.2, 2.2, 2.2) if _flash_t > 0.0 else Color.WHITE)

@@ -226,7 +226,7 @@ func move_usable(m: Dictionary, d: float) -> bool:
 		return false
 	if float(cooldowns.get(JU.s(m, "id"), 0.0)) > 0.0:
 		return false
-	if not JU.b(m, "body_attack") and JU.s(m, "primitive") != "showboat" and JU.s(m, "primitive") != "summon" and JU.s(m, "primitive") != "stance" and JU.b(data, "has_ball") and not actor.has_ball:
+	if not JU.b(m, "body_attack") and JU.s(m, "primitive") != "showboat" and JU.s(m, "primitive") != "summon" and JU.s(m, "primitive") != "stance" and JU.b(data, "has_ball") and not actor.has_ball and not bool(actor.flags.get("defending", false)):
 		return false
 	if JU.b(m, "requires_target_downed") and not bool(target.flags.get("downed", false)):
 		return false

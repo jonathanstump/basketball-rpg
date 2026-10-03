@@ -7,6 +7,9 @@ extends GameWorld
 ## You wake up in the nearest bodega.
 
 const CREW: PackedStringArray = ["ball_hog", "showboat", "ball_hog"]
+## One ball, like real ball: you're on offense, so the crew defend without
+## their own balls. The strip drill hands yours to one of them.
+const CREW_OPTS: Dictionary = {"no_respawn": true, "no_ball": true, "defending": true}
 const MIDNIGHT_LOOK: Dictionary = {"skin": "#3A2418", "top_color": "#141428", "shorts_color": "#141428", "shoe_color": "#E8E4D0",
 	"hair_style": "fade", "hair_color": "#C8C8C8", "height": 1.7, "headband": ""}
 
@@ -23,6 +26,7 @@ var _cameo_t: float = 0.0
 var _shown_step: String = ""     # step whose prompt is on screen
 var _move_origin: Vector3        # where "move" is measured from (the call-next spot)
 var _sprinted: bool = false
+var _wait_for_aura: bool = false
 var _parked: Array[SimBall] = [] # balls set aside while the strip drill puts you on defense
 var auto_wake: bool = true       # smoke/QA turn this off to stay in the scene
 
@@ -105,8 +109,13 @@ func _sync_prompt() -> void:
 	if tracker == null:
 		return
 	var cur: String = tracker.current_id()
-	if cur == "strip" and player.has_ball:
-		_start_defense_drill()   # a ball can land back in your hands mid-drill (shot return, spare)
+	if cur == "strip":
+		if player.has_ball:
+			_start_defense_drill()   # a ball can land back in your hands mid-drill (shot return, spare)
+		# Only the ball handler may attack: keep the one attack token free for them.
+		for c: SimActor in crew:
+			if not c.has_ball and sim.attack_tokens != null:
+				sim.attack_tokens.release(c.id)
 	if cur == _shown_step:
 		return
 	if _shown_step != "" and phase == "tutorial" and cur != "cameo":
@@ -121,17 +130,47 @@ func _sync_prompt() -> void:
 
 func _start_defense_drill() -> void:
 	## Hands Up is defense (spec §7: "you don't [have the ball]: pick their
-	## pocket"), so the strip step sets your ball aside until you've stripped.
+	## pocket"), so the strip step hands your ball to the nearest crew member;
+	## only the ball handler attacks, and a strip knocks it back to you.
 	player.flags["no_pickup"] = true
-	if player.has_ball:
-		var b: SimBall = balls.take_from(player)
-		if b != null:
-			balls.balls.erase(b)
-			_parked.append(b)
+	var carrier: SimActor = _ball_carrier()
+	for c: SimActor in crew:
+		if c.alive:
+			c.flags["defending"] = false
+	if not player.has_ball:
+		return
+	var b: SimBall = balls.take_from(player)
+	if b == null:
+		return
+	if carrier == null:
+		carrier = _nearest_crew()
+	if carrier != null and not carrier.has_ball:
+		balls.give(b, carrier)
+	else:
+		balls.balls.erase(b)
+		_parked.append(b)
+
+
+func _ball_carrier() -> SimActor:
+	for c: SimActor in crew:
+		if c.alive and c.has_ball:
+			return c
+	return null
+
+
+func _nearest_crew() -> SimActor:
+	var best: SimActor = null
+	for c: SimActor in crew:
+		if c.alive and (best == null or c.dist_to(player) < best.dist_to(player)):
+			best = c
+	return best
 
 
 func _end_defense_drill() -> void:
 	player.flags.erase("no_pickup")
+	for c: SimActor in crew:
+		if c.alive:
+			c.flags["defending"] = true
 	for b: SimBall in _parked:
 		b.pos = player.pos + Vector3(0, 0.5, 0)
 		b.vel = Vector3.ZERO
@@ -139,6 +178,16 @@ func _end_defense_drill() -> void:
 		if not player.has_ball:
 			balls.give(b, player)
 	_parked.clear()
+	if player.has_ball or phase == "out":
+		return
+	## Back on offense: your ball comes back (from whoever has it, or the floor).
+	for b2: SimBall in balls.balls:
+		if b2.home_id == player.id and b2.state in [SimBall.State.HELD, SimBall.State.LOOSE]:
+			var holder: SimActor = sim.actor_by_id(b2.holder_id) if b2.state == SimBall.State.HELD else null
+			if holder != null:
+				balls.take_from(holder)
+			balls.give(b2, player)
+			return
 
 
 func call_next() -> void:
@@ -148,8 +197,9 @@ func call_next() -> void:
 	_sprinted = false
 	EventBus.dialogue_requested.emit("Crew", JU.strs(JU.dict(DataDB.get_dict("dialogue/prologue"), "lines"), "crew_laugh"))
 	for i: int in CREW.size():
-		var a: SimActor = spawner.add(CREW[i], (lay["boss_spot"] as Vector3) + Vector3(-3.0 + 3.0 * float(i), 0, 1.5), 1, {"no_respawn": true})
+		var a: SimActor = spawner.add(CREW[i], (lay["boss_spot"] as Vector3) + Vector3(-3.0 + 3.0 * float(i), 0, 1.5), 1, CREW_OPTS)
 		if a != null:
+			a.flags["no_pickup"] = true   # defenders don't scoop up your ball; the drill hands it over
 			a.hp_max *= 3.0
 			a.hp = a.hp_max
 			crew.append(a)
@@ -173,8 +223,9 @@ func _respawn_crew_member(ev: Dictionary) -> void:
 		if c.alive:
 			alive += 1
 	if alive == 0:
-		var a: SimActor = spawner.add("ball_hog", lay["boss_spot"], 1, {"no_respawn": true})
+		var a: SimActor = spawner.add("ball_hog", lay["boss_spot"], 1, CREW_OPTS)
 		if a != null:
+			a.flags["no_pickup"] = true
 			crew.append(a)
 
 
@@ -279,3 +330,19 @@ func setup_render_smoke(entry: Dictionary) -> void:
 		ready.connect(func() -> void:
 			player.pos = lay["top_of_key"]
 			skip_tutorial())
+	elif JU.s(entry, "mode") == "aura":
+		ready.connect(func() -> void:
+			player.pos = lay["top_of_key"]
+			tracker.mark("reach_court")
+			call_next())
+		_wait_for_aura = true
+
+
+func render_ready() -> bool:
+	## "aura" render: shoot when a defender is in the last frames of a wind-up.
+	if not _wait_for_aura:
+		return true
+	for c: SimActor in crew:
+		if bool(Telegraph.read(c).get("now", false)):
+			return true
+	return false

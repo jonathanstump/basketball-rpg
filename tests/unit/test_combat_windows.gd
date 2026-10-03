@@ -40,24 +40,31 @@ func _result_at(action: String, frame: int, stats: Dictionary = {}, kind: String
 	return rs[0] if rs.size() > 0 else "none"
 
 
+func _ankle_end() -> int:
+	## Base window end from tuning (12 in the spec; widened to 14 by request).
+	return JU.i(JU.dict(DataDB.tuning("combat"), "ankle_breaker"), "window_end", 12)
+
+
 func test_ankle_window_base_handles_10() -> void:
+	var w: int = _ankle_end()
 	for f: int in range(1, 20):
 		var r: String = _result_at("crossover", f, {"handles": 10})
-		if f >= 3 and f <= 12:
+		if f >= 3 and f <= w:
 			assert_eq(r, "ankle_breaker", "frame %d" % f)
-		elif f >= 13 and f <= 14:
+		elif f > w and f <= 14:
 			assert_eq(r, "dodged", "i-frames only at %d" % f)
 		else:
 			assert_eq(r, "hit", "vulnerable at %d" % f)
 
 
 func test_ankle_window_grows_with_handles() -> void:
-	# +0.2 f/pt above 10: Handles 20 -> +2 frames (3..14).
-	assert_eq(_result_at("crossover", 14, {"handles": 20}), "ankle_breaker")
-	assert_eq(_result_at("crossover", 15, {"handles": 20}), "hit")
-	# Cap +6 frames: Handles 60 -> 3..18 (beyond the 14f i-frames).
-	assert_eq(_result_at("crossover", 18, {"handles": 60}), "ankle_breaker")
-	assert_eq(_result_at("crossover", 19, {"handles": 60}), "hit")
+	var w: int = _ankle_end()
+	# +0.2 f/pt above 10: Handles 20 -> +2 frames (3..w+2).
+	assert_eq(_result_at("crossover", w + 2, {"handles": 20}), "ankle_breaker")
+	assert_eq(_result_at("crossover", w + 3, {"handles": 20}), "hit")
+	# Cap +6 frames: Handles 60 -> 3..w+6 (beyond the 14f i-frames).
+	assert_eq(_result_at("crossover", w + 6, {"handles": 60}), "ankle_breaker")
+	assert_eq(_result_at("crossover", w + 7, {"handles": 60}), "hit")
 
 
 func test_ankle_breaker_beats_unblockables_but_needs_ball() -> void:

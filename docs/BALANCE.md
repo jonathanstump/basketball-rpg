@@ -36,7 +36,7 @@ the bot is not a human, so these flag outliers for hands-on tuning rather than f
 | opt_pops | superboss | T7 | victory | 166 s | 240–360 s | 1.8 | 15 | ok |
 | opt_ratking | mini | T1 | victory | 240 s | 150–240 s | 24.9 | 16 | ok |
 | opt_ratking | mini | T3 | victory | 279 s | 150–240 s | 10.1 | 24 | ok |
-| opt_ratking | mini | T5 | victory | 346 s | 150–240 s | 9.7 | 28 | ok |
+| opt_ratking | mini | T5 | victory | 411 s | 150–240 s | 9.6 | 28 | REVIEW |
 | qn_atlas | king | T1 | victory | 202 s | 240–360 s | 7.6 | 16 | ok |
 | qn_atlas | king | T3 | victory | 253 s | 240–360 s | 3.7 | 22 | ok |
 | qn_atlas | king | T5 | victory | 191 s | 240–360 s | 2.5 | 17 | ok |
@@ -65,4 +65,4 @@ the bot is not a human, so these flag outliers for hands-on tuning rather than f
 | up_hook | mini | T3 | victory | 120 s | 150–240 s | 4.1 | 15 | ok |
 | up_hook | mini | T5 | victory | 155 s | 150–240 s | 2.6 | 17 | ok |
 
-51/55 sims inside 0.5x–1.5x of the target window.
+50/55 sims inside 0.5x–1.5x of the target window.

@@ -55,6 +55,18 @@
       "frames": 60
     },
     {
+      "name": "wake_up",
+      "scene": "res://world/interiors/interior.tscn",
+      "frames": 90,
+      "mode": "wake_up"
+    },
+    {
+      "name": "district_objective",
+      "scene": "res://world/district.tscn",
+      "frames": 60,
+      "mode": "objective"
+    },
+    {
       "name": "district_bedstuy_map",
       "scene": "res://world/district.tscn",
       "frames": 30,
@@ -92,6 +104,12 @@
       "name": "prologue",
       "scene": "res://world/prologue/prologue.tscn",
       "frames": 60
+    },
+    {
+      "name": "prologue_aura",
+      "scene": "res://world/prologue/prologue.tscn",
+      "frames": 60,
+      "mode": "aura"
     },
     {
       "name": "prologue_cameo",

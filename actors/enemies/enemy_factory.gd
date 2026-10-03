@@ -58,8 +58,10 @@ static func spawn(w: SimWorld, c: CombatSystem, b: BallSystem, enemy_id: String,
 	a.flags["reward_rep"] = int(round(rep))
 	a.flags["reward_tokens"] = int(round(JU.f(d, "tokens") * TierMath.multiplier(tiers, "tokens", tier, ng)))
 	w.add_actor(a)
-	if JU.b(d, "has_ball") and b != null:
+	if JU.b(d, "has_ball") and b != null and not bool(opts.get("no_ball", false)):
 		b.give(b.spawn_ball("ball_rec", pos, a), a)
+	if bool(opts.get("defending", false)):
+		a.flags["defending"] = true   # one-ball rules: swings at your ball without one
 	var brain: EnemyBrain = EnemyBrain.new(a, w, c, b, d, move_list(d, tier, captain))
 	a.controller = brain
 	if JU.b(d, "dormant"):

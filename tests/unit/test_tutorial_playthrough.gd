@@ -134,10 +134,19 @@ func test_whole_tutorial_with_real_input() -> void:
 	var step_start: int = 0
 	var frames: int = 0
 	var times: Dictionary = {}
+	var one_ball_ok: bool = true
 	while frames < 60 * 60 and pro.phase in ["walk_up", "call", "tutorial"]:
 		await wait_physics_frames(1)
 		frames += 1
 		var cur: String = pro.tracker.current_id()
+		if frames % 30 == 0 and pro.phase == "tutorial":
+			var carriers: int = 0
+			for c: SimActor in pro.crew:
+				carriers += 1 if c.alive and c.has_ball else 0
+			if cur == "strip":
+				one_ball_ok = one_ball_ok and carriers <= 1 and not pro.player.has_ball
+			else:
+				one_ball_ok = one_ball_ok and carriers == 0
 		if cur != step:
 			if step != "":
 				times[step] = frames - step_start
@@ -155,3 +164,4 @@ func test_whole_tutorial_with_real_input() -> void:
 	gut.p("seconds per step: %s" % str(times))
 	assert_true(pro.tracker.tutorial_complete(), "every step completable with real input; stuck on %s (%s)" % [pro.tracker.current_id(), pro.phase])
 	assert_eq(pro.phase, "cameo", "the tutorial hands off to the cameo")
+	assert_true(one_ball_ok, "one ball: defenders have no ball on offense; only the handler has yours on defense")

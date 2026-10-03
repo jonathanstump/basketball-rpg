@@ -16,6 +16,7 @@ var dialogue: DialogueBox
 var tier: int = 1
 var arrive: Dictionary = {}
 var _reveal_t: int = 0
+var objective_panel: ObjectivePanel
 
 
 func _ready() -> void:
@@ -48,6 +49,10 @@ func _ready() -> void:
 	add_child(dialogue)
 	MapReveal.ensure(district_id, map.width, map.height)
 	_reveal(MapReveal.WALK_RADIUS_M)
+	objective_panel = ObjectivePanel.new()
+	objective_panel.game = self
+	hud.add_child(objective_panel)
+	update_objective()
 	player.hp = player.hp_max * float(GameState.flags.get("hp_ratio", 1.0))
 	if auto_capture() and DisplayServer.get_name() != "headless":
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -126,6 +131,13 @@ func _physics_process(delta: float) -> void:
 	_reveal_t += 1
 	if _reveal_t % 15 == 0:
 		_reveal(MapReveal.WALK_RADIUS_M)
+	if _reveal_t % 30 == 0:
+		update_objective()
+	if dialogue != null and dialogue.blocking():
+		hud.prompt = ""   # Interact advances the dialogue; it must not also leave/trigger
+		if player.input.peek("interact"):
+			player.input.pressed("interact")   # eat the buffered press so closing the box doesn't fire it
+		return
 	var near: Dictionary = interact.nearest(player.pos)
 	hud.prompt = ("[%s] %s" % [InputPrompts.key("interact"), tr(str(near.get("prompt", "")))]) if not near.is_empty() else ""
 	if not near.is_empty() and player.input.peek("interact") and player_hooper.action == "":
@@ -172,7 +184,35 @@ func setup_render_smoke(entry: Dictionary) -> void:
 		GameState.set_flag("dawn")
 	if JU.s(entry, "district") != "":
 		district_id = JU.s(entry, "district")
+	if JU.s(entry, "mode") == "objective":
+		GameState.set_flag("prologue_done")
 	if JU.s(entry, "mode") == "map":
 		ready.connect(func() -> void:
 			MapReveal.reveal(MapReveal.ensure(district_id, map.width, map.height), map.width, map.height, map.cell_of(player.pos), 20.0)
 			open_map())
+
+
+func update_objective() -> void:
+	## HUD objective + marker: the boss court here, or the crossing on the
+	## way to the district it's in.
+	var obj: Dictionary = ObjectiveRules.current(district_id)
+	objective_panel.set_objective(obj)
+	objective_panel.has_target = false
+	var to: String = JU.s(obj, "district")
+	if to == "":
+		return
+	if to == district_id:
+		for c: Variant in JU.a(layout, "courts"):
+			if JU.s(c as Dictionary, "boss") == JU.s(obj, "boss"):
+				objective_panel.target = (c as Dictionary)["gate"]
+				objective_panel.target_label = JU.s(DataDB.boss(JU.s(obj, "boss")), "name")
+				objective_panel.has_target = true
+		return
+	var path: Array[String] = ObjectiveRules.route(district_id, to)
+	if path.is_empty():
+		return
+	for x: Variant in JU.a(layout, "crossings"):
+		if JU.s(x as Dictionary, "to") == path[0]:
+			objective_panel.target = (x as Dictionary)["pos"]
+			objective_panel.target_label = "To %s" % WorldIndex.district_name(path[0])
+			objective_panel.has_target = true

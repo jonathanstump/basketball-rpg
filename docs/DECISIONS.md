@@ -200,3 +200,20 @@ Spec §11.3 lists L60 = 46,626 but `floor(100 × 60^1.5 + 150)` = 46,625 (every 
   - "Move" counts from the call-next spot and requires a sprint, because its prompt teaches sprint.
   - Strip is a defense drill. Hands Up only exists without the ball (spec §7: "Defense (you don't): pick their pocket"), so while strip is the open step, the player's ball is held off the court (`no_pickup`, re-parked if a crate make hands it back) and returned when the step ends or the cameo starts.
   - The tutorial caps simultaneous attackers at 1 via `AttackTokenManager.cap` (spec's 2 is for real fights), so the cues are readable and the player can't be hit-stun locked.
+
+## Post-RC — attack cue, story start, objectives (user-directed)
+- **Telegraph aura.** `Telegraph.read(actor)` is pure: wind-up progress from the hostile's MoveRunner (enemy, boss, dummy) or a rival Hooper's strike startup. `TelegraphAura` is a billboard radial glow above the head.
+  - The aura is red per the user's request. Unblockables get a larger glow with a white core, and they flicker unless Reduce flashes is on.
+  - It pulses in the last `CUE_FRAMES = 6` frames: the dodge or Hands Up moment.
+  - Stances, showboats, summons and taunts don't glow.
+- **Ankle-breaker window 3–14** (spec says 3–12). The user asked for it slightly easier. `ankle_window()` now reads `tuning/combat ankle_breaker.window_end`, which was hard-coded before. Tests derive the window from tuning.
+- **One-ball tutorial only** (user's choice).
+  - Spawn opts: `no_ball` and `defending`. A "defending" enemy may use its ball moves without a ball. Tutorial crew also get `no_pickup`, so they never scoop up your ball.
+  - Street crews keep the spec's own-ball design.
+  - During the strip drill, attack tokens are released for everyone but the ball handler. With the tutorial's cap of 1, a ball-less crew member could otherwise hold the only token and deadlock the drill.
+- **Story start.** Pops is a visible NPC in the wake-up bodega until your home Crown. His lines are data with `{borough}`, `{cast}`, `{first}`, `{objective}` and `{detail}` filled by `ObjectiveRules.story_tokens`. `LocationCard` shows the district and the time. You wake by the cat, not at the door.
+- **Objectives** (not in the spec; added because the street had no direction).
+  - `ObjectiveRules.current(from_district)` follows §3.2: home borough first, minis before the King, nearest by route, then the uncrowned borough with the lowest tier, then the City landmarks, then the Garden.
+  - Routes are a BFS over district crossings, and City districts need the Crown Pass.
+  - Optional bosses (`opt_*`) are never objectives.
+- **Dialogue input.** While a dialogue is open, or within 250 ms after it closes, district and interior interactions are suppressed and the buffered Interact press is consumed. Interact both advances dialogue and triggers the nearest interaction, and the 8-frame input buffer used to carry the closing press into the world.

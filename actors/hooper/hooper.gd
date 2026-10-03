@@ -237,9 +237,10 @@ func iframe_window() -> Vector2i:
 
 
 func ankle_window() -> Vector2i:
-	## Crossover frames 3-12 + Handles bonus (+0.2f/pt above 10, max +6).
+	## Crossover frames 3..window_end (tuning/combat ankle_breaker) + Handles
+	## bonus (+0.2f/pt above 10, max +6).
 	var start: int = JU.i(action_move, "startup") + 1
-	var end: int = 12 + int(StatFormulas.ankle_bonus_frames(actor.stat("handles")) + float(actor.flags.get("ankle_bonus", 0)))
+	var end: int = JU.i(JU.dict(DataDB.tuning("combat"), "ankle_breaker"), "window_end", 12) + int(StatFormulas.ankle_bonus_frames(actor.stat("handles")) + float(actor.flags.get("ankle_bonus", 0)))
 	var mult: float = float(actor.flags.get("ankle_window_mult", 1.0))
 	end = start + int(round(float(end - start) * mult))
 	return Vector2i(start, end)

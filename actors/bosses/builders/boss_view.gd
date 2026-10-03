@@ -22,6 +22,8 @@ static func create_boss(a: SimActor, data: Dictionary) -> BossView:
 	var blob: MeshInstance3D = ActorView._blob_shadow()
 	blob.scale = Vector3.ONE * (a.radius / 0.32)
 	v.add_child(blob)
+	v.aura = TelegraphAura.create(a)
+	v.add_child(v.aura)
 	v.position = a.pos
 	v.physics_synced()
 	v.physics_synced()
@@ -38,6 +40,7 @@ func _process(delta: float) -> void:
 	var want_scale: float = float(actor.flags.get("scale", 1.0))
 	_phase_scale = lerpf(_phase_scale, want_scale, clampf(delta * 2.0, 0.0, 1.0))
 	body.scale = Vector3.ONE * _phase_scale
+	aura.update_aura(delta, actor.height)   # already includes the phase scale
 	BossBuilder.set_tag_visible(rig, "chair", want_scale <= 1.01)
 	var torso: Node3D = rig.joint("torso")
 	var head: Node3D = rig.joint("head")

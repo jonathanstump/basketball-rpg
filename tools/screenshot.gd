@@ -33,6 +33,12 @@ func _run() -> void:
 		root.add_child(inst)
 		for _i: int in JU.i(entry, "frames", 60):
 			await process_frame
+		if inst.has_method("render_ready"):
+			## Scenes can hold the shot for a moment (e.g. mid-wind-up), up to 20 s.
+			for _w: int in 1200:
+				if bool(inst.call("render_ready")):
+					break
+				await process_frame
 		await RenderingServer.frame_post_draw
 		var img: Image = root.get_texture().get_image()
 		var file: String = out_dir.path_join(JU.s(entry, "name", "shot") + ".png")
