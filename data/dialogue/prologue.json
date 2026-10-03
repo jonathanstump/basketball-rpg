@@ -7,9 +7,9 @@
   {"id": "move", "prompt": "Move with {move}. Hold {dodge} while moving to sprint.", "done": "moved"},
   {"id": "strike", "prompt": "Dribble strike: walk up to a crew member and press {light}.", "done": "strike"},
   {"id": "crossover", "prompt": "Crossover: while holding the ball, move and tap {dodge}.", "done": "crossover"},
-  {"id": "ankle", "prompt": "Ankle-breaker: tap {dodge} right as a defender winds up. Time it on the flash.", "done": "ankle_breaker"},
+  {"id": "ankle", "prompt": "Ankle-breaker: with the ball, tap {dodge} right as a defender winds up. Time it on the flash.", "done": "ankle_breaker"},
   {"id": "shoot", "prompt": "Shoot at the crate hoop: hold {shoot}, release at the top of the meter.", "done": "crate_make"},
-  {"id": "strip", "prompt": "Strip: when they swing at you, press {hands_up} on the cue.", "done": "strip"},
+  {"id": "strip", "prompt": "Defense: they've got the ball now. When one swings at you, press {hands_up} on the cue to strip it.", "done": "strip"},
   {"id": "quarter_water", "prompt": "Heal: press {quarter_water} to drink a Quarter Water.", "done": "qw_used"},
   {"id": "cameo", "prompt": "...", "done": "cameo_done"}
  ],

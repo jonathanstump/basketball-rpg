@@ -20,6 +20,10 @@ var controls_hint: Label         # "[Esc] Pause · Settings → Controls..." und
 var start_pos: Vector3
 var phase: String = "walk_up"    # walk_up, call, tutorial, cameo, out
 var _cameo_t: float = 0.0
+var _shown_step: String = ""     # step whose prompt is on screen
+var _move_origin: Vector3        # where "move" is measured from (the call-next spot)
+var _sprinted: bool = false
+var _parked: Array[SimBall] = [] # balls set aside while the strip drill puts you on defense
 var auto_wake: bool = true       # smoke/QA turn this off to stay in the scene
 
 
@@ -39,6 +43,9 @@ func _ready() -> void:
 	player.flags["cannot_die"] = true
 	camera_rig.hoop_pos = (lay["hoop"] as SimHoop).rim
 	tracker = TutorialTracker.new(player.id)
+	# Teaching fight: one crew member swings at a time so every cue is readable.
+	sim.attack_tokens = AttackTokenManager.new()
+	sim.attack_tokens.cap = 1
 	prompt = Label.new()
 	prompt.add_theme_font_override("font", UIFonts.title())
 	prompt.add_theme_font_size_override("font_size", 30)
@@ -79,7 +86,9 @@ func _physics_process(delta: float) -> void:
 			if player.input.pressed("interact"):
 				call_next()
 		"tutorial":
-			if player.pos.distance_to(start_pos) > 4.0:
+			# "Move" teaches moving and sprinting: both, after calling next.
+			_sprinted = _sprinted or (player_hooper != null and player_hooper.sprinting)
+			if _sprinted and player.pos.distance_to(_move_origin) > 4.0:
 				tracker.mark("moved")
 			if player.hp < player.hp_max * 0.35:
 				player.hp = player.hp_max * 0.35
@@ -87,11 +96,56 @@ func _physics_process(delta: float) -> void:
 				start_cameo()
 		"cameo":
 			_tick_cameo(delta)
+	_sync_prompt()
+
+
+func _sync_prompt() -> void:
+	## Any step can complete from any path (sim events, movement, skips), so
+	## the prompt follows the tracker every frame instead of per event.
+	if tracker == null:
+		return
+	var cur: String = tracker.current_id()
+	if cur == "strip" and player.has_ball:
+		_start_defense_drill()   # a ball can land back in your hands mid-drill (shot return, spare)
+	if cur == _shown_step:
+		return
+	if _shown_step != "" and phase == "tutorial" and cur != "cameo":
+		EventBus.popup_text.emit("NICE", player.pos, "good")
+	_shown_step = cur
+	if cur == "strip":
+		_start_defense_drill()
+	else:
+		_end_defense_drill()
+	_update_prompt()
+
+
+func _start_defense_drill() -> void:
+	## Hands Up is defense (spec §7: "you don't [have the ball]: pick their
+	## pocket"), so the strip step sets your ball aside until you've stripped.
+	player.flags["no_pickup"] = true
+	if player.has_ball:
+		var b: SimBall = balls.take_from(player)
+		if b != null:
+			balls.balls.erase(b)
+			_parked.append(b)
+
+
+func _end_defense_drill() -> void:
+	player.flags.erase("no_pickup")
+	for b: SimBall in _parked:
+		b.pos = player.pos + Vector3(0, 0.5, 0)
+		b.vel = Vector3.ZERO
+		balls.balls.append(b)
+		if not player.has_ball:
+			balls.give(b, player)
+	_parked.clear()
 
 
 func call_next() -> void:
 	tracker.mark("called_next")
 	phase = "tutorial"
+	_move_origin = player.pos
+	_sprinted = false
 	EventBus.dialogue_requested.emit("Crew", JU.strs(JU.dict(DataDB.get_dict("dialogue/prologue"), "lines"), "crew_laugh"))
 	for i: int in CREW.size():
 		var a: SimActor = spawner.add(CREW[i], (lay["boss_spot"] as Vector3) + Vector3(-3.0 + 3.0 * float(i), 0, 1.5), 1, {"no_respawn": true})
@@ -106,13 +160,10 @@ func _on_sim_event(ev: Dictionary) -> void:
 	super._on_sim_event(ev)
 	if tracker == null or phase != "tutorial":
 		return
-	var before: String = tracker.current_id()
 	tracker.feed(ev)
 	if str(ev.get("type", "")) == "enemy_defeated" and tracker.current_id() != "cameo":
 		_respawn_crew_member(ev)
-	if tracker.current_id() != before:
-		EventBus.popup_text.emit("NICE", player.pos, "good")
-		_update_prompt()
+	_sync_prompt()
 
 
 func _respawn_crew_member(ev: Dictionary) -> void:

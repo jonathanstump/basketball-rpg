@@ -4,10 +4,13 @@ extends RefCounted
 ## target at once (2; 3 at Tier 5+). Others circle at 4-6 m and taunt.
 
 var max_attackers: int = 2
+var cap: int = 0               # > 0 overrides the tier limit (e.g. the tutorial: 1)
 var holders: Dictionary = {}   # target id -> Array[int] of attacker ids
 
 
 func limit_for_tier(tier: int) -> int:
+	if cap > 0:
+		return cap
 	var ai: Dictionary = DataDB.tuning("ai")
 	return JU.i(ai, "max_attackers_t5", 3) if tier >= 5 else JU.i(ai, "max_attackers", 2)
 

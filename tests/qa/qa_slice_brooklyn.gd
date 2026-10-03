@@ -31,13 +31,13 @@ func run() -> bool:
 		return false
 	pro.call_next()
 	await frames(30)
-	pro.player.pos += Vector3(5, 0, 0)
-	await frames(4)
 	var si: ScriptedInput = ScriptedInput.new()
 	pro.use_scripted_input(si)
+	# The move step teaches sprint: hold dodge while moving, for real.
+	si.move_at(0, Vector2(1, 0)).hold(0, 70, "dodge").move_at(71, Vector2.ZERO)
 	pro.player.flags["qw"] = 3
-	si.press_at(pro.sim.frame + 2, "dodge")
-	si.press_at(pro.sim.frame + 70, "quarter_water")
+	si.press_at(90, "dodge")             # ScriptedInput frames are relative to its first fill
+	si.press_at(110, "quarter_water")
 	await frames(160)
 	for k: String in ["moved", "crossover", "qw_used"]:
 		if not check(pro.tracker.done.has({"moved": "move", "crossover": "crossover", "qw_used": "quarter_water"}[k]), "tutorial step %s not detected from play" % k):
