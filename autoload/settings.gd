@@ -10,6 +10,7 @@ const DEFAULTS: Dictionary = {
 	"screen_shake": 1.0,
 	"reduce_flashes": false,
 	"subtitles": true,
+	"objective_marker": true,
 	"ui_scale": 1.0,
 	"colorblind": "off",
 	"pass_aim_assist": true,

@@ -56,6 +56,20 @@ func visit_interiors(districts: PackedStringArray) -> bool:
 	return true
 
 
+func beat_lieutenant(d: District, boss_id: String) -> bool:
+	## R6: the court is chained until its lieutenant goes down. QA knocks
+	## them out through the real death event path.
+	if CourtGate.is_open(boss_id):
+		return true
+	for a: SimActor in d.sim.actors:
+		if str(a.flags.get("lieutenant", "")) == boss_id and a.alive:
+			d.combat.damage.apply_raw(a, a.hp + 1.0)
+			d.sim.emit("actor_killed", {"actor": a.id, "attacker": d.player.id, "kind": a.kind, "archetype": a.archetype})
+	await frames(2)
+	d.dialogue.open = false
+	return check(CourtGate.is_open(boss_id), "%s court still locked after its lieutenant (%s)" % [boss_id, CourtGate.status(boss_id)])
+
+
 func fight(boss_id: String) -> bool:
 	var district: String = JU.s(DataDB.boss(boss_id), "district")
 	SceneRouter.goto_district(district, {"kind": "court", "id": boss_id}, false)
@@ -68,6 +82,8 @@ func fight(boss_id: String) -> bool:
 		if str(it["kind"]) == "court" and JU.s(it["data"] as Dictionary, "boss") == boss_id:
 			court = it
 	if not check(not court.is_empty(), "no court for %s in %s" % [boss_id, district]):
+		return false
+	if not await beat_lieutenant(d, boss_id):
 		return false
 	DistrictActions.trigger(d, court)
 	await frames(10)

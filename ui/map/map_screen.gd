@@ -157,7 +157,7 @@ func _draw_objective(origin: Vector2, cell: float) -> void:
 	var font: Font = UIFonts.title()
 	var legend_y: float = origin.y + cell * float(map.height) + 44.0
 	if objective_title != "":
-		var line: String = tr("OBJECTIVE") + ": " + tr(objective_title) + ("  >  " + tr(objective_label) if has_objective_target else "")
+		var line: String = tr("THE WORD") + ": " + tr(objective_title) + ("  >  " + tr(objective_label) if has_objective_target else "")
 		_canvas.draw_string_outline(font, Vector2(origin.x, legend_y), line, HORIZONTAL_ALIGNMENT_LEFT, -1, 22, 6, Color("#0B0B10"))
 		_canvas.draw_string(font, Vector2(origin.x, legend_y), line, HORIZONTAL_ALIGNMENT_LEFT, -1, 22, Color("#FFE060"))
 	if not has_objective_target:

@@ -262,3 +262,21 @@ Spec §11.3 lists L60 = 46,626 but `floor(100 × 60^1.5 + 150)` = 46,625 (every 
   - **No RefCounted cycles.** `BossDuelRules → DuelController` and `BossCourtIQ → BossBrain` are WeakRef getters; the cycles leaked "17 resources in use" in the smokes.
   - **Balance (QA bot, god mode, seed 2).** 52/55 sims are inside 0.5×–1.5× of §11.6, up from 51/55, and every fight is won. REVIEW: Boom T1 116 s and T5 573 s, Rat King T3 389 s. See docs/BALANCE.md.
   - **Fix: boss parts froze the duel.** The General's split-off horse (`boss_part`) could pick up the loose duel ball, and the duel only reconciles the two duelists, so it stayed LOOSE_BALL forever (seen as a 900 s timeout at T3). Parts now get `no_pickup`.
+- **R6, progression before bosses (spec §3.6a).**
+  - **Gate rule (`CourtGate`, pure).** Minis and landmarks need their lieutenant beaten (`lt_beaten_<boss>`). Kings need the borough's minis, then their own lieutenant. Beaten courts, the Garden (still gated by its ticket stubs) and optional bosses are open. A chained gate explains itself in narration instead of loading the arena.
+  - **Lieutenants are crew captains** (the existing ×1.6 HP, extra move and captain rewards). I chose the archetype per boss to fit (Sal is a Juggler, Padlock a Suit, and so on). Each gets an intro on first alert and a defeat line, and beating one marks the lore heard, re-labels the court and autosaves.
+  - **Placement is procedural (`StreetLife.plan`, pure and deterministic):**
+    - the lieutenant goes on the plain street tile 4-7 tiles from the gate that's nearest the district start (the side you arrive from);
+    - rumor NPCs go on sidewalks 2-4 tiles from the bodegas and station;
+    - up to 2 stashes go in dead-end alley tiles 14+ tiles from the start, using the district's first `$` loot pool.
+    This way none of the 17 hand-made maps (or their bindings) changed. Tests check the plan is walkable, clear of walls and stable.
+  - **Lore (`data/dialogue/lore.json`).** It has "who they were before the clocks stopped" for all 23 bosses, plus a lieutenant and two rumors for the 20 gated ones. Tone follows §3.6: warm, places and jobs, no stereotypes. Rumors double as hints that line up with the R7 profiles ("he drives every time, get in front of him").
+  - **Word on the Street** (Pause) lists heard lore. It fills from rumor NPCs, chained gates, lieutenants and Mic Check.
+  - **Scope.** No new hand-built side streets. The maps already have alleys, crews, shops and challengers; the stashes give the alleys a reason to visit. More hand-authored side content is deferred (see NEXT_SESSION).
+- **R1, in-world direction.**
+  - Objectives read "Make a name in <borough>" and "Word is <Boss> holds the court in <district>. <Lieutenant> decides who gets on it."; Kings read "<Borough>'s best have fallen…".
+  - Counts moved out of the text into `done/total`.
+  - The HUD header is "THE WORD".
+  - Pops says "ask around, people talk" instead of "follow the marker".
+  - New Settings toggle "Objective marker" (default on). It stays on by default because a stuck player is worse than a led one. Crossing arrows are kept (they're labeled like street signs).
+- **Render smoke tonight.** In this session even the 2-draw-call boot scene ran at ~560 ms per frame (display asleep or locked, about 1 AM), so the full 58-shot render couldn't finish. The R2/R5 shots were taken earlier, while frames were normal (14-23 ms). The full verify ran with `CC_HEADLESS=1`. Re-run `tools/verify.ps1 --full` with the screen on.

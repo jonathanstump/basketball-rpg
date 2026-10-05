@@ -50,7 +50,7 @@ func set_objective(obj: Dictionary) -> void:
 		if _last_title != "" or title != "":
 			_changed_t = 4.0
 		_last_title = title
-	_head.text = tr("NEW OBJECTIVE") if _changed_t > 0.0 and title != "" else (tr("OBJECTIVE") if title != "" else "")
+	_head.text = tr("NEW WORD") if _changed_t > 0.0 and title != "" else (tr("THE WORD") if title != "" else "")
 	_title.text = title
 	_detail.text = tr(JU.s(obj, "detail"))
 
@@ -59,14 +59,14 @@ func _process(delta: float) -> void:
 	_t += delta
 	visible = game == null or game.menu == null   # the map / menus have the screen
 	_changed_t = maxf(0.0, _changed_t - delta)
-	if _changed_t <= 0.0 and _head.text == tr("NEW OBJECTIVE"):
-		_head.text = tr("OBJECTIVE")
+	if _changed_t <= 0.0 and _head.text == tr("NEW WORD"):
+		_head.text = tr("THE WORD")
 	_head.add_theme_color_override("font_color", Color("#FFE060").lerp(Color("#FF3EA5"), 0.5 + 0.5 * sin(_t * 8.0)) if _changed_t > 0.0 else Color("#F4B400"))
 	queue_redraw()
 
 
 func _draw() -> void:
-	if not has_target or game == null or game.player == null:
+	if not has_target or game == null or game.player == null or not Settings.get_bool("objective_marker"):
 		return
 	var cam: Camera3D = get_viewport().get_camera_3d()
 	if cam == null:

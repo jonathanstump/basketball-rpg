@@ -19,15 +19,14 @@ static func register(d: District) -> void:
 		d.interact.add(JU.s(shd, "id"), "shop", shd["door"], "Enter " + nm, shd, 2.6)
 	for c: Variant in JU.a(lay, "courts"):
 		var cd: Dictionary = c
-		var boss_name: String = JU.s(DataDB.boss(JU.s(cd, "boss")), "name", "the court")
-		d.interact.add("court_" + JU.s(cd, "boss"), "court", cd["gate"], "Court" if bool(cd["open"]) else "Challenge %s" % boss_name, cd, 2.6)
+		d.interact.add("court_" + JU.s(cd, "boss"), "court", cd["gate"], court_prompt(cd), cd, 2.6)
 	for x: Variant in JU.a(lay, "crossings"):
 		var xd: Dictionary = x
 		d.interact.add("cross_%d" % int(xd["index"]), "crossing", xd["pos"], "Go to %s" % JU.s(xd, "name"), xd, 3.0)
 	for bx: Variant in JU.a(lay, "boxes"):
 		var bxd: Dictionary = bx
 		if not GameState.opened_boxes.has(JU.s(bxd, "id")):
-			d.interact.add(JU.s(bxd, "id"), "box", bxd["pos"], "Open shoebox" if not bool(bxd["locked"]) else "Locked shoebox", bxd, 1.6)
+			d.interact.add(JU.s(bxd, "id"), "box", bxd["pos"], JU.s(bxd, "prompt", "Open shoebox" if not bool(bxd["locked"]) else "Locked shoebox"), bxd, 1.6)
 	for t: Variant in JU.a(lay, "tags"):
 		var td: Dictionary = t
 		d.interact.add(JU.s(td, "id"), "tag", td["pos"], "Read tag", td, 2.0)
@@ -57,6 +56,14 @@ static func register(d: District) -> void:
 		d.interact.add(JU.s(sed, "id") + "_b", "secret", sed["b"], "Climb back", {"to": sed["a"]}, 1.6)
 
 
+static func court_prompt(cd: Dictionary) -> String:
+	var boss_id: String = JU.s(cd, "boss")
+	var boss_name: String = JU.s(DataDB.boss(boss_id), "name", "the court")
+	if bool(cd["open"]):
+		return "Court"
+	return "Challenge %s" % boss_name if CourtGate.is_open(boss_id) else "%s's court (locked)" % CourtGate._title(boss_name)
+
+
 static func trigger(d: District, it: Dictionary) -> void:
 	var data: Dictionary = it["data"]
 	match str(it["kind"]):
@@ -71,6 +78,12 @@ static func trigger(d: District, it: Dictionary) -> void:
 				EventBus.popup_text.emit("THE GARDEN: %d / 5 TICKET STUBS" % GameState.garden_tickets.size(), d.player.pos, "bad")
 				return
 			GameState.set_flag("seen_court_" + JU.s(data, "boss"))
+			var gate: Dictionary = CourtGate.status(JU.s(data, "boss"))
+			if not bool(data["open"]) and not bool(gate["open"]):
+				## R6: earn it on the street first.
+				LoreBook.hear(JU.s(data, "boss"))
+				EventBus.dialogue_requested.emit("", PackedStringArray(["(The gate is chained. %s)" % JU.s(gate, "text")]))
+				return
 			if bool(data["open"]):
 				EventBus.popup_text.emit("OPEN COURT", d.player.pos, "good")
 			else:
@@ -87,6 +100,8 @@ static func trigger(d: District, it: Dictionary) -> void:
 				challenge(d, data)
 			else:
 				EventBus.dialogue_requested.emit(JU.s(data, "name"), JU.strs(data, "lines"))
+				if LoreBook.hear(JU.s(data, "lore")):
+					EventBus.popup_text.emit("WORD ON THE STREET", d.player.pos + Vector3(0, 0.8, 0), "style")
 		"shortcut":
 			shortcut(d, str(it["id"]), data)
 		"lost_cat":

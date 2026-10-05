@@ -17,6 +17,8 @@ var tier: int = 1
 var arrive: Dictionary = {}
 var _reveal_t: int = 0
 var objective_panel: ObjectivePanel
+var street: Dictionary = {}            # R6: lieutenants, rumor NPCs, alley stashes
+var _lt_intro_done: Dictionary = {}
 
 
 func _ready() -> void:
@@ -34,12 +36,18 @@ func _ready() -> void:
 	var t0: int = Time.get_ticks_msec()
 	layout = BoroughBuilder.build(map, sim, balls, level_root)
 	DistrictSkyline.build(map, borough, region, level_root)
+	street = StreetLife.plan(map, layout)
+	(layout["npcs"] as Array).append_array(street["rumors"])
+	for sb: Variant in street["caches"]:
+		if not GameState.opened_boxes.has(JU.s(sb as Dictionary, "id")):
+			(layout["boxes"] as Array).append(sb)
 	nav = NavGrid.create(map, sim.collision)
 	nav.bake_threaded()
 	views_extra = DistrictViews.new(self)
 	add_child(views_extra)
 	views_extra.build()
 	_spawn_enemies()
+	_spawn_lieutenants()
 	spawn_player(_arrival_point())
 	camera_rig.auto_yaw(sim.collision)
 	nav.wait()
@@ -106,6 +114,35 @@ func _spawn_enemies() -> void:
 			a.flags["spawn_id"] = JU.s(sd, "id")
 
 
+func _spawn_lieutenants() -> void:
+	## R6: a named crew captain guards the way to each locked court.
+	for l: Variant in JU.a(street, "lieutenants"):
+		var ld: Dictionary = l
+		var lt: Dictionary = ld["data"]
+		var a: SimActor = spawner.add(JU.s(lt, "enemy", "big_man"), ld["pos"], tier, {"captain": true, "facing": float(JU.s(ld, "boss").hash() % 628) / 100.0})
+		if a != null:
+			a.flags["lieutenant"] = JU.s(ld, "boss")
+			a.display_name = "%s, %s" % [JU.s(lt, "name"), JU.s(lt, "title")]
+
+
+func _lieutenant_event(t: String, a: SimActor) -> void:
+	var boss_id: String = str(a.flags.get("lieutenant", ""))
+	var lt: Dictionary = LoreBook.lieutenant(boss_id)
+	if t == "enemy_alerted" and not _lt_intro_done.has(boss_id):
+		_lt_intro_done[boss_id] = true
+		EventBus.dialogue_requested.emit(JU.s(lt, "name"), JU.strs(lt, "intro"))
+	elif t == "actor_killed" and not GameState.has_flag(CourtGate.lieutenant_flag(boss_id)):
+		CourtGate.mark_lieutenant_beaten(boss_id)
+		LoreBook.hear(boss_id)
+		EventBus.dialogue_requested.emit(JU.s(lt, "name"), JU.strs(lt, "defeat"))
+		EventBus.popup_text.emit("THE COURT IS OPEN", a.pos, "style")
+		var it: Dictionary = interact.find("court_" + boss_id)
+		if not it.is_empty():
+			it["prompt"] = DistrictActions.court_prompt(it["data"])
+		update_objective()
+		SaveSystem.request_autosave()
+
+
 func respawn_player(point: Vector3) -> void:
 	## Back at your last bodega (spec §5.4) — maybe in another district.
 	var bid: String = GameState.respawn_bodega
@@ -169,6 +206,10 @@ func open_map() -> void:
 
 func _on_sim_event(ev: Dictionary) -> void:
 	super._on_sim_event(ev)
+	if str(ev.get("type", "")) in ["enemy_alerted", "actor_killed"]:
+		var la: SimActor = sim.actor_by_id(int(ev.get("actor", 0)))
+		if la != null and la.flags.has("lieutenant"):
+			_lieutenant_event(str(ev["type"]), la)
 	match str(ev.get("type", "")):
 		"actor_killed":
 			var a: SimActor = sim.actor_by_id(int(ev["actor"]))

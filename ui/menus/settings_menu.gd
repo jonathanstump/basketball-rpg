@@ -7,6 +7,7 @@ const ENTRIES: Array = [
 	["screen_shake", "Screen shake", [0.0, 0.5, 1.0]],
 	["reduce_flashes", "Reduce flashes", [false, true]],
 	["subtitles", "Subtitles", [true, false]],
+	["objective_marker", "Objective marker", [true, false]],
 	["rookie_mode", "Rookie Mode", [false, true]],
 	["hold_to_guard", "Hold to guard", [true, false]],
 	["pass_aim_assist", "Pass aim assist", [true, false]],

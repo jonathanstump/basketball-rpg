@@ -57,6 +57,7 @@ func _ready() -> void:
 	hud_layer.add_child(boss_bar)
 	ArenaBuilder.close_gate(sim)
 	EventBus.boss_engaged.emit(boss_id)
+	LoreBook.hear(boss_id)
 	AudioDirector.set_layer("boss")
 	if skip_intro or DisplayServer.get_name() == "headless":
 		_begin()

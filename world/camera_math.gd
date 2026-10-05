@@ -87,20 +87,26 @@ static func clamp_pitch(pitch_deg: float, cfg: Dictionary) -> float:
 static func pull_in(focus: Vector3, yaw: float, pitch_deg: float, distance: float, col: WorldCollision, min_d: float = 2.2) -> float:
 	## Longest orbit distance (<= distance) whose camera line to the focus
 	## clears every wall at the height the line passes it.
-	if col == null:
+	if col == null or distance <= min_d:
 		return distance
-	var d: float = distance
-	while d > min_d:
-		if line_clear(focus, orbit_transform(focus, yaw, pitch_deg, d).origin, col):
-			return d
-		d -= 0.5
-	return min_d
+	if line_clear(focus, orbit_transform(focus, yaw, pitch_deg, distance).origin, col):
+		return distance   # the usual case: one check
+	## Binary search for the longest clear distance (~0.1 m precision).
+	var lo: float = min_d
+	var hi: float = distance
+	for _i: int in 7:
+		var mid: float = (lo + hi) * 0.5
+		if line_clear(focus, orbit_transform(focus, yaw, pitch_deg, mid).origin, col):
+			lo = mid
+		else:
+			hi = mid
+	return lo
 
 
 static func line_clear(a: Vector3, b: Vector3, col: WorldCollision) -> bool:
 	## Samples the segment every ~0.6 m; a wall only blocks where it is taller
 	## than the line (so a camera can look down over a fence).
-	var n: int = maxi(2, int(ceil(a.distance_to(b) / 0.6)))
+	var n: int = maxi(2, int(ceil(a.distance_to(b) / 0.8)))
 	for i: int in range(1, n + 1):
 		if col.blocked(a.lerp(b, float(i) / float(n)), 0.2):
 			return false

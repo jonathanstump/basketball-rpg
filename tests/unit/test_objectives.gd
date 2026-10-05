@@ -24,16 +24,21 @@ func test_home_borough_crown_minis_then_king() -> void:
 	assert_false((cast["minis"] as Array).has("opt_ratking"), "optional bosses aren't on the main path")
 	assert_eq(str(cast["king"]), "bk_toll")
 	var o: Dictionary = ObjectiveRules.current("bk_bedstuy")
-	assert_eq(str(o["title"]), "Take the Brooklyn Crown")
+	assert_eq(str(o["title"]), "Make a name in Brooklyn")
 	assert_true((cast["minis"] as Array).has(str(o["boss"])), "a mini first")
 	assert_eq(str(o["boss"]), "bk_stoop", "the nearest one from Bed-Stuy (its own court)")
 	assert_eq(str(o["district"]), "bk_bedstuy")
-	assert_string_contains(str(o["detail"]), "(0/3)")
+	assert_eq(int(o["done"]), 0)
+	assert_eq(int(o["total"]), 3)
+	## R1: in-world, no "mini-boss" talk; R6: who stands in the way.
+	assert_string_contains(str(o["detail"]), "Word is The Stoop Queen holds the court in Bed-Stuy")
+	assert_string_contains(str(o["detail"]), "Lil' Deacon")
+	assert_false(str(o["detail"]).to_lower().contains("mini-boss"))
 	_done(cast["minis"])
 	o = ObjectiveRules.current("bk_bedstuy")
 	assert_eq(str(o["boss"]), "bk_toll", "then the King")
-	assert_string_contains(str(o["detail"]), "Borough King")
-	assert_string_contains(str(o["detail"]), "(2/3)")
+	assert_string_contains(str(o["detail"]), "Brooklyn's best have fallen")
+	assert_eq(int(o["done"]), 2)
 
 
 func test_next_borough_city_garden_and_after() -> void:
@@ -87,7 +92,7 @@ func test_pops_lines_name_the_real_fights() -> void:
 	assert_string_contains(all, "Brooklyn")
 	assert_string_contains(all, "Midnight")
 	var talk: String = "\n".join(ObjectiveRules.fill(JU.strs(lines, "pops_talk"), "brooklyn"))
-	assert_string_contains(talk, "Take the Brooklyn Crown")
+	assert_string_contains(talk, "Make a name in Brooklyn")
 
 
 func test_dialogue_lines_carry_their_speaker() -> void:
@@ -119,7 +124,7 @@ func test_wake_up_scene() -> void:
 		ids.append(str(e["kind"]))
 	assert_true(ids.has("pops"), "you can talk to Pops")
 	room.trigger("pops")
-	assert_string_contains("\n".join(room.dialogue.lines), "Take the Brooklyn Crown", "Pops repeats the objective")
+	assert_string_contains("\n".join(room.dialogue.lines), "Make a name in Brooklyn", "Pops repeats the objective")
 
 
 func test_reading_pops_lines_never_triggers_the_room() -> void:
@@ -163,7 +168,23 @@ func test_map_screen_shows_the_objective() -> void:
 	d.open_map()
 	var ms: MapScreen = d.menu as MapScreen
 	assert_not_null(ms, "map opened")
-	assert_eq(ms.objective_title, "Take the Brooklyn Crown")
+	assert_eq(ms.objective_title, "Make a name in Brooklyn")
 	assert_true(ms.has_objective_target, "the map marks the objective")
 	assert_eq(ms.objective_label, JU.s(DataDB.boss("bk_stoop"), "name"), "the Stoop Queen's court, here in Bed-Stuy")
 	assert_eq(ms.objective_target, d.objective_panel.target)
+
+
+func test_directions_stay_in_world() -> void:
+	## Playtest R1: lead less, speak like the street. No "beat the
+	## mini-boss", no "follow the marker".
+	GameState.set_flag("prologue_done")
+	for id: Variant in DataDB.catalog("bosses").keys():
+		if JU.s(DataDB.boss(str(id)), "kind") in ["mini", "king", "landmark"]:
+			var line: String = ObjectiveRules.word_on(str(id), "Brooklyn").to_lower()
+			for bad: String in ["mini-boss", "borough king", "beat ", "objective", "marker"]:
+				assert_false(line.contains(bad), "%s: '%s' in '%s'" % [id, bad, line])
+	var lines: Dictionary = JU.dict(DataDB.get_dict("dialogue/prologue"), "lines")
+	for key: String in ["wake_pops", "pops_talk"]:
+		for l: String in JU.strs(lines, key):
+			assert_false(l.to_lower().contains("marker"), "Pops doesn't point at the HUD: %s" % l)
+	assert_true(Settings.get_bool("objective_marker"), "marker on by default")

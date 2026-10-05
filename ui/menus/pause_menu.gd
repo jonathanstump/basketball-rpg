@@ -12,6 +12,7 @@ static func open(w: GameWorld) -> void:
 		{"id": "resume", "label": "Resume"}, {"id": "locker", "label": "Locker", "detail": "Balls, kicks, fits, headbands, sleeves, chains."},
 		{"id": "ink", "label": "Ink", "detail": "Your tattoos and open slots."}, {"id": "bag", "label": "Bag", "detail": "Bag Moves you know."},
 		{"id": "stats", "label": "Stats"}, {"id": "items", "label": "Items", "detail": "Bodega snacks and keys."},
+		{"id": "word", "label": "Word on the Street", "detail": "What you've heard about who holds the courts."},
 		{"id": "settings", "label": "Settings"}, {"id": "quit", "label": "Save & Quit to Title"},
 	]
 	MenuKit.show(w, "PAUSED", opts, func(id: String) -> void: _on_pause(w, id))
@@ -29,6 +30,8 @@ static func _on_pause(w: GameWorld, id: String) -> void:
 			stats(w)
 		"items":
 			items(w)
+		"word":
+			JournalMenu.open(w, func() -> void: open(w))
 		"settings":
 			SettingsMenu.open(w, func() -> void: open(w))
 		"quit":

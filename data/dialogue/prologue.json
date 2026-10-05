@@ -27,13 +27,14 @@
   "Pops: The one who ended you? They call him Midnight. He runs the Garden, over in the City. Nobody crosses the bridges without five Crowns.",
   "Pops: One Crown per borough. Here in {borough}, three courts decide who wears it.",
   "Pops: {cast}",
-  "Pops: Beat all three and the {borough} Crown is yours. Start with {first}. Follow the marker when you're outside.",
+  "Pops: Take all three and the {borough} Crown is yours. I'd start with {first}. Every crew answers to somebody, and people out there talk.",
   "Pops: Pet the cat when you need a rest: it heals you and saves, but the crews come back. Spend your Rep at the counter to level up.",
   "Pops: Now go. If you lose the thread, come talk to me."
  ],
  "pops_talk": [
   "Pops: {objective}.",
-  "Pops: {detail}. Follow the marker when you're outside.",
+  "Pops: {detail}",
+  "Pops: Ask around out there. People talk.",
   "Pops: Rest with the cat, level up at the counter. Then go get it."
  ]
  }

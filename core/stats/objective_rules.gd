@@ -81,9 +81,8 @@ static func current(from_district: String = "") -> Dictionary:
 		var done: int = total - _undefeated(cast["minis"]).size() - _undefeated([cast["king"]]).size()
 		var target: String = _nearest(left, from_district)
 		var bname: String = JU.s(DataDB.item("boroughs", borough), "name", borough.capitalize())
-		var role: String = "the Borough King" if JU.s(DataDB.boss(target), "kind") == "king" else "a mini-boss"
-		return {"title": "Take the %s Crown" % bname, "boss": target, "district": boss_district(target), "done": done, "total": total,
-			"detail": "Beat %s, %s, at %s (%d/%d)" % [JU.s(DataDB.boss(target), "name"), role, WorldIndex.district_name(boss_district(target)), done, total]}
+		return {"title": "Make a name in %s" % bname, "boss": target, "district": boss_district(target), "done": done, "total": total,
+			"detail": word_on(target, bname)}
 	var marks: Array[String] = []
 	for id_v: Variant in DataDB.catalog("bosses").keys():
 		if JU.s(DataDB.boss(str(id_v)), "kind") == "landmark":
@@ -94,9 +93,24 @@ static func current(from_district: String = "") -> Dictionary:
 		var t2: String = _nearest(lm_left, from_district)
 		var d2: int = marks.size() - lm_left.size()
 		return {"title": "Into the City", "boss": t2, "district": boss_district(t2), "done": d2, "total": marks.size(),
-			"detail": "Five Crowns opened the bridges. Beat %s at %s (%d/%d)" % [JU.s(DataDB.boss(t2), "name"), WorldIndex.district_name(boss_district(t2)), d2, marks.size()]}
+			"detail": "Five Crowns opened the bridges. " + word_on(t2, "")}
 	return {"title": "The Garden", "boss": "fin_midnight", "district": boss_district("fin_midnight"), "done": 0, "total": 1,
 		"detail": "Every clock still says three. Midnight is waiting at the Garden in %s." % WorldIndex.district_name(boss_district("fin_midnight"))}
+
+
+static func word_on(boss_id: String, borough_name: String) -> String:
+	## In-world direction (playtest R1): who holds which court and who stands
+	## in the way, the way people on the street would say it.
+	var b: Dictionary = DataDB.boss(boss_id)
+	var who: String = CourtGate._title(JU.s(b, "name", boss_id))
+	var where: String = WorldIndex.district_name(boss_district(boss_id))
+	var line: String = ("%s's best have fallen. %s rules the court in %s." % [borough_name, who, where]) if JU.s(b, "kind") == "king" and borough_name != "" else ("Word is %s holds the court in %s." % [who, where])
+	var gate: Dictionary = CourtGate.status(boss_id)
+	if JU.s(gate, "need") == "lieutenant":
+		line += " %s decides who gets on it." % JU.s(LoreBook.lieutenant(boss_id), "name")
+	else:
+		line += " They're expecting you."
+	return line
 
 
 static func _nearest(ids: Array[String], from_district: String) -> String:
