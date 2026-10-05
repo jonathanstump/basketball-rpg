@@ -142,4 +142,6 @@ func damage() -> float:
 		mult *= float(actor.flags.get("buff_mult", 1.0))
 	if world.frame < int(actor.flags.get("aura_until", -1)):
 		mult *= 1.25
+	if actor.has_ball:
+		mult *= float(actor.flags.get("ball_attack_mult", 1.0))   # bosses swing softer while holding (R7)
 	return DamageMath.enemy_damage(base, actor.tier, GameState.ng_cycle, mult)

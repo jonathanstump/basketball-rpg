@@ -236,3 +236,29 @@ Spec §11.3 lists L60 = 46,626 but `floor(100 × 60^1.5 + 150)` = 46,625 (every 
 - **R5, duel camera.** In boss and challenger duels the camera sits behind the player and looks at the rim (`CameraMath.duel_framing`). With the ball, the player squares up to the rim (`Hooper.face_point`); without it, they face the boss as before.
   - If the boss would hide the player, the framing tries yaw swings (±26°, ±46°), steeper pitches (+14/+26/+38°), and pulling the focus back onto the player. Each candidate is judged at the distance the walls allow.
   - Street lock-on is unchanged.
+- **R7, the basketball-first boss model (spec §7.10a, user-directed).** Numbers are in `tuning/bosses duel.r7`.
+  - **Per-boss `hoops` profile.** Every boss has a theme, 9 ratings and tendencies (`BossHoops`; validated by data validation and a test). Missing values fall back to `hoops_defaults` by kind.
+  - **Your offense.** Your hits on the boss deal ×0.35 while it's your possession (`duel_strike_mult` read in `DamageService._buffs`).
+    - Composure damage is unchanged, so ankles, SHOOK and posters still work.
+    - The turnover meter is 30% of max Heart, +1% per Handles point above 10, capped at +60%. I first tried 14%: in a probe a single boss hit (45–95 dmg vs 275 Heart) always turned it over, which read as unfair.
+  - **Boss defense (`BossCourtIQ`).** Guard distance comes from `pressure`, and the boss closes out on your shot gather.
+    - **Reach steals.** A reach is a real telegraphed melee hitbox (`boss_reach`), so a crossover through it is an ankle-breaker. A hit becomes a steal roll: steal rating against your Handles.
+    - **Loose balls.** `ball_hunger` sets loose-ball chase speed and how often the boss skips a swing to go get the ball.
+  - **Boss offense.**
+    - **Shot pick.** It picks from its `shot_mix`, walks to the spot (the paint, 4.6 m or 7.4 m) and waits until it's cleared.
+    - **Shot release.** The shot is a synthetic `boss_shot` move: the gather is its startup, so the red cue times it, and the release emits `boss_shot_release`.
+    - **Dunk.** The dunk uses the boss's own `statement_dunk` move. Stationary phases shoot their zone from where they sit.
+    - A 4.5 s approach cap stops a walled-off boss from walking forever.
+  - **Odds (`BossShotOdds`).** P(make) is a rating lerp of 0.22–0.78, multiplied by:
+    - (1 − 0.45 × contest);
+    - (1 − Body factor × contest), where the Body factor is 0.35 at the rim and 0.22 elsewhere;
+    - (1 − 0.25 × your Heart ratio);
+    - ×0.45 if altered.
+    The result is clamped to 0.04–0.95.
+  - **Contest timing.** The perfect window is 4 frames, plus Hands via `parry_window_frames`, capped at 12; that blocks the shot. Up to 10 frames more early alters it. The window is tighter than the 10-frame parry on purpose: a reflex press on the cue alters, and an exact press blocks. The QA bot nails the release half the time.
+  - **Boss buckets** cost a % of your max Heart (7/8/10/12 by kind, +5% per tier), then CHECK. `statement_landed` now emits `boss_bucket` (dunk) and pushes the ball through the net instead of healing 8%.
+  - **Boss attacks while holding the ball** are limited to a harass roll (30% every 0.75 s, then a 2.5 s cooldown) at ×0.5 damage (`ball_attack_mult` in `MoveRunner.damage`). They never lob their own ball away. Rolling every think tick kept bosses swinging nonstop and they never shot.
+  - **Fix: GAME POINT stall.** A SHOOK boss used to scoop your missed GAME POINT shot on contact and hold it forever. Now the boss gets `no_pickup` at GAME POINT, and any ball it holds pops out.
+  - **No RefCounted cycles.** `BossDuelRules → DuelController` and `BossCourtIQ → BossBrain` are WeakRef getters; the cycles leaked "17 resources in use" in the smokes.
+  - **Balance (QA bot, god mode, seed 2).** 52/55 sims are inside 0.5×–1.5× of §11.6, up from 51/55, and every fight is won. REVIEW: Boom T1 116 s and T5 573 s, Rat King T3 389 s. See docs/BALANCE.md.
+  - **Fix: boss parts froze the duel.** The General's split-off horse (`boss_part`) could pick up the loose duel ball, and the duel only reconciles the two duelists, so it stayed LOOSE_BALL forever (seen as a 900 s timeout at T3). Parts now get `no_pickup`.

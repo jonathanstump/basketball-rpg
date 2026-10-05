@@ -33,6 +33,7 @@ const HOLD_LIMIT_S: float = 10.0
 var last_move: Dictionary = {}
 var history: Array[String] = []    # every move started (gimmicks replay these)
 var gimmick: RefCounted = null    # optional per-boss script (on_step/on_event hooks)
+var iq: BossCourtIQ = null        # basketball tendencies: shots, defense, reach, hustle (R7)
 
 
 func _init(a: SimActor, w: SimWorld, c: CombatSystem, b: BallSystem, boss_data: Dictionary, h: SimHoop) -> void:
@@ -46,10 +47,13 @@ func _init(a: SimActor, w: SimWorld, c: CombatSystem, b: BallSystem, boss_data: 
 	runner.balls = b
 	paint_pos = h.floor_point() + h.facing * 2.0 if h != null else a.pos
 	set_phase(1)
+	iq = BossCourtIQ.new(self)
+	a.flags["ball_attack_mult"] = JU.f(iq.r7, "ball_attack_mult", 0.5)
 
 
 func dispose() -> void:
 	gimmick = null
+	iq = null
 	runner = null
 
 
@@ -116,11 +120,31 @@ func step() -> void:
 		return
 	if hold_s > HOLD_LIMIT_S and recover_s <= 0.0 and actor.has_ball and _force_ball_move():
 		return
+	iq.tick()
+	if st == PossessionDuel.BOSS_OFFENSE and actor.has_ball and hoop != null:
+		## R7: with the ball the boss plays offense; now and then it throws a
+		## (weaker) attack at you on the way.
+		if iq.harass_cd_s <= 0.0 and recover_s <= 0.0:
+			iq.harass_cd_s = JU.f(iq.r7, "harass_check_s", 0.75)
+			if world.rng.randf() < JU.f(iq.r7, "harass_chance", 0.18):
+				var hm: Dictionary = pick_harass()
+				if not hm.is_empty():
+					iq.harass_cd_s = JU.f(iq.r7, "harass_cooldown_s", 2.5)
+					start_move(hm)
+					return
+		if iq.step_offense():
+			return
+	if st == PossessionDuel.PLAYER_OFFENSE and recover_s <= 0.0 and target != null and iq.try_reach():
+		return
 	think_s -= DT
 	if think_s > 0.0 or recover_s > 0.0:
 		_position(st)
 		return
 	think_s = JU.f(DataDB.tuning("ai"), "think_interval_s", 0.2)
+	if st == PossessionDuel.LOOSE_BALL and world.rng.randf() < BossHoops.tendency(iq.profile, "ball_hunger"):
+		## Hungry bosses go get the ball instead of swinging.
+		_position(st)
+		return
 	var m: Dictionary = pick_move()
 	if not m.is_empty():
 		start_move(m)
@@ -206,9 +230,31 @@ func start_move(m: Dictionary) -> void:
 	runner.start(m, target)
 
 
+func pick_harass() -> Dictionary:
+	## Attacks the boss may throw while it has the ball: anything usable except
+	## giving the ball up (lobs) or scoring (the dunk is the offense's call).
+	var cands: Array[Dictionary] = []
+	var total: float = 0.0
+	for m: Dictionary in moves:
+		if JU.s(m, "primitive") in ["lob", "statement_dunk"] or not usable(m):
+			continue
+		cands.append(m)
+		total += weight_of(m)
+	if cands.is_empty():
+		return {}
+	var roll: float = world.rng.randf() * total
+	for m2: Dictionary in cands:
+		roll -= weight_of(m2)
+		if roll <= 0.0:
+			return m2
+	return cands[cands.size() - 1]
+
+
 func _force_ball_move() -> bool:
-	## Boss possession clock: after holding too long it must put the ball up
-	## (Statement Dunk if it can, else a lob regardless of range).
+	## Boss possession clock: after holding too long it must put the ball up.
+	if hoop != null and iq != null:
+		hold_s = 0.0
+		return iq.shoot(BossCourtIQ.zone_kind(hoop.flat_distance(actor.pos)))
 	var lob: Dictionary = {}
 	var dunk: Dictionary = {}
 	for m: Dictionary in moves:
@@ -248,13 +294,14 @@ func _position(st: String) -> void:
 		PossessionDuel.LOOSE_BALL:
 			for b: SimBall in balls.balls:
 				if b.state == SimBall.State.LOOSE:
-					_walk(b.pos, 1.0)
+					_walk(b.pos, iq.loose_speed())
 					return
 			_walk(target.pos, 0.6)
 		_:
-			# Defend: stay between the player and the rim, about 2 m off them.
-			var guard: Vector3 = target.pos + (hoop.floor_point() - target.pos).normalized() * 2.2 if hoop != null else target.pos
-			_walk(guard, 0.9)
+			if hoop != null:
+				iq.defend()
+				return
+			_walk(target.pos, 0.9)
 	actor.turn_toward(target.pos - actor.pos, 0.15)
 
 

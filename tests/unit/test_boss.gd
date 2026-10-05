@@ -91,7 +91,7 @@ func test_check_gives_player_the_ball_at_top_of_key() -> void:
 	(a["sim"] as CombatSim).dispose()
 
 
-func test_statement_dunk_heals_boss() -> void:
+func test_statement_dunk_scores_on_player() -> void:
 	var a: Dictionary = _arena()
 	var sim: CombatSim = a["sim"]
 	var ctl: DuelController = a["ctl"]
@@ -107,8 +107,10 @@ func test_statement_dunk_heals_boss() -> void:
 	for _i: int in 100:
 		sim.run(1)
 		ctl.step()
-	assert_almost_eq(boss.hp, boss.hp_max * 0.58, 1.0, "+8% Heart")
+	## Playtest R7: the dunk scores on you (it used to heal the boss 8%).
+	assert_almost_eq(boss.hp, boss.hp_max * 0.5, 1.0, "no heal")
 	assert_eq(ctl.stats["statements"], 1)
+	assert_eq(int(ctl.rules.stats["boss_makes"]), 1, "a bucket on you")
 	sim.dispose()
 
 

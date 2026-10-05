@@ -204,6 +204,7 @@
   "flash_crown"
  ],
  "mic_check": "Every legend in this city came through THIS court. Every one of them got WALKED by HIM.",
+ "hoops": {"theme": "The Mecca legend. Unguardable length: turnarounds over the top and blocks from another floor.", "ratings": {"inside": 82, "mid": 85, "three": 70, "dunk": 82, "handles": 62, "strength": 70, "defense": 85, "steal": 45, "block": 95}, "tendencies": {"ball_hunger": 0.6, "pressure": 0.6, "gamble": 0.25, "shot_mix": {"layup": 3, "mid": 4, "three": 2, "dunk": 3}}},
  "look": {
   "colors": {
    "jersey": "#1E6FD9",

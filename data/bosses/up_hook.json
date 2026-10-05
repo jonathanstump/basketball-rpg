@@ -191,6 +191,7 @@
   "mixtape_showstopper"
  ],
  "mic_check": "Amateur Night! You know the rules. If they boo... THE HOOK COMES OUT.",
+ "hoops": {"theme": "A showman. Flashy handles, stage-lit step-backs, and the hook if you bore him.", "ratings": {"inside": 55, "mid": 70, "three": 72, "dunk": 45, "handles": 85, "strength": 40, "defense": 50, "steal": 65, "block": 40}, "tendencies": {"ball_hunger": 0.5, "pressure": 0.5, "gamble": 0.6, "shot_mix": {"layup": 2, "mid": 3, "three": 4, "dunk": 1}}},
  "look": {
   "colors": {
    "tux": "#141418",

@@ -23,6 +23,7 @@ var _pin_pos: Vector3 = Vector3.ZERO
 var _last_pos: Vector3 = Vector3.ZERO
 var passive_frames: int = 0       # holds fire for a while (QA warm-up)
 var duel: PossessionDuel = null   # court rules awareness (boss duels, challengers)
+var _contest_late: bool = false
 
 
 static func for_tier(tier: int, seed_value: int = 7) -> ChallengerBrain:
@@ -112,6 +113,8 @@ func _threat_frame(opp: SimActor) -> int:
 func _react_to_threat(input: ActorInput, a: SimActor, opp: SimActor, w: SimWorld) -> bool:
 	if opp.controller is BossBrain and _reject_statement(input, a, opp, w):
 		return true
+	if opp.controller is BossBrain and _contest_boss_shot(input, a, opp, w):
+		return true
 	var tf: int = _threat_frame(opp)
 	if tf < 0 or opp.dist_to(a) > 4.5:
 		return false
@@ -129,6 +132,28 @@ func _react_to_threat(input: ActorInput, a: SimActor, opp: SimActor, w: SimWorld
 			input.press("hands_up")
 		return true
 	return false
+
+
+func _contest_boss_shot(input: ActorInput, a: SimActor, opp: SimActor, w: SimWorld) -> bool:
+	## R7: close out on a boss's shot gather, hands up on the release.
+	var br: MoveRunner = (opp.controller as BossBrain).runner
+	if not br.running or JU.s(br.move, "primitive") != "boss_shot" or a.has_ball:
+		return false
+	var left: int = br.startup() - br.frame
+	if left < 0:
+		return false
+	if opp.dist_to(a) - opp.radius > 1.2:
+		_move(input, a, opp.pos)
+	## A human doesn't nail every release: half the good reads are early (altered).
+	var key: int = w.frame - left + 200000
+	if _reacted_to != key and (left == 7 or left == 2):
+		if left == 7:
+			_contest_late = rng.randf() < skill * 0.5
+		if (left == 2) == _contest_late:
+			_reacted_to = key
+			if rng.randf() < skill:
+				input.press("hands_up")
+	return true
 
 
 func _reject_statement(input: ActorInput, a: SimActor, opp: SimActor, w: SimWorld) -> bool:

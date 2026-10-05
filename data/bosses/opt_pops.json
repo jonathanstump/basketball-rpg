@@ -89,6 +89,7 @@
   "flash_clock"
  ],
  "mic_check": "Your old coach... in his PRIME. Show him what he taught you.",
+ "hoops": {"theme": "Your old coach in his prime: fundamentals, bank shots, and he reads every move you make.", "ratings": {"inside": 75, "mid": 85, "three": 72, "dunk": 65, "handles": 78, "strength": 70, "defense": 88, "steal": 70, "block": 70}, "tendencies": {"ball_hunger": 0.6, "pressure": 0.7, "gamble": 0.4, "shot_mix": {"layup": 3, "mid": 5, "three": 2, "dunk": 2}}},
  "look": {
   "colors": {
    "jersey": "#C8102E",

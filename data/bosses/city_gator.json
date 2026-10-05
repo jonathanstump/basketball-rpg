@@ -191,6 +191,7 @@
   "flash_scale"
  ],
  "mic_check": "They told you he was an urban legend. They LIED.",
+ "hoops": {"theme": "Ambush predator. Lurks low, explodes out of nowhere for put-backs and death-roll strips.", "ratings": {"inside": 80, "mid": 45, "three": 30, "dunk": 70, "handles": 50, "strength": 85, "defense": 70, "steal": 80, "block": 70}, "tendencies": {"ball_hunger": 0.85, "pressure": 0.6, "gamble": 0.7, "shot_mix": {"layup": 5, "mid": 2, "three": 0, "dunk": 3}}},
  "look": {
   "colors": {
    "skin": "#E8E4D8",

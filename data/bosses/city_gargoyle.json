@@ -171,6 +171,7 @@
   "flash_skyline"
  ],
  "mic_check": "Look DOWN. That's the whole city. Now look UP. That's the last thing you'll see.",
+ "hoops": {"theme": "Shoots from the spire: high-release jumpers that ride the wind, swoops down to block.", "ratings": {"inside": 55, "mid": 78, "three": 80, "dunk": 50, "handles": 55, "strength": 55, "defense": 70, "steal": 45, "block": 85}, "tendencies": {"ball_hunger": 0.45, "pressure": 0.45, "gamble": 0.3, "shot_mix": {"layup": 1, "mid": 4, "three": 5, "dunk": 1}}},
  "look": {
   "colors": {
    "steel": "#C8CCD4",

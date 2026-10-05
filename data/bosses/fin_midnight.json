@@ -212,6 +212,7 @@
   "flash_midnight"
  ],
  "mic_check": "Ladies and gentlemen... he never left. He never retired. He never let the night end. MIDNIGHT.",
+ "hoops": {"theme": "The last legend. Every move you know, done better: handles, range, defense, finishing.", "ratings": {"inside": 88, "mid": 90, "three": 88, "dunk": 85, "handles": 92, "strength": 75, "defense": 90, "steal": 80, "block": 85}, "tendencies": {"ball_hunger": 0.75, "pressure": 0.75, "gamble": 0.55, "shot_mix": {"layup": 3, "mid": 3, "three": 3, "dunk": 3}}},
  "look": {
   "colors": {
    "suit": "#1A1A2E",

@@ -52,6 +52,7 @@ func _ready() -> void:
 	boss_bar = BossBar.new()
 	boss_bar.boss = boss
 	boss_bar.duel = duel_ctl.duel
+	boss_bar.rules = duel_ctl.rules
 	boss_bar.title = JU.s(boss_data, "title")
 	hud_layer.add_child(boss_bar)
 	ArenaBuilder.close_gate(sim)
@@ -66,6 +67,9 @@ func _ready() -> void:
 			card.mic_line += " And stepping up... %s!" % NicknameRules.display_name()
 		card.boss_name = JU.s(boss_data, "name")
 		card.boss_title = JU.s(boss_data, "title")
+		var prof: Dictionary = BossHoops.profile(boss_data)
+		card.scouting = "%s
+%s" % [JU.s(prof, "theme"), "  ·  ".join(BossHoops.headline(prof))]
 		card.finished.connect(_begin)
 		add_child(card)
 

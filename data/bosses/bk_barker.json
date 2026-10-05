@@ -75,6 +75,7 @@
   "tokens": 800
  },
  "mic_check": "Step right up! Three tries, no refunds, NO MERCY!",
+ "hoops": {"theme": "A carnival hustler: shell-game handles, pump fakes, and step-back threes from the midway.", "ratings": {"inside": 45, "mid": 62, "three": 74, "dunk": 35, "handles": 82, "strength": 35, "defense": 45, "steal": 70, "block": 30}, "tendencies": {"ball_hunger": 0.55, "pressure": 0.55, "gamble": 0.65, "shot_mix": {"layup": 1, "mid": 3, "three": 5, "dunk": 1}}},
  "look": {
   "colors": {
    "jacket": "#D8263A",

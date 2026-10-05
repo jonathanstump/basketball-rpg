@@ -118,6 +118,15 @@ The truth (revealed in pieces): **Midnight**, the greatest to ever do it, stoppe
 - **Graffiti tags** are pre-written hint messages on walls ("try crossing over", "look up", "big man ahead", "cat's friendly"). About 10 per district. Read with Interact.
 - Tone: warm, funny, confident. Never mean-spirited. No ethnic or regional stereotypes; borough identity comes from places, architecture, color, and landmarks.
 
+### 3.6a Revision R6 / R1 (playtest): earn the court, hear the story
+
+- **Courts are chained until the street knows you.** Each mini-boss and City landmark has a **Lieutenant**: a named crew captain on the street near the court, with an intro and a defeat line (`data/dialogue/lore.json`). Beating them opens the court.
+  - A Borough King also waits for the borough's two minis, then sends his own lieutenant.
+  - The Garden keeps its ticket-stub gate. Optional bosses and beaten courts stay open.
+- **Lore lives on the street.** Every boss has "who they were before the clocks stopped." Two rumor NPCs per court stand by the bodegas and the station (placed from the map by `StreetLife`). Talking to them, beating the lieutenant, or hearing Mic Check adds the boss to **Pause → Word on the Street**.
+- **Alley stashes:** up to two dead-end alleys per district hide a stash with the district's loot.
+- **In-world direction (R1):** objectives speak the way people on the street would. "Make a name in Brooklyn — Word is The Stoop Queen holds the court in Bed-Stuy. Lil' Deacon decides who gets on it." No "beat the mini-boss." Pops says the same and tells you to ask around. The objective marker can be turned off in Settings.
+
 ### 3.7 Endings
 
 After Midnight's third phase, the scoreboard clock reads 11:59:59. Prompt:
@@ -478,6 +487,26 @@ Every boss fight is half-court 1-on-1 with **one ball** and **one hoop**, mounte
 - **Locking in:** after each of your makes, the boss's contest radius grows 5% (stacks to +30% per phase). Spamming threes stops working; ankle-breakers and posters keep working.
 - Why the boss gets the ball back on its own makes but you keep yours: "challenger's rules." It's their court; you have to earn it.
 
+### 7.10a Revision R7 (playtest): basketball first
+
+This amends §7.10. Numbers live in `data/tuning/bosses.json` → `duel.r7`.
+
+- **Every boss has a basketball profile** (`hoops` in its data): a theme line, 0–100 ratings (inside, mid, three, dunk, handles, strength, defense, steal, block) and tendencies (ball_hunger, pressure, gamble, shot_mix). The Mic Check card shows the theme and the top three ratings.
+- **On offense you score; punches are light.** While it's your ball, your hits on the boss deal ×0.35 damage. Composure damage is unchanged, so ankles, SHOOK and posters still work. Buckets (§11.5) are the damage.
+- **Turnovers.** Damage the boss deals you during your possession fills a turnover meter: 30% of your max Heart (a big hit or two), raised by Handles (up to +60%). When it's full the ball pops loose toward the boss.
+- **The boss defends like a defender.** It holds a guard distance set by `pressure` (3 m → 1.2 m), stays between you and the rim, and closes out when you gather a shot. It reaches for the ball by `gamble`: a short telegraphed swipe whose hit is a steal roll (its steal rating against your Handles). A crossover through it is an ankle-breaker as usual.
+- **Loose balls.** `ball_hunger` sets how hard the boss chases loose balls and rebounds instead of swinging at you.
+- **On defense you take it back.** Hit the boss while it holds the ball and it coughs it up once the damage passes 4.5% of its max Heart, scaled ×0.7–×1.6 by its handles. Hands Up strips still work.
+- **Boss offense.** The boss picks a shot from its `shot_mix`: a drive for a layup or dunk, a mid-range pull-up, or a three. Stationary phases shoot from their seat.
+  - **Body-up:** driving through you slows it, by your Body and Heart against its strength.
+  - The gather is telegraphed (the red cue), then the release.
+  - **Make chance** = its rating for the shot, lowered by your contest distance, your Body (most at the rim) and your Heart (a healthy defender is harder to score on).
+  - **Timed contest:** Hands Up, a strike or a Rejection pressed right on the release blocks the shot (window 4 frames, plus Hands, up to 12; the ball goes loose toward you). Pressed up to 10 frames early, it alters the shot (×0.45).
+  - Misses are live rebounds, and you can board them on the ring.
+- **A boss bucket costs you Heart:** layup 7%, mid 8%, three 10%, dunk 12% of your max, +5% per tier above 1. Then CHECK, your ball. The Statement Dunk is the boss's dunk: it still has its slam hitbox and it's still Rejectable, but it **scores on you instead of healing the boss**.
+- **Swinging with the ball.** Bosses still throw attacks while holding the ball (projectiles, sweeps) at ×0.5 damage. They don't lob their own ball away.
+- **HUD:** a possession line (YOUR BALL / THEIR BALL / LOOSE BALL) with a meter showing how close the ball is to coming loose.
+
 ### 7.11 Composure
 
 - Enemies and bosses fill composure damage up to a max; at max, they break.
@@ -585,7 +614,7 @@ Every boss move is one of these primitives plus data (telegraph, frames, damage,
 | `summon`         | Spawn minions or clones                                                             |
 | `arena_event`    | Environment hazard (train, cannons, flood, cage shrink, deck tilt, wind, lightning) |
 | `showboat`       | Taunt/buff, a punishable window                                                     |
-| `statement_dunk` | Boss scoring attempt (heals on success; Rejectable)                                 |
+| `statement_dunk` | Boss dunk (scores on you per §7.10a; Rejectable)                                    |
 | `reposition`     | Leap, teleport, submerge, fly                                                       |
 | `mirror`         | Replays recorded player actions as attacks                                          |
 | `stance`         | Temporary state (guard, shell, hyper armor)                                         |

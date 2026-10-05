@@ -213,6 +213,7 @@
   "flash_express"
  ],
  "mic_check": "This is the LAST TRAIN. Stand clear of the closing doors, kid.",
+ "hoops": {"theme": "Downhill, end to end, no brakes. Attacks the rim every possession.", "ratings": {"inside": 78, "mid": 40, "three": 30, "dunk": 70, "handles": 70, "strength": 70, "defense": 50, "steal": 50, "block": 40}, "tendencies": {"ball_hunger": 0.85, "pressure": 0.5, "gamble": 0.45, "shot_mix": {"layup": 6, "mid": 1, "three": 0, "dunk": 4}}},
  "look": {
   "colors": {
    "steel": "#C8CCD4",

@@ -188,6 +188,7 @@
   "flash_wings"
  ],
  "mic_check": "You see a bird? That's HIM. You see a hundred? STILL HIM.",
+ "hoops": {"theme": "Never where you think. Darts, cuts and flips it up from anywhere; a swarm of quick touches.", "ratings": {"inside": 70, "mid": 62, "three": 58, "dunk": 40, "handles": 75, "strength": 35, "defense": 60, "steal": 82, "block": 40}, "tendencies": {"ball_hunger": 0.75, "pressure": 0.65, "gamble": 0.75, "shot_mix": {"layup": 5, "mid": 3, "three": 2, "dunk": 0}}},
  "look": {
   "colors": {
    "pigeon": "#7A7E8A",

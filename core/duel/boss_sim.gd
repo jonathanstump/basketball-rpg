@@ -50,7 +50,7 @@ static func run(boss_id: String, tier: int, opts: Dictionary = {}) -> Dictionary
 		"boss": boss_id, "tier": tier, "result": ctl.result if ctl.result != "" else "timeout",
 		"time_s": float(frames) / 60.0, "boss_hp_ratio": boss.hp / boss.hp_max,
 		"player_hp_ratio": p.actor.hp / p.actor.hp_max, "phase": ctl.duel.phase,
-		"phases_seen": phases_seen.keys(), "state": ctl.duel.state, "stats": ctl.stats.duplicate(),
+		"phases_seen": phases_seen.keys(), "state": ctl.duel.state, "stats": ctl.stats.merged(ctl.rules.stats, true),
 		"events": _counts(sim.events),
 	}
 	var hits: Array[float] = _hits_on(sim.events, p.actor.id, p.actor.hp_max)

@@ -134,6 +134,11 @@ static func frame(r: MoveRunner) -> void:
 						hb6.tags["ball"] = sb.id
 			if r.frame == r.total - 1:
 				r.world.emit("statement_dunk_finished", {"actor": r.actor.id})
+		"boss_shot":
+			## R7: the gather is the telegraph; the release is resolved by the
+			## duel (contest timing, odds) on this event.
+			if first_active:
+				r.world.emit("boss_shot_release", {"actor": r.actor.id, "kind": JU.s(m, "shot_kind", "mid")})
 		"reposition":
 			r.actor.invulnerable = r.in_active()
 			if r.frame == s + r.active():

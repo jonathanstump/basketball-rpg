@@ -212,6 +212,7 @@
   "flash_star"
  ],
  "mic_check": "Two hundred years on guard duty. He is NOT in a good mood.",
+ "hoops": {"theme": "Old-school sets and discipline: textbook mid-range, hard closeouts, never gambles.", "ratings": {"inside": 62, "mid": 80, "three": 60, "dunk": 40, "handles": 55, "strength": 65, "defense": 82, "steal": 35, "block": 60}, "tendencies": {"ball_hunger": 0.5, "pressure": 0.75, "gamble": 0.15, "shot_mix": {"layup": 3, "mid": 6, "three": 2, "dunk": 1}}},
  "look": {
   "colors": {
    "stone": "#9A968A",

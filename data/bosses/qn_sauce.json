@@ -212,6 +212,7 @@
   "mixtape_steam_fake"
  ],
  "mic_check": "You want it MILD? There IS no mild! EXTRA! SAUCE!",
+ "hoops": {"theme": "A crafty cook: floaters, fadeaways, and a little extra on everything.", "ratings": {"inside": 70, "mid": 74, "three": 55, "dunk": 40, "handles": 66, "strength": 50, "defense": 55, "steal": 60, "block": 45}, "tendencies": {"ball_hunger": 0.55, "pressure": 0.5, "gamble": 0.5, "shot_mix": {"layup": 4, "mid": 4, "three": 2, "dunk": 1}}},
  "look": {
   "colors": {
    "chef": "#F2F2F2",

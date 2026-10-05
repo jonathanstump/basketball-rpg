@@ -269,6 +269,7 @@
   "flash_boombox"
  ],
  "mic_check": "THE BRONX! Where all of this STARTED! Hands up for the GRANDMASTER!",
+ "hoops": {"theme": "The DJ runs the game on the beat: rhythm dribbles into mid-range pull-ups and the occasional slam.", "ratings": {"inside": 60, "mid": 78, "three": 66, "dunk": 60, "handles": 72, "strength": 60, "defense": 62, "steal": 55, "block": 55}, "tendencies": {"ball_hunger": 0.6, "pressure": 0.55, "gamble": 0.4, "shot_mix": {"layup": 2, "mid": 5, "three": 3, "dunk": 2}}},
  "look": {
   "colors": {
    "box": "#2A2A30",

@@ -113,14 +113,19 @@ func test_boss_auto_clears_after_2s() -> void:
 	assert_true(d.boss_cleared)
 
 
-func test_statement_dunk_heal_and_rejection() -> void:
+func test_statement_dunk_scores_and_rejection() -> void:
+	## Playtest R7 (spec change): a landed Statement Dunk is a bucket on you,
+	## not an 8% heal.
 	var d: PossessionDuel = _duel_in(PossessionDuel.BOSS_OFFENSE)
 	d.feed("statement_landed")
-	var heal: float = 0.0
+	var kind: String = ""
+	var healed: bool = false
 	for e: Dictionary in d.take_events():
-		if str(e["type"]) == "boss_heal":
-			heal = float(e["pct"])
-	assert_almost_eq(heal, 0.08, 0.0001)
+		if str(e["type"]) == "boss_bucket":
+			kind = str(e["kind"])
+		healed = healed or str(e["type"]) == "boss_heal"
+	assert_eq(kind, "dunk")
+	assert_false(healed)
 	assert_eq(d.state, PossessionDuel.CHECK, "then CHECK, your ball")
 	var r: PossessionDuel = _duel_in(PossessionDuel.BOSS_OFFENSE)
 	r.feed("statement_rejected")
@@ -130,6 +135,19 @@ func test_statement_dunk_heal_and_rejection() -> void:
 			comp = float(e2["amount"])
 	assert_almost_eq(comp, -40.0, 0.0001)
 	assert_eq(r.state, PossessionDuel.LOOSE_BALL)
+
+
+func test_r7_boss_shot_transitions() -> void:
+	var made: PossessionDuel = _duel_in(PossessionDuel.BOSS_OFFENSE)
+	made.feed("boss_made", {"kind": "three"})
+	assert_eq(made.state, PossessionDuel.CHECK, "boss bucket: your ball")
+	for inp: String in ["boss_missed", "boss_blocked", "boss_coughed"]:
+		var x: PossessionDuel = _duel_in(PossessionDuel.BOSS_OFFENSE)
+		x.feed(inp)
+		assert_eq(x.state, PossessionDuel.LOOSE_BALL, inp)
+	var t: PossessionDuel = _duel_in(PossessionDuel.PLAYER_OFFENSE)
+	t.feed("player_turnover")
+	assert_eq(t.state, PossessionDuel.LOOSE_BALL, "turnover")
 
 
 func test_rejected_punish_gives_boss_offense() -> void:

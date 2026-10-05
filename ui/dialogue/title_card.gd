@@ -8,6 +8,7 @@ signal finished()
 var mic_line: String = ""
 var boss_name: String = ""
 var boss_title: String = ""
+var scouting: String = ""          # R7: the boss's game in a line + top ratings
 var accent: Color = Color("#FF3EA5")
 var line_s: float = 2.6
 var card_s: float = 1.8
@@ -16,6 +17,7 @@ var _sub: Label
 var _speaker: Label
 var _name: Label
 var _title: Label
+var _scout: Label
 var _panel: ColorRect
 
 
@@ -37,6 +39,12 @@ func _ready() -> void:
 	_title = _label(UIFonts.title(), 40, Color("#F2F6FF"), Vector2(160, 560), tr(boss_title).to_upper())
 	_title.size = Vector2(1600, 60)
 	_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_scout = _label(UIFonts.body(), 28, Color("#C8D0E8"), Vector2(260, 640), tr(scouting))
+	_scout.size = Vector2(1400, 120)
+	_scout.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_scout.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	if scouting != "":
+		card_s += 1.4   # time to read the scouting report
 
 
 func _label(font: Font, size_px: int, col: Color, pos: Vector2, text: String) -> Label:
@@ -65,6 +73,7 @@ func _process(delta: float) -> void:
 	var card_on: bool = card_t >= 0.0 and card_t < card_s
 	_name.visible = card_on
 	_title.visible = card_on
+	_scout.visible = card_on
 	_panel.color.a = 0.55 if card_on else 0.0
 	if card_on:
 		var pop: float = 1.0 + maxf(0.0, 0.25 - card_t) * 2.0

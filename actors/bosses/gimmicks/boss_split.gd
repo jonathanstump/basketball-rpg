@@ -20,6 +20,7 @@ func spawn(count: int, move_id: String, archetype: String, size: Vector2, look_s
 	for i: int in count:
 		var c: SimActor = SimActor.new()
 		c.kind = "boss_part"
+		c.flags["no_pickup"] = true   # the duel ball belongs to the duelists (a part used to scoop it and freeze the duel)
 		c.archetype = archetype
 		c.display_name = a.display_name
 		c.team = a.team

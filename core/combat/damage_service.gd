@@ -180,6 +180,8 @@ func _buffs(att: SimActor, t: SimActor) -> float:
 			m *= 0.75
 		m *= float(att.flags.get("damage_taken_mult_vs", 1.0))
 	m *= float(t.flags.get("damage_taken_mult", 1.0))
+	if att != null and att.team == 0:
+		m *= float(t.flags.get("duel_strike_mult", 1.0))   # R7: on offense, punches are light; buckets hurt
 	if t.team == 0 and t.kind == "hooper" and Settings.get_bool("rookie_mode"):
 		m *= JU.f(JU.dict(DataDB.tuning("player"), "rookie"), "enemy_damage_mult", 0.75)
 	return m

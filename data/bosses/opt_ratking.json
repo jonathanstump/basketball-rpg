@@ -182,6 +182,7 @@
   "flash_slice"
  ],
  "mic_check": "Down here, the PIZZA RAT is KING. And he does NOT share.",
+ "hoops": {"theme": "Tunnel scavenger. Grabs every loose crumb, scurries to the rim and never gives it back.", "ratings": {"inside": 72, "mid": 50, "three": 35, "dunk": 40, "handles": 65, "strength": 50, "defense": 60, "steal": 85, "block": 40}, "tendencies": {"ball_hunger": 0.95, "pressure": 0.65, "gamble": 0.8, "shot_mix": {"layup": 6, "mid": 2, "three": 1, "dunk": 0}}},
  "look": {
   "colors": {
    "rat": "#6A5A50",

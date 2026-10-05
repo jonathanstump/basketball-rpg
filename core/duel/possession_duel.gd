@@ -19,11 +19,13 @@ const TABLE: Dictionary = {
 	CHECK: {"check_done": PLAYER_OFFENSE, "player_died": DEFEAT},
 	PLAYER_OFFENSE: {"player_made": CHECK, "player_missed": LOOSE_BALL, "player_rejected": BOSS_OFFENSE,
 		"pass_hit": "", "pass_missed": LOOSE_BALL, "boss_stole": LOOSE_BALL, "boss_took": BOSS_OFFENSE,
-		"out_of_bounds": CHECK, "phase_down": PHASE_TRANSITION, "boss_down": GAME_POINT, "player_died": DEFEAT},
+		"out_of_bounds": CHECK, "phase_down": PHASE_TRANSITION, "boss_down": GAME_POINT, "player_died": DEFEAT,
+		"player_turnover": LOOSE_BALL},
 	LOOSE_BALL: {"player_picked": PLAYER_OFFENSE, "boss_picked": BOSS_OFFENSE, "out_of_bounds": CHECK,
 		"phase_down": PHASE_TRANSITION, "boss_down": GAME_POINT, "player_died": DEFEAT},
 	BOSS_OFFENSE: {"player_stripped": LOOSE_BALL, "statement_landed": CHECK, "statement_rejected": LOOSE_BALL,
 		"boss_threw": LOOSE_BALL, "out_of_bounds": CHECK, "player_picked": PLAYER_OFFENSE,
+		"boss_made": CHECK, "boss_missed": LOOSE_BALL, "boss_blocked": LOOSE_BALL, "boss_coughed": LOOSE_BALL,
 		"phase_down": PHASE_TRANSITION, "boss_down": GAME_POINT, "player_died": DEFEAT},
 	PHASE_TRANSITION: {"transition_done": CHECK, "player_died": DEFEAT},
 	GAME_POINT: {"player_made": VICTORY, "player_missed": "", "player_died": DEFEAT},
@@ -82,10 +84,13 @@ func _side_effects(input: String, data: Dictionary) -> void:
 		"player_rejected":
 			_emit("rejected_punish", data)
 			boss_cleared = false
-		"boss_stole", "player_stripped", "statement_rejected", "boss_threw":
+		"boss_stole", "player_stripped", "statement_rejected", "boss_threw", "player_turnover", "boss_blocked", "boss_coughed":
 			if input == "statement_rejected":
 				_emit("boss_composure", {"amount": -JU.f(cfg, "rejection_composure", 40.0)})
-			_emit("loose", {"bias": "boss" if input == "boss_stole" else "player"})
+			_emit("loose", {"bias": "boss" if input == "boss_stole" or input == "player_turnover" else "player"})
+		"boss_made":
+			## R7: a boss bucket costs the player Heart (then your ball).
+			_emit("boss_bucket", {"kind": JU.s(data, "kind", "mid")})
 		"boss_took":
 			boss_cleared = false
 		"player_picked":
@@ -93,7 +98,9 @@ func _side_effects(input: String, data: Dictionary) -> void:
 		"boss_picked":
 			boss_cleared = false
 		"statement_landed":
-			_emit("boss_heal", {"pct": JU.f(cfg, "statement_dunk_heal_pct", 0.08)})
+			## R7: the Statement Dunk is the boss's dunk: it scores on you
+			## (it used to heal the boss 8%), and its composure refills.
+			_emit("boss_bucket", {"kind": "dunk"})
 			_emit("boss_composure_refill", {})
 		"out_of_bounds":
 			_emit("out_on_them", {})

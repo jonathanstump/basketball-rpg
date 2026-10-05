@@ -235,6 +235,7 @@
   "mixtape_trash_talk"
  ],
  "mic_check": "Everything this city ever threw away ended up HERE. And it CHOSE A KING.",
+ "hoops": {"theme": "A mountain of trash with a garbage-man's game: putbacks, boards and junk at the rim.", "ratings": {"inside": 82, "mid": 45, "three": 20, "dunk": 70, "handles": 30, "strength": 92, "defense": 70, "steal": 35, "block": 80}, "tendencies": {"ball_hunger": 0.9, "pressure": 0.4, "gamble": 0.25, "shot_mix": {"layup": 6, "mid": 1, "three": 0, "dunk": 3}}},
  "look": {
   "colors": {
    "bag": "#1A1A20",

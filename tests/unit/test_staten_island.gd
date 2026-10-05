@@ -95,6 +95,8 @@ func test_heap_armor_and_gull_shot_clock() -> void:
 	var p: SimActor = (d["p"] as Hooper).actor
 	brain.target = p
 	_run(d, 80)
+	brain.runner.interrupt()
+	brain.recover_s = 1e9   # isolate the shot clock: no swings or reach steals (R7) while you hold
 	assert_eq((d["ctl"] as DuelController).duel.state, PossessionDuel.PLAYER_OFFENSE)
 	assert_true(p.has_ball)
 	_run(d, int(6.2 * 60.0))

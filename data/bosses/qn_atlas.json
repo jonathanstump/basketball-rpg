@@ -221,6 +221,7 @@
   "flash_globe"
  ],
  "mic_check": "He's been carrying the WORLD on his back. Let's see if he can carry THIS L.",
+ "hoops": {"theme": "Carries the whole court on his back. Unmovable in the post, sky-high block range.", "ratings": {"inside": 84, "mid": 58, "three": 35, "dunk": 80, "handles": 40, "strength": 96, "defense": 80, "steal": 40, "block": 92}, "tendencies": {"ball_hunger": 0.5, "pressure": 0.45, "gamble": 0.2, "shot_mix": {"layup": 4, "mid": 2, "three": 1, "dunk": 4}}},
  "look": {
   "colors": {
    "bronze": "#8C6A3A",

@@ -23,6 +23,7 @@ var pending_poster: bool = false
 var rebound: Dictionary = {}
 var stats: Dictionary = {"makes": 0, "misses": 0, "posters": 0, "ankles": 0, "rejected": 0, "statements": 0, "frames": 0, "buckets_damage": 0.0, "consecutive_makes": 0, "best_streak": 0}
 var result: String = ""
+var rules: BossDuelRules = null
 
 
 func _init(w: SimWorld, b: BallSystem, c: CombatSystem, boss_actor: SimActor, player_actor: SimActor, h: SimHoop, data: Dictionary, lay: Dictionary) -> void:
@@ -43,6 +44,7 @@ func _init(w: SimWorld, b: BallSystem, c: CombatSystem, boss_actor: SimActor, pl
 			ball = x
 	if ball == null:
 		ball = balls.spawn_ball(str(player.flags.get("ball_item", "ball_rec")), player.pos, player)
+	rules = BossDuelRules.new(self)
 
 
 func start() -> void:
@@ -61,6 +63,7 @@ func step() -> void:
 	_keep_inside(player)
 	_keep_inside(boss)
 	duel.tick(DT)
+	rules.step()
 	boss.flags["contest_mult"] = duel.contest_mult()
 	if duel.state == PossessionDuel.PLAYER_OFFENSE and not duel.player_cleared and player.has_ball and hoop.flat_distance(player.pos) > JU.f(duel.cfg, "arc_m", 6.75):
 		duel.player_cleared_arc()
@@ -83,7 +86,16 @@ func _on_event(ev: Dictionary) -> void:
 				var kind: String = BucketDamage.kind_for(str(ev["zone"]), str(ev["grade"]), pending_poster)
 				pending_poster = false
 				duel.feed("player_made", {"kind": kind, "grade": ev["grade"]})
+			elif who == boss.id and str(ev.get("hoop", "")) == hoop.id:
+				rules.on_made()
+		"boss_shot_release":
+			if who == boss.id:
+				rules.on_release(str(ev.get("kind", "mid")))
 		"shot_missed":
+			if who == boss.id:
+				## Boss misses: same rebound ring for you to board.
+				rebound = {"pos": ev["rebound_pos"], "frame": world.frame + int(float(ev["rebound_t"]) * 60.0)}
+				duel.feed("boss_missed")
 			if who == player.id:
 				stats["misses"] = int(stats["misses"]) + 1
 				stats["consecutive_makes"] = 0
@@ -121,11 +133,13 @@ func _on_event(ev: Dictionary) -> void:
 				duel.feed("boss_threw")
 		"hit_resolved":
 			_on_hit(ev)
+			rules.on_hit(ev)
 		"statement_dunk_finished":
 			if who == boss.id and boss.has_ball:
 				stats["statements"] = int(stats["statements"]) + 1
 				world.emit("popup", {"text": "STATEMENT!", "pos": boss.pos, "style": "bad"})
 				duel.feed("statement_landed")
+				balls.dunk(boss, hoop)   # the ball goes through; CHECK hands it back
 		"showboat_completed":
 			if who == boss.id and boss.composure != null:
 				boss.composure.value = 0.0
@@ -191,6 +205,10 @@ func _reconcile_possession() -> void:
 		duel.feed("boss_took")
 	elif boss.has_ball and duel.state == PossessionDuel.LOOSE_BALL:
 		duel.feed("boss_picked")
+	elif boss.has_ball and duel.state == PossessionDuel.GAME_POINT:
+		var gb: SimBall = balls.take_from(boss)
+		if gb != null:
+			gb.vel = (player.pos - boss.pos).normalized() * 3.0 + Vector3(0, 3, 0)
 
 
 func _keep_inside(a: SimActor) -> void:
@@ -258,6 +276,8 @@ func _drain() -> void:
 				_punish(1.0)
 			"boss_heal":
 				boss.hp = minf(boss.hp_max, boss.hp + boss.hp_max * float(ev["pct"]))
+			"boss_bucket":
+				rules.boss_bucket(str(ev.get("kind", "mid")))
 			"boss_composure_refill":
 				if boss.composure != null:
 					boss.composure.value = 0.0
@@ -278,14 +298,17 @@ func _drain() -> void:
 				world.emit("boss_phase_changed", {"boss": boss.id, "phase": ev["phase"]})
 			"game_point":
 				combat.clear_owner(boss.id)
+				boss.flags["no_pickup"] = true   # a collapsed boss can't scoop your missed shot
 				if boss.composure != null:
 					boss.composure.force_break("shook", 9999.0)
 				_give_player_ball()
 			"victory":
+				stats.merge(rules.stats, true)
 				result = "victory"
 				boss.alive = false
 				world.emit("duel_won", {"boss": boss.id, "rewards": BossFactory.rewards(boss_data, boss.tier), "stats": stats})
 			"defeat":
+				stats.merge(rules.stats, true)
 				result = "defeat"
 				world.emit("duel_lost", {"boss": boss.id, "stats": stats})
 

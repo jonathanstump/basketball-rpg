@@ -1,8 +1,33 @@
 {
-  "mini": { "hp": 1800, "composure": 200, "light": 45, "heavy": 90, "grab": 120, "contest_radius": 3.0, "rep": 2500, "tokens": 800 },
-  "king": { "hp": 3200, "composure": 300, "light": 55, "heavy": 110, "grab": 150, "contest_radius": 3.5, "rep": 5000, "tokens": 1500 },
-  "landmark": { "base": "king", "tier": 6 },
-  "final": { "base": "king", "tier": 7, "reward_mult": 2 },
+  "mini": {
+    "hp": 1800,
+    "composure": 200,
+    "light": 45,
+    "heavy": 90,
+    "grab": 120,
+    "contest_radius": 3.0,
+    "rep": 2500,
+    "tokens": 800
+  },
+  "king": {
+    "hp": 3200,
+    "composure": 300,
+    "light": 55,
+    "heavy": 110,
+    "grab": 150,
+    "contest_radius": 3.5,
+    "rep": 5000,
+    "tokens": 1500
+  },
+  "landmark": {
+    "base": "king",
+    "tier": 6
+  },
+  "final": {
+    "base": "king",
+    "tier": 7,
+    "reward_mult": 2
+  },
   "duel": {
     "check_s": 1.2,
     "boss_auto_clear_s": 2.0,
@@ -10,11 +35,149 @@
     "statement_dunk_heal_pct": 0.08,
     "rejection_composure": 40,
     "lock_in_per_make": 0.05,
-    "lock_in_cap": 0.30,
+    "lock_in_cap": 0.3,
     "phase_transition_s": 3.0,
     "showboat_strip_mult": 2.0,
     "poster_range_m": 4.0,
     "arc_m": 6.75,
-    "rim_height_m": 3.05
+    "rim_height_m": 3.05,
+    "r7": {
+      "offense_strike_mult": 0.35,
+      "turnover_pct": 0.3,
+      "turnover_handles_per_pt": 0.01,
+      "turnover_handles_cap": 0.6,
+      "cough_pct": 0.045,
+      "cough_handles_min": 0.7,
+      "cough_handles_max": 1.6,
+      "ball_attack_mult": 0.5,
+      "harass_chance": 0.3,
+      "shot": {
+        "gather_f": {
+          "layup": 26,
+          "mid": 30,
+          "three": 36,
+          "dunk": 30
+        },
+        "recovery_f": 24,
+        "approach_max_s": 4.5,
+        "spot_m": {
+          "layup": 1.2,
+          "mid": 4.6,
+          "three": 7.4
+        },
+        "stationary_kind": "auto"
+      },
+      "odds": {
+        "base_lo": 0.22,
+        "base_hi": 0.78,
+        "contest_radius_m": 2.6,
+        "contest_weight": 0.45,
+        "body_k": 0.22,
+        "body_k_inside": 0.35,
+        "heart_k": 0.25,
+        "altered_mult": 0.45,
+        "min": 0.04,
+        "max": 0.95
+      },
+      "contest": {
+        "perfect_base_f": 4,
+        "range_m": 3.2,
+        "actions": [
+          "hands_up",
+          "rejection",
+          "pound",
+          "shove",
+          "reach_in",
+          "cross_whip"
+        ],
+        "perfect_max_f": 12,
+        "good_extra_f": 10
+      },
+      "score_pct": {
+        "layup": 0.07,
+        "mid": 0.08,
+        "three": 0.1,
+        "dunk": 0.12
+      },
+      "score_tier_step": 0.05,
+      "body_up": {
+        "radius_pad_m": 0.5,
+        "min_mult": 0.25,
+        "body_w": 0.5,
+        "heart_w": 0.3
+      },
+      "reach": {
+        "startup": 14,
+        "active": 5,
+        "recovery": 18,
+        "range_m": 2.2,
+        "steal_base": 0.35,
+        "gamble_k": 0.35,
+        "cooldown_s": 2.5
+      },
+      "guard_m": [
+        3.0,
+        1.2
+      ],
+      "closeout_speed": 1.35,
+      "hunger_speed": [
+        0.6,
+        1.45
+      ],
+      "harass_check_s": 0.75,
+      "harass_cooldown_s": 2.5
+    }
+  },
+  "hoops_defaults": {
+    "mini": {
+      "theme": "Plays you straight up.",
+      "ratings": {
+        "inside": 55,
+        "mid": 50,
+        "three": 40,
+        "dunk": 50,
+        "handles": 45,
+        "strength": 55,
+        "defense": 50,
+        "steal": 40,
+        "block": 45
+      },
+      "tendencies": {
+        "ball_hunger": 0.5,
+        "pressure": 0.5,
+        "gamble": 0.3,
+        "shot_mix": {
+          "layup": 3,
+          "mid": 3,
+          "three": 2,
+          "dunk": 2
+        }
+      }
+    },
+    "king": {
+      "theme": "Runs the borough's best game.",
+      "ratings": {
+        "inside": 65,
+        "mid": 60,
+        "three": 50,
+        "dunk": 60,
+        "handles": 55,
+        "strength": 65,
+        "defense": 60,
+        "steal": 50,
+        "block": 55
+      },
+      "tendencies": {
+        "ball_hunger": 0.6,
+        "pressure": 0.6,
+        "gamble": 0.35,
+        "shot_mix": {
+          "layup": 3,
+          "mid": 3,
+          "three": 2,
+          "dunk": 2
+        }
+      }
+    }
   }
 }

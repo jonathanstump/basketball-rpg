@@ -228,6 +228,7 @@
   "flash_bridge"
  ],
  "mic_check": "This bridge has held for over a hundred years. Tonight it holds HIM.",
+ "hoops": {"theme": "Long, swaying reach. Spaces you out with high-arc jumpers, then cables in for lobs.", "ratings": {"inside": 65, "mid": 72, "three": 72, "dunk": 70, "handles": 55, "strength": 65, "defense": 72, "steal": 45, "block": 80}, "tendencies": {"ball_hunger": 0.5, "pressure": 0.5, "gamble": 0.3, "shot_mix": {"layup": 2, "mid": 4, "three": 4, "dunk": 2}}},
  "look": {
   "colors": {
    "steel": "#8A9098",

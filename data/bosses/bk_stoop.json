@@ -42,6 +42,7 @@
   "drops": ["ball_pinkie", "flash_rose"],
   "rewards": { "rep": 2500, "tokens": 800 },
   "mic_check": "She has been on that stoop since BEFORE YOU WERE BORN. And she has SEEN what you did.",
+  "hoops": {"theme": "Never leaves the stoop. High, soft rainbow shots over your head; she lets the ball come to her.", "ratings": {"inside": 60, "mid": 72, "three": 64, "dunk": 20, "handles": 40, "strength": 45, "defense": 55, "steal": 35, "block": 60}, "tendencies": {"ball_hunger": 0.25, "pressure": 0.3, "gamble": 0.2, "shot_mix": {"layup": 1, "mid": 4, "three": 3, "dunk": 0}}},
   "look": {
     "colors": { "skin": "#8D5524", "housecoat": "#FF8FB8", "flowers": "#FFE060", "chair": "#3FA8E0", "chair_frame": "#C8CCD4", "curler": "#5AD0FF", "glasses": "#101014", "fan": "#FF3EA5", "slipper": "#7B2FF7" },
     "parts": [

@@ -129,6 +129,7 @@ static func custom_checks(db: DataStore) -> PackedStringArray:
 					continue
 				if not db.moves_for(str(boss_id)).has(str(mid)) and not db.moves_for(JU.s(boss, "borrow_from", "")).has(str(mid)):
 					errs.append("boss %s phase move %s not found" % [boss_id, mid])
+		errs.append_array(BossHoops.validate(str(boss_id), boss))
 		var ev: Dictionary = JU.dict(boss, "t5_event")
 		if not ev.is_empty() and not db.moves_for(str(boss_id)).has(JU.s(ev, "move")):
 			errs.append("boss %s t5 move %s not found" % [boss_id, JU.s(ev, "move")])
