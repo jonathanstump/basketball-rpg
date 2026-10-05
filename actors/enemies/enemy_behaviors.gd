@@ -6,6 +6,9 @@ extends RefCounted
 ## Pigeon Keeper whistles, Tourist flashes, Bootleg ambush, disarmed run-back.
 
 const DT: float = 1.0 / 60.0
+const GULL_WHEEL_F: int = 75       # frames spent wheeling out after a dive
+const GULL_MAX_DIVES: int = 3      # dives before it flies home
+const GULL_REST_F: int = 600       # frames it ignores you once home
 
 
 static func pre_step(b: EnemyBrain) -> bool:
@@ -51,6 +54,8 @@ static func engage(b: EnemyBrain) -> bool:
 			if d < 9.0:
 				b.go_to(a.pos + (a.pos - t.pos).normalized() * 4.0, b.speed())
 			return true
+		"gull":
+			return _gull(b, t, d)
 		"pickpocket":
 			if a.has_ball:
 				b.set_state("flee")
@@ -99,6 +104,16 @@ static func dormant(b: EnemyBrain) -> void:
 
 
 static func after_move(b: EnemyBrain, m: Dictionary) -> void:
+	if b.behavior == "gull":
+		## After each dive the gull wheels back out; a few dives (or a
+		## successful snatch) and it flies home to its perch for a while.
+		var dives: int = int(b.scratch.get("dives", 0)) + 1
+		b.scratch["dives"] = dives
+		b.scratch["wheel_until"] = b.world.frame + GULL_WHEEL_F
+		if dives >= GULL_MAX_DIVES or int(b.actor.flags.get("snatched_tokens", 0)) > 0:
+			b.scratch["dives"] = 0
+			b.actor.flags["calm_until"] = b.world.frame + GULL_REST_F
+			b.set_state("leash")
 	if JU.f(m, "freeze_after_s") > 0.0:
 		b.post_flag = "frozen"
 		b.post_s = JU.f(m, "freeze_after_s")
@@ -162,3 +177,24 @@ static func _tourist(b: EnemyBrain) -> void:
 	if b.wander_to == Vector3.INF or a.flat_pos().distance_to(Vector2(b.wander_to.x, b.wander_to.z)) < 0.5:
 		b.wander_to = a.home + Vector3(b.world.rng.randf_range(-4, 4), 0, b.world.rng.randf_range(-4, 4))
 	b.go_to(b.wander_to, b.speed() * 0.4)
+
+
+static func _gull(b: EnemyBrain, t: SimActor, d: float) -> bool:
+	## Dive range starts at 2 m: inside it the gull used to hover on top of
+	## the player forever (no usable move, preferred range 1.4 m). Now it
+	## circles back out to 5-7 m between dives.
+	var a: SimActor = b.actor
+	var wheeling: bool = b.world.frame < int(b.scratch.get("wheel_until", -1))
+	if not wheeling and d >= 2.5:
+		return false
+	if d >= 6.0:
+		b.scratch["wheel_until"] = -1
+		return false
+	var away: Vector3 = a.pos - t.pos
+	away.y = 0.0
+	if away.length() < 0.05:
+		away = -a.forward()
+	away = away.normalized()
+	var tangent: Vector3 = Vector3(-away.z, 0, away.x) * b.circle_sign
+	b.go_to(a.pos + (away + tangent * 0.6).normalized() * 3.0, b.speed())
+	return true

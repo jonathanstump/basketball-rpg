@@ -96,6 +96,7 @@ func _on_event(ev: Dictionary) -> void:
 			if gull != null and amount > 0:
 				GameState.add_tokens(-amount)
 				gull.flags["snatched_tokens"] = int(gull.flags.get("snatched_tokens", 0)) + amount
+				world.emit("popup", {"text": "A GULL SNATCHED %d TOKENS!" % amount, "pos": gull.pos, "style": "bad"})
 		"pickpocket_escaped":
 			# Lost & found (spec §7.9): the ball waits at the nearest bodega; fight on with a spare.
 			var home: int = int(ev.get("home", 0))

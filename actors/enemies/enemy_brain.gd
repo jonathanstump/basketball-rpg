@@ -163,7 +163,7 @@ func alert(t: SimActor) -> void:
 
 func _idle() -> void:
 	var t: SimActor = find_target()
-	if perceives(t) and not bool(actor.flags.get("passive", false)):
+	if perceives(t) and not bool(actor.flags.get("passive", false)) and world.frame >= int(actor.flags.get("calm_until", -1)):
 		alert(t)
 		return
 	if JU.b(data, "perch") or actor.flags.get("speed", 0.0) == 0.0:

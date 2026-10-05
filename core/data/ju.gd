@@ -47,9 +47,14 @@ static func dict(d: Dictionary, key: String) -> Dictionary:
 
 
 static func strs(d: Dictionary, key: String) -> PackedStringArray:
+	## Accepts JSON arrays and PackedStringArrays (built layouts store those;
+	## reading them as [] once silenced every street NPC).
+	var v: Variant = d.get(key, [])
+	if v is PackedStringArray:
+		return (v as PackedStringArray).duplicate()
 	var out: PackedStringArray = PackedStringArray()
-	for v: Variant in a(d, key):
-		out.append(str(v))
+	for x: Variant in a(d, key):
+		out.append(str(x))
 	return out
 
 
