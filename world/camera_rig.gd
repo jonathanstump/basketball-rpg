@@ -11,7 +11,9 @@ var lock_target: SimActor = null
 var hoop_pos: Vector3 = Vector3.INF
 var yaw: float = 0.0
 var pitch_deg: float = 50.0
-var pitch_offset: float = 0.0        # player look up/down (respects invert Y)
+var explore_pitch: float = 38.0      # player look up/down (respects invert Y)
+var collision: WorldCollision = null  # walls the camera pulls in front of
+var duel_boss: SimActor = null        # set in boss duels: frame the hoop, not the boss
 var distance: float = 12.0
 var focus: Vector3 = Vector3.ZERO
 var shake: float = 0.0
@@ -26,10 +28,11 @@ func _ready() -> void:
 	camera.name = "Camera3D"
 	camera.fov = JU.f(JU.dict(cfg, "explore"), "fov_deg", 45.0)
 	camera.current = true
-	camera.far = 400.0
+	camera.far = JU.f(cfg, "far_m", 900.0)
 	add_child(camera)
-	pitch_deg = JU.f(JU.dict(cfg, "explore"), "pitch_deg", 50.0)
-	distance = JU.f(JU.dict(cfg, "explore"), "distance_m", 12.0)
+	explore_pitch = JU.f(JU.dict(cfg, "explore"), "pitch_deg", 38.0)
+	pitch_deg = explore_pitch
+	distance = float(CameraMath.explore_shape(explore_pitch, cfg)["distance"])
 	RenderingServer.global_shader_parameter_set("cc_cutaway_radius", JU.f(cfg, "cutaway_radius_m", 2.6))
 	EventBus.screen_shake_requested.connect(func(s: float) -> void: add_shake(s))
 
@@ -54,7 +57,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		var mm: InputEventMouseMotion = event
 		yaw -= mm.relative.x * JU.f(cfg, "mouse_sensitivity", 0.005) * Settings.get_float("camera_sensitivity")
-		_add_pitch(mm.relative.y * 0.08)
+		## Same per-pixel rate as yaw, in degrees.
+		_add_pitch(rad_to_deg(mm.relative.y * JU.f(cfg, "mouse_sensitivity", 0.005)))
 
 
 func _process(delta: float) -> void:
@@ -62,7 +66,7 @@ func _process(delta: float) -> void:
 		var stick: float = Input.get_axis("cam_left", "cam_right")
 		yaw -= stick * JU.f(cfg, "yaw_speed_rad_s", 2.6) * Settings.get_float("camera_sensitivity") * delta
 		if InputMap.has_action("cam_up") and InputMap.has_action("cam_down"):
-			_add_pitch(Input.get_axis("cam_up", "cam_down") * 40.0 * delta)
+			_add_pitch(Input.get_axis("cam_up", "cam_down") * JU.f(cfg, "pitch_pad_deg_s", 90.0) * delta)
 	_apply(clampf(delta * JU.f(cfg, "follow_lerp", 10.0), 0.0, 1.0))
 	shake = lerpf(shake, 0.0, clampf(delta * JU.f(cfg, "shake_decay", 6.0), 0.0, 1.0))
 	punch = lerpf(punch, 0.0, clampf(delta * 6.0, 0.0, 1.0))
@@ -72,20 +76,28 @@ func _apply(k: float) -> void:
 	if follow == null:
 		return
 	var player_pos: Vector3 = follow.pos
-	var target_focus: Vector3 = player_pos + Vector3.UP * JU.f(cfg, "focus_height_m", 0.9)
-	var want_pitch: float = JU.f(JU.dict(cfg, "explore"), "pitch_deg", 50.0) + pitch_offset
-	var want_dist: float = JU.f(JU.dict(cfg, "explore"), "distance_m", 12.0)
-	if lock_target != null and lock_target.alive:
+	var shape: Dictionary = CameraMath.explore_shape(explore_pitch, cfg)
+	var target_focus: Vector3 = player_pos + Vector3.UP * float(shape["lift"]) + right_flat() * float(shape["shoulder"])
+	var want_pitch: float = explore_pitch
+	var want_dist: float = shape["distance"]
+	var rk: float = clampf(k * JU.f(cfg, "rotate_lerp", 8.0) / maxf(JU.f(cfg, "follow_lerp", 10.0), 0.01), 0.0, 1.0)
+	if duel_boss != null and duel_boss.alive and hoop_pos != Vector3.INF:
+		var dfr: Dictionary = CameraMath.duel_framing(player_pos, duel_boss.pos, hoop_pos, cfg, yaw, 16.0 / 9.0, duel_boss.height * float(duel_boss.flags.get("scale", 1.0)), duel_boss.radius, collision)
+		target_focus = dfr["focus"]
+		want_pitch = dfr["pitch"]
+		want_dist = dfr["distance"]
+		yaw = lerp_angle(yaw, float(dfr["yaw"]), rk)
+	elif lock_target != null and lock_target.alive:
 		var fr: Dictionary = CameraMath.lockon_framing(player_pos, lock_target.pos, hoop_pos, hoop_pos != Vector3.INF, cfg, 16.0 / 9.0, lock_target.height)
 		target_focus = fr["focus"]
 		want_pitch = fr["pitch"]
 		want_dist = fr["distance"]
-		var rk: float = clampf(k * JU.f(cfg, "rotate_lerp", 8.0) / maxf(JU.f(cfg, "follow_lerp", 10.0), 0.01), 0.0, 1.0)
 		yaw = lerp_angle(yaw, float(fr["yaw"]), rk)
 	focus = focus.lerp(target_focus, k)
 	pitch_deg = lerpf(pitch_deg, want_pitch, k)
 	distance = lerpf(distance, want_dist, k)
-	var xf: Transform3D = CameraMath.orbit_transform(focus, yaw, pitch_deg, maxf(3.0, distance - punch))
+	var d: float = CameraMath.pull_in(focus, yaw, pitch_deg, maxf(JU.f(cfg, "min_distance_m", 2.2), distance - punch), collision, JU.f(cfg, "min_distance_m", 2.2))
+	var xf: Transform3D = CameraMath.orbit_transform(focus, yaw, pitch_deg, d)
 	if shake > 0.001:
 		xf.origin += Vector3(_rng.randf_range(-1, 1), _rng.randf_range(-1, 1), _rng.randf_range(-1, 1)) * shake * 0.25
 	global_transform = xf
@@ -99,10 +111,10 @@ func auto_yaw(col: WorldCollision) -> void:
 		return
 	var best: float = yaw
 	var best_score: int = 999
-	var dist: float = JU.f(JU.dict(cfg, "explore"), "distance_m", 12.0)
+	var dist: float = CameraMath.explore_shape(explore_pitch, cfg)["distance"]
 	for i: int in 8:
 		var y: float = float(i) * TAU / 8.0
-		var cam: Vector3 = CameraMath.orbit_transform(follow.pos + Vector3.UP, y, JU.f(JU.dict(cfg, "explore"), "pitch_deg", 50.0), dist).origin
+		var cam: Vector3 = CameraMath.orbit_transform(follow.pos + Vector3.UP, y, explore_pitch, dist).origin
 		var score: int = 0
 		for k: int in range(1, 6):
 			var p: Vector3 = follow.pos.lerp(Vector3(cam.x, follow.pos.y, cam.z), float(k) / 5.0)
@@ -127,4 +139,4 @@ func right_flat() -> Vector3:
 func _add_pitch(amount: float) -> void:
 	## Vertical look; "Invert camera Y" flips it (spec §14).
 	var sgn: float = -1.0 if Settings.get_bool("camera_invert_y") else 1.0
-	pitch_offset = clampf(pitch_offset + amount * sgn * Settings.get_float("camera_sensitivity"), -15.0, 20.0)
+	explore_pitch = CameraMath.clamp_pitch(explore_pitch + amount * sgn * Settings.get_float("camera_sensitivity"), cfg)

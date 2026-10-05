@@ -1,12 +1,12 @@
 1. Lead the player a little less. Instructions for the game should be set within the game. i.e. we don't want to say "go beat the mini boss", we want to say something like go show the best players of _location_ that you're the best around or something worded a little better than that but the same vibe.
 
-2. The camera. I wish I could look up with the mouse the same way I can look left and right. I want to see the buildings, the skyline, etc to really feel like I'm in the city. The current angle feels like I can't see what's in front of me.
+2. **[DONE]** The camera. I wish I could look up with the mouse the same way I can look left and right. I want to see the buildings, the skyline, etc to really feel like I'm in the city. The current angle feels like I can't see what's in front of me.
 
 3. **[DONE]** This weird bird thing came up to me and attacked me, and then stopped attacking me and just followed me around. Not sure what that is.
 
 4. **[DONE]** Pressing R to talk to the OLD Dockhand did nothing despite a prompt appearing.
 
-5. I would rather the camera angle focus on the hoop during mini boss fights than the boss. Scoring on the hoop is disorienting when the player auto faces away from the hoop to look at the boss.
+5. **[DONE]** I would rather the camera angle focus on the hoop during mini boss fights than the boss. Scoring on the hoop is disorienting when the player auto faces away from the hoop to look at the boss.
 
 6. There should be some progression needed before immediately fighting mini bosses and final bosses. There should be common enemies in the street, side streets to explore with loot drops, stores, NPCs to talk to, etc to immerse the player more into the world and lore. Why do these bosses exist? Who are they? Make the user more immersed in their character's jourey to be the best. I'm envisioning something in the middle of linear progression like God of War and Lies of P and something open world like Elden Ring.
 

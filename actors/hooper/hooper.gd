@@ -25,6 +25,7 @@ var action_owner: RefCounted = null   # module handling the current action
 
 var sprinting: bool = false
 var lock_target: SimActor = null
+var face_point: Vector3 = Vector3.INF   # boss duels: with the ball, square up to the rim (R5)
 var stepback_timer_s: float = 0.0
 var guarding: bool = false
 var regen_mult: float = 1.0
@@ -213,7 +214,9 @@ func _locomotion() -> void:
 	else:
 		actor.desired_vel = actor.desired_vel.lerp(target_vel, 0.08)
 	var turn: float = JU.f(tuning, "turn_speed_rad_s", 14.0) * DT
-	if lock_target != null and lock_target.alive and not sprinting:
+	if face_point != Vector3.INF and actor.has_ball and not sprinting:
+		actor.turn_toward(face_point - actor.pos, turn)
+	elif lock_target != null and lock_target.alive and not sprinting:
 		actor.turn_toward(lock_target.pos - actor.pos, turn)
 	elif mag > 0.1:
 		actor.turn_toward(dir, turn)

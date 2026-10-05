@@ -72,6 +72,9 @@ func _ready() -> void:
 
 func _begin() -> void:
 	set_lock(boss)
+	## R5: frame the rim, not the boss; with the ball you square up to it.
+	camera_rig.duel_boss = boss
+	player_hooper.face_point = (duel_ctl.hoop.floor_point() as Vector3)
 	duel_ctl.start()
 
 

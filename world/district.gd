@@ -33,6 +33,7 @@ func _ready() -> void:
 	tier = TierManager.tier_of(borough)
 	var t0: int = Time.get_ticks_msec()
 	layout = BoroughBuilder.build(map, sim, balls, level_root)
+	DistrictSkyline.build(map, borough, region, level_root)
 	nav = NavGrid.create(map, sim.collision)
 	nav.bake_threaded()
 	views_extra = DistrictViews.new(self)
@@ -191,6 +192,11 @@ func setup_render_smoke(entry: Dictionary) -> void:
 		district_id = JU.s(entry, "district")
 	if JU.s(entry, "mode") in ["objective", "objective_map"]:
 		GameState.set_flag("prologue_done")
+	if JU.s(entry, "mode") in ["look_up", "street_level"]:
+		var pitch: float = -90.0 if JU.s(entry, "mode") == "look_up" else 12.0
+		ready.connect(func() -> void:
+			camera_rig.explore_pitch = CameraMath.clamp_pitch(pitch, camera_rig.cfg)
+			camera_rig.snap())
 	if JU.s(entry, "mode") in ["map", "objective_map"]:
 		ready.connect(func() -> void:
 			MapReveal.reveal(MapReveal.ensure(district_id, map.width, map.height), map.width, map.height, map.cell_of(player.pos), 20.0)

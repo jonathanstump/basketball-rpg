@@ -117,6 +117,7 @@ func spawn_player(pos: Vector3, profile: Dictionary = {}, stats: Dictionary = {}
 	shot_meter.actor = a
 	shot_meter.camera = camera_rig.camera
 	camera_rig.follow = a
+	camera_rig.collision = sim.collision
 	camera_rig.snap()
 	return a
 

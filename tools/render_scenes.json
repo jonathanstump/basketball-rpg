@@ -55,6 +55,18 @@
       "frames": 60
     },
     {
+      "name": "district_look_up",
+      "scene": "res://world/district.tscn",
+      "frames": 60,
+      "mode": "look_up"
+    },
+    {
+      "name": "district_street_level",
+      "scene": "res://world/district.tscn",
+      "frames": 60,
+      "mode": "street_level"
+    },
+    {
       "name": "wake_up",
       "scene": "res://world/interiors/interior.tscn",
       "frames": 90,

@@ -44,6 +44,8 @@ func _ready() -> void:
 	duel = ChallengerDuel.new(sim, balls, player, rival, hoop, lay["top_of_key"], JU.i(challenger, "points", 7))
 	camera_rig.hoop_pos = hoop.rim
 	set_lock(rival)
+	camera_rig.duel_boss = rival
+	player_hooper.face_point = hoop.floor_point()
 	score_label = Label.new()
 	score_label.add_theme_font_override("font", UIFonts.title())
 	score_label.add_theme_font_size_override("font_size", 30)
