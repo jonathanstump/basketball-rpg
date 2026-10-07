@@ -211,6 +211,9 @@ func open_map() -> void:
 		ms.has_objective_target = objective_panel.has_target
 		ms.objective_target = objective_panel.target
 		ms.objective_label = objective_panel.target_label
+		ms.has_chain = objective_panel.has_chain
+		ms.chain_target = objective_panel.chain_target
+		ms.chain_label = objective_panel.chain_label
 	open_menu(ms)
 
 
@@ -258,6 +261,8 @@ func setup_render_smoke(entry: Dictionary) -> void:
 			open_map())
 	if JU.s(entry, "mode") == "enemy_bars":
 		ready.connect(_stage_enemy_bars)
+	if JU.s(entry, "pose") != "":
+		ready.connect(DistrictRenderPoses.stage.bind(self, JU.s(entry, "pose")))
 
 
 func _stage_enemy_bars() -> void:
@@ -273,9 +278,30 @@ func _stage_enemy_bars() -> void:
 		n += 1
 
 
+func _update_chain_marker() -> void:
+	## Revision 8: follow the marker back to your chain (or the crossing
+	## toward the district it's in).
+	var wp: Dictionary = ChainRules.waypoint(GameState.chains, district_id)
+	objective_panel.has_chain = false
+	if wp.is_empty():
+		return
+	if str(wp["district"]) == district_id:
+		objective_panel.chain_target = wp["pos"]
+		objective_panel.chain_label = "YOUR CHAIN  %d REP" % int(wp["rep"])
+		objective_panel.has_chain = true
+		return
+	var path: Array[String] = ObjectiveRules.route(district_id, str(wp["district"]))
+	for x: Variant in JU.a(layout, "crossings"):
+		if not path.is_empty() and JU.s(x as Dictionary, "to") == path[0]:
+			objective_panel.chain_target = (x as Dictionary)["pos"]
+			objective_panel.chain_label = "YOUR CHAIN (%s)" % WorldIndex.district_name(str(wp["district"]))
+			objective_panel.has_chain = true
+
+
 func update_objective() -> void:
 	## HUD objective + marker: the boss court here, or the crossing on the
 	## way to the district it's in.
+	_update_chain_marker()
 	var obj: Dictionary = ObjectiveRules.current(district_id)
 	objective_panel.set_objective(obj)
 	objective_panel.has_target = false

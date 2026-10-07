@@ -328,6 +328,8 @@
     "height": 1.6
    },
    "range_m": 2.2,
+   "seek_m": 5.0,
+   "leap_speed_max": 16.0,
    "hit_weight": "heavy"
   },
   {

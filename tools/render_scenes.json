@@ -73,6 +73,55 @@
       "mode": "enemy_bars"
     },
     {
+      "name": "district_street_hoop",
+      "scene": "res://world/district.tscn",
+      "frames": 40,
+      "district": "bk_bedstuy",
+      "pose": "hoop"
+    },
+    {
+      "name": "edge_bk_bedstuy",
+      "scene": "res://world/district.tscn",
+      "frames": 40,
+      "district": "bk_bedstuy",
+      "pose": "edge"
+    },
+    {
+      "name": "edge_bx_mott_haven",
+      "scene": "res://world/district.tscn",
+      "frames": 40,
+      "district": "bx_mott_haven",
+      "pose": "edge"
+    },
+    {
+      "name": "edge_qn_astoria",
+      "scene": "res://world/district.tscn",
+      "frames": 40,
+      "district": "qn_astoria",
+      "pose": "edge"
+    },
+    {
+      "name": "edge_si_st_george",
+      "scene": "res://world/district.tscn",
+      "frames": 40,
+      "district": "si_st_george",
+      "pose": "edge"
+    },
+    {
+      "name": "edge_up_harlem",
+      "scene": "res://world/district.tscn",
+      "frames": 40,
+      "district": "up_harlem",
+      "pose": "edge"
+    },
+    {
+      "name": "edge_city_midtown",
+      "scene": "res://world/district.tscn",
+      "frames": 40,
+      "district": "city_midtown",
+      "pose": "edge"
+    },
+    {
       "name": "wake_up",
       "scene": "res://world/interiors/interior.tscn",
       "frames": 90,

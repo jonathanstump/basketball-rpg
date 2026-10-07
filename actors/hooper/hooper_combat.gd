@@ -48,9 +48,8 @@ func try_start(h: Hooper) -> bool:
 				inp.pressed("jump")
 				dunk_hoop = hoop
 				return h.begin("dunk", hoop.rim - a.pos, self)
-		if inp.peek("interact") and not inp.peek("bag_move") and _finisher_target(h) != null:
-			inp.pressed("interact")
-			return h.begin("dunk_finisher", _finisher_target(h).pos - a.pos, self)
+		if try_finisher(h):
+			return true
 		if inp.peek("light"):
 			inp.pressed("light")
 			return h.begin("euro_step" if h.sprinting else "pound", a.forward(), self)
@@ -114,6 +113,7 @@ func on_frame(h: Hooper) -> void:
 			if f == s + 1:
 				_hitbox(h, m, act)
 		"finisher":
+			_finisher_leap(h, f, s)
 			if f == s + 1:
 				_hitbox(h, m, act)
 		"dunk":
@@ -148,6 +148,7 @@ func on_frame(h: Hooper) -> void:
 
 func on_end(h: Hooper, ended: String) -> void:
 	h.actor.flags.erase("pickup_bonus")
+	h.actor.flags.erase("finisher_target")
 	h.guarding = false
 	if ended == "reach_in" and bool(h.actor.flags.get("reach_missed", false)):
 		h.actor.flags["reach_missed"] = false
@@ -239,15 +240,55 @@ func _dunk_frame(h: Hooper, f: int, s: int, act: int) -> void:
 		a.flags["dunk_blocked"] = false
 
 
-func _finisher_target(h: Hooper) -> SimActor:
+func try_finisher(h: Hooper) -> bool:
+	## Interact with the ball near a downed / SHOOK common. Also cancels the
+	## tail of a crossover or stepback (Hooper._dodge_frame), so the ankle
+	## you just took turns straight into the slam.
 	var a: SimActor = h.actor
-	var reach: float = JU.f(h.move_data("dunk_finisher"), "range_m", 2.2)
-	for o: SimActor in combat.world.hostiles_of(a):
+	if not a.has_ball or not a.input.peek("interact") or a.input.peek("bag_move"):
+		return false
+	var t: SimActor = finisher_target(combat.world, a, h.move_data("dunk_finisher"))
+	if t == null:
+		return false
+	a.input.pressed("interact")
+	if h.action != "":
+		h.end_action()
+	a.flags["finisher_target"] = t.id
+	return h.begin("dunk_finisher", t.pos - a.pos, self)
+
+
+static func finisher_reach(move: Dictionary) -> float:
+	## How far the Dunk Finisher will leap to an open enemy (seek_m), never
+	## less than its hit range.
+	return maxf(JU.f(move, "seek_m", 0.0), JU.f(move, "range_m", 2.2))
+
+
+static func finisher_target(w: SimWorld, a: SimActor, move: Dictionary) -> SimActor:
+	## The nearest downed / SHOOK street enemy within reach.
+	var best: SimActor = null
+	var bd: float = finisher_reach(move)
+	for o: SimActor in w.hostiles_of(a):
 		if o.kind != "enemy" and o.kind != "critter":
 			continue
-		if (bool(o.flags.get("downed", false)) or o.is_shook()) and o.dist_to(a) <= reach:
-			return o
-	return null
+		var d: float = o.dist_to(a)
+		if (bool(o.flags.get("downed", false)) or o.is_shook()) and d <= bd:
+			best = o
+			bd = d
+	return best
+
+
+func _finisher_leap(h: Hooper, f: int, s: int) -> void:
+	## Close the gap during the wind-up so the slam lands from seek range.
+	var a: SimActor = h.actor
+	var t: SimActor = combat.world.actor_by_id(int(a.flags.get("finisher_target", 0)))
+	if t == null or not t.alive or f > s:
+		return
+	var to: Vector3 = t.pos - a.pos
+	to.y = 0.0
+	a.turn_toward(to, PI)
+	var gap: float = to.length() - (t.radius + a.radius + 0.3)
+	if gap > 0.0:
+		a.desired_vel = to.normalized() * minf(gap / (float(s - f + 1) * Hooper.DT), JU.f(h.action_move, "leap_speed_max", 16.0))
 
 
 # ------------------------------------------------------------ defense

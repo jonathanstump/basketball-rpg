@@ -123,7 +123,7 @@ func _draw_one(a: SimActor, p: Vector2, since: float, font: Font) -> void:
 		_canvas.draw_string(font, Vector2(r.position.x - 30.0, r.position.y - 8.0), a.display_name, HORIZONTAL_ALIGNMENT_CENTER, w + 60.0, 24, Color("#F2F6FF"))
 	if status != "":
 		var tag: String = status
-		if finisher_open(a) and game.player.has_ball and a.dist_to(game.player) <= 6.0:
+		if finisher_open(a) and game.player.has_ball and game.player_hooper != null and a.dist_to(game.player) <= HooperCombat.finisher_reach(game.player_hooper.move_data("dunk_finisher")):
 			tag = "[%s] FINISH" % InputPrompts.key("interact")
 		var ty: float = r.end.y + 32.0
 		var col: Color = Color("#FFE040") if finisher_open(a) else Color("#FF9A3E")

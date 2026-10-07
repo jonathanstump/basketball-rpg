@@ -1,9 +1,17 @@
 class_name ChainRules
 extends RefCounted
-## Death and "Run it back" (spec §5.4): on death, unspent Rep drops as a chain
-## where you fell (boss arenas: outside the gate). Touch it to reclaim. Die
-## again first and it's gone — unless the Nine Lives tattoo gives it one more
-## life. Chains are {district, pos:[x,y,z], rep, lives}.
+## Death and "Run it back" (spec §5.4): on death you lose your unspent Rep,
+## and half of it (rounded down, tuning economy.death) drops as a chain where
+## you fell (boss arenas: outside the gate). Touch it to reclaim. Die again
+## first and it's gone — unless the Nine Lives tattoo gives it one more life.
+## Chains are {district, pos:[x,y,z], rep, lives}.
+
+
+static func recoverable(rep: int) -> int:
+	## The part of your unspent Rep that drops as the chain (revision 8: half,
+	## rounded down).
+	var frac: float = JU.f(JU.dict(DataDB.tuning("economy"), "death"), "recoverable_frac", 0.5)
+	return maxi(0, floori(float(rep) * frac))
 
 
 static func on_death(chains: Array, rep: int, district: String, pos: Vector3, nine_lives: bool) -> Array:
@@ -31,6 +39,17 @@ static func touch(chains: Array, district: String, pos: Vector3, radius: float =
 		else:
 			remaining.append(ch)
 	return {"chains": remaining, "rep": gained}
+
+
+static func waypoint(chains: Array, district: String) -> Dictionary:
+	## Where to point the "your chain" marker from `district`: {} with no
+	## chains; else {district, pos: Vector3, rep}, preferring one here.
+	var best: Dictionary = {}
+	for c: Variant in chains:
+		var ch: Dictionary = c
+		if best.is_empty() or (str(ch.get("district", "")) == district and str(best["district"]) != district):
+			best = {"district": str(ch.get("district", "")), "pos": JU.vec3(ch.get("pos")), "rep": int(ch.get("rep", 0))}
+	return best
 
 
 static func total_rep(chains: Array) -> int:

@@ -29,8 +29,12 @@ func on_player_killed() -> void:
 	var p: SimActor = game.player
 	var drop: Vector3 = p.pos if chain_drop_override == Vector3.INF else chain_drop_override
 	var nine: bool = GameState.tattoos.has("tattoo_nine_lives")
-	GameState.chains = ChainRules.on_death(GameState.chains, GameState.rep, district_id(), drop, nine)
+	var lost: int = GameState.rep
+	var kept: int = ChainRules.recoverable(lost)
+	GameState.chains = ChainRules.on_death(GameState.chains, kept, district_id(), drop, nine)
 	GameState.rep = 0
+	if lost > 0:
+		EventBus.popup_text.emit("-%d REP  (%d ON YOUR CHAIN)" % [lost, kept], p.pos, "bad")
 	EventBus.rep_changed.emit(0)
 	EventBus.player_cooked.emit()
 	EventBus.chain_dropped.emit(drop, ChainRules.total_rep(GameState.chains))

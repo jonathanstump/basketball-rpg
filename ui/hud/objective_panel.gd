@@ -3,13 +3,18 @@ extends Control
 ## Current objective (ObjectiveRules) under the tokens/Rep, plus a world
 ## marker: a diamond over the target (court gate, or the crossing that leads
 ## toward it) with the distance, or an arrow on the screen edge when it's
-## off-screen. Child of the HUD so it follows the UI-scale setting.
+## off-screen. Child of the HUD so it follows the UI-scale setting. Your
+## dropped chain gets its own amber marker (revision 8), shown even with the
+## objective marker turned off.
 
 var game: GameWorld
 var objective: Dictionary = {}
 var has_target: bool = false
 var target: Vector3 = Vector3.ZERO
 var target_label: String = ""
+var has_chain: bool = false
+var chain_target: Vector3 = Vector3.ZERO
+var chain_label: String = ""
 var _title: Label
 var _detail: Label
 var _head: Label
@@ -66,19 +71,25 @@ func _process(delta: float) -> void:
 
 
 func _draw() -> void:
-	if not has_target or game == null or game.player == null or not Settings.get_bool("objective_marker"):
+	if game == null or game.player == null:
 		return
+	if has_target and Settings.get_bool("objective_marker"):
+		_marker(target, target_label, Color("#FFE060"))
+	if has_chain:
+		_marker(chain_target, chain_label, Color("#FF9A2E"))
+
+
+func _marker(at: Vector3, label: String, col: Color) -> void:
 	var cam: Camera3D = get_viewport().get_camera_3d()
 	if cam == null:
 		return
 	var s: Vector2 = get_parent().scale if get_parent() is Control else Vector2.ONE
 	var vs: Vector2 = get_viewport_rect().size / s
-	var wp: Vector3 = target + Vector3(0, 3.0, 0)
-	var dist: float = Vector2(target.x - game.player.pos.x, target.z - game.player.pos.z).length()
-	var text: String = "%s  %dm" % [tr(target_label), int(round(dist))]
+	var wp: Vector3 = at + Vector3(0, 3.0, 0)
+	var dist: float = Vector2(at.x - game.player.pos.x, at.z - game.player.pos.z).length()
+	var text: String = "%s  %dm" % [tr(label), int(round(dist))]
 	var font: Font = UIFonts.title()
 	var pulse: float = 0.5 + 0.5 * sin(_t * 4.0)
-	var col: Color = Color("#FFE060")
 	var behind: bool = cam.is_position_behind(wp)
 	var sp: Vector2 = PopupLayer.world_to_canvas(get_viewport(), cam, wp) / s
 	var margin: float = 70.0

@@ -6,8 +6,10 @@
   "zones": { "close_m": 3.0, "arc_m": 6.75, "deep_extra_m": 2.0, "close": 1.5, "mid": 1.0, "three": 0.85, "deep": 0.6 },
   "contest_factor": 0.6,
   "smothered": 0.85,
-  "modifiers": { "stepback": 1.4, "wide_open": 2.0, "takeover": 1.6, "low_wind": 0.8 },
+  "modifiers": { "stepback": 1.4, "on_the_run": 0.65, "sprinting": 0.5, "wide_open": 2.0, "takeover": 1.6, "low_wind": 0.8 },
   "stepback_window_s": 0.8,
+  "run_carry": 0.7,
+  "run_min_speed": 4.0,
   "perfect_cap": 0.25,
   "rejected_punish_pct": 0.18
 }

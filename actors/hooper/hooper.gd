@@ -257,6 +257,10 @@ func _dodge_frame() -> void:
 		actor.flags["ankle_window"] = action_frame >= aw.x and action_frame <= aw.y
 	elif action == "defensive_slide":
 		actor.flags["read_window"] = actor.invulnerable
+	if action_frame > w.y and (action == "crossover" or action == "stepback"):
+		for m: RefCounted in modules:
+			if m.has_method("try_finisher") and m.call("try_finisher", self):
+				return
 	if action_frame <= w.y:
 		var speed: float = JU.f(action_move, "distance_m") * float(actor.flags.get("dodge_dist_mult", 1.0)) / (float(w.y) * DT)
 		actor.desired_vel = action_dir * speed

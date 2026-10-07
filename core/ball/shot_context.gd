@@ -7,6 +7,7 @@ var distance: float = 5.0
 var zone: String = ""            # close | mid | three | deep ("" = derive from distance)
 var contest: float = 0.0         # 0..1
 var stepback: bool = false
+var on_run: String = ""          # "" | "run" | "sprint": shooting on the move (revision 9)
 var wide_open: bool = false      # boss SHOOK
 var takeover: bool = false
 var wind_ratio: float = 1.0      # current Wind / max

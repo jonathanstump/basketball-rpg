@@ -279,7 +279,7 @@ Explore night streets → fight crews and critters → find shoeboxes, tokens, m
 
 - **Tokens** (old subway tokens) buy gear, upgrades, tattoos, consumables. You keep tokens when you die.
 - **Rep** is XP, spent at bodegas to level. Unspent Rep is what you risk.
-- **Death → "COOKED."** Your unspent Rep drops as **your chain** on the spot you died. Respawn at your last bodega. Get back to the chain and touch it to reclaim the Rep ("Run it back"). Die again first, and it's gone.
+- **Death → "COOKED."** You lose your unspent Rep; **half of it (rounded down)** drops as **your chain** on the spot you died, under a gold light beam you can see over the rooftops, and an amber HUD/map marker leads you back (revision 8). Respawn at your last bodega. Get back to the chain and touch it to reclaim the Rep ("Run it back"). Die again first, and it's gone.
 - In a boss arena, the chain drops just outside the arena gate.
 
 ### 5.5 Exploration rewards
@@ -444,6 +444,7 @@ Everything is remappable. Glyphs swap to the last-used device.
   - Zone: close (<3 m) ×1.5, mid ×1.0, three (beyond the arc) ×0.85, deep (arc + 2 m) ×0.6.
   - Contest: × (1 − 0.6 × contest), where contest ∈ [0,1] from nearest defender distance vs their contest radius and facing.
   - Modifiers: Stepback ×1.4, Wide Open (boss SHOOK) ×2.0, Takeover ×1.6, low Wind (<25%) ×0.8, gear/tattoos as listed. Perfect width capped at 0.25.
+  - **On the run** (revision 9): shoot while moving at run speed and you keep moving through the gather (×0.7 speed), but the windows shrink: ×0.65 running, ×0.5 sprinting (`tuning/shooting`).
 - **REJECTED (the punish):** if contest ≥ 0.85 ("smothered") and the grade would be NEAR MISS or worse, the defender swats it and follows up with an unavoidable short combo (boss: 18% of your max Heart, tier-scaled); they take the ball.
 - The shot's outcome is decided at release. The flight is a scripted arc that plays out the result (clean swish, rim-in, rim-out, airball, block). Rim-outs hand off to ball physics.
 

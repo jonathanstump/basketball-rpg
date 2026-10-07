@@ -56,6 +56,10 @@ static func compute_windows(ctx: ShotContext) -> ShotWindows:
 	m *= 1.0 - JU.f(c, "contest_factor", 0.6) * clampf(ctx.contest, 0.0, 1.0)
 	if ctx.stepback:
 		m *= JU.f(mods, "stepback", 1.4)
+	if ctx.on_run == "run":
+		m *= JU.f(mods, "on_the_run", 0.65)
+	elif ctx.on_run == "sprint":
+		m *= JU.f(mods, "sprinting", 0.5)
 	if ctx.wide_open:
 		m *= JU.f(mods, "wide_open", 2.0)
 	if ctx.takeover:

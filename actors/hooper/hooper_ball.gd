@@ -13,6 +13,8 @@ var last_grade: String = ""
 var last_release: float = 0.0
 var last_contest: float = 0.0
 var hold_frames: int = 0
+var run_kind: String = ""           # revision 9: "" | "run" | "sprint" when the shot started on the move
+var run_speed: float = 0.0
 
 
 func _init(s: BallSystem) -> void:
@@ -33,6 +35,7 @@ func try_start(h: Hooper) -> bool:
 		var hoop: SimHoop = sys.hoop_in_range(a)
 		if hoop != null:
 			shot_hoop = hoop
+			_note_run(h)
 			return h.begin("shot_gather", hoop.rim - a.pos, self)
 		return h.begin("lob", a.forward(), self)
 	if inp.peek("heavy"):
@@ -88,6 +91,18 @@ func on_frame(h: Hooper) -> void:
 func on_end(_h: Hooper, ended: String) -> void:
 	if ended == "shot_gather":
 		meter = -1.0
+		run_kind = ""
+
+
+func _note_run(h: Hooper) -> void:
+	## Shooting on the move (revision 9): you keep your feet moving through
+	## the gather, but the timing windows shrink (tuning shooting.modifiers).
+	var a: SimActor = h.actor
+	var cfg: Dictionary = DataDB.tuning("shooting")
+	run_speed = Vector2(a.vel.x, a.vel.z).length()
+	run_kind = ""
+	if a.input.move.length() > 0.2 and run_speed >= JU.f(cfg, "run_min_speed", 4.0):
+		run_kind = "sprint" if h.sprinting else "run"
 
 
 # ------------------------------------------------------------ shooting
@@ -96,6 +111,8 @@ func _gather(h: Hooper) -> void:
 	var a: SimActor = h.actor
 	if shot_hoop != null:
 		a.turn_toward(shot_hoop.rim - a.pos, 0.4)
+	if run_kind != "" and a.input.move.length() > 0.2:
+		a.desired_vel = a.input.move3().normalized() * run_speed * JU.f(DataDB.tuning("shooting"), "run_carry", 0.7)
 	meter += gather_rate
 	var c: Array = contest(a)
 	windows = ShotResolver.compute_windows(_ctx(h, float(c[0])))
@@ -139,6 +156,7 @@ func _ctx(h: Hooper, contest_v: float) -> ShotContext:
 	var dist: float = shot_hoop.flat_distance(a.pos) if shot_hoop != null else 5.0
 	var ctx: ShotContext = ShotContext.make(a.stat("jumper") + int(a.flags.get("jumper_bonus", 0)), dist, contest_v)
 	ctx.stepback = h.stepback_timer_s > 0.0
+	ctx.on_run = run_kind
 	ctx.takeover = bool(a.flags.get("takeover", false))
 	ctx.wide_open = _wide_open(a)
 	ctx.wind_ratio = a.wind.ratio()

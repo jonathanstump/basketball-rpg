@@ -15,6 +15,9 @@ var objective_title: String = ""   # set by the district from its ObjectivePanel
 var objective_target: Vector3 = Vector3.ZERO
 var objective_label: String = ""
 var has_objective_target: bool = false
+var has_chain: bool = false              # revision 8: your dropped chain
+var chain_target: Vector3 = Vector3.ZERO
+var chain_label: String = ""
 var _canvas: Control
 
 
@@ -160,11 +163,18 @@ func _draw_objective(origin: Vector2, cell: float) -> void:
 		var line: String = tr("THE WORD") + ": " + tr(objective_title) + ("  >  " + tr(objective_label) if has_objective_target else "")
 		_canvas.draw_string_outline(font, Vector2(origin.x, legend_y), line, HORIZONTAL_ALIGNMENT_LEFT, -1, 22, 6, Color("#0B0B10"))
 		_canvas.draw_string(font, Vector2(origin.x, legend_y), line, HORIZONTAL_ALIGNMENT_LEFT, -1, 22, Color("#FFE060"))
+	if has_chain:
+		_ring(origin, cell, chain_target, chain_label, Color("#FF9A2E"))
 	if not has_objective_target:
 		return
-	var c: Vector2i = map.cell_of(objective_target)
+	_ring(origin, cell, objective_target, objective_label, Color("#FFC830"))
+
+
+func _ring(origin: Vector2, cell: float, at: Vector3, label: String, col: Color) -> void:
+	var font: Font = UIFonts.title()
+	var c: Vector2i = map.cell_of(at)
 	var p: Vector2 = origin + (Vector2(c) + Vector2(0.5, 0.5)) * cell
 	_canvas.draw_arc(p, cell * 2.2, 0.0, TAU, 32, Color("#0B0B10"), cell * 0.9)
-	_canvas.draw_arc(p, cell * 2.2, 0.0, TAU, 32, Color("#FFC830"), cell * 0.5)
-	_canvas.draw_string_outline(font, p + Vector2(-150, -cell * 3.0), tr(objective_label), HORIZONTAL_ALIGNMENT_CENTER, 300, 18, 6, Color("#0B0B10"))
-	_canvas.draw_string(font, p + Vector2(-150, -cell * 3.0), tr(objective_label), HORIZONTAL_ALIGNMENT_CENTER, 300, 18, Color("#FFE060"))
+	_canvas.draw_arc(p, cell * 2.2, 0.0, TAU, 32, col, cell * 0.5)
+	_canvas.draw_string_outline(font, p + Vector2(-150, -cell * 3.0), tr(label), HORIZONTAL_ALIGNMENT_CENTER, 300, 18, 6, Color("#0B0B10"))
+	_canvas.draw_string(font, p + Vector2(-150, -cell * 3.0), tr(label), HORIZONTAL_ALIGNMENT_CENTER, 300, 18, col.lightened(0.3))
