@@ -38,6 +38,7 @@ func _ready() -> void:
 	var t0: int = Time.get_ticks_msec()
 	layout = BoroughBuilder.build(map, sim, balls, level_root)
 	DistrictSkyline.build(map, borough, region, level_root)
+	DistrictBorder.build(map, borough, level_root)
 	street = StreetLife.plan(map, layout)
 	(layout["npcs"] as Array).append_array(street["rumors"])
 	if not JU.dict(JU.dict(street, "side"), "npc").is_empty():

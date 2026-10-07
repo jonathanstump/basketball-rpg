@@ -1,12 +1,209 @@
 {
-  "shared": { "sodium": "#FFB347", "asphalt": "#1E1E24", "outline": "#0B0B10", "sidewalk": "#4A4A55", "curb": "#6C6C78", "grass": "#1F4A2C", "brick": "#7A3B2E", "brownstone": "#6B4A3A", "walkup": "#8A5A44", "highrise": "#3A4250", "warehouse": "#5A5048", "water": "#0C1E33", "court": "#2C5D8F", "court_line": "#F2F6FF" },
-  "regions": {
-    "bronx": { "primary": "#D7263D", "secondary": "#F4B400", "base": "#1B1B3A" },
-    "brooklyn": { "primary": "#7B2FF7", "secondary": "#12C2B0", "base": "#1A1530" },
-    "queens": { "primary": "#2BB24C", "secondary": "#FF7A00", "base": "#10221A" },
-    "staten_island": { "primary": "#FF6B1A", "secondary": "#1E6FD9", "base": "#0E1A2B" },
-    "uptown": { "primary": "#2D7BFF", "secondary": "#F2F6FF", "base": "#0B1426" },
-    "city": { "primary": "#FFC93C", "secondary": "#FFFFFF", "base": "#0A0A14", "accent": "#FF3EA5" },
-    "garden": { "primary": "#FFC93C", "secondary": "#FFFFFF", "base": "#05050A", "accent": "#FF3EA5" }
+ "shared": {
+  "sodium": "#FFB347",
+  "asphalt": "#1E1E24",
+  "outline": "#0B0B10",
+  "sidewalk": "#4A4A55",
+  "curb": "#6C6C78",
+  "grass": "#1F4A2C",
+  "brick": "#7A3B2E",
+  "brownstone": "#6B4A3A",
+  "walkup": "#8A5A44",
+  "highrise": "#3A4250",
+  "warehouse": "#5A5048",
+  "water": "#0C1E33",
+  "court": "#2C5D8F",
+  "court_line": "#F2F6FF"
+ },
+ "regions": {
+  "bronx": {
+   "primary": "#D7263D",
+   "secondary": "#F4B400",
+   "base": "#1B1B3A"
+  },
+  "brooklyn": {
+   "primary": "#7B2FF7",
+   "secondary": "#12C2B0",
+   "base": "#1A1530"
+  },
+  "queens": {
+   "primary": "#2BB24C",
+   "secondary": "#FF7A00",
+   "base": "#10221A"
+  },
+  "staten_island": {
+   "primary": "#FF6B1A",
+   "secondary": "#1E6FD9",
+   "base": "#0E1A2B"
+  },
+  "uptown": {
+   "primary": "#2D7BFF",
+   "secondary": "#F2F6FF",
+   "base": "#0B1426"
+  },
+  "city": {
+   "primary": "#FFC93C",
+   "secondary": "#FFFFFF",
+   "base": "#0A0A14",
+   "accent": "#FF3EA5"
+  },
+  "garden": {
+   "primary": "#FFC93C",
+   "secondary": "#FFFFFF",
+   "base": "#05050A",
+   "accent": "#FF3EA5"
   }
+ },
+ "buildings": {
+  "bronx": {
+   "brownstone": [
+    "#7A2E26",
+    "#9A4632"
+   ],
+   "walkup": [
+    "#8A3A2A",
+    "#B0603C"
+   ],
+   "highrise": [
+    "#5A3A34",
+    "#6A4238",
+    "#4E3A3A",
+    "#5E4636"
+   ],
+   "warehouse": [
+    "#5A4038",
+    "#64483E",
+    "#4E3C36",
+    "#6A5040"
+   ],
+   "trim": "#C8A040",
+   "water_tower": 0.6,
+   "roof": "flat"
+  },
+  "brooklyn": {
+   "brownstone": [
+    "#6B4A3A",
+    "#8A5A44"
+   ],
+   "walkup": [
+    "#7A3B2E",
+    "#9A6A4A"
+   ],
+   "highrise": [
+    "#3A4250",
+    "#2E3846",
+    "#46505E",
+    "#38343E"
+   ],
+   "warehouse": [
+    "#5A5048",
+    "#4E4A50",
+    "#64584A",
+    "#4A4440"
+   ],
+   "trim": "",
+   "water_tower": 1.0,
+   "roof": "flat"
+  },
+  "queens": {
+   "brownstone": [
+    "#B89A70",
+    "#C8AE84"
+   ],
+   "walkup": [
+    "#A88A62",
+    "#C4A27A"
+   ],
+   "highrise": [
+    "#7A6A58",
+    "#8A7A64",
+    "#6E6252",
+    "#847462"
+   ],
+   "warehouse": [
+    "#6A6458",
+    "#5E5A50",
+    "#747060",
+    "#646056"
+   ],
+   "trim": "#3E6A44",
+   "water_tower": 0.4,
+   "roof": "flat"
+  },
+  "staten_island": {
+   "brownstone": [
+    "#5E7A8E",
+    "#8AA0AE"
+   ],
+   "walkup": [
+    "#C8B8A0",
+    "#E0D2BE"
+   ],
+   "highrise": [
+    "#5A6470",
+    "#66707C",
+    "#525C68",
+    "#6E7884"
+   ],
+   "warehouse": [
+    "#6A5A4E",
+    "#5E544C",
+    "#76665A",
+    "#625850"
+   ],
+   "trim": "#E8E2D8",
+   "water_tower": 0.2,
+   "roof": "pitched"
+  },
+  "uptown": {
+   "brownstone": [
+    "#B8AE9E",
+    "#CEC4B2"
+   ],
+   "walkup": [
+    "#9A8670",
+    "#B4A08A"
+   ],
+   "highrise": [
+    "#6A6E78",
+    "#5E6470",
+    "#767A84",
+    "#606670"
+   ],
+   "warehouse": [
+    "#5A5A60",
+    "#646468",
+    "#505058",
+    "#6A6A70"
+   ],
+   "trim": "#E8ECF4",
+   "water_tower": 1.2,
+   "roof": "flat"
+  },
+  "city": {
+   "brownstone": [
+    "#4A5060",
+    "#5A6070"
+   ],
+   "walkup": [
+    "#505868",
+    "#606878"
+   ],
+   "highrise": [
+    "#34404E",
+    "#2E3A48",
+    "#3C4858",
+    "#283442"
+   ],
+   "warehouse": [
+    "#3E4450",
+    "#464C58",
+    "#383E4A",
+    "#4E5460"
+   ],
+   "trim": "#C8CCD8",
+   "water_tower": 0.3,
+   "roof": "flat"
+  }
+ }
 }

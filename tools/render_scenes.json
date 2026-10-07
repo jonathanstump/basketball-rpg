@@ -122,6 +122,90 @@
       "pose": "edge"
     },
     {
+      "name": "edgewide_bk_bedstuy",
+      "scene": "res://world/district.tscn",
+      "frames": 40,
+      "district": "bk_bedstuy",
+      "pose": "edge_wide"
+    },
+    {
+      "name": "edgewide_bx_mott_haven",
+      "scene": "res://world/district.tscn",
+      "frames": 40,
+      "district": "bx_mott_haven",
+      "pose": "edge_wide"
+    },
+    {
+      "name": "edgewide_qn_astoria",
+      "scene": "res://world/district.tscn",
+      "frames": 40,
+      "district": "qn_astoria",
+      "pose": "edge_wide"
+    },
+    {
+      "name": "edgewide_si_st_george",
+      "scene": "res://world/district.tscn",
+      "frames": 40,
+      "district": "si_st_george",
+      "pose": "edge_wide"
+    },
+    {
+      "name": "edgewide_up_harlem",
+      "scene": "res://world/district.tscn",
+      "frames": 40,
+      "district": "up_harlem",
+      "pose": "edge_wide"
+    },
+    {
+      "name": "edgewide_city_midtown",
+      "scene": "res://world/district.tscn",
+      "frames": 40,
+      "district": "city_midtown",
+      "pose": "edge_wide"
+    },
+    {
+      "name": "bridge_bk_bedstuy",
+      "scene": "res://world/district.tscn",
+      "frames": 40,
+      "district": "bk_bedstuy",
+      "pose": "bridge"
+    },
+    {
+      "name": "bridge_bx_mott_haven",
+      "scene": "res://world/district.tscn",
+      "frames": 40,
+      "district": "bx_mott_haven",
+      "pose": "bridge"
+    },
+    {
+      "name": "bridge_qn_astoria",
+      "scene": "res://world/district.tscn",
+      "frames": 40,
+      "district": "qn_astoria",
+      "pose": "bridge"
+    },
+    {
+      "name": "bridge_si_st_george",
+      "scene": "res://world/district.tscn",
+      "frames": 40,
+      "district": "si_st_george",
+      "pose": "bridge"
+    },
+    {
+      "name": "bridge_up_harlem",
+      "scene": "res://world/district.tscn",
+      "frames": 40,
+      "district": "up_harlem",
+      "pose": "bridge"
+    },
+    {
+      "name": "bridge_city_midtown",
+      "scene": "res://world/district.tscn",
+      "frames": 40,
+      "district": "city_midtown",
+      "pose": "bridge"
+    },
+    {
       "name": "wake_up",
       "scene": "res://world/interiors/interior.tscn",
       "frames": 90,

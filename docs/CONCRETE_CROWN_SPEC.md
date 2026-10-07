@@ -1096,6 +1096,20 @@ Shared: sodium #FFB347, asphalt #1E1E24, outline #0B0B10.
 
 Brownstones (stoops, bay windows, cornices) · walk-ups with fire escapes and window AC units · high-rises with lit window grids · rooftop water towers · bodegas (awning, glowing sign, roll-down gate with graffiti) · subway entrances (railings, green globe lamps) · elevated tracks (girders; passing trains as an effect) · cobra-head streetlights · blinking-yellow traffic lights · hydrants · generic mailboxes and news boxes (no real logos) · trash bag piles · dumpsters · sidewalk scaffolding sheds · chain-link courts with chain nets · milk-crate hoops · benches and caged street trees · manhole steam with striped stacks · generic yellow cabs and boxy parked cars · murals (procedural shape patterns) · sneakers on power lines · string lights · neon signs with original text (DELI GROCERY 24HR, PIZZA, KICKS, LAUNDROMAT, BARBER, TATTOO).
 
+### 12.3a Borough looks and the edge of the map (revision 10)
+
+- **Each borough builds in its own palette** (`palettes.json → buildings`):
+  - Bronx: red brick with gold deco trim.
+  - Brooklyn: brownstones.
+  - Queens: tan and yellow brick with green trim.
+  - Staten Island: blue and pale clapboard with pitched roofs.
+  - Uptown: limestone with white trim.
+  - City: glass and steel.
+  - Water-tower frequency also varies by borough.
+- **Skyline profiles per borough** (`tuning/camera → skyline.profiles`): the width of the water, the height, and the mix of tower kinds. The kinds are slab, wedding-cake setback, art deco crown, needle spire, round glass and twins. Crowns are lit in the borough's accent color, and spires carry blinking beacons. A low lit waterfront lines the far shore.
+- **The edge is a harbor.** A stone quay with a railing and lamps runs along the map edge, then dark water with shimmering reflected shore light runs out to a far shore. Each borough's bridges reach toward the skyline: Brooklyn suspension (stone and steel towers), Bronx steel arch, Queens green truss, Staten Island long suspension, Uptown suspension and arch. Necklace lights are emissive only. The '#' ring still stops you, so you can never cross.
+- **Street hoops** use the court hoop's parts: pole, white backboard with the shooter square, orange rim and chain net. The rim and square glow while the hoop's Bucket Blast is ready.
+
 ### 12.4 Characters
 
 - Player: ~3 heads tall, 1.35 m. Commons: 1.6–2.2 m, chunkier and taller to read as threats. Bosses: 3–15 m with unmistakable silhouettes.

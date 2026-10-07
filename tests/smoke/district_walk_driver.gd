@@ -71,11 +71,21 @@ func _physics_process(_delta: float) -> void:
 
 
 func _near(d: GameWorld, p: Vector3) -> void:
-	## Short hop: put the bot ~6 m from the target so it walks the last leg.
+	## Short hop: put the bot ~6 m from the target, on open ground with a
+	## clear line to it (never behind the building the target is on), so it
+	## walks the last leg.
 	var to: Vector3 = d.player.pos - p
 	to.y = 0.0
-	if to.length() > 7.0:
-		d.player.pos = d.sim.collision.resolve(p + to.normalized() * 6.0 + Vector3(0, 0.2, 0), d.player.radius)
+	if to.length() <= 7.0:
+		return
+	var base: float = atan2(to.x, to.z)
+	for i: int in 16:
+		var a: float = base + float((i + 1) / 2) * (TAU / 16.0) * (1.0 if i % 2 == 0 else -1.0)
+		var c: Vector3 = p + Vector3(sin(a), 0, cos(a)) * 6.0 + Vector3(0, 0.2, 0)
+		if not d.sim.collision.blocked(c, d.player.radius) and not d.sim.collision.segment_blocked(c + Vector3(0, 0.8, 0), p + Vector3(0, 0.8, 0)):
+			d.player.pos = c
+			return
+	d.player.pos = d.sim.collision.resolve(p + to.normalized() * 6.0 + Vector3(0, 0.2, 0), d.player.radius)
 
 
 func _finish(problem: String) -> void:

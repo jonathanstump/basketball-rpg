@@ -298,3 +298,19 @@ Spec §11.3 lists L60 = 46,626 but `floor(100 × 60^1.5 + 150)` = 46,625 (every 
   - **Before:** a 0.08 s white flash and a small white number, with no health bar and no sign of the knockdown window. So the knockdown wasn't readable.
   - **Now:** `EnemyBars` (CanvasLayer) draws a health bar over a street enemy for 4 s after you hurt them, with a white chip trail that drains after each hit and a shake on impact. Named enemies (lieutenants, side-street leaders, captains) show name + bar when you're within 14 m. A status tag reads DOWN / SHOOK / STAGGERED and becomes "[R] FINISH" when you hold the ball within 6 m and the finisher would land. A downed or SHOOK enemy pulses gold. Hits now flash red-white with a squash (bigger on heavy hits). Damage numbers are bigger (42), orange on heavy hits (54) and gold on crits (68). "DOWN!" pops over an enemy whose ankles you took, and "KO!" when a hit kills.
   - Balance is unchanged on purpose. A damage bonus on downed enemies is the next lever if ankles still feel weak.
+
+## Revisions 8-10 + finisher fix (2026-10-07, second pass)
+
+- **Finisher "did nothing" (playtest).**
+  - **Cause:** the crossover carries you 3.2 m. By the time it ended, the enemy you knocked down was 3-4 m away, outside the finisher's 2.2 m reach. R presses outside that reach dropped silently. The "[R] FINISH" tag showed out to 6 m, which made it worse.
+  - **Fix:** the finisher now finds a downed or SHOOK enemy within `seek_m` 5 m (hooper.json) and leaps the gap during its 8-frame wind-up (`leap_speed_max` 16 m/s). Pressing R during the crossover or stepback recovery cancels straight into it. The FINISH tag uses the same reach.
+  - A test plays a real cue-timed ankle and then mashes R.
+- **R8 death.** You lose all unspent Rep. `floor(rep × economy.death.recoverable_frac)` (0.5) drops as the chain, and the rest is gone. The chain has two tall additive gold beams (90 m, no light, no shadow). The amber marker is separate from the objective marker and shows even if you turn the objective marker off; it points at the crossing when the chain is in another district. The map shows an amber ring. Nine Lives and touch-to-reclaim are unchanged.
+- **R9 shooting on the run.** If you press shoot while moving at 4 m/s or faster with the stick held, you keep 70% of that speed through the gather. The windows shrink ×0.65 when running and ×0.5 when sprinting (`shooting.modifiers`). Set shots are unchanged. Running speed is read at the press, so a stepback still counts as a set shot.
+- **R10 looks.**
+  - Building palettes per borough are in `palettes.json → buildings`. Staten Island walk-ups get gable roofs; everywhere else gets a trim cap. Tone picks use the builder rng, so geometry is still deterministic per seed.
+  - The skyline is a few MultiMeshes, one per mesh kind (box, cyl, prism, needle), with a `style` channel in INSTANCE_CUSTOM.z. Rotated parts are scaled on their own axes (`basis * Basis.from_scale`). The old `.scaled()` skewed rotated boxes and was a latent bug.
+  - The front row is thinner (`r = inner + 18 + depth·rand^0.6`), so the near side reads as a skyline instead of a wall.
+  - The border is `DistrictBorder`. It's built after the skyline and adds about 20 draw groups with no shadows.
+  - Render shots: `district_street_hoop`, plus `edge_*`, `edgewide_*` and `bridge_*` for 6 boroughs (`DistrictRenderPoses`).
+- **Smoke harness fix.** `district_walk_smoke` hopped the bot 6 m from its target in a straight line. Once the borough palettes changed the builder's random sequence, that hop landed it behind the Bed-Stuy bodega, inside the building tile, where the nav grid couldn't steer. The hop now picks the nearest of 16 spots around the target that is open and has a clear line to it. The test still walks the last leg and checks the same things.

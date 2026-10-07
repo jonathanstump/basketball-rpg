@@ -36,6 +36,7 @@ func run(m: MapData, w: SimWorld, b: BallSystem, root: Node3D) -> Dictionary:
 	w.collision.set_bounds(-half, half)
 	KitBuildings.batcher = batcher
 	KitProps.batcher = batcher
+	KitBuildings.set_borough(m.borough())
 	_ground()
 	_buildings()
 	DistrictDressing.dress(self)
@@ -217,11 +218,11 @@ func _lot(rect: Rect2i, ch: String) -> void:
 		"T":
 			KitBuildings.walkup(parent, sim.collision, center, facade_w - 0.2, depth - 0.4, floors, front, rng)
 		"H":
-			var hcol: Color = [Color("#3A4250"), Color("#2E3846"), Color("#46505E"), Color("#38343E")][tone_i]
+			var hcol: Color = KitBuildings.tone("highrise", rng, "#2E3846", "#46505E")
 			KitBuildings.building(parent, sim.collision, center, Vector3(size_m.x - 0.4, float(floors) * FLOOR_H, size_m.y - 0.4), hcol, float(tone_i), 0.55)
 			KitBuildings.water_tower(parent, center + Vector3(0, float(floors) * FLOOR_H, 0))
 		"W":
-			var wcol: Color = [Color("#5A5048"), Color("#4E4A50"), Color("#64584A"), Color("#4A4440")][tone_i]
+			var wcol: Color = KitBuildings.tone("warehouse", rng, "#4A4440", "#64584A")
 			KitBuildings.building(parent, sim.collision, center, Vector3(size_m.x - 0.2, float(floors) * FLOOR_H + 1.0, size_m.y - 0.2), wcol, float(tone_i) + 20.0, 0.15)
 			DistrictDressing.rollup_doors(self, center, front, facade_w, depth)
 		"D", "K", "G", "I":

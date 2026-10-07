@@ -1,68 +1,221 @@
 {
-  "explore": {
-    "pitch_deg": 38,
-    "pitch_min_deg": -8,
-    "pitch_max_deg": 65,
-    "distance_m": 12,
-    "distance_near_m": 4.5,
-    "focus_lift_near_m": 1.8,
-    "shoulder_m": 0.45,
-    "fov_deg": 45
+ "explore": {
+  "pitch_deg": 38,
+  "pitch_min_deg": -8,
+  "pitch_max_deg": 65,
+  "distance_m": 12,
+  "distance_near_m": 4.5,
+  "focus_lift_near_m": 1.8,
+  "shoulder_m": 0.45,
+  "fov_deg": 45
+ },
+ "lockon": {
+  "pitch_deg": 38,
+  "distance_min_m": 9,
+  "distance_max_m": 14,
+  "sep_to_distance": 0.45,
+  "hoop_weight": 0.35,
+  "lock_range_m": 20
+ },
+ "yaw_speed_rad_s": 2.6,
+ "mouse_sensitivity": 0.005,
+ "follow_lerp": 10.0,
+ "rotate_lerp": 8.0,
+ "focus_height_m": 0.9,
+ "cutaway_radius_m": 2.6,
+ "shake_decay": 6.0,
+ "punch_in_m": 2.0,
+ "pitch_pad_deg_s": 90.0,
+ "far_m": 900.0,
+ "min_distance_m": 2.2,
+ "duel": {
+  "pitch_deg": 34,
+  "distance_min_m": 8.5,
+  "distance_max_m": 14,
+  "hoop_bias": 0.35,
+  "close_to_hoop_m": 3.0
+ },
+ "skyline": {
+  "towers": 170,
+  "ring_inner_m": 60,
+  "ring_depth_m": 220,
+  "width_m": [
+   14,
+   42
+  ],
+  "height_m": [
+   25,
+   95
+  ],
+  "city_height_m": [
+   60,
+   210
+  ],
+  "city_arc_deg": 70,
+  "lit_ratio": [
+   0.18,
+   0.45
+  ],
+  "city_dir_deg": {
+   "bronx": 180,
+   "brooklyn": 315,
+   "queens": 270,
+   "staten_island": 30,
+   "uptown": 180,
+   "city": -1
   },
-  "lockon": {
-    "pitch_deg": 38,
-    "distance_min_m": 9,
-    "distance_max_m": 14,
-    "sep_to_distance": 0.45,
-    "hoop_weight": 0.35,
-    "lock_range_m": 20
-  },
-  "yaw_speed_rad_s": 2.6,
-  "mouse_sensitivity": 0.005,
-  "follow_lerp": 10.0,
-  "rotate_lerp": 8.0,
-  "focus_height_m": 0.9,
-  "cutaway_radius_m": 2.6,
-  "shake_decay": 6.0,
-  "punch_in_m": 2.0,
-  "pitch_pad_deg_s": 90.0,
-  "far_m": 900.0,
-  "min_distance_m": 2.2,
-  "duel": {
-    "pitch_deg": 34,
-    "distance_min_m": 8.5,
-    "distance_max_m": 14,
-    "hoop_bias": 0.35,
-    "close_to_hoop_m": 3.0
-  },
-  "skyline": {
-    "towers": 170,
-    "ring_inner_m": 60,
-    "ring_depth_m": 220,
-    "width_m": [
-      14,
-      42
-    ],
-    "height_m": [
-      25,
-      95
-    ],
-    "city_height_m": [
-      60,
-      210
-    ],
-    "city_arc_deg": 70,
-    "lit_ratio": [
-      0.18,
-      0.45
-    ],
-    "city_dir_deg": {
-      "bronx": 180,
-      "brooklyn": 315,
-      "queens": 270,
-      "staten_island": 30,
-      "uptown": 180,
-      "city": -1
-    }
+  "profiles": {
+   "bronx": {
+    "water_m": 70,
+    "height_mult": 0.9,
+    "accent": "#F4B400",
+    "water": "#0B1626",
+    "mix": {
+     "slab": 2,
+     "setback": 4,
+     "crown": 3,
+     "spire": 1,
+     "round": 0,
+     "twin": 1
+    },
+    "bridges": [
+     {
+      "deg": 180,
+      "style": "arch"
+     },
+     {
+      "deg": 90,
+      "style": "truss"
+     }
+    ]
+   },
+   "brooklyn": {
+    "water_m": 120,
+    "height_mult": 1.05,
+    "accent": "#12C2B0",
+    "water": "#0A1830",
+    "mix": {
+     "slab": 3,
+     "setback": 3,
+     "crown": 2,
+     "spire": 2,
+     "round": 1,
+     "twin": 1
+    },
+    "bridges": [
+     {
+      "deg": 315,
+      "style": "suspension",
+      "tower": "stone"
+     },
+     {
+      "deg": 270,
+      "style": "suspension",
+      "tower": "steel"
+     }
+    ]
+   },
+   "queens": {
+    "water_m": 100,
+    "height_mult": 0.95,
+    "accent": "#FF7A00",
+    "water": "#0A1A24",
+    "mix": {
+     "slab": 4,
+     "setback": 1,
+     "crown": 1,
+     "spire": 1,
+     "round": 2,
+     "twin": 2
+    },
+    "bridges": [
+     {
+      "deg": 270,
+      "style": "truss"
+     },
+     {
+      "deg": 0,
+      "style": "suspension",
+      "tower": "steel"
+     }
+    ]
+   },
+   "staten_island": {
+    "water_m": 230,
+    "height_mult": 1.25,
+    "accent": "#FF6B1A",
+    "water": "#08162A",
+    "mix": {
+     "slab": 3,
+     "setback": 2,
+     "crown": 2,
+     "spire": 3,
+     "round": 1,
+     "twin": 1
+    },
+    "bridges": [
+     {
+      "deg": 70,
+      "style": "suspension",
+      "tower": "steel"
+     }
+    ]
+   },
+   "uptown": {
+    "water_m": 65,
+    "height_mult": 1.0,
+    "accent": "#F2F6FF",
+    "water": "#0A1428",
+    "mix": {
+     "slab": 2,
+     "setback": 3,
+     "crown": 2,
+     "spire": 2,
+     "round": 1,
+     "twin": 1
+    },
+    "bridges": [
+     {
+      "deg": 270,
+      "style": "suspension",
+      "tower": "steel"
+     },
+     {
+      "deg": 90,
+      "style": "arch"
+     }
+    ]
+   },
+   "city": {
+    "water_m": 85,
+    "height_mult": 1.3,
+    "accent": "#FFC93C",
+    "water": "#0A1222",
+    "mix": {
+     "slab": 2,
+     "setback": 3,
+     "crown": 3,
+     "spire": 4,
+     "round": 2,
+     "twin": 1
+    },
+    "bridges": [
+     {
+      "deg": 90,
+      "style": "suspension",
+      "tower": "stone"
+     },
+     {
+      "deg": 120,
+      "style": "suspension",
+      "tower": "steel"
+     },
+     {
+      "deg": 270,
+      "style": "truss"
+     }
+    ]
+   }
   }
+ }
 }
