@@ -127,6 +127,12 @@ The truth (revealed in pieces): **Midnight**, the greatest to ever do it, stoppe
 - **Alley stashes:** up to two dead-end alleys per district hide a stash with the district's loot.
 - **In-world direction (R1):** objectives speak the way people on the street would. "Make a name in Brooklyn — Word is The Stoop Queen holds the court in Bed-Stuy. Lil' Deacon decides who gets on it." No "beat the mini-boss." Pops says the same and tells you to ask around. The objective marker can be turned off in Settings.
 
+### 3.6b Street rep and side streets (follow-up to R6)
+
+- **Buzz (street rep) comes before the lieutenant.** A lieutenant only shows up once the district knows your name. You earn Buzz by beating crews, reading tags, talking to people, opening stashes and boxes, and clearing the side street. The court needs 6 Buzz for a mini and 8 for a King or a City landmark (`data/tuning/street_rep.json`). The objective counts it ("Buzz 2/6"). When you reach it, the lieutenant appears and the street tells you where.
+- **One side street per district** (`data/dialogue/side_streets.json`). It's a named alley held by a small crew and their leader, with a local at the mouth who tells you about it. Clearing it pays the alley's loot and Buzz, and the local thanks you.
+- **Street hits read clearly.** Hurt enemies show a health bar. When a street enemy is open (downed by ankles, or SHOOK), they glow gold, and the tag says FINISH when the Dunk Finisher would land.
+
 ### 3.7 Endings
 
 After Midnight's third phase, the scoreboard clock reads 11:59:59. Prompt:

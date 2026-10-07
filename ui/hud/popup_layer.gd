@@ -11,7 +11,9 @@ const STYLES: Dictionary = {
 	"style": {"color": "#F4B400", "size": 72},
 	"hype": {"color": "#FF3EA5", "size": 56},
 	"tokens": {"color": "#FFD860", "size": 36},
-	"damage": {"color": "#FFFFFF", "size": 30},
+	"damage": {"color": "#FFFFFF", "size": 42},
+	"damage_heavy": {"color": "#FF9A3E", "size": 54},
+	"damage_crit": {"color": "#FFE040", "size": 68},
 	"big": {"color": "#FF3EA5", "size": 110},
 }
 

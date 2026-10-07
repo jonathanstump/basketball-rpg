@@ -28,6 +28,9 @@ func test_every_gated_boss_has_lore_and_a_lieutenant() -> void:
 func test_mini_court_opens_after_its_lieutenant() -> void:
 	var s: Dictionary = CourtGate.status("bk_stoop")
 	assert_false(bool(s["open"]))
+	assert_eq(str(s["need"]), "rep", "Bed-Stuy has to know your name first")
+	GameState.bump_counter("buzz_bk_bedstuy", StreetRep.need_for("bk_stoop"))
+	s = CourtGate.status("bk_stoop")
 	assert_eq(str(s["need"]), "lieutenant")
 	assert_string_contains(str(s["text"]), "Lil' Deacon")
 	CourtGate.mark_lieutenant_beaten("bk_stoop")
@@ -40,6 +43,8 @@ func test_king_wants_the_boroughs_best_first() -> void:
 	assert_eq(str(CourtGate.status(king)["need"]), "minis")
 	for m: Variant in cast["minis"]:
 		GameState.defeated_bosses.append(str(m))
+	assert_eq(str(CourtGate.status(king)["need"]), "rep", "then the King's district has to know you")
+	GameState.bump_counter("buzz_" + ObjectiveRules.boss_district(king), StreetRep.need_for(king))
 	assert_eq(str(CourtGate.status(king)["need"]), "lieutenant", "then the King's own lieutenant")
 	CourtGate.mark_lieutenant_beaten(king)
 	assert_true(CourtGate.is_open(king))
@@ -77,6 +82,7 @@ func test_street_life_plan_is_walkable_and_deterministic() -> void:
 
 
 func test_lieutenant_in_district_and_beating_them_opens_the_court() -> void:
+	GameState.bump_counter("buzz_bk_bedstuy", StreetRep.need_for("bk_stoop"))
 	SceneRouter.pending = {"district": "bk_bedstuy", "arrive": {}}
 	var d: District = (load("res://world/district.tscn") as PackedScene).instantiate() as District
 	add_child_autofree(d)

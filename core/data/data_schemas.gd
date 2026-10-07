@@ -82,6 +82,8 @@ const FILES: Dictionary = {
 		"mouths": "array", "marks": "array", "facial_hair": "array", "hair_colors": "array", "voices": "array", "height": "dict",
 		"name_prefixes": "array", "name_bases": "array", "blocked_words": "array", "max_name_length": "int"},
 	"dialogue/prologue": {"steps": "array", "lines": "dict"},
+	"dialogue/side_streets": {"streets": "array"},
+	"tuning/street_rep": {"need": "dict", "points": "dict"},
 }
 
 const MOVE: Dictionary = {

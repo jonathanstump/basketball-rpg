@@ -19,6 +19,8 @@ var _reveal_t: int = 0
 var objective_panel: ObjectivePanel
 var street: Dictionary = {}            # R6: lieutenants, rumor NPCs, alley stashes
 var _lt_intro_done: Dictionary = {}
+var _lt_spawned: Dictionary = {}
+var side_street: DistrictSideStreet
 
 
 func _ready() -> void:
@@ -38,6 +40,8 @@ func _ready() -> void:
 	DistrictSkyline.build(map, borough, region, level_root)
 	street = StreetLife.plan(map, layout)
 	(layout["npcs"] as Array).append_array(street["rumors"])
+	if not JU.dict(JU.dict(street, "side"), "npc").is_empty():
+		(layout["npcs"] as Array).append(JU.dict(street["side"], "npc"))
 	for sb: Variant in street["caches"]:
 		if not GameState.opened_boxes.has(JU.s(sb as Dictionary, "id")):
 			(layout["boxes"] as Array).append(sb)
@@ -47,7 +51,9 @@ func _ready() -> void:
 	add_child(views_extra)
 	views_extra.build()
 	_spawn_enemies()
-	_spawn_lieutenants()
+	spawn_lieutenants()
+	side_street = DistrictSideStreet.new(self, JU.dict(street, "side"))
+	side_street.spawn()
 	spawn_player(_arrival_point())
 	camera_rig.auto_yaw(sim.collision)
 	nav.wait()
@@ -114,11 +120,15 @@ func _spawn_enemies() -> void:
 			a.flags["spawn_id"] = JU.s(sd, "id")
 
 
-func _spawn_lieutenants() -> void:
-	## R6: a named crew captain guards the way to each locked court.
+func spawn_lieutenants() -> void:
+	## R6: a named crew captain guards the way to each locked court, once the
+	## district knows your name (StreetRep Buzz). Safe to call again.
 	for l: Variant in JU.a(street, "lieutenants"):
 		var ld: Dictionary = l
 		var lt: Dictionary = ld["data"]
+		if _lt_spawned.has(JU.s(ld, "boss")) or not StreetRep.known_for(JU.s(ld, "boss")):
+			continue
+		_lt_spawned[JU.s(ld, "boss")] = true
 		var a: SimActor = spawner.add(JU.s(lt, "enemy", "big_man"), ld["pos"], tier, {"captain": true, "facing": float(JU.s(ld, "boss").hash() % 628) / 100.0})
 		if a != null:
 			a.flags["lieutenant"] = JU.s(ld, "boss")
@@ -210,11 +220,15 @@ func _on_sim_event(ev: Dictionary) -> void:
 		var la: SimActor = sim.actor_by_id(int(ev.get("actor", 0)))
 		if la != null and la.flags.has("lieutenant"):
 			_lieutenant_event(str(ev["type"]), la)
+		if side_street != null:
+			side_street.on_event(str(ev["type"]), la)
 	match str(ev.get("type", "")):
 		"actor_killed":
 			var a: SimActor = sim.actor_by_id(int(ev["actor"]))
 			if a != null and a.flags.has("spawn_id") and (bool(a.flags.get("captain", false)) or a.archetype == "bootleg"):
 				GameState.set_flag("killed_" + str(a.flags["spawn_id"]))
+			if a != null:
+				DistrictBuzz.on_kill(self, a)
 		"enemy_defeated":
 			for d: String in (ev["drops"] as PackedStringArray):
 				if d.begins_with("loot:"):
@@ -242,6 +256,21 @@ func setup_render_smoke(entry: Dictionary) -> void:
 		ready.connect(func() -> void:
 			MapReveal.reveal(MapReveal.ensure(district_id, map.width, map.height), map.width, map.height, map.cell_of(player.pos), 20.0)
 			open_map())
+	if JU.s(entry, "mode") == "enemy_bars":
+		ready.connect(_stage_enemy_bars)
+
+
+func _stage_enemy_bars() -> void:
+	## Render smoke: two crew in front of you, one hurt, one knocked down.
+	var n: int = 0
+	for a: SimActor in sim.actors:
+		if a.kind != "enemy" or a.team == 0 or a.flags.has("prop_target") or n >= 2:
+			continue
+		a.pos = player.pos + player.forward() * 4.0 + player.forward().cross(Vector3.UP) * (1.4 if n == 0 else -1.4)
+		a.hp = a.hp_max * (0.6 if n == 0 else 0.35)
+		(a.controller as EnemyBrain).stun(600, n == 1)
+		EventBus.actor_damaged.emit(a.id, a.hp_max * 0.15, player.id)
+		n += 1
 
 
 func update_objective() -> void:

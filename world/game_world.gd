@@ -68,6 +68,10 @@ func setup_world(region_id: String) -> void:
 	var popups: PopupLayer = PopupLayer.new()
 	popups.name = "Popups"
 	add_child(popups)
+	var bars: EnemyBars = EnemyBars.new()
+	bars.name = "EnemyBars"
+	bars.game = self
+	add_child(bars)
 	shot_meter = ShotMeter.new()
 	shot_meter.name = "ShotMeter"
 	hud_layer.add_child(shot_meter)

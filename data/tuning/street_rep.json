@@ -1,0 +1,11 @@
+{
+  "need": { "mini": 6, "king": 8, "landmark": 8 },
+  "points": {
+    "crew_beaten": 1,
+    "captain_beaten": 2,
+    "tag_read": 1,
+    "npc_talked": 1,
+    "stash_found": 1,
+    "side_street_cleared": 3
+  }
+}

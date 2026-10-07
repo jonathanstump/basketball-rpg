@@ -32,6 +32,9 @@ func test_home_borough_crown_minis_then_king() -> void:
 	assert_eq(int(o["total"]), 3)
 	## R1: in-world, no "mini-boss" talk; R6: who stands in the way.
 	assert_string_contains(str(o["detail"]), "Word is The Stoop Queen holds the court in Bed-Stuy")
+	assert_string_contains(str(o["detail"]), "until Bed-Stuy knows your name. (Buzz 0/%d)" % StreetRep.need_for("bk_stoop"), "street rep first")
+	GameState.bump_counter("buzz_bk_bedstuy", StreetRep.need_for("bk_stoop"))
+	o = ObjectiveRules.current("bk_bedstuy")
 	assert_string_contains(str(o["detail"]), "Lil' Deacon")
 	assert_false(str(o["detail"]).to_lower().contains("mini-boss"))
 	_done(cast["minis"])

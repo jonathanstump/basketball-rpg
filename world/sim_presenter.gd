@@ -159,6 +159,8 @@ func _on_hit(ev: Dictionary) -> void:
 	match r:
 		"ankle_breaker":
 			_popup("ANKLES!", tpos, "big")
+			if att != null and att.kind == "enemy" and tgt == game.player:
+				_popup("DOWN!", att.pos, "style")   # knocked down: free hits + Dunk Finisher window
 			EventBus.slowmo_requested.emit(0.3, 0.6)
 			EventBus.ankle_broken.emit(int(ev["target"]), int(ev["attacker"]))
 			AudioDirector.play_sfx("crowd_ooh", tpos)
@@ -185,14 +187,20 @@ func _on_hit(ev: Dictionary) -> void:
 		"hit":
 			var dmg: float = float(ev.get("damage", 0.0))
 			EventBus.actor_damaged.emit(int(ev["target"]), dmg, int(ev["attacker"]))
-			if tgt != null and game.views.has(tgt.id):
-				(game.views[tgt.id] as ActorView).flash()
 			var heavy: bool = str(ev.get("weight", "")) == "heavy"
+			if tgt != null and game.views.has(tgt.id):
+				if tgt.team != 0 and tgt.kind != "boss":
+					(game.views[tgt.id] as ActorView).hit_react(heavy)
+				else:
+					(game.views[tgt.id] as ActorView).flash()
 			EventBus.screen_shake_requested.emit(0.45 if heavy else 0.18)
 			if tgt == game.player:
 				EventBus.screen_shake_requested.emit(0.5)
 			elif att == game.player and dmg > 0.0:
-				_popup(("%d!" if bool(ev.get("crit", false)) else "%d") % int(dmg), tpos, "damage")
+				var crit: bool = bool(ev.get("crit", false))
+				_popup(("%d!" if crit else "%d") % int(dmg), tpos, "damage_crit" if crit else ("damage_heavy" if heavy else "damage"))
+				if bool(ev.get("killed", false)) and tgt != null and tgt.kind == "enemy":
+					_popup("KO!", tpos + Vector3(0, 0.6, 0), "bad")
 
 
 func _popup(text: String, pos: Variant, style: String) -> void:

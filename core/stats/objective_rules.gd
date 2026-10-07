@@ -106,7 +106,10 @@ static func word_on(boss_id: String, borough_name: String) -> String:
 	var where: String = WorldIndex.district_name(boss_district(boss_id))
 	var line: String = ("%s's best have fallen. %s rules the court in %s." % [borough_name, who, where]) if JU.s(b, "kind") == "king" and borough_name != "" else ("Word is %s holds the court in %s." % [who, where])
 	var gate: Dictionary = CourtGate.status(boss_id)
-	if JU.s(gate, "need") == "lieutenant":
+	if JU.s(gate, "need") == "rep":
+		var d: String = boss_district(boss_id)
+		line += " Nobody gets on it until %s knows your name. (Buzz %d/%d)" % [WorldIndex.district_name(d), StreetRep.points(d), StreetRep.need_for(boss_id)]
+	elif JU.s(gate, "need") == "lieutenant":
 		line += " %s decides who gets on it." % JU.s(LoreBook.lieutenant(boss_id), "name")
 	else:
 		line += " They're expecting you."

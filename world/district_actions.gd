@@ -95,11 +95,13 @@ static func trigger(d: District, it: Dictionary) -> void:
 		"tag":
 			EventBus.dialogue_requested.emit("Graffiti", PackedStringArray([JU.s(data, "text")]))
 			GameState.bump_counter("tags_read")
+			DistrictBuzz.earn(d, "tag_read", str(it["id"]), it["pos"])
 		"npc":
 			if not JU.dict(data, "challenger").is_empty():
 				challenge(d, data)
 			else:
 				EventBus.dialogue_requested.emit(JU.s(data, "name"), JU.strs(data, "lines"))
+				DistrictBuzz.earn(d, "npc_talked", str(it["id"]), it["pos"])
 				if LoreBook.hear(JU.s(data, "lore")):
 					EventBus.popup_text.emit("WORD ON THE STREET", d.player.pos + Vector3(0, 0.8, 0), "style")
 		"shortcut":
@@ -205,6 +207,7 @@ static func open_box(d: District, id: String, data: Dictionary) -> void:
 	d.interact.remove(id)
 	d.views_extra.open_box_view(id)
 	EventBus.box_opened.emit(id, loot["items"])
+	DistrictBuzz.earn(d, "stash_found", id, data.get("pos"))
 	SaveSystem.request_autosave(1.0)
 
 

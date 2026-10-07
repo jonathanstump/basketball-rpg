@@ -67,6 +67,12 @@
       "mode": "street_level"
     },
     {
+      "name": "district_enemy_bars",
+      "scene": "res://world/district.tscn",
+      "frames": 30,
+      "mode": "enemy_bars"
+    },
+    {
       "name": "wake_up",
       "scene": "res://world/interiors/interior.tscn",
       "frames": 90,

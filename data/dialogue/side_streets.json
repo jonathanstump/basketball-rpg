@@ -1,0 +1,140 @@
+{
+  "streets": [
+    {
+      "district": "bk_bedstuy", "name": "Halsey Cut", "pool": "bk_secret",
+      "npc": { "name": "Auntie Bev", "lines": ["The Halsey Cut used to be where the kids played two-on-two against the garage door.", "Now some crew called the Door Boys holds it. They charge you a dollar to walk past. A DOLLAR."], "after": ["You cleared out the Door Boys? Baby, come here. You eating tonight?"] },
+      "leader": { "name": "Garage Door Gus", "title": "Door Boys", "enemy": "big_man" },
+      "members": ["ball_hog", "pickpocket"],
+      "intro": ["Garage Door Gus: Halsey Cut's a toll road now. Dollar to pass, five to play.", "Garage Door Gus: You look like you ain't got either."],
+      "defeat": ["Garage Door Gus: Aight. Aight! Free passage. Tell Bev to stop calling me."]
+    },
+    {
+      "district": "bk_coney", "name": "Skee Alley", "pool": "bk_punch",
+      "npc": { "name": "Rollo", "lines": ["I fixed the skee machines back there for thirty years.", "Now the Ticket Takers sleep in the prize booth and won't let me in to oil the lanes."], "after": ["Lanes are rolling again. Listen to that. Best sound on the boardwalk."] },
+      "leader": { "name": "Prize Booth Pete", "title": "Ticket Takers", "enemy": "showboat" },
+      "members": ["fixie_rider", "hype_man"],
+      "intro": ["Prize Booth Pete: You want the giant bear? Everybody wants the giant bear.", "Prize Booth Pete: Nobody gets the giant bear."],
+      "defeat": ["Prize Booth Pete: Fine. Take the bear. It's not even a bear. It's a dog with ears."]
+    },
+    {
+      "district": "bk_dumbo", "name": "Cobble Lane", "pool": "bk_secret",
+      "npc": { "name": "Ines", "lines": ["I paint the bridge from the end of Cobble Lane. Same view every night since the clocks stopped.", "A crew of shooters moved in and they keep tagging over my canvases."], "after": ["They left my paints alone. I'm going to paint you in. Somewhere small."] },
+      "leader": { "name": "Overpass Ollie", "title": "Arch Shooters", "enemy": "sniper" },
+      "members": ["sniper", "ball_hog"],
+      "intro": ["Overpass Ollie: Cobble Lane's our range. Everything down here is a target.", "Overpass Ollie: Including you."],
+      "defeat": ["Overpass Ollie: You close out like the clocks still matter. Respect."]
+    },
+    {
+      "district": "bx_mott_haven", "name": "Bruckner Back", "pool": "bx_secret",
+      "npc": { "name": "DJ Saint Ray", "lines": ["The first block party I ever spun was back in that alley. Extension cord from a lamppost.", "The Cardboard Crew took it over. They break on my old crates."], "after": ["You got my crates back. Next party, you're on the guest list. There is no list. You're on it."] },
+      "leader": { "name": "Linoleum Lou", "title": "Cardboard Crew", "enemy": "breaker" },
+      "members": ["breaker", "hype_man"],
+      "intro": ["Linoleum Lou: This floor's been ours since before you could walk.", "Linoleum Lou: Battle for it. Loser rolls up the cardboard."],
+      "defeat": ["Linoleum Lou: Clean footwork. Take the floor. We'll find another."]
+    },
+    {
+      "district": "bx_west_farms", "name": "Zoo Fence Walk", "pool": "bx_punch",
+      "npc": { "name": "Keeper Joaquin", "lines": ["Behind the fence walk is where we kept the feed carts.", "A crew of big fellas took it. They sit on the carts like thrones."], "after": ["The carts are free. The goats say thank you. Don't ask how I know."] },
+      "leader": { "name": "Feed Cart Fitz", "title": "Fence Line", "enemy": "big_man" },
+      "members": ["showboat", "pickpocket"],
+      "intro": ["Feed Cart Fitz: Fence Walk is closed. Zoo's closed. Everything's closed.", "Feed Cart Fitz: You're closed too."],
+      "defeat": ["Feed Cart Fitz: Okay. Open. Fence Walk's open. I'm going to go lie down."]
+    },
+    {
+      "district": "bx_highbridge", "name": "Aqueduct Steps", "pool": "bx_secret",
+      "npc": { "name": "Old Teo", "lines": ["I count the Aqueduct Steps every night. One hundred and four.", "Lately I only get to sixty. A crew sits on the landing and sends me back down."], "after": ["One hundred and four. Every single one. Thank you."] },
+      "leader": { "name": "Landing Lena", "title": "Step Crew", "enemy": "breaker" },
+      "members": ["sniper", "ball_hog"],
+      "intro": ["Landing Lena: Sixty steps is plenty for anybody.", "Landing Lena: You want sixty-one? Earn it."],
+      "defeat": ["Landing Lena: Go on up. The view's better than I let on."]
+    },
+    {
+      "district": "qn_roosevelt", "name": "Under the Seven", "pool": "qn_secret",
+      "npc": { "name": "Señora Lupe", "lines": ["My cart used to sit under the Seven, right where the trains shake the corn.", "The Hot Hands took my spot and they juggle my limes. I count every lime."], "after": ["My spot again! Here, elote. On the house. Forever."] },
+      "leader": { "name": "Lime Juggler Leo", "title": "Hot Hands", "enemy": "juggler" },
+      "members": ["juggler", "pickpocket"],
+      "intro": ["Lime Juggler Leo: Three limes, four limes, five limes. You can't take what you can't catch.", "Lime Juggler Leo: Try."],
+      "defeat": ["Lime Juggler Leo: Give the limes back. Give Lupe the limes back. I'm going."]
+    },
+    {
+      "district": "qn_astoria", "name": "Ditmars Dock Path", "pool": "qn_punch",
+      "npc": { "name": "Nikos", "lines": ["I fish off the end of the dock path. Did. Did fish.", "The Boardwalk Bros put a hoop on my bait shed and play there all night. Fish can hear dribbling, you know."], "after": ["Quiet again. The fish are coming back. Probably. Fish are hard to read."] },
+      "leader": { "name": "Bait Shed Basil", "title": "Boardwalk Bros", "enemy": "showboat" },
+      "members": ["juggler", "hype_man"],
+      "intro": ["Bait Shed Basil: Shed court. Shed rules. Shed tax.", "Bait Shed Basil: You can pay in buckets or bruises."],
+      "defeat": ["Bait Shed Basil: The shed is Nikos's. It was always Nikos's. We'll play somewhere else."]
+    },
+    {
+      "district": "qn_flushing", "name": "Fountain Back Row", "pool": "qn_secret",
+      "npc": { "name": "Mei", "lines": ["I make paper lanterns and float them past the globe on the fountain's back row.", "A crew blocks the row now. They pop the lanterns with free throws."], "after": ["Look, they float all the way across now. Make a wish. Not that one. A better one."] },
+      "leader": { "name": "Free Throw Freddie", "title": "Row Kings", "enemy": "sniper" },
+      "members": ["juggler", "ball_hog"],
+      "intro": ["Free Throw Freddie: Ninety-one percent from the line. Lanterns don't stand a chance.", "Free Throw Freddie: Neither do you."],
+      "defeat": ["Free Throw Freddie: Eighty-nine percent. You ruined my percentage."]
+    },
+    {
+      "district": "si_st_george", "name": "Ferry Ramp Row", "pool": "si_secret",
+      "npc": { "name": "Captain Dot", "lines": ["I piloted the overnight boat for twenty years. The ramp row behind the terminal was my break spot.", "Now the Ramp Rats hold it. Gulls with jerseys, I call them."], "after": ["Back to my bench. You want a story about the fog of '89? No? Next time."] },
+      "leader": { "name": "Rope Burn Rudy", "title": "Ramp Rats", "enemy": "ball_hog" },
+      "members": ["pickpocket", "showboat"],
+      "intro": ["Rope Burn Rudy: Ramp's ours. Ferry's ours. Water's probably ours.", "Rope Burn Rudy: Swim home."],
+      "defeat": ["Rope Burn Rudy: The water's not ours. Tell Dot I'm sorry about the bench."]
+    },
+    {
+      "district": "si_narrows", "name": "Battery Back Wall", "pool": "si_punch",
+      "npc": { "name": "Sergeant Pell", "lines": ["I gave tours of the old fort. Back wall was the best part, the cannon you could touch.", "A crew dug in behind it. They call it their bunker."], "after": ["Tour's back on. Stop one: the wall you cleared. Very historic now."] },
+      "leader": { "name": "Bunker Bo", "title": "Wall Watch", "enemy": "big_man" },
+      "members": ["sniper", "showboat"],
+      "intro": ["Bunker Bo: This wall's held for two hundred years.", "Bunker Bo: It'll hold one more night."],
+      "defeat": ["Bunker Bo: It held. I didn't. Go touch the cannon."]
+    },
+    {
+      "district": "si_heap", "name": "Compost Switchback", "pool": "si_secret",
+      "npc": { "name": "Ranger Wren", "lines": ["The switchback up the Heap goes to the best view of the harbor. Seen from trash, the city's beautiful.", "A crew camps at the bend and throws stuff at the deer."], "after": ["The deer came back to the bend. They watched you go by. They respect you, I think."] },
+      "leader": { "name": "Bend Boss Bertie", "title": "Switchback Six", "enemy": "big_man" },
+      "members": ["ball_hog", "sniper"],
+      "intro": ["Bend Boss Bertie: The bend is ours. The view is ours.", "Bend Boss Bertie: The deer are not ours, they bite."],
+      "defeat": ["Bend Boss Bertie: Go see the harbor. It's better without us in front of it."]
+    },
+    {
+      "district": "up_harlem", "name": "Marquee Alley", "pool": "up_secret",
+      "npc": { "name": "Miss Corinne", "lines": ["Behind the theater is where the dancers smoked between shows. I was one of them.", "The Stage Door Crew blocks it now. They want an audition before you can pass."], "after": ["Stage door's open. You moved like a headliner out there."] },
+      "leader": { "name": "Stage Door Dex", "title": "Stage Door Crew", "enemy": "showboat" },
+      "members": ["hype_man", "ball_hog"],
+      "intro": ["Stage Door Dex: Auditions are closed. Unless you're good.", "Stage Door Dex: Are you good?"],
+      "defeat": ["Stage Door Dex: You're good. Callbacks are... never mind. Go on through."]
+    },
+    {
+      "district": "up_heights", "name": "Coop Ladder Lane", "pool": "up_punch",
+      "npc": { "name": "Abuelo Tito", "lines": ["Every coop on this lane, I built. Wire and two-by-fours.", "Some crew climbed up and lets the birds out to dive at people. Birds should go home at night."], "after": ["The birds are home. Listen. That's the sound of birds being home."] },
+      "leader": { "name": "Ladder Lalo", "title": "Coop Climbers", "enemy": "pigeon_keeper" },
+      "members": ["pigeon_keeper", "pickpocket"],
+      "intro": ["Ladder Lalo: My birds. My ladder. My lane.", "Ladder Lalo: Your problem."],
+      "defeat": ["Ladder Lalo: Tito's birds. Tito's ladder. I'm going down the ladder."]
+    },
+    {
+      "district": "up_mecca", "name": "Fence Gap", "pool": "up_secret",
+      "npc": { "name": "Scorekeeper Sal", "lines": ["I kept score at the park for forty summers. Chalk on the wall by the fence gap.", "Some crew washed off every record. Said the old names don't count anymore."], "after": ["I wrote your name up. Small, at the bottom. That's where everybody starts."] },
+      "leader": { "name": "Eraser Earl", "title": "Clean Slate", "enemy": "big_man" },
+      "members": ["sniper", "showboat"],
+      "intro": ["Eraser Earl: Old names, old games. We wiped the wall.", "Eraser Earl: You're next."],
+      "defeat": ["Eraser Earl: Tell Sal to write it back. All of it."]
+    },
+    {
+      "district": "city_downtown", "name": "Exchange Arcade", "pool": "city_secret",
+      "npc": { "name": "Mr. Fennimore", "lines": ["I shined shoes in the Exchange Arcade until the clocks stopped. Then I just sort of stayed.", "The Floor Traders took over. They bet on everything. Including whether I leave."], "after": ["They lost the bet. Sit down, let me get those kicks. No charge."] },
+      "leader": { "name": "Short Sell Sheila", "title": "Floor Traders", "enemy": "suit" },
+      "members": ["suit", "tourist"],
+      "intro": ["Short Sell Sheila: I'm betting against you. Heavily.", "Short Sell Sheila: Don't make me look bad."],
+      "defeat": ["Short Sell Sheila: I'm covering my position. By leaving."]
+    },
+    {
+      "district": "city_midtown", "name": "Billboard Service Alley", "pool": "city_secret",
+      "npc": { "name": "Lightbulb Lou", "lines": ["I change the bulbs on the big signs. Somebody has to, even when time stands still.", "The mascots from the ads came down and live in my service alley. They keep unscrewing things."], "after": ["Alley's lit. All of it. You did that. Well. I did that. You helped."] },
+      "leader": { "name": "Mascot Max", "title": "Ad Break", "enemy": "big_head_mascot" },
+      "members": ["tourist", "suit"],
+      "intro": ["Mascot Max: (The mascot does not speak. It waves. It's a menacing wave.)"],
+      "defeat": ["Mascot Max: (The mascot's head rolls off. Inside it's just a tired guy named Max.) Max: Please don't tell anyone."]
+    }
+  ]
+}

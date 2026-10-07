@@ -4,7 +4,9 @@ extends RefCounted
 ## placed from the map so the 17 ASCII maps stay untouched:
 ## - a Lieutenant on the street near each locked court (beat them first);
 ## - rumor NPCs by the bodegas and the station, telling who the boss was;
-## - alley stashes in dead-end alleys away from the start.
+## - alley stashes in dead-end alleys away from the start;
+## - the district's hand-written side street (SideStreets) in its longest
+##   alley cut.
 ## Placement is pure and deterministic from the map; District applies it.
 
 const LT_MIN_TILES: int = 4
@@ -14,7 +16,8 @@ const MAX_CACHES: int = 2
 
 
 static func plan(m: MapData, lay: Dictionary) -> Dictionary:
-	## {lieutenants: [{boss, pos, data}], rumors: [npc dicts], caches: [box dicts]}
+	## {lieutenants: [{boss, pos, data}], rumors: [npc dicts], caches: [box dicts],
+	##  side: SideStreets.plan or {}}
 	var used: Dictionary = {}
 	var start_c: Vector2i = m.cell_of(lay.get("start", Vector3.ZERO))
 	var out: Dictionary = {"lieutenants": [], "rumors": [], "caches": []}
@@ -60,6 +63,7 @@ static func plan(m: MapData, lay: Dictionary) -> Dictionary:
 		used[c3] = true
 		(out["caches"] as Array).append({"id": "stash_%s_%d" % [m.id, i], "pos": m.world_pos(c3, BoroughBuilder.CURB_H),
 			"pool": pool, "locked": false, "grail": false, "prompt": "Search the stash"})
+	out["side"] = SideStreets.plan(m, start_c, used)
 	return out
 
 
