@@ -1,15 +1,15 @@
 class_name ChainRules
 extends RefCounted
 ## Death and "Run it back" (spec §5.4): on death you lose your unspent Rep,
-## and half of it (rounded down, tuning economy.death) drops as a chain where
+## and all of it (revision 14; tuning economy.death) drops as a chain where
 ## you fell (boss arenas: outside the gate). Touch it to reclaim. Die again
 ## first and it's gone — unless the Nine Lives tattoo gives it one more life.
 ## Chains are {district, pos:[x,y,z], rep, lives}.
 
 
 static func recoverable(rep: int) -> int:
-	## The part of your unspent Rep that drops as the chain (revision 8: half,
-	## rounded down).
+	## The part of your unspent Rep that drops as the chain (revision 14: all
+	## of it; the fraction is tuning, rounded down).
 	var frac: float = JU.f(JU.dict(DataDB.tuning("economy"), "death"), "recoverable_frac", 0.5)
 	return maxi(0, floori(float(rep) * frac))
 

@@ -1,5 +1,5 @@
 extends GutTest
-## Revision 8: when you die, half your unspent Rep (rounded down) drops as
+## Revisions 8 + 14: when you die, all your unspent Rep drops as
 ## your chain, under a light beam in the sky, and a marker leads you back.
 
 
@@ -8,9 +8,9 @@ func before_each() -> void:
 	GameState.set_flag("prologue_done")
 
 
-func test_half_rounded_down_is_recoverable() -> void:
-	assert_eq(ChainRules.recoverable(901), 450)
-	assert_eq(ChainRules.recoverable(1), 0)
+func test_all_of_it_is_recoverable() -> void:
+	assert_eq(ChainRules.recoverable(901), 901)
+	assert_eq(ChainRules.recoverable(1), 1)
 	assert_eq(ChainRules.recoverable(0), 0)
 
 
@@ -31,14 +31,14 @@ func _district(id: String) -> District:
 	return d
 
 
-func test_dying_drops_half_under_a_beam_and_the_marker_leads_back() -> void:
+func test_dying_drops_it_all_under_a_beam_and_the_marker_leads_back() -> void:
 	var d: District = _district("bk_bedstuy")
 	await wait_physics_frames(3)
 	GameState.rep = 901
 	var died_at: Vector3 = d.player.pos
 	d.lifecycle.on_player_killed()
 	assert_eq(GameState.rep, 0, "you lose your unspent Rep")
-	assert_eq(ChainRules.total_rep(GameState.chains), 450, "half of it, rounded down, is on the chain")
+	assert_eq(ChainRules.total_rep(GameState.chains), 901, "all of it is on the chain")
 	d.lifecycle.refresh_chain_views()
 	assert_eq(d.lifecycle.chain_views.size(), 1)
 	var beam: Node3D = d.lifecycle.chain_views[0].get_node_or_null("Beam") as Node3D
@@ -47,11 +47,11 @@ func test_dying_drops_half_under_a_beam_and_the_marker_leads_back() -> void:
 	d.update_objective()
 	assert_true(d.objective_panel.has_chain, "a marker to follow")
 	assert_true(d.objective_panel.chain_target.distance_to(died_at) < 0.01)
-	assert_string_contains(d.objective_panel.chain_label, "450")
+	assert_string_contains(d.objective_panel.chain_label, "901")
 	d.lifecycle.dying = false
 	d.player.pos = died_at
 	d.lifecycle.physics_check()
-	assert_eq(GameState.rep, 450, "ran it back")
+	assert_eq(GameState.rep, 901, "ran it back")
 	d.update_objective()
 	assert_false(d.objective_panel.has_chain, "marker gone once you have it")
 

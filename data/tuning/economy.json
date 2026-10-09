@@ -1,22 +1,14 @@
 {
-  "death": { "recoverable_frac": 0.5 },
-  "level_curve": {
-  "death": { "recoverable_frac": 0.5 }, "a": 100, "exp": 1.5, "c": 150 },
+  "death": { "recoverable_frac": 1.0 },
+  "level_curve": { "a": 100, "exp": 1.5, "c": 150 },
   "tier_level_targets": [10, 18, 27, 36, 45, 55, 60],
   "buckets": {
-  "death": { "recoverable_frac": 0.5 },
-    "close": {
-  "death": { "recoverable_frac": 0.5 }, "pct": 0.04, "composure": 10 },
-    "mid": {
-  "death": { "recoverable_frac": 0.5 }, "pct": 0.05, "composure": 15 },
-    "three": {
-  "death": { "recoverable_frac": 0.5 }, "pct": 0.075, "composure": 25 },
-    "deep": {
-  "death": { "recoverable_frac": 0.5 }, "pct": 0.10, "composure": 30 },
-    "dunk": {
-  "death": { "recoverable_frac": 0.5 }, "pct": 0.08, "composure": 30 },
-    "poster": {
-  "death": { "recoverable_frac": 0.5 }, "pct": 0.15, "composure": 60 },
+    "close": { "pct": 0.04, "composure": 10 },
+    "mid": { "pct": 0.05, "composure": 15 },
+    "three": { "pct": 0.075, "composure": 25 },
+    "deep": { "pct": 0.10, "composure": 30 },
+    "dunk": { "pct": 0.08, "composure": 30 },
+    "poster": { "pct": 0.15, "composure": 60 },
     "stat_bonus_factor": 0.5,
     "perfect_mult": 1.4,
     "wide_open_mult": 1.5,
@@ -24,9 +16,7 @@
     "cap_pct": 0.22
   },
   "prices": {
-  "death": { "recoverable_frac": 0.5 },
-    "wearable": {
-  "death": { "recoverable_frac": 0.5 }, "common": [400, 800], "rare": [1200, 2000], "epic": [3000, 5000], "legendary": [8000, 12000] },
+    "wearable": { "common": [400, 800], "rare": [1200, 2000], "epic": [3000, 5000], "legendary": [8000, 12000] },
     "tattoo_apply": 1000,
     "tattoo_laser": 3000,
     "ball_upgrade_per_level": 200,

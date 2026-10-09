@@ -279,7 +279,7 @@ Explore night streets → fight crews and critters → find shoeboxes, tokens, m
 
 - **Tokens** (old subway tokens) buy gear, upgrades, tattoos, consumables. You keep tokens when you die.
 - **Rep** is XP, spent at bodegas to level. Unspent Rep is what you risk.
-- **Death → "COOKED."** You lose your unspent Rep; **half of it (rounded down)** drops as **your chain** on the spot you died, under a gold light beam you can see over the rooftops, and an amber HUD/map marker leads you back (revision 8). Respawn at your last bodega. Get back to the chain and touch it to reclaim the Rep ("Run it back"). Die again first, and it's gone.
+- **Death → "COOKED."** You lose your unspent Rep; **all of it** drops as **your chain** on the spot you died, under a gold light beam you can see over the rooftops, and an amber HUD/map marker leads you back (revisions 8, 14). Respawn at your last bodega. Get back to the chain and touch it to reclaim the Rep ("Run it back"). Die again first, and it's gone.
 - In a boss arena, the chain drops just outside the arena gate.
 
 ### 5.5 Exploration rewards
