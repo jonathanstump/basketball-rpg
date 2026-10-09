@@ -28,6 +28,8 @@ func _process(delta: float) -> void:
 		_last_windows = module.windows
 		_flash_t = 0.6
 		_last_release = -1.0
+	elif module.cancelled:
+		_flash_t = 0.0   # revision 13: knocked out of the shot, no shot to show
 	elif _flash_t > 0.0:
 		_flash_t -= delta
 		_last_release = module.last_release

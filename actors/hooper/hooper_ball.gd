@@ -15,6 +15,7 @@ var last_contest: float = 0.0
 var hold_frames: int = 0
 var run_kind: String = ""           # revision 9: "" | "run" | "sprint" when the shot started on the move
 var run_speed: float = 0.0
+var cancelled: bool = false        # revision 13: the gather ended without a release (hit mid-shot)
 
 
 func _init(s: BallSystem) -> void:
@@ -48,6 +49,7 @@ func on_begin(h: Hooper) -> void:
 	match h.action:
 		"shot_gather":
 			meter = 0.0
+			cancelled = false
 			var item: Dictionary = DataDB.ball(str(h.actor.flags.get("ball_item", "ball_rec")))
 			var gs: float = JU.f(item, "gather_s", JU.f(DataDB.tuning("shooting"), "gather_s", 0.55))
 			gs *= float(h.actor.flags.get("gather_mult", 1.0))
@@ -90,6 +92,7 @@ func on_frame(h: Hooper) -> void:
 
 func on_end(_h: Hooper, ended: String) -> void:
 	if ended == "shot_gather":
+		cancelled = meter >= 0.0   # release() clears the meter first
 		meter = -1.0
 		run_kind = ""
 
