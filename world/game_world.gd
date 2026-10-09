@@ -61,6 +61,10 @@ func setup_world(region_id: String) -> void:
 	add_child(lb)
 	presenter = SimPresenter.new(self)
 	add_child(presenter)
+	var pfx: ProjectileFx = ProjectileFx.new()
+	pfx.name = "ProjectileFx"
+	pfx.game = self
+	add_child(pfx)
 	hud_layer = CanvasLayer.new()
 	hud_layer.name = "HUD"
 	hud_layer.layer = 10

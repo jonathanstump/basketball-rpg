@@ -189,6 +189,9 @@ static func _projectile(r: MoveRunner, m: Dictionary, dir: Vector3) -> void:
 	hb.velocity = dir * speed
 	hb.tags["homing"] = JU.f(pd, "homing", 0.0)
 	hb.tags["homing_target"] = r.target.id if r.target != null else 0
+	for k: String in ["look", "color", "visual_radius"]:   # ProjectileFx (revision 11)
+		if pd.has(k):
+			hb.tags[k] = pd[k]
 
 
 static func _world_circle(r: MoveRunner, m: Dictionary, c: Vector3, frames: int) -> Hitbox:

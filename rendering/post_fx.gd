@@ -6,7 +6,7 @@ extends CanvasLayer
 const TILT: Shader = preload("res://rendering/shaders/tilt_shift.gdshader")
 const HALFTONE: Shader = preload("res://rendering/shaders/halftone_post.gdshader")
 
-const FLASH: Dictionary = {"tourist": [0.85, 0.12], "lightning": [0.7, 0.12], "poster": [0.6, 0.0], "hit": [0.25, 0.0]}
+const FLASH: Dictionary = {"tourist": [0.85, 0.12], "lightning": [0.7, 0.12], "poster": [0.6, 0.0], "hit": [0.25, 0.0], "bucket": [0.3, 0.08]}
 
 var tilt_rect: ColorRect
 var halftone_rect: ColorRect

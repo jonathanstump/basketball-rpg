@@ -192,7 +192,57 @@ func test_stationary_boss_shoots_from_its_seat() -> void:
 	var iq: BossCourtIQ = (boss.controller as BossBrain).iq
 	assert_true((boss.controller as BossBrain).stationary, "phase 1 Stoop Queen sits")
 	var hoop: SimHoop = (d["lay"] as Dictionary)["hoop"]
-	assert_eq(iq.pick_kind(), BossCourtIQ.zone_kind(hoop.flat_distance(boss.pos)), "a sitting boss shoots its zone")
+	assert_eq(iq.pick_kind(), "layup", "revision 11: she only lays it in")
+	iq.offense = {}
+	assert_eq(iq.pick_kind(), BossCourtIQ.zone_kind(hoop.flat_distance(boss.pos)), "a sitting boss with no style shoots its zone")
+	(d["sim"] as CombatSim).dispose()
+
+
+func test_stoop_queen_takes_her_time_with_the_ball() -> void:
+	## Revision 11: she settles before a slow layup, so you can run up and
+	## punch it loose; she stays calm until you start swinging.
+	var d: Dictionary = _duel("bk_stoop")
+	var boss: SimActor = d["boss"]
+	var brain: BossBrain = boss.controller as BossBrain
+	var ctl: DuelController = d["ctl"]
+	_run(d, 80)
+	_boss_gets_ball(d)
+	ctl.duel.boss_cleared = true
+	brain.runner.interrupt()   # whatever she was throwing on your possession
+	brain.recover_s = 0.0
+	var settle_f: int = int(JU.f(brain.iq.offense, "settle_s") * 60.0)
+	var started: Array[String] = []
+	for i: int in settle_f - 10:
+		_run(d, 1)
+		if brain.runner.running:
+			started.append(JU.s(brain.runner.move, "id"))
+	assert_eq(started.size(), 0, "no shot and no swing while she settles, unprovoked: %s" % [started])
+	_run(d, 20)
+	assert_true(brain.runner.running and JU.s(brain.runner.move, "id") == "boss_shot", "then a layup")
+	assert_eq(str(brain.runner.move.get("shot_kind", "")), "layup")
+	assert_eq(brain.runner.startup(), JU.i(brain.iq.offense, "gather_f"), "a slow gather")
+	(d["sim"] as CombatSim).dispose()
+
+
+func test_stoop_queen_fights_back_once_hit() -> void:
+	var d: Dictionary = _duel("bk_stoop")
+	var boss: SimActor = d["boss"]
+	var brain: BossBrain = boss.controller as BossBrain
+	var p: SimActor = (d["p"] as Hooper).actor
+	_run(d, 80)
+	_boss_gets_ball(d)
+	assert_true(brain.iq.calm(), "calm with the ball")
+	p.pos = boss.pos + boss.forward() * (boss.radius + 1.0)
+	brain.on_hit({"result": "hit", "attacker": p.id, "target": boss.id})
+	assert_true(brain.iq.provoked())
+	assert_false(brain.iq.calm())
+	var swung: bool = false
+	for i: int in 90:
+		_run(d, 1)
+		if brain.runner.running and JU.s(brain.runner.move, "id") != "boss_shot":
+			swung = true
+			break
+	assert_true(swung, "she swings back")
 	(d["sim"] as CombatSim).dispose()
 
 

@@ -80,6 +80,9 @@ static func validate(boss_id: String, boss: Dictionary) -> Array[String]:
 			errs.append("boss %s hoops: unknown tendency %s" % [boss_id, k2])
 		elif JU.f(t, str(k2)) < 0.0 or JU.f(t, str(k2)) > 1.0:
 			errs.append("boss %s hoops: tendency %s out of 0-1" % [boss_id, k2])
+	var style: String = JU.s(JU.dict(own, "offense"), "style")
+	if style != "" and not SHOT_KINDS.has(style):
+		errs.append("boss %s hoops: unknown offense style %s" % [boss_id, style])
 	if JU.s(own, "theme") == "":
 		errs.append("boss %s hoops: missing theme" % boss_id)
 	return errs

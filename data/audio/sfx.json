@@ -169,6 +169,17 @@
    "vol": 0.45
   },
   {
+   "id": "bucket_horn",
+   "wave": "saw",
+   "f0": 392,
+   "f1": 523,
+   "len": 0.6,
+   "attack": 0.01,
+   "decay": 0.5,
+   "tremolo": 12,
+   "vol": 0.4
+  },
+  {
    "id": "cooked",
    "wave": "saw",
    "f0": 300,

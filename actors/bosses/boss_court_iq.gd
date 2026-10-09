@@ -7,6 +7,9 @@ extends RefCounted
 ## - Defense (you have the ball): guard distance from `pressure`, close out
 ##   on your shot gather, reach for the ball by `gamble`.
 ## - Loose balls: chase speed from `ball_hunger`.
+## - Optional `hoops.offense` (revision 11): a fixed shot style (the Stoop
+##   Queen only lays it up), a settle before the gather, a slower gather, and
+##   staying calm with the ball until you hit her (BossBrain: provoked).
 
 const DT: float = 1.0 / 60.0
 
@@ -22,17 +25,22 @@ var plan_s: float = 0.0
 var reach_cd_s: float = 0.0
 var harass_cd_s: float = 0.0   # with the ball: time until it may swing at you again
 var shots_taken: int = 0
+var offense: Dictionary = {}   # boss hoops.offense overrides (revision 11)
+var settle_s: float = 0.0      # time held since the ball was cleared
+var provoked_until: int = -1   # world frame: fights back while holding the ball until then
 
 
 func _init(b: BossBrain) -> void:
 	_brain = weakref(b)
 	profile = BossHoops.profile(b.boss)
 	r7 = JU.dict(JU.dict(DataDB.tuning("bosses"), "duel"), "r7")
+	offense = JU.dict(JU.dict(b.boss, "hoops"), "offense")
 
 
 func reset() -> void:
 	plan = ""
 	plan_s = 0.0
+	settle_s = 0.0
 
 
 # ------------------------------------------------------------ offense
@@ -40,6 +48,8 @@ func reset() -> void:
 func pick_kind() -> String:
 	var a: SimActor = brain.actor
 	var hoop: SimHoop = brain.hoop
+	if JU.s(offense, "style") != "":
+		return JU.s(offense, "style")
 	if brain.stationary or hoop == null:
 		return zone_kind(hoop.flat_distance(a.pos) if hoop != null else 5.0)
 	var mix: Dictionary = JU.dict(profile, "shot_mix")
@@ -94,9 +104,13 @@ func step_offense() -> bool:
 	plan_s += DT
 	var cleared: bool = brain.duel == null or brain.duel.boss_cleared
 	var there: bool = brain.stationary or a.flat_pos().distance_to(Vector2(spot.x, spot.z)) < 0.8
+	if cleared:
+		settle_s += DT
+	if cleared and settle_s < JU.f(offense, "settle_s", 0.0):
+		cleared = false
 	if cleared and (there or plan_s > JU.f(JU.dict(r7, "shot"), "approach_max_s", 4.5)):
 		if not there and not brain.stationary:
-			plan = "dunk" if plan == "dunk" and _in_paint() else zone_kind(brain.hoop.flat_distance(a.pos))
+			plan = "dunk" if plan == "dunk" and _in_paint() else (JU.s(offense, "style") if JU.s(offense, "style") != "" else zone_kind(brain.hoop.flat_distance(a.pos)))
 		return shoot(plan)
 	if brain.stationary:
 		a.turn_toward(brain.target.pos - a.pos, 0.1)
@@ -113,6 +127,7 @@ func _in_paint() -> bool:
 func shoot(kind: String) -> bool:
 	var a: SimActor = brain.actor
 	plan = ""
+	settle_s = 0.0
 	shots_taken += 1
 	if kind == "dunk":
 		var dm: Dictionary = dunk_move()
@@ -122,7 +137,7 @@ func shoot(kind: String) -> bool:
 		kind = "layup"
 	var sc: Dictionary = JU.dict(r7, "shot")
 	var m: Dictionary = {"id": "boss_shot", "name": "Shot", "primitive": "boss_shot", "shot_kind": kind,
-		"startup": JU.i(JU.dict(sc, "gather_f"), kind, 30), "active": 1, "recovery": JU.i(sc, "recovery_f", 24), "damage": 0}
+		"startup": JU.i(offense, "gather_f", JU.i(JU.dict(sc, "gather_f"), kind, 30)), "active": 1, "recovery": JU.i(sc, "recovery_f", 24), "damage": 0}
 	a.turn_toward(brain.hoop.floor_point() - a.pos, PI)
 	brain.runner.start(m, null)
 	brain.runner.dir = a.forward()
@@ -214,6 +229,30 @@ func steal_chance(player: SimActor) -> float:
 func loose_speed() -> float:
 	var hs: PackedFloat32Array = JU.floats(r7, "hunger_speed")
 	return lerpf(hs[0] if hs.size() > 0 else 0.6, hs[1] if hs.size() > 1 else 1.45, BossHoops.tendency(profile, "ball_hunger"))
+
+
+func provoked() -> bool:
+	return brain.world.frame < provoked_until
+
+
+func calm() -> bool:
+	## With the ball: holds off attacking until you lay a hand on it.
+	return JU.b(offense, "calm_until_hit") and not provoked()
+
+
+func on_hit_by_player() -> void:
+	if JU.f(offense, "provoked_s") <= 0.0:
+		return
+	if not provoked():
+		harass_cd_s = minf(harass_cd_s, 0.15)   # first hit: she answers fast
+	provoked_until = brain.world.frame + int(JU.f(offense, "provoked_s") * 60.0)
+
+
+func harass_odds() -> Array[float]:
+	## [chance per check, cooldown after a swing].
+	if provoked():
+		return [JU.f(offense, "provoked_harass_chance", 0.75), JU.f(offense, "provoked_cooldown_s", 1.2)]
+	return [JU.f(r7, "harass_chance", 0.18), JU.f(r7, "harass_cooldown_s", 2.5)]
 
 
 func tick() -> void:

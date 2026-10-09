@@ -25,6 +25,7 @@ static func on_event(game: GameWorld, ev: Dictionary) -> void:
 		"shot_made":
 			if str(ev.get("grade", "")) == "PERFECT":
 				AudioDirector.play_sfx("perfect")
+			bucket(game, ev)
 		"move_started":
 			if bool(ev.get("unblockable", false)):
 				AudioDirector.play_sfx("telegraph")
@@ -60,6 +61,34 @@ static func _hit(game: GameWorld, ev: Dictionary) -> void:
 	elif tgt.kind == "hooper" and tgt.team == 0:
 		color = Color("#FF5A5A")
 	burst(game, tgt.pos + Vector3(0, tgt.height * 0.5, 0), color, amount if str(ev.get("weight", "")) != "heavy" else amount * 2)
+
+
+static func bucket(game: GameWorld, ev: Dictionary) -> void:
+	## Revision 11: every make is loud and bright at the rim (a big boss in
+	## front of the hoop can't hide it): horn, confetti, a light pillar.
+	AudioDirector.play_sfx("bucket_horn")
+	var hv: HoopView = game.presenter.hoop_views.get(str(ev.get("hoop", "")), null) if game.presenter != null else null
+	if hv == null:
+		return
+	var shooter: SimActor = game.sim.actor_by_id(int(ev.get("actor", 0)))
+	var col: Color = Color("#FFD24A") if shooter == null or shooter.team == 0 else Color("#FF3E3E")
+	var rim: Vector3 = hv.hoop.rim
+	burst(game, rim, col, 36)
+	burst(game, rim, Color("#F2F2F2"), 18)
+	var pillar: MeshInstance3D = MeshInstance3D.new()
+	pillar.name = "BucketPillar"
+	pillar.mesh = MeshLib.cylinder(0.8, 16.0)
+	var m: StandardMaterial3D = StandardMaterial3D.new()
+	m.albedo_color = Color(col.r, col.g, col.b, 0.45)
+	m.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	m.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	pillar.material_override = m
+	pillar.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	pillar.position = rim + Vector3(0, 8.0 - 0.6, 0)
+	game.add_child(pillar)
+	var tw: Tween = pillar.create_tween()
+	tw.tween_property(pillar, "scale", Vector3(0.05, 1.0, 0.05), 0.8).set_ease(Tween.EASE_IN)
+	tw.tween_callback(pillar.queue_free)
 
 
 static func burst(game: GameWorld, at: Vector3, color: Color, amount: int) -> void:

@@ -107,7 +107,13 @@ func _on_sim_event(ev: Dictionary) -> void:
 			EventBus.boss_phase_changed.emit(boss_id, int(ev["phase"]))
 		"duel_cleared":
 			EventBus.popup_text.emit("CLEARED", player.pos, "good")
+		"boss_scored":
+			## Revision 11: a boss bucket must read even when its body hides the rim.
+			boss_bar.show_banner("SCORED ON!", 1.1)
+			EventBus.flash_requested.emit("bucket")
+			camera_rig.punch_in()
 		"bucket_damage":
+			boss_bar.show_banner("BUCKET!", 0.9)
 			EventBus.bucket_scored.emit(str(ev["grade"]), str(ev["kind"]), float(ev["damage"]))
 			EventBus.popup_text.emit("-%d" % int(ev["damage"]), ev["pos"], "big" if str(ev["kind"]) == "poster" else "damage")
 			GameState.bump_counter("boss_buckets")

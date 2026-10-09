@@ -124,12 +124,13 @@ func step() -> void:
 	if st == PossessionDuel.BOSS_OFFENSE and actor.has_ball and hoop != null:
 		## R7: with the ball the boss plays offense; now and then it throws a
 		## (weaker) attack at you on the way.
-		if iq.harass_cd_s <= 0.0 and recover_s <= 0.0:
+		if iq.harass_cd_s <= 0.0 and recover_s <= 0.0 and not iq.calm():
 			iq.harass_cd_s = JU.f(iq.r7, "harass_check_s", 0.75)
-			if world.rng.randf() < JU.f(iq.r7, "harass_chance", 0.18):
+			var odds: Array[float] = iq.harass_odds()
+			if world.rng.randf() < odds[0]:
 				var hm: Dictionary = pick_harass()
 				if not hm.is_empty():
-					iq.harass_cd_s = JU.f(iq.r7, "harass_cooldown_s", 2.5)
+					iq.harass_cd_s = odds[1]
 					start_move(hm)
 					return
 		if iq.step_offense():
@@ -238,6 +239,8 @@ func pick_harass() -> Dictionary:
 	for m: Dictionary in moves:
 		if JU.s(m, "primitive") in ["lob", "statement_dunk"] or not usable(m):
 			continue
+		if iq != null and iq.provoked() and JU.s(m, "primitive") == "showboat":   # provoked: swing, don't pose
+			continue
 		cands.append(m)
 		total += weight_of(m)
 	if cands.is_empty():
@@ -315,8 +318,10 @@ func _walk(p: Vector3, speed_k: float) -> void:
 	actor.anim_state = "walk"
 
 
-func on_hit(_res: Dictionary) -> void:
-	pass
+func on_hit(res: Dictionary) -> void:
+	var att: SimActor = world.actor_by_id(int(res.get("attacker", 0)))
+	if iq != null and att != null and att.team != actor.team and str(res.get("result", "")) in ["hit", "guarded"]:
+		iq.on_hit_by_player()
 
 
 func on_parried(res: Dictionary) -> void:
