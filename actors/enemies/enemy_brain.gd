@@ -28,6 +28,7 @@ var circle_sign: float = 1.0
 var last_move: String = ""
 var wander_to: Vector3 = Vector3.INF
 var scratch: Dictionary = {}      # per-behavior state
+var defense: EnemyDefense         # revision 12: parry / dodge / counter through punch spam
 
 
 func _init(a: SimActor, w: SimWorld, c: CombatSystem, b: BallSystem, d: Dictionary, mv: Array[Dictionary]) -> void:
@@ -39,6 +40,7 @@ func _init(a: SimActor, w: SimWorld, c: CombatSystem, b: BallSystem, d: Dictiona
 	moves = mv
 	ai = DataDB.tuning("ai")
 	behavior = JU.s(d, "behavior", "brawler")
+	defense = EnemyDefense.new(ai, d)
 	runner = MoveRunner.new(a, w, c)
 	if a.tier >= 5 and a.kind == "enemy":
 		runner.speed_mult = JU.f(JU.dict(ai, "t5_common"), "recovery_mult", 0.8)
@@ -85,6 +87,8 @@ func step() -> void:
 	if not actor.alive:
 		tokens().release(actor.id)
 		actor.anim_state = "death"
+		return
+	if defense.step(self):
 		return
 	if stun_frames > 0:
 		stun_frames -= 1
@@ -317,6 +321,8 @@ func on_hit(res: Dictionary) -> void:
 	if att != null and att.team != actor.team and (state == "idle" or state == "patrol" or state == "dormant"):
 		alert(att)
 	EnemyBehaviors.on_hit(self, res)
+	if defense.on_hit(self, res):
+		return
 	var r: String = str(res.get("result", ""))
 	if r != "hit":
 		return

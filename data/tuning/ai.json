@@ -10,5 +10,6 @@
   "captain": { "hp_mult": 1.6, "rep_mult": 3, "key_chance": 0.25 },
   "t5_common": { "extra_combo_hits": 1, "recovery_mult": 0.8 },
   "think_interval_s": 0.2,
-  "leash_heal_per_s": 0.25
+  "leash_heal_per_s": 0.25,
+  "defense": { "kinds": ["common", "unique", "elite"], "skip_behaviors": ["static", "tourist"], "streak_window_s": 1.0, "min_hits": 3, "base": 0.3, "per_hit": 0.15, "per_tier": 0.1, "max": 0.85, "cooldown_s": 2.0, "weights": { "parry": 3, "dodge": 2, "counter": 2 }, "parry_f": 22, "dodge_f": 16, "dodge_m": 2.6 }
 }
