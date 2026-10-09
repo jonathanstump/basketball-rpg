@@ -13,8 +13,8 @@ the bot is not a human, so these flag outliers for hands-on tuning rather than f
 | bk_barker | mini | T3 | victory | 128 s | 150–240 s | 6.2 | 13 | ok |
 | bk_barker | mini | T5 | victory | 138 s | 150–240 s | 4.0 | 15 | ok |
 | bk_stoop | mini | T1 | victory | 88 s | 150–240 s | 9.8 | 14 | ok |
-| bk_stoop | mini | T3 | victory | 184 s | 150–240 s | 2.8 | 13 | ok |
-| bk_stoop | mini | T5 | victory | 147 s | 150–240 s | 2.4 | 14 | ok |
+| bk_stoop | mini | T3 | victory | 203 s | 150–240 s | 3.0 | 13 | ok |
+| bk_stoop | mini | T5 | victory | 176 s | 150–240 s | 2.3 | 14 | ok |
 | bk_toll | king | T1 | victory | 198 s | 240–360 s | 4.7 | 13 | ok |
 | bk_toll | king | T3 | victory | 213 s | 240–360 s | 2.5 | 15 | ok |
 | bk_toll | king | T5 | victory | 314 s | 240–360 s | 1.4 | 15 | ok |
@@ -27,7 +27,7 @@ the bot is not a human, so these flag outliers for hands-on tuning rather than f
 | bx_silverback | mini | T1 | victory | 272 s | 150–240 s | 5.1 | 12 | ok |
 | bx_silverback | mini | T3 | victory | 144 s | 150–240 s | 2.6 | 14 | ok |
 | bx_silverback | mini | T5 | victory | 198 s | 150–240 s | 1.5 | 14 | ok |
-| city_chainlink | landmark | T6 | victory | 353 s | 240–360 s | 2.2 | 15 | ok |
+| city_chainlink | landmark | T6 | victory | 315 s | 240–360 s | 2.5 | 14 | ok |
 | city_gargoyle | landmark | T6 | victory | 246 s | 240–360 s | 4.0 | 15 | ok |
 | city_gator | landmark | T6 | victory | 198 s | 240–360 s | 1.2 | 14 | ok |
 | city_primetime | landmark | T6 | victory | 157 s | 240–360 s | 2.0 | 14 | ok |
@@ -45,7 +45,7 @@ the bot is not a human, so these flag outliers for hands-on tuning rather than f
 | qn_express | mini | T5 | victory | 176 s | 150–240 s | 2.0 | 15 | ok |
 | qn_sauce | mini | T1 | victory | 180 s | 150–240 s | 19.2 | 14 | ok |
 | qn_sauce | mini | T3 | victory | 244 s | 150–240 s | 8.8 | 15 | ok |
-| qn_sauce | mini | T5 | victory | 195 s | 150–240 s | 5.3 | 12 | ok |
+| qn_sauce | mini | T5 | victory | 226 s | 150–240 s | 5.4 | 13 | ok |
 | si_ferryman | mini | T1 | victory | 150 s | 150–240 s | 8.5 | 10 | ok |
 | si_ferryman | mini | T3 | victory | 154 s | 150–240 s | 4.2 | 12 | ok |
 | si_ferryman | mini | T5 | victory | 210 s | 150–240 s | 2.8 | 13 | ok |
@@ -54,7 +54,7 @@ the bot is not a human, so these flag outliers for hands-on tuning rather than f
 | si_general | mini | T5 | victory | 200 s | 150–240 s | 1.6 | 14 | ok |
 | si_heap | king | T1 | victory | 351 s | 240–360 s | 5.5 | 20 | ok |
 | si_heap | king | T3 | victory | 452 s | 240–360 s | 3.4 | 19 | ok |
-| si_heap | king | T5 | victory | 235 s | 240–360 s | 2.5 | 16 | ok |
+| si_heap | king | T5 | victory | 221 s | 240–360 s | 2.3 | 16 | ok |
 | up_coop | mini | T1 | victory | 137 s | 150–240 s | 16.1 | 9 | ok |
 | up_coop | mini | T3 | victory | 151 s | 150–240 s | 8.9 | 11 | ok |
 | up_coop | mini | T5 | victory | 119 s | 150–240 s | 4.5 | 13 | ok |

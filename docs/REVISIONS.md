@@ -17,3 +17,11 @@
 9. **[DONE]** Make it so that you can shoot on the run, but it is more difficult to time the shot while doing this.
 
 10. **[DONE]** I think we'll do a large graphics update later, but let's sharpen up some things now. Can we make each burrow more distinct from each other visually, both with the buildings in that burrow and also the the angle of the city in the background. I like the background a lot, but can we make a couple different types of skyscrapers to make the skyline even prettier and more awe inspiring. Inside the burrows, let's make the hoops on the street look like the hoops you see when you play. They look ugly when you just see them walking by. And then for the space between the background city and the burrow, i.e. the edge of the map where you can't explore, it's just an orange blob right now. Can we make it prettier while still having it be that border. I want to be somewhat actually similar to new york, but maybe its water with a bridge you can't cross, or something like that. I'm open to ideas.
+
+11. **[DONE]** The Stoop Queen's projectiles are hard to see and it feels like she is shooting invisible projectiles (not the red circles, when she attacks otherwise). Make them visible but keep their speed. On that note, make a visual/audio cue for a basket more so than just checking it up. This is in general, but particularly with the Stoop Queen she is so big that she blocks the basket and it's hard to tell when she scores when she has the ball. She should try to just make layups and force the player to run up to her and punch her when she gets the ball, though she should fight back once the player starts punching her.
+
+12. **[DONE]** Spamming punches seems a little OP. Maybe make the bots (even the street tier guys) more likely to parry, dodge, or counterattack through it. Though I do like the spam strat on Stoop Queen to try to get the ball back when she gets the ball.
+
+13. **[DONE]** I'm noticing that when the player is hit mid shot and it knocks them off the shooting animation so they don't get the shot off, the meeter is still filled like a shot is going to be shot. Get rid of the meter in this instance.
+
+14. **[DONE]** Actually, when you die, your rep should be fully recoverable. But if you die before recovering it then it should all go away.

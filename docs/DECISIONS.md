@@ -314,3 +314,25 @@ Spec §11.3 lists L60 = 46,626 but `floor(100 × 60^1.5 + 150)` = 46,625 (every 
   - The border is `DistrictBorder`. It's built after the skyline and adds about 20 draw groups with no shadows.
   - Render shots: `district_street_hoop`, plus `edge_*`, `edgewide_*` and `bridge_*` for 6 boroughs (`DistrictRenderPoses`).
 - **Smoke harness fix.** `district_walk_smoke` hopped the bot 6 m from its target in a straight line. Once the borough palettes changed the builder's random sequence, that hop landed it behind the Bed-Stuy bodega, inside the building tile, where the nav grid couldn't steer. The hop now picks the nearest of 16 spots around the target that is open and has a clear line to it. The test still walks the last leg and checks the same things.
+
+## Revisions 11-14 (2026-10-09)
+
+- **R11 "invisible" projectiles.**
+  - **Cause:** projectile hitboxes (`MovePrimitives._projectile`) had no view at all. Only lobs and telegraph circles were drawn. This affected every boss's thrown moves, not just the chancla.
+  - **Fix:** `ProjectileFx` (world/projectile_fx.gd, a pure view) mirrors `combat.hitboxes`. Each projectile gets a glowing body, a halo, a trail and a shadow. Wide enemy arcs (≥ 5 m, e.g. Get Off My Stoop's 7.5 m gust) show as a translucent fan during their active frames. Sim speed and hitboxes are unchanged.
+  - Looks are data: `projectile.look/color/visual_radius`, copied onto hitbox tags. The chancla is a tumbling purple slipper.
+- **R11 basket cue.** Every `shot_made` plays a new synth `bucket_horn` and throws confetti and a fading light pillar at the rim. The pillar is gold when you score and red when they do, and it sits above the rim so a 7 m boss can't hide it.
+  - Boss fights also get a `SCORED ON!` banner, a light flash (`bucket`, dimmed under Reduce flashes) and a camera punch on `boss_scored`. Your buckets get a `BUCKET!` banner.
+  - I chose a neutral "SCORED ON!" over "SHE SCORED" because bosses vary.
+- **R11 Stoop Queen offense.** A new optional boss `hoops.offense` block holds `style`, `settle_s`, `gather_f`, `calm_until_hit`, `provoked_s`, `provoked_harass_chance` and `provoked_cooldown_s`. `BossHoops.validate` checks `style`.
+  - The Queen: layups only (inside 60→70 to compensate), 1.4 s settle after clearing, a 54-frame gather, and calm with the ball until hit.
+  - Any player hit or guarded hit provokes her for 4 s. Her next harass check comes within 0.15 s, then each check has a 75% chance to swing, with swings 1.2 s apart. Showboats are skipped while she's provoked.
+  - The R7 ball-security cough-up is unchanged, so the spam strat to win the ball back still works on her.
+- **R12 enemy defense.**
+  - **Cause:** every hit at or above poise re-stunned an enemy for 14 frames, and enemies had no defensive options, so a jab string was a stunlock.
+  - **Fix:** `EnemyDefense` (pure, owned by EnemyBrain) reuses DamageService's existing `parry_window` and `invulnerable` paths. A parry deflects your punch (`Hooper.on_parried` puts you off balance if you were mid-action), and the deflect chains into a counter.
+  - Applies to commons, uniques and elites. Critters, tourists, static props and bosses are excluded, so the user-liked spam on the Stoop Queen is untouched. A knockdown hit never triggers a reaction.
+  - Counter-move damage comes from the enemy def, so the counter picks by startup, not by move `damage`.
+- **R13.** `HooperBall.cancelled` is set when a gather ends with the meter still running. The ShotMeter skips its 0.6 s post-release flash, which had been drawing the previous shot's `last_release`.
+- **R14.** `economy.death.recoverable_frac` is now 1.0. Dying again before you touch the chain still wipes it (Nine Lives is the exception).
+  - While editing, I found that the R8 commit had injected a `"death"` key into every object in economy.json (`level_curve`, each bucket, `wearable` …). The game read the right values only because the extra key was ignored. I rebuilt the file from the pre-R8 version plus the one key.

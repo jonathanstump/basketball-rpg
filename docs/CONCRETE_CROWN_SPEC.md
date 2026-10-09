@@ -446,6 +446,8 @@ Everything is remappable. Glyphs swap to the last-used device.
   - Modifiers: Stepback ×1.4, Wide Open (boss SHOOK) ×2.0, Takeover ×1.6, low Wind (<25%) ×0.8, gear/tattoos as listed. Perfect width capped at 0.25.
   - **On the run** (revision 9): shoot while moving at run speed and you keep moving through the gather (×0.7 speed), but the windows shrink: ×0.65 running, ×0.5 sprinting (`tuning/shooting`).
 - **REJECTED (the punish):** if contest ≥ 0.85 ("smothered") and the grade would be NEAR MISS or worse, the defender swats it and follows up with an unavoidable short combo (boss: 18% of your max Heart, tier-scaled); they take the ball.
+- **Knocked out of the gather** (revision 13): a hit that cancels your shot before the release also clears the meter. No shot left your hands, so nothing flashes.
+- **Every make is loud** (revision 11): a bucket horn, confetti and a light pillar at the rim (gold for you, red for them), so a make reads even when a big boss hides the hoop. In a boss fight, a boss bucket also shows a "SCORED ON!" banner with a flash and a camera punch, and yours shows "BUCKET!".
 - The shot's outcome is decided at release. The flight is a scripted arc that plays out the result (clean swish, rim-in, rim-out, airball, block). Rim-outs hand off to ball physics.
 
 ### 7.7 Dunks, posters, finishers
@@ -511,6 +513,7 @@ This amends §7.10. Numbers live in `data/tuning/bosses.json` → `duel.r7`.
   - **Timed contest:** Hands Up, a strike or a Rejection pressed right on the release blocks the shot (window 4 frames, plus Hands, up to 12; the ball goes loose toward you). Pressed up to 10 frames early, it alters the shot (×0.45).
   - Misses are live rebounds, and you can board them on the ring.
 - **A boss bucket costs you Heart:** layup 7%, mid 8%, three 10%, dunk 12% of your max, +5% per tier above 1. Then CHECK, your ball. The Statement Dunk is the boss's dunk: it still has its slam hitbox and it's still Rejectable, but it **scores on you instead of healing the boss**.
+- **Shot style** (revision 11, `hoops.offense`): a boss can override its shot mix with a fixed `style`, plus a `settle_s` before the gather, a slower `gather_f`, and `calm_until_hit`. The Stoop Queen only lays it in: about 1.4 s to settle and a 54-frame gather, so you can run up and punch it loose. She doesn't swing while she holds the ball until you hit her. Then she's provoked for 4 s and swings back (75% per check, 1.2 s apart, no showboats).
 - **Swinging with the ball.** Bosses still throw attacks while holding the ball (projectiles, sweeps) at ×0.5 damage. They don't lob their own ball away.
 - **HUD:** a possession line (YOUR BALL / THEIR BALL / LOOSE BALL) with a meter showing how close the ball is to coming loose.
 
@@ -578,6 +581,13 @@ Breaker (Bronx), Fixie Rider (Brooklyn), Juggler (Queens), Gull/Night Deer (Stat
 - Attack tokens: max 2 attackers at once (3 at Tier 5+). Others circle at 4–6 m and taunt.
 - Commons respawn when you rest. Crew Captains, Bootlegs, and challengers don't.
 - Tier ≥ 3: Crew Captains appear in groups. Tier ≥ 5: commons get +1 combo hit and 20% faster recovery.
+- **Defending against spam** (revision 12, `tuning/ai.json → defense`): commons, uniques and elites count your hit streak (hits less than 1 s apart). From the 3rd hit, each hit rolls a reaction (30% + 15% per extra hit, +10% per tier above 1, max 85%) that cancels their hitstun:
+  - **Parry:** a 22-frame parry window. Your next punch is DEFLECTed, and they counter.
+  - **Dodge:** 16 i-frames and a 2.6 m slide out of the string.
+  - **Counter:** hyper armor and their fastest attack, right away.
+
+  There is a 2 s cooldown between reactions. Critters, tourists and bosses don't defend this way.
+- **Projectiles are drawn** (revision 11): every live projectile hitbox gets a glowing body, a trail and a ground shadow, and wide gust arcs (5 m and longer) show as a translucent fan. Moves can set `projectile.look` / `color` / `visual_radius`.
 
 ### 8.6 Tier application
 
