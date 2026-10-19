@@ -4,7 +4,9 @@ extends Node3D
 ## chancla, pigeon streams, thrown bottles...) and wide gust arcs, so what hits
 ## you is what you see. Pure view: reads game.combat.hitboxes, never mutates.
 ## Looks come from the move's `projectile` block via hitbox tags: look
-## (orb | slipper), color, visual_radius.
+## (orb | slipper), color, visual_radius. Revision 16: during a projectile
+## move's wind-up the thrower holds the projectile up overhead and a lane
+## on the ground shows where it's going, so you can step out of it.
 
 const WIDE_ARC_M: float = 5.0
 const DEFAULT_COLOR: Color = Color("#FFB000")
@@ -13,6 +15,7 @@ var game: GameWorld
 var combat: CombatSystem = null   # taken from `game` when unset (tests set these directly)
 var world: SimWorld = null
 var views: Dictionary = {}   # hitbox instance id -> Node3D
+var windups: Dictionary = {}   # thrower actor id -> Node3D
 
 
 static func wants(hb: Hitbox) -> String:
@@ -24,6 +27,19 @@ static func wants(hb: Hitbox) -> String:
 	if hb.volume.shape == "arc" and hb.volume.radius >= WIDE_ARC_M and hb.team != 0:
 		return "arc"
 	return ""
+
+
+static func windup_of(a: SimActor) -> Dictionary:
+	## {} unless `a` is winding up a projectile move; else progress 0..1
+	## through startup, the aim dir, the range and the projectile block.
+	if a == null or not a.alive or a.team == 0:
+		return {}
+	var r: MoveRunner = Telegraph.runner_of(a)
+	if r == null or not r.in_startup() or JU.s(r.move, "primitive") != "projectile":
+		return {}
+	var pd: Dictionary = JU.dict(r.move, "projectile")
+	return {"progress": clampf(float(r.frame) / float(maxi(1, r.startup())), 0.0, 1.0), "dir": r.dir,
+		"range": JU.f(pd, "range", 18.0), "projectile": pd}
 
 
 func _process(delta: float) -> void:
@@ -62,6 +78,65 @@ func _process(delta: float) -> void:
 		if not seen.has(k):
 			(views[k] as Node).queue_free()
 			views.erase(k)
+	_update_windups(delta)
+
+
+func _update_windups(delta: float) -> void:
+	var seen: Dictionary = {}
+	if world != null:
+		for a: SimActor in world.actors:
+			var info: Dictionary = windup_of(a)
+			if info.is_empty():
+				continue
+			seen[a.id] = true
+			var v: Node3D = windups.get(a.id, null)
+			if v == null:
+				v = _windup_view(a, info)
+				add_child(v)
+				windups[a.id] = v
+			var u: float = float(info["progress"])
+			var dir: Vector3 = info["dir"]
+			var held: Node3D = v.get_node("Held") as Node3D
+			held.position = a.pos + Vector3(0, a.height * float(a.flags.get("scale", 1.0)) + 0.6, 0)
+			held.rotation.y += delta * (4.0 + 14.0 * u)
+			held.scale = Vector3.ONE * lerpf(0.6, 1.25, u)
+			var lane: MeshInstance3D = v.get_node("Lane") as MeshInstance3D
+			var start: Vector3 = a.pos + dir * (a.radius + 0.3)
+			var gy: float = world.collision.ground_height(start)
+			lane.position = Vector3(start.x, gy + 0.05, start.z) + dir * float(info["range"]) * 0.5
+			lane.rotation.y = atan2(-dir.x, -dir.z)
+			var lm: StandardMaterial3D = lane.material_override as StandardMaterial3D
+			lm.albedo_color.a = lerpf(0.08, 0.4, u)
+	for k: Variant in windups.keys():
+		if not seen.has(k):
+			(windups[k] as Node).queue_free()
+			windups.erase(k)
+
+
+func _windup_view(a: SimActor, info: Dictionary) -> Node3D:
+	var pd: Dictionary = info["projectile"]
+	var col: Color = Color(JU.s(pd, "color", DEFAULT_COLOR.to_html()))
+	var r: float = JU.f(pd, "visual_radius", maxf(0.35, JU.f(pd, "radius", 0.45)))
+	var root: Node3D = Node3D.new()
+	root.name = "Windup%d" % a.id
+	var held: Node3D = Node3D.new()
+	held.name = "Held"
+	var body: MeshInstance3D = MeshInstance3D.new()
+	body.mesh = MeshLib.box(Vector3(r * 1.1, r * 0.35, r * 2.2)) if JU.s(pd, "look", "orb") == "slipper" else MeshLib.sphere(r)
+	body.material_override = ToonMaterials.toon(col, true, false, col, 2.2)
+	held.add_child(body)
+	var halo: MeshInstance3D = MeshInstance3D.new()
+	halo.mesh = MeshLib.sphere(r * 1.8)
+	halo.material_override = _alpha_mat(col, 0.3)
+	held.add_child(halo)
+	root.add_child(held)
+	var lane: MeshInstance3D = MeshInstance3D.new()
+	lane.name = "Lane"
+	lane.mesh = MeshLib.box(Vector3(maxf(1.0, r * 2.0), 0.02, float(info["range"])))
+	lane.material_override = _alpha_mat(col, 0.08)
+	lane.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	root.add_child(lane)
+	return root
 
 
 func _projectile_view(hb: Hitbox) -> Node3D:

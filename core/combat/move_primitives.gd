@@ -187,6 +187,10 @@ static func _projectile(r: MoveRunner, m: Dictionary, dir: Vector3) -> void:
 	hb.world_space = true
 	hb.projectile = true
 	hb.velocity = dir * speed
+	## Leave from the thrower's edge, not from inside a giant's body where the
+	## first stretch of flight is hidden (revision 16).
+	hb.volume.origin = r.actor.pos + dir * (r.actor.radius + 0.3)
+	r.world.emit("projectile_thrown", {"actor": r.actor.id, "move": JU.s(m, "id")})
 	hb.tags["homing"] = JU.f(pd, "homing", 0.0)
 	hb.tags["homing_target"] = r.target.id if r.target != null else 0
 	for k: String in ["look", "color", "visual_radius"]:   # ProjectileFx (revision 11)

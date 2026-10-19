@@ -29,6 +29,8 @@ static func on_event(game: GameWorld, ev: Dictionary) -> void:
 		"move_started":
 			if bool(ev.get("unblockable", false)):
 				AudioDirector.play_sfx("telegraph")
+		"projectile_thrown":
+			AudioDirector.play_sfx("whoosh")
 
 
 static func _hit(game: GameWorld, ev: Dictionary) -> void:

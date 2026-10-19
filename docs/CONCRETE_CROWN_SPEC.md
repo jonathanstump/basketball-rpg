@@ -684,7 +684,7 @@ Legend: (T2) = added at Tier 2+. ★ = build first as the reference boss.
 - _Arena:_ Brownstone block. Her stoop at the end; hoop mounted over her front door; neighbors in lit windows.
 - _Look:_ Giant grandma (4 m sitting), floral housecoat, curlers, huge glasses, folding lawn chair, paper fan.
 - _Gimmick:_ Phase 1 she never leaves the stoop. She attacks at range, and every throw leaves the ball loose in the street. Race for it, clear, and attack the stoop (the steps are the paint).
-- _Moves:_ Stoop Lob (lob mortar, Rejectable) · Chancla (fast flying slipper, unblockable, body attack) · Broom Sweep (close-range sweep across the steps) · Window Watchers (neighbors drop flower pots in telegraphed circles) · "Get Off My Stoop" (fan-gust knockback cone) · (T2) Double Lob.
+- _Moves:_ Stoop Lob (lob mortar, Rejectable) · Chancla (flying slipper she holds up overhead first, with a lane on the ground showing where it's going; unblockable, body attack, side-step it) · Broom Sweep (close-range sweep across the steps) · Window Watchers (neighbors drop flower pots in telegraphed circles) · "Get Off My Stoop" (fan-gust knockback cone) · (T2) Double Lob.
 - _Phase 2 — She Stands Up:_ 7 m tall, the stoop crumbles, melee mode: Housecoat Spin, Lawn Chair Slam (AoE), Grandma Hug (grab), plus her ranged moves at lower frequency.
 - _T5+ — Block Party Call:_ 3 Ball Hogs ("the grandkids") join for 20 s.
 - _Drops:_ Pinkie (ball), flash: Rose.
@@ -1335,18 +1335,18 @@ concrete-crown/
   "body_attack": true,
   "telegraph": {
     "anim": "windup_throw",
-    "frames": 24,
+    "frames": 36,
     "vfx": "red_flash",
     "sfx": "whoosh"
   },
-  "startup": 24,
+  "startup": 36,
   "active": 30,
   "recovery": 20,
   "damage": 45,
   "composure_dmg": 0,
   "parry": "none",
   "unblockable": true,
-  "projectile": { "speed": 22, "range": 20, "homing": 0.1 },
+  "projectile": { "speed": 12, "range": 24, "homing": 0.04, "look": "slipper", "color": "#B04BFF", "visual_radius": 0.8 },
   "min_tier": 1,
   "weight": 3,
   "cooldown_s": 4,
