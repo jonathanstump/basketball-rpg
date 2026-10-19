@@ -20,6 +20,9 @@ var shake: float = 0.0
 var punch: float = 0.0
 var input_enabled: bool = true
 var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
+var _flick_px: float = 0.0     # locked on: mouse travel toward a target switch
+var _stick_armed: bool = true  # locked on: right stick back near center
+var _flick: int = 0            # pending switch (+1 right / -1 left), see take_flick()
 
 
 func _ready() -> void:
@@ -56,12 +59,35 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		var mm: InputEventMouseMotion = event
+		if lock_target != null:
+			## Locked on, the camera frames the fight; a sideways flick switches
+			## targets instead (revision 17).
+			_flick_px += mm.relative.x
+			if absf(_flick_px) >= JU.f(JU.dict(cfg, "lockon"), "flick_px", 90.0):
+				_flick = 1 if _flick_px > 0.0 else -1
+				_flick_px = 0.0
+			return
 		yaw -= mm.relative.x * JU.f(cfg, "mouse_sensitivity", 0.005) * Settings.get_float("camera_sensitivity")
 		## Same per-pixel rate as yaw, in degrees.
 		_add_pitch(rad_to_deg(mm.relative.y * JU.f(cfg, "mouse_sensitivity", 0.005)))
 
 
+func take_flick() -> int:
+	## The pending lock-on switch (+1 right, -1 left, 0 none); clears it.
+	var f: int = _flick
+	_flick = 0
+	return f
+
+
 func _process(delta: float) -> void:
+	_flick_px = move_toward(_flick_px, 0.0, delta * JU.f(JU.dict(cfg, "lockon"), "flick_decay_px_s", 240.0))
+	if input_enabled and lock_target != null:
+		var st: float = Input.get_axis("cam_left", "cam_right")
+		if absf(st) >= 0.7 and _stick_armed:
+			_flick = 1 if st > 0.0 else -1
+			_stick_armed = false
+		elif absf(st) < 0.3:
+			_stick_armed = true
 	if input_enabled and lock_target == null:
 		var stick: float = Input.get_axis("cam_left", "cam_right")
 		yaw -= stick * JU.f(cfg, "yaw_speed_rad_s", 2.6) * Settings.get_float("camera_sensitivity") * delta

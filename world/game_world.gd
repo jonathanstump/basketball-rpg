@@ -191,32 +191,27 @@ func _physics_process(_delta: float) -> void:
 
 
 func _player_lock_on() -> void:
+	## Manual lock-on (revision 17): toggle, switch left/right (wheel, or a
+	## flick of the mouse / right stick), and the lock breaks when the target
+	## goes down or you back far enough away.
 	if player == null or player_hooper == null:
 		return
-	if player.input.pressed("lock_on"):
-		if player_hooper.lock_target != null:
-			set_lock(null)
-		else:
-			set_lock(_best_lock_target())
+	var lcfg: Dictionary = JU.dict(DataDB.tuning("camera"), "lockon")
+	var range_m: float = JU.f(lcfg, "lock_range_m", 16.0)
 	var lt: SimActor = player_hooper.lock_target
-	if lt != null and (not lt.alive or lt.dist_to(player) > JU.f(JU.dict(camera_rig.cfg, "lockon"), "lock_range_m", 20.0) * 1.5):
+	if player.input.pressed("lock_on"):
+		set_lock(null if lt != null else LockOn.best(sim, player, camera_rig.forward_flat(), range_m))
+	elif lt != null:
+		var step: int = 1 if player.input.pressed("target_next") else (-1 if player.input.pressed("target_prev") else 0)
+		if step != 0:
+			set_lock(LockOn.cycle(sim, player, lt, camera_rig.forward_flat(), step, range_m))
+	lt = player_hooper.lock_target
+	if lt != null and LockOn.breaks(player, lt, JU.f(lcfg, "break_range_m", 20.0)):
 		set_lock(null)
-
-
-func _best_lock_target() -> SimActor:
-	var best: SimActor = null
-	var best_score: float = 1e9
-	var range_m: float = JU.f(JU.dict(DataDB.tuning("camera"), "lockon"), "lock_range_m", 20.0)
-	for o: SimActor in sim.hostiles_of(player):
-		var d: float = o.dist_to(player)
-		if d > range_m:
-			continue
-		var to: Vector3 = (o.pos - player.pos).normalized()
-		var score: float = d - to.dot(camera_rig.forward_flat()) * 6.0
-		if score < best_score:
-			best_score = score
-			best = o
-	return best
+	elif lt != null:
+		var v: ActorView = views.get(player.id, null)
+		if v != null:
+			v.animator.look_target = lt.pos
 
 
 func set_lock(target: SimActor) -> void:

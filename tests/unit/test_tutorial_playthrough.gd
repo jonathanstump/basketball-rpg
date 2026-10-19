@@ -49,6 +49,17 @@ class TutorialBot:
 						_cool = 30
 				else:
 					_chase_ball(input, a)
+			"lock_on":
+				# Lock onto the nearest defender, then back away from them.
+				var lt: SimActor = pro.player_hooper.lock_target
+				if lt == null:
+					input.move = Vector2.ZERO
+					if _cool == 0:
+						input.press("lock_on")
+						_cool = 20
+				else:
+					var away: Vector3 = a.pos - lt.pos
+					input.move = Vector2(away.x, away.z).normalized()
 			"ankle", "strip":
 				var c2: SimActor = w.nearest_hostile(a, 40.0)
 				if step == "ankle" and not a.has_ball:
@@ -191,7 +202,7 @@ func test_strip_drill_works_for_a_player_who_waits_for_the_cue() -> void:
 	pro.player.pos = pro.lay["top_of_key"]
 	pro.tracker.mark("reach_court")
 	pro.call_next()
-	for k: String in ["moved", "strike", "crossover", "ankle_breaker", "crate_make"]:
+	for k: String in ["moved", "strike", "crossover", "lock_backpedal", "ankle_breaker", "crate_make"]:
 		pro.tracker.mark(k)
 	await wait_physics_frames(3)
 	assert_eq(pro.tracker.current_id(), "strip")

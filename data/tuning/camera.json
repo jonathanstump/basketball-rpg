@@ -15,7 +15,10 @@
   "distance_max_m": 14,
   "sep_to_distance": 0.45,
   "hoop_weight": 0.35,
-  "lock_range_m": 20
+  "lock_range_m": 16,
+  "break_range_m": 20,
+  "flick_px": 90,
+  "flick_decay_px_s": 240
  },
  "yaw_speed_rad_s": 2.6,
  "mouse_sensitivity": 0.005,

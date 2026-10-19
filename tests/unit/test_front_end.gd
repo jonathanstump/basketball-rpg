@@ -93,6 +93,9 @@ func test_tutorial_tracker_steps() -> void:
 	assert_eq(t.current_id(), "strike")
 	t.feed({"type": "hit_resolved", "attacker": 1, "target": 5, "result": "hit"})
 	t.feed({"type": "action_started", "actor": 1, "move": "crossover"})
+	assert_eq(t.current_id(), "lock_on")
+	for i: int in TutorialTracker.BACKPEDAL_FRAMES:
+		t.feed_lock(true, Vector3(0, 0, -5), Vector3(0, 0, 4))
 	t.feed({"type": "hit_resolved", "attacker": 5, "target": 1, "result": "ankle_breaker"})
 	t.feed({"type": "shot_made", "actor": 1, "hoop_kind": "regulation"})
 	assert_eq(t.current_id(), "shoot", "only the crate hoop counts")

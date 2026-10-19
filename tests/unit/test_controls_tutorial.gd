@@ -3,7 +3,7 @@ extends GutTest
 ## Settings has a Controls menu to view and change every binding.
 
 const TAUGHT: Dictionary = {"walk_up": "move", "call_next": "interact", "move": "dodge", "strike": "light",
-	"crossover": "dodge", "ankle": "dodge", "shoot": "shoot", "strip": "hands_up", "quarter_water": "quarter_water"}
+	"crossover": "dodge", "lock_on": "lock_on", "ankle": "dodge", "shoot": "shoot", "strip": "hands_up", "quarter_water": "quarter_water"}
 
 
 func before_each() -> void:

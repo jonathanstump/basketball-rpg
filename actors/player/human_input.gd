@@ -4,7 +4,8 @@ extends InputSource
 ## ActorInput with camera-relative movement (spec §7.2).
 
 const ACTIONS: PackedStringArray = ["light", "heavy", "dodge", "jump", "shoot", "hands_up",
-	"bag_move", "interact", "taunt", "quarter_water", "swap_ball_left", "swap_ball_right", "lock_on"]
+	"bag_move", "interact", "taunt", "quarter_water", "swap_ball_left", "swap_ball_right", "lock_on",
+	"target_next", "target_prev"]
 
 var camera: CameraRig = null
 var enabled: bool = true
@@ -39,3 +40,8 @@ func fill(input: ActorInput, _actor: SimActor, _world: SimWorld) -> void:
 			input.held[a] = true
 		elif input.held.has(a):
 			input.release(a)
+	if camera != null:
+		## Locked on: a flick of the mouse or right stick switches targets.
+		var flick: int = camera.take_flick()
+		if flick != 0:
+			input.press("target_next" if flick > 0 else "target_prev")

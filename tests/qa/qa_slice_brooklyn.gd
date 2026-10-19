@@ -44,7 +44,7 @@ func run() -> bool:
 			return false
 	# Timing-based steps (strike/ankle/crate/strip) are driven by tests/unit;
 	# here the QA marks them to keep the run deterministic.
-	for k2: String in ["strike", "ankle_breaker", "crate_make", "strip"]:
+	for k2: String in ["strike", "lock_backpedal", "ankle_breaker", "crate_make", "strip"]:
 		pro.tracker.mark(k2)
 	await frames(400)
 	if not check(GameState.has_flag("prologue_done"), "cameo did not hand off to the bodega"):

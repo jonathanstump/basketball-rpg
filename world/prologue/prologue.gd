@@ -1,8 +1,8 @@
 class_name Prologue
 extends GameWorld
 ## "I Got Next" (spec §3.3): your home court. Call next, the crew laughs,
-## the tutorial teaches move / strike / crossover / ankle-breaker / crate
-## shot / strip / Quarter Water. Then the lights flicker, a tall shadow in
+## the tutorial teaches move / strike / crossover / lock-on / ankle-breaker /
+## crate shot / strip / Quarter Water. Then the lights flicker, a tall shadow in
 ## an old warm-up suit checks you the ball and ends you: "Not yet, kid."
 ## You wake up in the nearest bodega.
 
@@ -94,6 +94,8 @@ func _physics_process(delta: float) -> void:
 			_sprinted = _sprinted or (player_hooper != null and player_hooper.sprinting)
 			if _sprinted and player.pos.distance_to(_move_origin) > 4.0:
 				tracker.mark("moved")
+			var lt: SimActor = player_hooper.lock_target if player_hooper != null else null
+			tracker.feed_lock(lt != null, lt.pos - player.pos if lt != null else Vector3.ZERO, player.vel)
 			if player.hp < player.hp_max * 0.35:
 				player.hp = player.hp_max * 0.35
 			if tracker.tutorial_complete():

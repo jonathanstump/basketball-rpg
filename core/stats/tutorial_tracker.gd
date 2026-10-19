@@ -4,9 +4,12 @@ extends RefCounted
 ## Steps can complete in any order (players poke at things); the prompt
 ## always shows the first one still open. Pure: fed sim events + facts.
 
+const BACKPEDAL_FRAMES: int = 30   # lock-on step: half a second backing up while locked
+
 var steps: Array = []
 var done: Dictionary = {}
 var player_id: int = 0
+var backpedal_frames: int = 0
 
 
 func _init(pid: int) -> void:
@@ -42,6 +45,17 @@ func tutorial_complete() -> bool:
 		if id != "cameo" and not done.has(id):
 			return false
 	return true
+
+
+func feed_lock(locked: bool, to_target: Vector3, vel: Vector3) -> void:
+	## Lock-on step (revision 17): locked onto someone and backing away from
+	## them (you keep facing them while you do).
+	var flat: Vector3 = Vector3(vel.x, 0.0, vel.z)
+	var to: Vector3 = Vector3(to_target.x, 0.0, to_target.z)
+	if locked and flat.length() > 1.0 and to.length() > 0.01 and flat.normalized().dot(to.normalized()) < -0.5:
+		backpedal_frames += 1
+	if backpedal_frames >= BACKPEDAL_FRAMES:
+		mark("lock_backpedal")
 
 
 func feed(ev: Dictionary) -> void:
