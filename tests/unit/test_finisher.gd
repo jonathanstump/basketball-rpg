@@ -107,3 +107,43 @@ func test_real_ankle_breaker_then_finisher() -> void:
 			started = true
 			break
 	assert_true(started, "mashing R after the ankles slams them")
+
+
+func test_one_finisher_per_opening() -> void:
+	## Revision 15: mashing R on a downed enemy chained slams until they died.
+	## One finisher per knockdown / SHOOK; the next opening gets a fresh one.
+	await wait_physics_frames(3)
+	var e: SimActor = _crew()
+	e.hp_max = 9999.0
+	e.hp = 9999.0
+	_down_at(e, 2.0)
+	await wait_physics_frames(2)
+	d.player.input.press("interact")
+	await wait_physics_frames(1)
+	assert_eq(d.player_hooper.action, "dunk_finisher", "the first R slams")
+	assert_false(HooperCombat.is_open(e), "that opening is spent")
+	assert_false(EnemyBars.finisher_open(e), "no FINISH tag")
+	assert_false(ActorView.open_pulse(e), "no gold glow")
+	await wait_physics_frames(40)
+	assert_ne(d.player_hooper.action, "dunk_finisher")
+	assert_true(d.player.has_ball, "the slam keeps your ball")
+	(e.controller as EnemyBrain).stun(90, true)   # still down
+	var slams: Array[int] = [0]
+	d.sim.sim_event.connect(func(ev: Dictionary) -> void:
+		if str(ev.get("type", "")) == "action_started" and str(ev.get("move", "")) == "dunk_finisher":
+			slams[0] += 1)
+	for i: int in 30:
+		d.player.input.press("interact")
+		await wait_physics_frames(1)
+	assert_eq(slams[0], 0, "mashing R doesn't slam the same downed enemy again")
+	await wait_physics_frames(20)   # let the buffered presses expire
+	var br: EnemyBrain = e.controller as EnemyBrain
+	br.stun_frames = 1
+	await wait_physics_frames(3)
+	assert_false(e.flags.has("finish_spent"), "back on their feet clears it")
+	_down_at(e, 2.0)
+	await wait_physics_frames(2)
+	assert_true(HooperCombat.is_open(e), "a new knockdown is a new opening")
+	d.player.input.press("interact")
+	await wait_physics_frames(1)
+	assert_eq(slams[0], 1, "and R slams again")

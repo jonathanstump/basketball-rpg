@@ -88,6 +88,7 @@ func step() -> void:
 		tokens().release(actor.id)
 		actor.anim_state = "death"
 		return
+	HooperCombat.refresh_opening(actor)
 	if defense.step(self):
 		return
 	if stun_frames > 0:

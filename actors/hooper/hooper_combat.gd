@@ -254,6 +254,7 @@ func try_finisher(h: Hooper) -> bool:
 	if h.action != "":
 		h.end_action()
 	a.flags["finisher_target"] = t.id
+	t.flags["finish_spent"] = true   # one slam per opening (revision 15)
 	return h.begin("dunk_finisher", t.pos - a.pos, self)
 
 
@@ -264,17 +265,30 @@ static func finisher_reach(move: Dictionary) -> float:
 
 
 static func finisher_target(w: SimWorld, a: SimActor, move: Dictionary) -> SimActor:
-	## The nearest downed / SHOOK street enemy within reach.
+	## The nearest open street enemy within reach.
 	var best: SimActor = null
 	var bd: float = finisher_reach(move)
 	for o: SimActor in w.hostiles_of(a):
 		if o.kind != "enemy" and o.kind != "critter":
 			continue
 		var d: float = o.dist_to(a)
-		if (bool(o.flags.get("downed", false)) or o.is_shook()) and d <= bd:
+		if is_open(o) and d <= bd:
 			best = o
 			bd = d
 	return best
+
+
+static func is_open(o: SimActor) -> bool:
+	## Downed or SHOOK, and no finisher spent on this opening yet. Mashing R
+	## on a downed enemy used to chain slams until they died (revision 15).
+	return (bool(o.flags.get("downed", false)) or o.is_shook()) and not bool(o.flags.get("finish_spent", false))
+
+
+static func refresh_opening(o: SimActor) -> void:
+	## Called by enemy controllers every frame: once they're back up (not
+	## knocked, downed or SHOOK) the next opening gets a fresh finisher.
+	if o.flags.has("finish_spent") and not (bool(o.flags.get("knocked", false)) or bool(o.flags.get("downed", false)) or o.is_shook()):
+		o.flags.erase("finish_spent")
 
 
 func _finisher_leap(h: Hooper, f: int, s: int) -> void:

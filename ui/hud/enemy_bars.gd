@@ -74,7 +74,7 @@ static func status_of(a: SimActor) -> String:
 
 
 static func finisher_open(a: SimActor) -> bool:
-	return status_of(a) in ["DOWN", "SHOOK"]
+	return status_of(a) in ["DOWN", "SHOOK"] and not bool(a.flags.get("finish_spent", false))
 
 
 static func should_show(a: SimActor, since_hit_s: float, dist_m: float) -> bool:

@@ -52,6 +52,7 @@ func step() -> void:
 	if target == null or not target.alive:
 		target = world.nearest_hostile(actor, 30.0)
 	actor.flags["downed"] = stun_frames > 0 and bool(actor.flags.get("knocked", false))
+	HooperCombat.refresh_opening(actor)
 	if stun_frames > 0:
 		stun_frames -= 1
 		actor.desired_vel = Vector3.ZERO

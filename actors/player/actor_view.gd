@@ -74,7 +74,7 @@ func hit_react(heavy: bool) -> void:
 
 static func open_pulse(a: SimActor) -> bool:
 	## Downed / SHOOK street enemies glow gold: Dunk Finisher window.
-	return a.team != 0 and a.kind == "enemy" and a.alive and (bool(a.flags.get("knocked", false)) or a.is_shook())
+	return a.team != 0 and a.kind == "enemy" and a.alive and (bool(a.flags.get("knocked", false)) or a.is_shook()) and not bool(a.flags.get("finish_spent", false))
 
 
 func _process(delta: float) -> void:
