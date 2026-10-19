@@ -336,3 +336,24 @@ Spec §11.3 lists L60 = 46,626 but `floor(100 × 60^1.5 + 150)` = 46,625 (every 
 - **R13.** `HooperBall.cancelled` is set when a gather ends with the meter still running. The ShotMeter skips its 0.6 s post-release flash, which had been drawing the previous shot's `last_release`.
 - **R14.** `economy.death.recoverable_frac` is now 1.0. Dying again before you touch the chain still wipes it (Nine Lives is the exception).
   - While editing, I found that the R8 commit had injected a `"death"` key into every object in economy.json (`level_curve`, each bucket, `wearable` …). The game read the right values only because the extra key was ignored. I rebuilt the file from the pre-R8 version plus the one key.
+
+## Revisions 15-17 (2026-10-18)
+
+- **R15 finisher spam.**
+  - **Cause:** `finisher_target` accepted any downed or SHOOK enemy, and a finisher hit keeps them downed (the stun uses `maxi`). So every R press after the slam ended started another ×3 crit slam on the same body.
+  - **Fix:** starting a finisher sets `finish_spent` on the target. `HooperCombat.is_open` skips spent targets. Enemy controllers (`EnemyBrain`, `TrainingDummy`) call `HooperCombat.refresh_opening` every frame, which clears the mark once the enemy is no longer knocked, downed or SHOOK. The gold glow and the FINISH tag go out with it.
+  - You can still punch a downed enemy, and the next knockdown or SHOOK gets a fresh finisher.
+- **R16 chancla still unreadable.**
+  - **Cause:** the R11 view worked, but the slipper was spawned at the Queen's feet, inside a 1.75× body, and flew 22 m/s for only 0.9 s. You lost the first stretch of the flight behind her, and what was left was too short to read or dodge.
+  - **Fix (both options from the note):** projectiles now spawn at the thrower's edge (`radius + 0.3`) for every move. The chancla's wind-up went 24 → 36 frames, speed 22 → 12 m/s, range 20 → 24 m (2 s of flight), homing 0.1 → 0.04 so a sidestep works, and `visual_radius` went 0.6 → 0.8.
+  - The wind-up cue is generic for any `projectile` move: `ProjectileFx.windup_of` reads the thrower's MoveRunner during startup. The view holds the projectile up overhead, spinning faster and growing, and draws a translucent lane on the ground along its path. A `projectile_thrown` sim event plays `whoosh` on release.
+  - Damage, unblockable and the cooldown are unchanged. The spec's chancla JSON is updated to match.
+- **R17 lock-on.**
+  - A basic lock already existed (middle mouse / R3), but nothing taught it, `target_next/prev` were bound and never read, the break range was 30 m, and the head-look stayed on the spot where you first locked.
+  - Added `LockOn` (core/combat/lock_on.gd, pure): `best`, `cycle` (sorted by bearing around you from camera forward, wraps), `breaks`. `GameWorld._player_lock_on` uses it.
+  - Switching targets: mouse wheel (`target_next/prev`), or a sideways flick while locked. A mouse flick is 90 px of travel that decays at 240 px/s. A stick flick is past 0.7, then re-armed under 0.3. CameraRig queues the flick and HumanInput turns it into a `target_next/prev` press. While locked, mouse motion no longer nudges the yaw, because the lock framing overrode it anyway.
+  - `camera.json → lockon`: `lock_range_m` 20 → 16, plus `break_range_m` 20. Break is above acquire so a fresh lock never drops on its own.
+  - Facing while backing up was already there (locked and not sprinting, you turn toward the target). With the ball, a dodge away from them is a stepback, which has the ankle window. Sprinting still turns you to run.
+  - Locking stays manual. The one exception is boss arenas, which already locked onto the boss at fight start for the duel framing. I kept that: the duel camera ignores the lock, and it only drives your facing without the ball.
+  - **Tutorial:** a new `lock_on` step between crossover and ankle: "lock onto a defender, then back up". It's done after 30 frames of moving away from your lock target while locked (`TutorialTracker.feed_lock`). The ankle prompt now mentions the locked stepback. The strip-drill test, QA slice and controls test list the new step.
+  - I didn't add a keyboard key for lock-on. Middle mouse is the PC default and it's remappable in Controls.

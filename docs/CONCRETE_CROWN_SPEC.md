@@ -56,7 +56,7 @@ Sekiro (posture and deflects), Dark Souls (bonfires, shortcuts, corpse runs), El
 **D2 — High-angle third-person camera.**
 
 - Exploration: pitch 50°, distance 12 m, FOV 45°, free yaw on the right stick, slight tilt-shift blur for a toy-diorama feel.
-- Lock-on (any fight): pitch 38°, distance 9–14 m (dynamic), frames player + target (+ hoop in boss arenas).
+- Lock-on (any fight): pitch 38°, distance 9–14 m (dynamic), frames player + target (+ hoop in boss arenas). Always manual (boss arenas lock onto the boss when the fight starts). Acquire within 16 m; switch left/right with the mouse wheel or a sideways flick of the mouse / right stick; while locked and not sprinting you keep facing the target, so backing up stays a backpedal (and a dodge back is a stepback that can take ankles). The lock breaks when the target goes down or you're more than 20 m away. Tuning: `camera.json → lockon`.
 - Buildings between camera and player dither-fade out (occlusion cutaway, §15.12).
 
 **D3 — Godot 4 + GDScript, not Unity.** Jonathan knows Unity, but this build is meant to run unattended under `/goal`. Godot's scenes and resources are plain text, the engine runs fully headless for tests, there's no license activation to fight in CI, and a verify loop takes seconds instead of minutes. If you ever port, the architecture in §15 maps to Unity cleanly.
@@ -87,7 +87,7 @@ The truth (revealed in pieces): **Midnight**, the greatest to ever do it, stoppe
 
 1. Title screen: skyline at night, every clock at 3:00.
 2. Character creator (§6.2), archetype pick (§6.3), starting borough pick with the tier map preview (§4.3).
-3. Your home court. You walk up and call "I got next." A crew laughs. Tutorial fight teaches move, dribble strike, crossover, ankle-breaker, shooting at a crate hoop, strip, and Quarter Water.
+3. Your home court. You walk up and call "I got next." A crew laughs. Tutorial fight teaches move, dribble strike, crossover, lock-on (lock onto a defender and back up while facing them), ankle-breaker, shooting at a crate hoop, strip, and Quarter Water.
 4. **The unwinnable cameo.** The court lights flicker, a tall shadow in an old warm-up suit walks on, checks you the ball, and ends you in one move: "Not yet, kid." (Midnight. You'll see him again.)
 5. You wake up in the nearest bodega with the cat sitting on your chest. Pops is at the counter. Rest, level, go.
 
@@ -374,7 +374,7 @@ Soft caps at 20 / 40 / 60 (diminishing returns per the formulas). Ball scaling g
 | ------------------------------------------ | ---------------- | -------------------------- |
 | Move                                       | Left stick       | WASD                       |
 | Camera                                     | Right stick      | Mouse                      |
-| Lock-on / switch target                    | R3 / flick RS    | Middle mouse / mouse wheel |
+| Lock-on / switch target                    | R3 / flick RS    | Middle mouse / wheel or flick mouse |
 | Jump                                       | A                | Space                      |
 | Dodge (crossover / slide); hold = sprint   | B                | Shift (tap/hold)           |
 | Light attack                               | X                | Left mouse                 |
@@ -383,7 +383,7 @@ Soft caps at 20 / 40 / 60 (diminishing returns per the formulas). Ball scaling g
 | Hands Up (tap = parry/strip, hold = guard) | LB               | Q                          |
 | Bag Move                                   | LT               | F                          |
 | Takeover (Hype full)                       | LT + RT          | F + R                      |
-| Interact / dunk finisher prompt            | RT               | R                          |
+| Interact / dunk finisher prompt (one finisher per knockdown / SHOOK) | RT | R                |
 | Quarter Water                              | D-pad up         | 1                          |
 | Swap ball (2 slots)                        | D-pad left/right | 2 / 3                      |
 | Taunt                                      | D-pad down       | T                          |
@@ -454,7 +454,7 @@ Everything is remappable. Glyphs swap to the last-used device.
 
 - **Dunk:** sprint at a hoop in range and jump. In a boss arena, if the boss is in the paint between you and the rim and isn't SHOOK, they **meet you at the rim**: blocked, punished, ball lost.
 - **POSTER:** if the boss is SHOOK and you're within 4 m with the ball, dunk = POSTERIZE. Freeze frame, camera flash, comic halftone, "POSTERIZED!" sticker, massive damage (§11.5).
-- **Dunk Finisher** on commons: see §7.4.
+- **Dunk Finisher** on commons: see §7.4. One per opening (revision 15): once you slam a downed / SHOOK enemy, R does nothing more on them (the gold glow and FINISH tag go out) until they're back up and you open them again.
 
 ### 7.8 Hype, Bag Moves, Takeover, taunts
 

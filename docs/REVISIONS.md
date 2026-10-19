@@ -25,3 +25,9 @@
 13. **[DONE]** I'm noticing that when the player is hit mid shot and it knocks them off the shooting animation so they don't get the shot off, the meeter is still filled like a shot is going to be shot. Get rid of the meter in this instance.
 
 14. **[DONE]** Actually, when you die, your rep should be fully recoverable. But if you die before recovering it then it should all go away.
+
+15. **[DONE]** You should only be able to press R once when you take ankles. Spamming R basically kills an enermy instantly once they are on the ground.
+
+16. **[DONE]** The projectiles from the Stoop Queen are still not visible. This could be because they are being thrown too fast to perceive. This means they are too fast to dodge, which shouldn't be the case. Either that or have more visual cues that she is about to throw her projectiles as well.
+
+17. **[DONE]** Add the ability to lock on to an enemy, meaning the camera focuses on them, and backing up keeps the player facing them instead of turning away. I think this would really help with taking ankles, as the user can back up and then take ankles instead of just turning away and not getting the animation. Have it be so that you can switch who you lock on to, locking on is manual, should be integrated into the tutorial, and if the player backs up far enough the lock is broken.
